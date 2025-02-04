@@ -1,24 +1,9 @@
-class soundEffects{
-  
-  soundEffects(){
-    Boolean start;
-    Boolean hurt;
-    Boolean heal;
-    Boolean strike;
-    Boolean item;
+class soundEffects {
+  boolean start;
+  boolean hurt;
+  boolean heal;
+  boolean strike;
+  boolean item;
+  soundEffects() {
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 }
