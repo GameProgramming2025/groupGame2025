@@ -1,12 +1,10 @@
-class Enemy extends ScreenElement {
+class BossEnemy extends ScreenElement {
   float health;
   float gravity;
   float xAcc;
   float yAcc;
 
-  Enemy ( float x, float y) {
-    super();
-    respawn();
+  BossEnemy() {
   }
 
   void display () {
@@ -16,20 +14,12 @@ class Enemy extends ScreenElement {
     strokeWeight(2);
     stroke(255);
     fill(#ffff00);
-    ellipse(0, 0, 30, 30);
+    ellipse(0, 0, 60, 60);
     pop();
-  }
-  
-   void respawn() {
-    this.xPos = random(30, width - 30);
-    this.yPos = random(-height * 2, -100);
-    xVelo = random(-4, 4);
-    yVelo = 0;
-    health = 1;
   }
 
   void update () {
-     xPosPrev = xPos;
+    xPosPrev = xPos;
     yPosPrev = yPos;
     xPos += xVelo;
     yPos += yVelo;
