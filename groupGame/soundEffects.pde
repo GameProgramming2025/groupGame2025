@@ -4,6 +4,14 @@ class soundEffects {
   boolean heal;
   boolean strike;
   boolean item;
+  
   soundEffects() {
+    start = false;
+    hurt = false;
+    heal = false;
+    strike = false;
+    item = false;
   }
+  
+  
 }
