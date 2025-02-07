@@ -2,7 +2,9 @@ class Player {
 float x,y, xVel, yVel, xAcc, yAcc;
 float frames;
 int ShotTimer;
+
   Player() {
+    
     frames = 60;
   }
 
