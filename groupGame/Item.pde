@@ -12,7 +12,6 @@ class item {
   String imageFileName;
   int rarity;
   int amount;
-  boolean selected;
 
   item(float x, float y, String imageFileName) {
     this.x = x;
@@ -25,7 +24,6 @@ class item {
     rarity = 3;
     area = "Where it can be found";
     amount = 1;
-    selected = false;
   }
   item(JSONObject j) {
     x = j.getFloat("x");
@@ -34,7 +32,6 @@ class item {
     yVelo = j.getFloat("yVelo");
     r = j.getFloat("r");
     s = j.getFloat("s");
-    selected = j.getBoolean("selected");
   }
 
   JSONObject serialize() {
@@ -45,7 +42,6 @@ class item {
     j.setFloat("yVelo", this.yVelo);
     j.setFloat("r", this.r);
     j.setFloat("s", this.s);
-    j.setBoolean("selected", false);
     j.setString("imageFileName", imageFileName);
     return j;
   }
@@ -60,16 +56,34 @@ class item {
 
   void render() {
   }
-
-  void keyPressed() {
-    if (!selected) {
-      return;
+  void renderDetails() {
+    String rarityStr = "Common";
+    if (rarity == 1) {
+      rarityStr = "Common";
+      fill(#1E4828, 200);
+    }
+    if (rarity == 2) {
+      rarityStr = "Uncommon";
+      fill(#014694, 200);
+    }
+    if (rarity == 3) {
+      rarityStr = "Rare";
+      fill(#6e4888, 200);
+    }
+    if (rarity == 4) {
+      rarityStr = "Legendary";
+      fill(#6E4828, 200);
+    }
+    if (rarity == 5) {
+      rarityStr = "Mythical";
+      fill(#95bbe6, 200);
     }
   }
+    void keyPressed() {
+      
+    }
 
-  void keyReleased() {
-    if (!selected) {
-      return;
+    void keyReleased() {
+      
     }
   }
-}
