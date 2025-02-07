@@ -1,6 +1,6 @@
 //CLASSES
 Player p1;
-
+HUD h1;
 //VARIABLES
 
 //DISPLAY ARRAYS
@@ -10,7 +10,8 @@ void setup() {
   //for testing
   size(1700, 1200);
   size(400, 400);
-  p1 = new Player();  
+  p1 = new Player(); 
+  h1 = new HUD(p1);
 }
 
 void draw() {
