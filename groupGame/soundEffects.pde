@@ -8,6 +8,7 @@ class SoundEffects {
   boolean item;
   boolean walking;
   boolean room;
+  int timer;
   SoundFile Hit;
   SoundFile Healing;
   SoundFile BackgroundMusic;
@@ -24,6 +25,7 @@ class SoundEffects {
     item = false;
     walking = false;
     room = false;
+    timer = 0;
     //Hit =
     //Healing =
     //BackgroundMusic =
