@@ -3,13 +3,17 @@
 
 class HUD{
   Float hp,coins, items;
-  int ammo;
+  int ammo,w ;
+  float t;
+  PFont big;
   Player p;
   
   HUD(Player p){
+    this.w=w;
     this.p = p;
-    ammo = p.ammo;
+    //ammo = p.ammo;
     coins=0.0;
+    big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
     items=0.0;
   }
   
@@ -17,13 +21,17 @@ class HUD{
     //if(p.hp=12){
       
   //  }
-  
+  if(w<99){
+    w++;
+  }
   
   }
   
   void display(){
-    text(ammo, 100,100);
-    
+    textFont(big);
+    text("AMMO X", width/2,height/2);
+    textAlign(CENTER);
+    text(w,width/2 +27,height/2);
   }
   
   

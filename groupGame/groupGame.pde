@@ -15,9 +15,10 @@ void setup() {
 }
 
 void draw() {
-  background(90);
+  background(0);
   p1.display();
   h1.display();
+  h1.update();
 }
 
 void keyPressed() {
