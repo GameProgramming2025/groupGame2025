@@ -1,5 +1,7 @@
 class Player {
+
   // position
+
   float x, y, xVel, yVel, xAcc, yAcc;
 
   //timers
@@ -14,6 +16,8 @@ class Player {
   // Player Stats
   int HP, shotCD;
   float spd, atk, range, shotspd;
+
+  boolean shotsCD;
 
   Player() {
     spd = .5;
