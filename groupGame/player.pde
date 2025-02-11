@@ -1,9 +1,12 @@
 class Player {
+
   float x, y, xVel, yVel, xAcc, yAcc;
   float frames;
   int seconds;
   boolean shotsCD;
+
   Player() {
+    
     frames = 60;
   }
 
