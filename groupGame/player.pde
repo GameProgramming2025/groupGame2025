@@ -14,15 +14,15 @@ class Player {
   int nextShot;
 
   // Player Stats
-  int HP, shotCD;
-  float spd, atk, range, shotspd;
+  int HP, shotCD, shotspd, spd, atk, range;
 
   boolean shotsCD;
 
   Player() {
-    spd = .5;
+    spd = 1;
     shotspd = 5;
     nextShot = 0;
+    range = 50;
     frames = 60;
     shots = new Magic[10];
     for (int i = 0; i < 10; i++) {
@@ -31,11 +31,11 @@ class Player {
   }
 
   void display() {
-    if (spd < .1) {
-      spd = 0.1;
+    if (spd < 1) {
+      spd = 1;
     }
-    if (shotspd < .1) {
-      shotspd = 0.1;
+    if (shotspd < 1) {
+      shotspd = 1;
     }
     x += xVel;
     y += yVel;
@@ -61,9 +61,10 @@ class Player {
     if (shotCD <= 0) {
       shooting = false;
     }
+
+    if ( ) {
+    }
   }
-
-
   void keyPressed() {
     if (key == '1') {
       spd++;
