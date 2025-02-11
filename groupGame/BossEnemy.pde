@@ -5,6 +5,7 @@ class BossEnemy extends ScreenElement {
   float yAcc;
 
   BossEnemy() {
+    
   }
 
   void display () {
