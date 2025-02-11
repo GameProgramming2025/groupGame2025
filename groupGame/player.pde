@@ -1,7 +1,9 @@
 class Player {
-float x,y, xVel, yVel, xAcc, yAcc;
-float frames;
-int ShotTimer;
+
+  float x, y, xVel, yVel, xAcc, yAcc;
+  float frames;
+  int seconds;
+  boolean shotsCD;
 
   Player() {
     
@@ -11,66 +13,74 @@ int ShotTimer;
   void display() {
     x += xVel;
     y += yVel;
-    // yVel += 
+    xVel += xAcc;
+    yVel += yAcc;
+    xVel *= .9;
+    yVel *= .9;
+
     rectMode(CENTER);
     rect(x, y, 50, 50);
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
     if (frames >= 0);
-    //ShotTimer 
-    
+    //shotsCD
   }
 
   void keyPressed() {
-    if (key == 'w'){
-      yVel = -1;
-     // println("Moving Up");
+    if (key == 'w') {
+      yAcc = -.6;
+      // println("Moving Up");
     }
-    if (key == 'a'){
-      xVel = -1;
+    if (key == 'a') {
+      xAcc = -.6;
       //println("Moving Left");
     }
-    if (key == 's'){
-      yVel = 1;
+    if (key == 's') {
+      yAcc = .6;
       //println("Moving Down");
     }
-    if (key == 'd'){
-      xVel = 1;
-   //   println("Moving Right");
+    if (key == 'd') {
+      xAcc = .6;
+      //   println("Moving Right");
     }
+
     if (key == CODED) {
       if (keyCode == UP) {
-     //   println("Shooting Up");
+        text("shoot up", x, y);
+        //   println("Shooting Up");
       } else if (keyCode == DOWN) {
-       // println("Shooting Down");
+        text("shoot down", x, y);
+        // println("Shooting Down");
       } else if (keyCode == LEFT) {
+        text("shoot left", x, y);
         //println("Shooting Left");
       } else if (keyCode == RIGHT) {
-      //  println("Shooting Right");
+        text("shoot right", x, y);
+        //  println("Shooting Right");
       }
     }
   }
 
   void keyReleased() {
-    if (key == 'w'){
-      yVel = 0;
+    if (key == 'w') {
+      yAcc = 0;
       //println("Stopped moving up");
     }
-    if (key == 'a'){
-      xVel = 0;
+    if (key == 'a') {
+      xAcc = 0;
       //println("Stopped moving left");
     }
-    if (key == 's'){
-      yVel = 0;
+    if (key == 's') {
+      yAcc = 0;
       //println("Stopped moving down");
     }
-    if (key == 'd'){
-      xVel = 0;
+    if (key == 'd') {
+      xAcc = 0;
       //println("Stopped moving right");
     }
     if (key == CODED) {
       if (keyCode == UP) {
-       // println("Stopped shooting Up");
+        // println("Stopped shooting Up");
       } else if (keyCode == DOWN) {
         //println("Stopped shooting Down");
       } else if (keyCode == LEFT) {
