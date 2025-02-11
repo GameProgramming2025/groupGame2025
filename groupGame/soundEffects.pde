@@ -1,4 +1,4 @@
-import processing.sound.*;
+/* import processing.sound.*;
 
 class SoundEffects {
   boolean start;
@@ -26,4 +26,4 @@ class SoundEffects {
     //}
   }
   
-}
+} */

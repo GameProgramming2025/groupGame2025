@@ -13,10 +13,11 @@ class Player {
 
   // Player Stats
   int HP, shotCD;
-  float spd, atk, range;
+  float spd, atk, range, shotspd;
 
   Player() {
     spd = .5;
+    shotspd = 5;
     nextShot = 0;
     frames = 60;
     shots = new Magic[10];
@@ -28,6 +29,9 @@ class Player {
   void display() {
     if (spd < .1) {
       spd = 0.1;
+    }
+    if (shotspd < .1) {
+      shotspd = 0.1;
     }
     x += xVel;
     y += yVel;
@@ -63,6 +67,12 @@ class Player {
     if (key == '2') {
       spd--;
     }
+    if (key == '3') {
+      shotspd++;
+    }
+    if (key == '4') {
+      shotspd--;
+    }
     if (key == 'w') {
       yAcc = -spd;
       // println("Moving Up");
@@ -84,13 +94,13 @@ class Player {
       shotCD = 60;
       shooting = true;
       if (keyCode == UP) {
-        shots[nextShot] = new Magic(x, y-30, 0, -1);
+        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5));
       } else if (keyCode == DOWN) {
-        shots[nextShot] = new Magic(x, y+30, 0, 1);
+        shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {
-        shots[nextShot] = new Magic(x-30, y, -1, 0);
+        shots[nextShot] = new Magic(x-30, y, -shotspd + (xVel *.5), 0);
       } else if (keyCode == RIGHT) {
-        shots[nextShot] = new Magic(x+30, y, 1, 0);
+        shots[nextShot] = new Magic(x+30, y, shotspd + (xVel *.5), 0);
       }
       if (nextShot == 9) {
         nextShot = 0;
