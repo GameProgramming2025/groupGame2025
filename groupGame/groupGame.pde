@@ -5,11 +5,11 @@ HUD h1;
 
 //DISPLAY ARRAYS
 
-//hello
+
 void setup() {
   //for testing
   size(1700, 1200);
-  size(400, 400);
+  
   p1 = new Player(); 
   h1 = new HUD(p1);
 }
@@ -17,8 +17,9 @@ void setup() {
 void draw() {
   background(0);
   p1.display();
-  h1.display();
   h1.update();
+  h1.display();
+  
 }
 
 void keyPressed() {

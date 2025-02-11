@@ -1,4 +1,4 @@
-class item {
+class Item {
   float x;
   float y;
   float xVelo;
@@ -12,8 +12,10 @@ class item {
   String imageFileName;
   int rarity;
   int amount;
+  int HP, shotCD, dmg;
+  float spd, atk, range, shotspd;
 
-  item(float x, float y, String imageFileName) {
+  Item(float x, float y, String imageFileName) {
     this.x = x;
     this.y = y;
     this.imageFileName = imageFileName;
@@ -24,8 +26,15 @@ class item {
     rarity = 3;
     area = "Where it can be found";
     amount = 1;
+    HP = 0;
+    shotCD = 0;
+    spd = 0;
+    atk = 0;
+    range = 0;
+    shotspd = 0;
+    dmg = 0;
   }
-  item(JSONObject j) {
+  Item(JSONObject j) {
     x = j.getFloat("x");
     y = j.getFloat("y");
     xVelo = j.getFloat("xVelo");
@@ -55,6 +64,11 @@ class item {
   }
 
   void render() {
+    strokeWeight(8);
+    rectMode(CENTER);
+    rect(0, 0, 100, 100, 10);
+    imageMode(CENTER);
+    image(itemImg, 0, 0);
   }
   void renderDetails() {
     String rarityStr = "Common";
