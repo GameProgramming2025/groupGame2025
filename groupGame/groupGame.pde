@@ -17,8 +17,9 @@ void setup() {
 void draw() {
   background(0);
   p1.display();
-  h1.display();
   h1.update();
+  h1.display();
+  
 }
 
 void keyPressed() {
