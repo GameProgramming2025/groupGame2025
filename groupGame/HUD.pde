@@ -13,7 +13,7 @@ class HUD{
     this.p = p;
     //ammo = p.ammo;
     coins=0.0;
-    big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 20);
+    big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf",50);
     items=0.0;
   }
   
@@ -31,7 +31,7 @@ class HUD{
     textFont(big);
     text("AMMO X", width/2,height/2);
     textAlign(CENTER);
-    text(w,width/2 +40,height/2);
+    text(w,width/2 +200,height/2);
   }
   
   
