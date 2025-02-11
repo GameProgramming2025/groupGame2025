@@ -3,11 +3,15 @@ class Enemy extends ScreenElement {
   float gravity;
   float xAcc;
   float yAcc;
+  float enemyHealth;
 
-  Enemy ( float x, float y) {
+  Enemy (float x, float y) {
     super();
     respawn();
+    xVelo = 1;
+    enemyHealth = 100;
   }
+  
 
   void display () {
     push();
@@ -17,6 +21,10 @@ class Enemy extends ScreenElement {
     stroke(255);
     fill(#ffff00);
     ellipse(0, 0, 30, 30);
+    fill(#802345);
+    rect(20, 0, 50, 10);
+    fill(#00ffff);
+    rect(20, 0, enemyHealth, 7);
     pop();
   }
   
@@ -25,7 +33,6 @@ class Enemy extends ScreenElement {
     this.yPos = random(-height * 2, -100);
     xVelo = random(-4, 4);
     yVelo = 0;
-    health = 1;
   }
 
   void update () {
@@ -38,7 +45,10 @@ class Enemy extends ScreenElement {
     yVelo += gravity;
   }
 
-  boolean hit (float x, float y) {
-    return false;
-  }
+ // boolean hit(float x, float y) {
+ //   if (dist(x, y, ) < 75 ) {
+ //     return true;
+ //   }
+  //  return false;
+  //}
 }
