@@ -27,7 +27,28 @@ class item {
     amount = 1;
     selected = false;
   }
+  item(JSONObject j) {
+    x = j.getFloat("x");
+    y = j.getFloat("y");
+    xVelo = j.getFloat("xVelo");
+    yVelo = j.getFloat("yVelo");
+    r = j.getFloat("r");
+    s = j.getFloat("s");
+    selected = j.getBoolean("selected");
+  }
 
+  JSONObject serialize() {
+    JSONObject j = new JSONObject();
+    j.setFloat("x", this.x);
+    j.setFloat("y", this.y);
+    j.setFloat("xVelo", this.xVelo);
+    j.setFloat("yVelo", this.yVelo);
+    j.setFloat("r", this.r);
+    j.setFloat("s", this.s);
+    j.setBoolean("selected", false);
+    j.setString("imageFileName", imageFileName);
+    return j;
+  }
   void display() {
     push();
     translate(x, y);
@@ -36,10 +57,10 @@ class item {
     render();
     pop();
   }
-  
+
   void render() {
   }
-  
+
   void keyPressed() {
     if (!selected) {
       return;
