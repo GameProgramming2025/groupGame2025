@@ -3,6 +3,7 @@ Player p1;
 Room rooms[][];
 int currentI;
 int currentJ;
+HUD h1;
 
 void setup() {
   size(1700, 1200);
@@ -10,7 +11,8 @@ void setup() {
   currentI = 1;
   currentJ = 1;
   p1 = new Player();
-  //h1 = new HUD(p1);
+ 
+  h1 = new HUD(p1);
   rooms = new Room[4][4];
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {
@@ -26,6 +28,8 @@ void draw() {
     p1.x = 40;
     currentI++;
   }
+  h1.update();
+  h1.display();
   p1.display();
 }
 
