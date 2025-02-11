@@ -1,16 +1,42 @@
 class Player {
 
+  // position
+
   float x, y, xVel, yVel, xAcc, yAcc;
+
+  //timers
   float frames;
   int seconds;
+  boolean shooting;
+
+  //shooting
+  Magic shots[];
+  int nextShot;
+
+  // Player Stats
+  int HP, shotCD;
+  float spd, atk, range, shotspd;
+
   boolean shotsCD;
 
   Player() {
-    
+    spd = .5;
+    shotspd = 5;
+    nextShot = 0;
     frames = 60;
+    shots = new Magic[10];
+    for (int i = 0; i < 10; i++) {
+      shots[i] = new Magic(-4000, -4000, 0, 0);
+    }
   }
 
   void display() {
+    if (spd < .1) {
+      spd = 0.1;
+    }
+    if (shotspd < .1) {
+      shotspd = 0.1;
+    }
     x += xVel;
     y += yVel;
     xVel += xAcc;
@@ -20,46 +46,73 @@ class Player {
 
     rectMode(CENTER);
     rect(x, y, 50, 50);
+    for (Magic m : shots) {
+      m.update();
+      m.display();
+    }
+    shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
-    if (frames >= 0);
-    //shotsCD
+    if (frames <= 0) {
+      println(seconds);
+      frames = 60;
+      seconds++;
+    }
+    if (shotCD <= 0) {
+      shooting = false;
+    }
   }
 
+
   void keyPressed() {
+    if (key == '1') {
+      spd++;
+    }
+    if (key == '2') {
+      spd--;
+    }
+    if (key == '3') {
+      shotspd++;
+    }
+    if (key == '4') {
+      shotspd--;
+    }
     if (key == 'w') {
-      yAcc = -.6;
+      yAcc = -spd;
       // println("Moving Up");
     }
     if (key == 'a') {
-      xAcc = -.6;
+      xAcc = -spd;
       //println("Moving Left");
     }
     if (key == 's') {
-      yAcc = .6;
+      yAcc = spd;
       //println("Moving Down");
     }
     if (key == 'd') {
-      xAcc = .6;
+      xAcc = spd;
       //   println("Moving Right");
     }
 
-    if (key == CODED) {
+    if (key == CODED && !shooting) {
+      shotCD = 60;
+      shooting = true;
       if (keyCode == UP) {
-        text("shoot up", x, y);
-        //   println("Shooting Up");
+        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5));
       } else if (keyCode == DOWN) {
-        text("shoot down", x, y);
-        // println("Shooting Down");
+        shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {
-        text("shoot left", x, y);
-        //println("Shooting Left");
+        shots[nextShot] = new Magic(x-30, y, -shotspd + (xVel *.5), 0);
       } else if (keyCode == RIGHT) {
-        text("shoot right", x, y);
-        //  println("Shooting Right");
+        shots[nextShot] = new Magic(x+30, y, shotspd + (xVel *.5), 0);
       }
+      if (nextShot == 9) {
+        nextShot = 0;
+      }
+      nextShot++;
     }
   }
+
 
   void keyReleased() {
     if (key == 'w') {
