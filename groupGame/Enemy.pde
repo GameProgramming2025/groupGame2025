@@ -9,7 +9,7 @@ class Enemy extends ScreenElement {
     super();
     respawn();
     xVelo = 1;
-    enemyHealth = 100;
+    enemyHealth = 1;
   }
   
 
@@ -26,6 +26,7 @@ class Enemy extends ScreenElement {
     fill(#00ffff);
     rect(20, 0, enemyHealth, 7);
     pop();
+    update();
   }
   
    void respawn() {
