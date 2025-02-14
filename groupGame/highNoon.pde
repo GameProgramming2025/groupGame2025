@@ -23,6 +23,5 @@ class highNoon extends Item{
   void render() {
     super.render();
     rarity = 3;
-    
   }
 }
