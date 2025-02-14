@@ -25,7 +25,7 @@ class Enemy extends ScreenElement {
     this.yPos = random(-height * 2, -100);
     xVelo = random(-4, 4);
     yVelo = 0;
-    health = 100;
+    health = 1;
   }
 
   void update () {
