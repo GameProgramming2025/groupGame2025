@@ -3,6 +3,7 @@ class Enemy extends ScreenElement {
   float gravity;
   float xAcc;
   float yAcc;
+
   float enemyHealth;
 
   Enemy (float x, float y) {
@@ -12,7 +13,6 @@ class Enemy extends ScreenElement {
     enemyHealth = 1;
   }
   
-
   void display () {
     push();
     translate(xPos, yPos);
@@ -34,6 +34,7 @@ class Enemy extends ScreenElement {
     this.yPos = random(-height * 2, -100);
     xVelo = random(-4, 4);
     yVelo = 0;
+    health = 1;
   }
 
   void update () {
@@ -46,10 +47,13 @@ class Enemy extends ScreenElement {
     yVelo += gravity;
   }
 
+
  // boolean hit(float x, float y) {
  //   if (dist(x, y, ) < 75 ) {
  //     return true;
  //   }
   //  return false;
   //}
+
+
 }

@@ -1,9 +1,11 @@
 
+
 /*import processing.sound.*;
 
 
 
-class soundEffects {
+
+/* class soundEffects {
   boolean start;
   boolean hurt;
   boolean heal;
@@ -19,8 +21,11 @@ class soundEffects {
   }
 
 
+
   
       
+
+
 
 
   void display() {
@@ -65,7 +70,13 @@ class soundEffects {
     } else {
       Room.stop();
 
+
     }
   }
 
 }
+
+    }
+  }
+
+} */
