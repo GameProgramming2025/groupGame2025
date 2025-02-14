@@ -30,7 +30,8 @@ class Player {
     }
   }
 
-  void display() {
+
+  void update() {
     if (spd < 1) {
       spd = 1;
     }
@@ -44,8 +45,6 @@ class Player {
     xVel *= .9;
     yVel *= .9;
 
-    rectMode(CENTER);
-    rect(x, y, 50, 50);
     for (Magic m : shots) {
       m.update();
       m.display();
@@ -61,10 +60,14 @@ class Player {
     if (shotCD <= 0) {
       shooting = false;
     }
-
-    if ( ) {
-    }
   }
+  
+  void display() {
+
+    rectMode(CENTER);
+    rect(x, y, 50, 50);
+  }
+  
   void keyPressed() {
     if (key == '1') {
       spd++;
