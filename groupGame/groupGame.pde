@@ -1,4 +1,5 @@
 Player p1;
+HUD h1;
 
 Room rooms[][];
 int currentI;
@@ -7,11 +8,11 @@ HUD h1;
 
 void setup() {
   size(1700, 1200);
+
   p1 = new Player();
   currentI = 1;
   currentJ = 1;
-  p1 = new Player();
- 
+
   h1 = new HUD(p1);
   rooms = new Room[4][4];
   for (int i = 0; i < 4; i++) {
@@ -28,9 +29,11 @@ void draw() {
     p1.x = 40;
     currentI++;
   }
+
+  p1.update();
+  p1.display();
   h1.update();
   h1.display();
-  p1.display();
 }
 
 void keyPressed() {
