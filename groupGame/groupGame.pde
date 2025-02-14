@@ -1,5 +1,4 @@
 Player p1;
-HUD h1;
 
 Room rooms[][];
 int currentI;
