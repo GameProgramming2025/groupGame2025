@@ -1,38 +1,16 @@
-/* import processing.sound.*;
-
-class SoundEffects {
+/* class soundEffects {
   boolean start;
   boolean hurt;
   boolean heal;
   boolean strike;
   boolean item;
-  boolean walking;
-  boolean room;
-  int timer;
-  SoundFile Hit;
-  SoundFile Healing;
-  SoundFile BackgroundMusic;
-  SoundFile Attack;
-  SoundFile Cheer;
-  SoundFile Walking;
-  SoundFile Room;
-
-  SoundEffects() {
+  
+  soundEffects() {
     start = false;
     hurt = false;
     heal = false;
     strike = false;
     item = false;
-    walking = false;
-    room = false;
-    timer = 0;
-    //Hit =
-    //Healing =
-    //BackgroundMusic =
-    //Attack =
-    //Cheer =
-    // Walking =
-    // Room =
   }
 
   void display() {
@@ -79,4 +57,4 @@ class SoundEffects {
     }
   }
 
-}*/
+} */
