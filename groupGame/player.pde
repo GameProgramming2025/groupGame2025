@@ -23,19 +23,19 @@ int ShotTimer;
 
   void keyPressed() {
     if (key == 'w'){
-      yVel = -1;
+      yVel = -3;
      // println("Moving Up");
     }
     if (key == 'a'){
-      xVel = -1;
+      xVel = -3;
       //println("Moving Left");
     }
     if (key == 's'){
-      yVel = 1;
+      yVel = 3;
       //println("Moving Down");
     }
     if (key == 'd'){
-      xVel = 1;
+      xVel = 3;
    //   println("Moving Right");
     }
     if (key == CODED) {

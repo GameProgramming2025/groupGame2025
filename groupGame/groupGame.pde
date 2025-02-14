@@ -26,6 +26,11 @@ void draw() {
     p1.x = 40;
     currentI++;
   }
+  if (p1.y > height) {
+    p1.y = 40;
+    currentJ++;
+  }
+
   p1.display();
 }
 

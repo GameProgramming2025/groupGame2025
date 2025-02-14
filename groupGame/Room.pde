@@ -1,11 +1,11 @@
 class Room {
-  int x;
-  int y;
+  int i;
+  int j;
   int bc;
 
   Room(int x, int y) {
-    this.x=x;
-    this.y=y;
+    this.i=i;
+    this.j=j;
     bc = color(random(100, 200), 100, 20);
   }
 
