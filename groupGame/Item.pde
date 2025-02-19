@@ -12,7 +12,7 @@ class Item {
   String imageFileName;
   int rarity;
   int amount;
-  int HP, shotCD, dmg;
+  int HP, shotsCD;
   float spd, atk, range, shotspd;
   boolean collected;
 
@@ -28,7 +28,7 @@ class Item {
     area = "Where it can be found";
     amount = 1;
     HP = 0;
-    shotCD = 0;
+    shotsCD = 0;
     spd = 0;
     atk = 0;
     range = 0;
