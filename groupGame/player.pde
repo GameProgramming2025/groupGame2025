@@ -1,4 +1,7 @@
 class Player {
+  
+  //Item
+  HighNoon h;
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -14,23 +17,24 @@ class Player {
   int nextShot;
 
   // Player Stats
-  int HP, shotCD, shotspd, spd, atk, range;
-  boolean shotsCD;
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
 
   Player() {
     spd = 1;
     shotspd = 5;
     nextShot = 0;
-    range = 100;
+    range = 300;
     frames = 60;
+    shotsCD = 60;
     shots = new Magic[10];
+    h = new highNoon(x,y);
     for (int i = 0; i < 10; i++) {
-      shots[i] = new Magic(-4000, -4000, 0, 0, 999999999);
+      shots[i] = new Magic(-4000, -4000, 0, 0);
     }
   }
 
   void update() {
-    //println(tempX, " ", tempY);
+    print(shooting);
     if (spd < 1) {
       spd = 1;
     }
@@ -46,6 +50,12 @@ class Player {
 
     for (Magic m : shots) {
       m.update();
+      if (m.x > 0 && m.y > 0) {
+        if (dist(tempX, tempY, m.x, m.y)>range) {
+          m.x = -4000;
+          m.y = -4000;
+        }
+      }
       m.display();
     }
     shotCD--;
@@ -59,9 +69,12 @@ class Player {
     if (shotCD <= 0) {
       shooting = false;
     }
-    
+
     //not a timer but it counts lul
-   // if dist(tempX, tempY
+    if(h.collected == true){
+      shotsCD += h.shotsCD;
+      atk += h.atk;
+    }
   }
 
 
@@ -105,18 +118,19 @@ class Player {
 
     //shooting
     if (key == CODED && !shooting) {
-      shotCD = 60;
+      println(tempX, " ", tempY);
       shooting = true;
+      shotCD = shotsCD;
+      tempX = x;
+      tempY = y;
       if (keyCode == UP) {
-        tempX = x;
-        tempY = y;
-        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5), range);
+        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5));
       } else if (keyCode == DOWN) {
-        shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5), range);
+        shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {
-        shots[nextShot] = new Magic(x-30, y, -shotspd + (xVel *.5), 0, range);
+        shots[nextShot] = new Magic(x-30, y, -shotspd + (xVel *.5), 0);
       } else if (keyCode == RIGHT) {
-        shots[nextShot] = new Magic(x+30, y, shotspd + (xVel *.5), 0, range);
+        shots[nextShot] = new Magic(x+30, y, shotspd + (xVel *.5), 0);
       }
       if (nextShot == 9) {
         nextShot = 0;
@@ -130,19 +144,15 @@ class Player {
   void keyReleased() {
     if (key == 'w') {
       yAcc = 0;
-
     }
     if (key == 'a') {
       xAcc = 0;
-
     }
     if (key == 's') {
       yAcc = 0;
-
     }
     if (key == 'd') {
       xAcc = 0;
-
     }
     if (key == CODED) {
       if (keyCode == UP) {

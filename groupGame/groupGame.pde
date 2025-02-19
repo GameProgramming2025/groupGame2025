@@ -5,6 +5,7 @@ int currentI;
 int currentJ;
 HUD h1;
 
+
 void setup() {
   size(1700, 1200);
 
@@ -28,11 +29,11 @@ void draw() {
     p1.x = 40;
     currentI++;
   }
-
   p1.update();
-  p1.display();
-  h1.update();
-  h1.display();
+    p1.display();
+    h1.update();
+    h1.display();
+    
 }
 
 void keyPressed() {

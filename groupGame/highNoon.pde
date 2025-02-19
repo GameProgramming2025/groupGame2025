@@ -1,6 +1,6 @@
-class highNoon extends Item{
+class HighNoon extends Item{
   
-  highNoon(float x, float y){
+  HighNoon(float x, float y){
     super(x,y,"highNoon.png");
     this.x=x;
     this.y=y;
@@ -8,11 +8,12 @@ class highNoon extends Item{
     description = "Makes Shot cooldown longer but makes you do more damage";
     area = "can be found in Item rooms";
     rarity = 3;
-    dmg = 10;
-    shotCD = 0;
+    atk = 10;
+    shotsCD = 30;
+    collected = false;
   }
   
-  highNoon(JSONObject j) {
+  HighNoon(JSONObject j) {
       super(j);
   }
   JSONObject serialize() {
