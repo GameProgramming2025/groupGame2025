@@ -1,6 +1,5 @@
 
 
-
 /*import processing.sound.*;
 
 
@@ -9,6 +8,9 @@
 /* class soundEffects {
 
 import processing.sound.*;
+
+/*import processing.sound.*;
+
 
 class soundEffects {
 
@@ -131,4 +133,4 @@ class soundEffects {
     //}
 
   }
-}
+}*/
