@@ -32,10 +32,10 @@ class HUD{
   void display(){
     image(heart, 100,100);
     
-    //textFont(big);
-    //text("AMMO X", width/5,height/5);
-    //textAlign(CENTER);
-    //text(w,width/5 +100,height/5);
+    textFont(big);
+    text("AMMO X", width/5,height/5);
+    textAlign(CENTER);
+    text(w,width/5 +100,height/5);
   }
   
   
