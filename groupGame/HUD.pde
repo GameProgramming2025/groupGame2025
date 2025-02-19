@@ -10,6 +10,7 @@ class HUD{
   PImage heart, brokenHeart;
   
   HUD(Player p){
+   
     heart = loadImage("data/Sprites/heart.png"); 
     brokenHeart = loadImage("data/Sprites/broken heart.png");
     this.p = p;
@@ -20,9 +21,9 @@ class HUD{
   }
   
   void update(){
-    //if(p.hp=12){
+    //if(p.HP=10){
       
-  //  }
+   // }
   if(w<99){
     w++;
   }
@@ -30,7 +31,8 @@ class HUD{
   }
   
   void display(){
-    image(heart, 100,100);
+    
+    
     
     textFont(big);
     text("AMMO X", width/5,height/5);
