@@ -35,9 +35,9 @@ class HUD{
     
     
     textFont(big);
-    text("AMMO X", width/5,height/5);
+    text("AMMO X", width/5,height/10);
     textAlign(CENTER);
-    text(w,width/5 +100,height/5);
+    text(w,width/5 +100,height/10);
   }
   
   
