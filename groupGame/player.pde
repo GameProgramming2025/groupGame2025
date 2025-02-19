@@ -14,8 +14,7 @@ class Player {
   int nextShot;
 
   // Player Stats
-  int HP, shotCD, shotspd, spd, atk, range;
-  boolean shotsCD;
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
 
   Player() {
     spd = 1;
@@ -23,6 +22,7 @@ class Player {
     nextShot = 0;
     range = 300;
     frames = 60;
+    shotsCD = 60;
     shots = new Magic[10];
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
@@ -112,7 +112,7 @@ class Player {
     if (key == CODED && !shooting) {
       println(tempX, " ", tempY);
       shooting = true;
-      shotCD = 60;
+      shotCD = shotsCD;
       tempX = x;
       tempY = y;
       if (keyCode == UP) {
