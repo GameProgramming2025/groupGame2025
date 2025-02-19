@@ -1,7 +1,7 @@
 class HighNoon extends Item{
   
   HighNoon(float x, float y){
-    super(x,y,"highNoon.png");
+    super(x,y,"Sprites/HN.png");
     this.x=x;
     this.y=y;
     name = "highNoon";
