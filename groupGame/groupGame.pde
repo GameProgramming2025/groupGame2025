@@ -4,7 +4,7 @@ HUD h1;
 Room rooms[][];
 int currentI;
 int currentJ;
-HUD h1;
+
 
 
 void setup() {

@@ -27,7 +27,7 @@ class Player {
     frames = 60;
     shotsCD = 60;
     shots = new Magic[10];
-    h = new highNoon(x,y);
+    h = new HighNoon(x,y);
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
