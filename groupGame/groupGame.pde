@@ -1,9 +1,9 @@
 Player p1;
-HUD h1;
 
 Room rooms[][];
 int currentI;
 int currentJ;
+HUD h1;
 
 
 void setup() {
@@ -29,11 +29,11 @@ void draw() {
     p1.x = 40;
     currentI++;
   }
-
   p1.update();
     p1.display();
     h1.update();
     h1.display();
+    
 }
 
 void keyPressed() {
