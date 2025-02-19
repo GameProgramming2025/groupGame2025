@@ -14,6 +14,7 @@ class Item {
   int amount;
   int HP, shotCD, dmg;
   float spd, atk, range, shotspd;
+  boolean collected;
 
   Item(float x, float y, String imageFileName) {
     this.x = x;
@@ -33,6 +34,7 @@ class Item {
     range = 0;
     shotspd = 0;
     dmg = 0;
+    collected = false;
   }
   Item(JSONObject j) {
     x = j.getFloat("x");
