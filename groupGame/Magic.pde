@@ -1,9 +1,8 @@
 class Magic {
-  float x, y, xVel, yVel, life;
-  boolean alive;
+  float x, y, xVel, yVel;
 
-  Magic(float x, float y, float xVel, float yVel, float life) {
-    this.life = life;
+
+  Magic(float x, float y, float xVel, float yVel) {
     this.x = x;
     this.y = y;
     this.xVel = xVel;
@@ -11,13 +10,9 @@ class Magic {
   }
 
   void update() {
-    life--;
     x += xVel;
     y += yVel;
-    if (life < 0) {
-      x = -4000;
-      y = -4000;
-    }
+
     //check if this hits other things
   }
 
