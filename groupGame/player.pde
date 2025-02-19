@@ -1,4 +1,7 @@
 class Player {
+  
+  //Item
+  HighNoon h;
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -24,6 +27,7 @@ class Player {
     frames = 60;
     shotsCD = 60;
     shots = new Magic[10];
+    h = new highNoon(x,y);
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
@@ -67,6 +71,10 @@ class Player {
     }
 
     //not a timer but it counts lul
+    if(h.collected == true){
+      shotsCD += h.shotsCD;
+      atk += h.atk;
+    }
   }
 
 
