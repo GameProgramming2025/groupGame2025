@@ -3,7 +3,7 @@ class Enemy extends ScreenElement {
   float gravity;
   float xAcc;
   float yAcc;
-
+  Player p;
   float enemyHealth;
 
   Enemy (float x, float y) {
@@ -46,12 +46,10 @@ class Enemy extends ScreenElement {
   }
 
 
- // boolean hit(float x, float y) {
- //   if (dist(x, y, ) < 75 ) {
- //     return true;
- //   }
-  //  return false;
-  //}
-
-
+  boolean hit(float x, float y) {  
+   if (dist(x, y, p.x, p.y ) < 75 ) {
+     return true;
+    }
+    return false;
+  }
 }
