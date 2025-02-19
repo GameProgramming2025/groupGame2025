@@ -30,7 +30,7 @@ class Player {
   }
 
   void update() {
-    print(shooting);
+    //print(shooting);
     if (spd < 1) {
       spd = 1;
     }
@@ -110,7 +110,7 @@ class Player {
 
     //shooting
     if (key == CODED && !shooting) {
-      println(tempX, " ", tempY);
+     // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
       tempX = x;
