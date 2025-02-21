@@ -11,6 +11,8 @@ void setup() {
   size(1700, 1200);
 
   p1 = new Player();
+  p1.x = width/2;
+  p1.y = height/2;
   currentI = 1;
   currentJ = 1;
 
