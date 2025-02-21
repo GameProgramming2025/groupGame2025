@@ -13,6 +13,8 @@ void setup() {
   size(1700, 1200);
 
   p1 = new Player();
+  currentI = 0;
+  currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
   currentI = 1;
@@ -30,6 +32,11 @@ void setup() {
 }
 
 void draw() {
+  println(currentI, " ", currentJ);
+  background(0);
+
+  rooms[currentI][currentJ].display();
+
   
   println(frameRate);
 
@@ -65,6 +72,12 @@ void draw() {
     println("lost");
     break;
   }
+  rooms[currentI][currentJ].display();
+
+  p1.update();
+  p1.display();
+  h1.update();
+  h1.display();
 }
 
 void keyPressed() {
