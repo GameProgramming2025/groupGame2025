@@ -15,6 +15,7 @@ class soundEffects {
   SoundFile Ehit1;
   SoundFile Ehit2;
   SoundFile Ehit3;
+  SoundFile Healing;
 
   soundEffects() {
     start = false;
@@ -28,8 +29,9 @@ class soundEffects {
     Grunt2 = new SoundFile (groupGame.this, "Player_hitV2.1.mp3");
     Grunt3 = new SoundFile (groupGame.this, "Player_hitV2.2.mp3");
     Ehit1 = new SoundFile (groupGame.this, "Enemy_hit1.mp3");
-    Ehit2 = new SoundFile (groupGame.this, "Enemy_hit2");
-    Ehit3 = new SoundFile (groupGame.this, "Enemy_hit3");
+    Ehit2 = new SoundFile (groupGame.this, "Enemy_hit2.mp3");
+    Ehit3 = new SoundFile (groupGame.this, "Enemy_hit3.mp3");
+    Healing = new SoundFile (groupGame.this, "heart_pickup.mp3")
   }
 
   void playSound() {
