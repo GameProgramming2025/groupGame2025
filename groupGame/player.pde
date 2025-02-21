@@ -1,7 +1,7 @@
-class Player {
+class Player { //<>// //<>// //<>// //<>//
   //W
   //Item
-  HighNoon h;
+ HighNoon h;
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -14,7 +14,7 @@ class Player {
 
   //shooting
   Magic shots[];
-  int nextShot;
+  int nextShot; //<>//
 
   // Player Stats
   int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>// //<>//
@@ -26,6 +26,7 @@ class Player {
   int frame;
 
   Player() {
+    HP = 10;
     spd = 1;
     shotspd = 5;
     nextShot = 0;
@@ -57,7 +58,51 @@ class Player {
   }
 
   void update() {
-    print(shooting);
+    //print(shooting);
+    if (HP < 0) {
+      text("YOU DIED", width/2, height/2);
+    }
+    println(p1.y);
+    //right side
+    if (x > 1450 && y < 550) {//top left wall
+      x = 1450;
+    } else if (x > 1450 && y > 725) {//bottom left wall
+      x = 1450;
+    } else if (x > width) {//right
+      x = 40;
+      currentI++;
+    }
+
+    //left side
+    if (x < 250 && y < 550) {//top left wall
+      x = 250;
+    } else if (x < 250 && y > 725) {//bottom left wall
+      x = 250;
+    } else if (x < 0) {//left
+      p1.x = width-40;
+      currentI--;
+    }
+
+    if (y > height) {//down
+      y = 40;
+      currentJ++;
+    }
+    if (y < 0) {//up
+      y = height-40;
+      currentJ--;
+    }
+    if (currentI == 4) {
+      currentI = 0;
+    }
+    if (currentI == -1) {
+      currentI = 3;
+    }
+    if (currentJ == 4) {
+      currentJ = 0;
+    }
+    if (currentJ == -1) {
+      currentJ = 3;
+    }
     if (spd < 1) {
       spd = 1;
     }
@@ -98,6 +143,9 @@ class Player {
       shotsCD += h.shotsCD;
       atk += h.atk;
     }
+    
+    x = constrain(x, 0, width);
+    y = constrain(y, 0, height);
   }
 
 
@@ -144,6 +192,10 @@ class Player {
     if (key == '6') {
       range--;
     }
+    if (key == '7') {
+      HP--;
+    }
+
     if (key == 'w') {
       yAcc = -spd;
     }
@@ -159,7 +211,7 @@ class Player {
 
     //shooting
     if (key == CODED && !shooting) {
-      println(tempX, " ", tempY);
+     // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
       tempX = x;
