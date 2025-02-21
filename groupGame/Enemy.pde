@@ -4,7 +4,7 @@ class Enemy extends ScreenElement {
   float xAcc;
   float yAcc;
 
-  Enemy ( float x, float y) {
+  Enemy(float x, float y) {
     super();
     respawn();
   }
