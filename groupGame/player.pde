@@ -1,4 +1,4 @@
-class Player {
+class Player { //<>// //<>//
   //W
   //Item
   HighNoon h;
@@ -14,12 +14,13 @@ class Player {
 
   //shooting
   Magic shots[];
-  int nextShot; //<>//
+  int nextShot;
 
   // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range;
 
   Player() {
+    HP = 10;
     spd = 1;
     shotspd = 5;
     nextShot = 0;
@@ -27,14 +28,17 @@ class Player {
     frames = 60;
     shotsCD = 60;
     shots = new Magic[10];
-    h = new HighNoon(x,y);
+    h = new HighNoon(x, y);
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
   }
 
   void update() {
-    print(shooting);
+    if (HP < 0) {
+      text("YOU DIED", width/2, height/2);
+    }
+
     if (spd < 1) {
       spd = 1;
     }
@@ -71,7 +75,7 @@ class Player {
     }
 
     //not a timer but it counts lul
-    if(h.collected == true){
+    if (h.collected == true) {
       shotsCD += h.shotsCD;
       atk += h.atk;
     }
@@ -103,6 +107,10 @@ class Player {
     if (key == '6') {
       range--;
     }
+    if (key == '7') {
+      HP--;
+    }
+    
     if (key == 'w') {
       yAcc = -spd;
     }

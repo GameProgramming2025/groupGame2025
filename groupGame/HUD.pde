@@ -38,6 +38,8 @@ class HUD{
     text("AMMO X", width/5,height/10);
     textAlign(CENTER);
     text(w,width/5 +100,height/10);
+    text("HP", 70, 50);
+    text(p.HP, 70, 100);
   }
   
   
