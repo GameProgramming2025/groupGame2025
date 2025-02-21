@@ -1,7 +1,7 @@
 Player p1;
 HUD h1;
 
-GameState gameState = GameState.GAMEPLAY;
+GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
 Room rooms[][];
 int currentI;
