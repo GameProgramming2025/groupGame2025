@@ -6,10 +6,13 @@ class HUD{
   int ammo,w ;
   float t;
   PFont big;
-  Player p;
+  Player p,HP;
+  PImage heart, brokenHeart;
   
   HUD(Player p){
-    this.w=w;
+   
+    heart = loadImage("data/Sprites/heart.png"); 
+    brokenHeart = loadImage("data/Sprites/broken heart.png");
     this.p = p;
     //ammo = p.ammo;
     coins=0.0;
@@ -18,9 +21,9 @@ class HUD{
   }
   
   void update(){
-    //if(p.hp=12){
+    //if(p.HP=10){
       
-  //  }
+   // }
   if(w<99){
     w++;
   }
@@ -28,10 +31,13 @@ class HUD{
   }
   
   void display(){
+    
+    
+    
     textFont(big);
-    text("AMMO X", width/5,height/5);
+    text("AMMO X", width/5,height/10);
     textAlign(CENTER);
-    text(w,width/5 +100,height/5);
+    text(w,width/5 +100,height/10);
   }
   
   

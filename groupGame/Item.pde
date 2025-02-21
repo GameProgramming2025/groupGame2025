@@ -33,7 +33,6 @@ class Item {
     atk = 0;
     range = 0;
     shotspd = 0;
-    dmg = 0;
     collected = false;
   }
   Item(JSONObject j) {
