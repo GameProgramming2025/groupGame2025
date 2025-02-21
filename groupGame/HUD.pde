@@ -1,6 +1,7 @@
 
 class HUD{
-  Float hp,coins, items;
+  Float hp,coins, items, s;
+  float x,y;
   int ammo,w ;
   float t;
   PFont big;
@@ -10,8 +11,12 @@ class HUD{
   
   HUD(Player p){
    currentHp = 1;
+   s=30.0;
+   x=50;
+   y=50;
     heart = loadImage("data/Sprites/heart.png"); 
     brokenHeart = loadImage("data/Sprites/broken heart.png");
+    
     this.p = p;
     //ammo = p.ammo;
     coins=0.0;
@@ -30,68 +35,68 @@ class HUD{
   
   void display(){
     if(currentHp ==10){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
-      image(heart,110,50,30,30);
-      image(heart,140,50,30,30);
-      image(heart,170,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart,x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
     }
     
       if(currentHp==9){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
-      image(heart,110,50,30,30);
-      image(heart,140,50,30,30);
-      image(brokenHeart,170,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(brokenHeart,170,y,s,s);
     }
     
       if(currentHp==8){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
-      image(heart,110,50,30,30);
-      image(heart,140,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
       
     }
     
      if(currentHp==7){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
-      image(heart,110,50,30,30);
-      image(brokenHeart,140,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(brokenHeart,140,y,s,s);
       
     }
     
     if(currentHp==6){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
-      image(heart,110,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
     }
     
      if(currentHp==5){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
-      image(brokenHeart,110,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
+      image(brokenHeart,110,y,s,s);
     }
     
      if(currentHp==4){
-      image(heart,50,50,30,30);
-      image(heart,80,50,30,30);
+      image(heart, x,y,s,s);
+      image(heart, x,y,s,s);
       
     }
     
     if(currentHp==3){
-      image(heart,50,50,30,30);
-      image(brokenHeart,80,50,30,30);
+      image(heart, x,y,s,s);
+      image(brokenHeart,x,y,s,s);
       
     }
     if(currentHp==2){
-      image(heart,50,50,30,30);
+      image(heart,x,y,s,s);
       
       
     }
     
     if(currentHp== 1){
-      image(brokenHeart,50,50,30,30);
+      image(brokenHeart,x,y,s,s);
       
     }
     
