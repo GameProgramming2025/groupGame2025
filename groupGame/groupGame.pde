@@ -30,6 +30,8 @@ void setup() {
 }
 
 void draw() {
+  
+  println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
