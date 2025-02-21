@@ -1,6 +1,4 @@
 
-
-
 class HUD{
   Float hp,coins, items;
   int ammo,w ;
