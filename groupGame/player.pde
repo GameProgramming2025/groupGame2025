@@ -2,6 +2,7 @@ class Player { //<>// //<>//
   //W
   //Item
   HighNoon h;
+  
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -16,7 +17,7 @@ class Player { //<>// //<>//
   Magic shots[];
   int nextShot;
 
-  // Player Stats
+  // Player Stats //<>//
   int HP, shotCD, shotsCD, shotspd, spd, atk, range;
 
   Player() {
