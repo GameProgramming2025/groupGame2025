@@ -14,7 +14,7 @@ class Player {
 
   //shooting
   Magic shots[];
-  int nextShot;
+  int nextShot; //<>//
 
   // Player Stats
   int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
