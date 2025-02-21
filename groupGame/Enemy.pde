@@ -6,8 +6,10 @@ class Enemy extends ScreenElement {
   Player p;
   float enemyHealth;
 
-  Enemy (float x, float y) {
+  Enemy(float x, float y) {
     super();
+    this.xPos = x;
+    this.yPos = y;
     respawn();
     xVelo = 1;
     enemyHealth = 1;
