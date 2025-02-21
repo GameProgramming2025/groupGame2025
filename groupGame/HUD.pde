@@ -11,7 +11,7 @@ class HUD{
   
   HUD(Player p){
    currentHp = 1;
-   s=30.0;
+   s=40.0;
    x=50;
    y=50;
     heart = loadImage("data/Sprites/heart.png"); 
@@ -36,57 +36,57 @@ class HUD{
   void display(){
     if(currentHp ==10){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart,x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
+      image(heart,x+40,y,s,s);
+      image(heart,x+80,y,s,s);
+      image(heart,x+120,y,s,s);
+      image(heart, x+160,y,s,s);
     }
     
       if(currentHp==9){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(brokenHeart,170,y,s,s);
+      image(heart,x+40,y,s,s);
+      image(heart,x+80,y,s,s);
+      image(heart,x+120,y,s,s);
+      image(brokenHeart,x+160,y,s,s);
     }
     
       if(currentHp==8){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
+      image(heart,x+40,y,s,s);
+      image(heart,x+80,y,s,s);
+      image(heart,x+120,y,s,s);
       
     }
     
      if(currentHp==7){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(brokenHeart,140,y,s,s);
+      image(heart,x+40,y,s,s);
+      image(heart,x+80,y,s,s);
+      image(brokenHeart,x+120,y,s,s);
       
     }
     
     if(currentHp==6){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
+      image(heart,x+40,y,s,s);
+      image(heart,x+80,y,s,s);
     }
     
      if(currentHp==5){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
-      image(brokenHeart,110,y,s,s);
+      image(heart,x+40,y,s,s);
+      image(brokenHeart,x+80,y,s,s);
     }
     
      if(currentHp==4){
       image(heart, x,y,s,s);
-      image(heart, x,y,s,s);
+      image(heart,x+40,y,s,s);
       
     }
     
     if(currentHp==3){
       image(heart, x,y,s,s);
-      image(brokenHeart,x,y,s,s);
+      image(brokenHeart,x+40,y,s,s);
       
     }
     if(currentHp==2){
