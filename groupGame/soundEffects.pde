@@ -1,5 +1,5 @@
 
-import processing.sound.*;
+/*import processing.sound.*;
 
 class soundEffects {
   boolean start;
@@ -89,4 +89,4 @@ class soundEffects {
     //Room.stop();
     //}
   }
-}
+}*/
