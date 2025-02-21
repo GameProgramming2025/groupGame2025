@@ -1,7 +1,7 @@
 Player p1;
 HUD h1;
 
-GameState gameState = GameState.GAMEPLAY;
+GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
 Room rooms[][];
 int currentI;
@@ -30,6 +30,8 @@ void setup() {
 }
 
 void draw() {
+  
+  println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
@@ -40,11 +42,11 @@ void draw() {
     currentJ = constrain(currentJ, 0, 3);
     background(0);
     rooms[currentI][currentJ].display();
-    if (p1.x > width) {
+    if (p1.x >= width) {
       p1.x = 40;
       currentI++;
     }
-    if (p1.x < 0) {
+    if (p1.x <= 0) {
       p1.x = width-40;
       currentI--;
     }
