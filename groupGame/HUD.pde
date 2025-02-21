@@ -8,10 +8,10 @@ class HUD{
   PFont big;
   Player p,HP;
   PImage heart, brokenHeart;
-  float currentImg;
+  float currentHp;
   
   HUD(Player p){
-   currentImg = 1;
+   currentHp = 1;
     heart = loadImage("data/Sprites/heart.png"); 
     brokenHeart = loadImage("data/Sprites/broken heart.png");
     this.p = p;
@@ -22,9 +22,7 @@ class HUD{
   }
   
   void update(){
-    //if(p.HP=10){
-      
-   // }
+    currentHp=p.HP;
    
   if(w<99){
     w++;
@@ -33,7 +31,7 @@ class HUD{
   }
   
   void display(){
-    if(currentImg==1){
+    if(currentHp ==10){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       image(heart,110,50,30,30);
@@ -41,7 +39,7 @@ class HUD{
       image(heart,170,50,30,30);
     }
     
-      if(currentImg==2){
+      if(currentHp==9){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       image(heart,110,50,30,30);
@@ -49,7 +47,7 @@ class HUD{
       image(brokenHeart,170,50,30,30);
     }
     
-      if(currentImg==3){
+      if(currentHp==8){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       image(heart,110,50,30,30);
@@ -57,7 +55,7 @@ class HUD{
       
     }
     
-     if(currentImg==4){
+     if(currentHp==7){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       image(heart,110,50,30,30);
@@ -65,36 +63,36 @@ class HUD{
       
     }
     
-    if(currentImg==5){
+    if(currentHp==6){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       image(heart,110,50,30,30);
     }
     
-     if(currentImg==6){
+     if(currentHp==5){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       image(brokenHeart,110,50,30,30);
     }
     
-     if(currentImg==7){
+     if(currentHp==4){
       image(heart,50,50,30,30);
       image(heart,80,50,30,30);
       
     }
     
-    if(currentImg==8){
+    if(currentHp==3){
       image(heart,50,50,30,30);
       image(brokenHeart,80,50,30,30);
       
     }
-    if(currentImg==9){
+    if(currentHp==2){
       image(heart,50,50,30,30);
       
       
     }
     
-    if(currentImg== 10){
+    if(currentHp== 1){
       image(brokenHeart,50,50,30,30);
       
     }
