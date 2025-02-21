@@ -7,7 +7,7 @@ class Room {
   PImage img;
 
   Room(int x, int y) {
-    float ex, ey, xVelo, yVelo;
+    float ex, ey;
     this.x=x;
     this.y=y;
     numEnemies = 10;

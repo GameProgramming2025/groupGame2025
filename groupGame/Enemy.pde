@@ -43,6 +43,7 @@ class Enemy extends ScreenElement {
   boolean hit(float x, float y) {
     if (dist(x, y, p.x, p.y ) < 75 ) {
       return true;
+      
     }
     return false;
   }
