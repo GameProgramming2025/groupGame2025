@@ -2,7 +2,6 @@ class Player { //<>// //<>//
   //W
   //Item
   HighNoon h;
-  
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -15,10 +14,10 @@ class Player { //<>// //<>//
 
   //shooting
   Magic shots[];
-  int nextShot;
+  int nextShot; //<>//
 
-  // Player Stats //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range;
+  // Player Stats
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
 
   Player() {
     HP = 10;
@@ -80,6 +79,9 @@ class Player { //<>// //<>//
       shotsCD += h.shotsCD;
       atk += h.atk;
     }
+    
+    x = constrain(x, 0, width);
+    y = constrain(y, 0, height);
   }
 
 
