@@ -34,9 +34,6 @@ void setup() {
 void draw() {
   println(currentI, " ", currentJ);
   background(0);
-
-  rooms[currentI][currentJ].display();
-
   
   println(frameRate);
 
@@ -72,12 +69,6 @@ void draw() {
     println("lost");
     break;
   }
-  rooms[currentI][currentJ].display();
-
-  p1.update();
-  p1.display();
-  h1.update();
-  h1.display();
 }
 
 void keyPressed() {
