@@ -3,10 +3,9 @@ class Enemy extends ScreenElement {
   float gravity;
   float xAcc;
   float yAcc;
-  Player p;
   float enemyHealth;
 
-  Enemy(float x, float y) {
+    Enemy(float x, float y) {
     super();
     this.xPos = x;
     this.yPos = y;
@@ -38,37 +37,26 @@ class Enemy extends ScreenElement {
     // xVelo += xAcc;
     // yVelo += gravity;
     println(xPos);
-    
+
     if ( xPos < 252 ) {
       xVelo = -xVelo;
-      
     }
-    
-      if ( xPos > 1466 ) {
+
+    if ( xPos > 1466 ) {
       xVelo = -xVelo;
-      
     }
-    
-       if ( yPos > 945  ) {
+
+    if ( yPos > 945  ) {
       yVelo = -yVelo;
-      
     }
-    
-      if ( yPos < 282  ) {
+
+    if ( yPos < 282  ) {
       yVelo = -yVelo;
-      
     }
-    
-    
-    
-    
-  }
 
 
-  boolean hit(float x, float y) {
-    if (dist(x, y, p.x, p.y ) < 75 ) {
-      return true;     
+    if (dist(xPos, yPos, p1.x, p1.y ) < 75 ) {
+      p1.HP -= 0.000001;
     }
-    return false;
   }
 }
