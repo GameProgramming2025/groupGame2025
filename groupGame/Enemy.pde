@@ -27,7 +27,7 @@ class Enemy extends ScreenElement {
     fill(#00ffff);
     pop();
   }
-
+ 
   void update () {
     xPosPrev = xPos;
     yPosPrev = yPos;
@@ -53,7 +53,7 @@ class Enemy extends ScreenElement {
     if ( yPos < 282  ) {
       yVelo = -yVelo;
     }
-
+ 
 
     if (dist(xPos, yPos, p1.x, p1.y ) < 75 ) {
       p1.HP -= 0.000001;
