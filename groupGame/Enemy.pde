@@ -11,8 +11,8 @@ class Enemy extends ScreenElement {
     this.xPos = x;
     this.yPos = y;
     enemyHealth = 1;
-    xVelo = random(-1.5, 1.5);
-    yVelo = random(-1, 1);
+    xVelo = random(-2.5, 2.5);
+    yVelo = random(-1.5, 1.5);
   }
 
   void display () {
@@ -67,8 +67,7 @@ class Enemy extends ScreenElement {
 
   boolean hit(float x, float y) {
     if (dist(x, y, p.x, p.y ) < 75 ) {
-      return true;
-      
+      return true;     
     }
     return false;
   }
