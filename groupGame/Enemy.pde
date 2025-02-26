@@ -40,14 +40,26 @@ class Enemy extends ScreenElement {
     println(xPos);
     
     if ( xPos < 252 ) {
-      xPos -= xVelo;
+      xVelo = -xVelo;
       
     }
     
       if ( xPos > 1466 ) {
-      xPos -= xVelo;
+      xVelo = -xVelo;
       
     }
+    
+       if ( yPos > 945  ) {
+      yVelo = -yVelo;
+      
+    }
+    
+      if ( yPos < 272  ) {
+      yVelo = -yVelo;
+      
+    }
+    
+    
     
     
   }

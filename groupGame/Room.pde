@@ -13,8 +13,8 @@ class Room {
     numEnemies = 10;
     enemies = new Enemy[numEnemies];
     for (int i = 0; i < numEnemies; i++) {
-      ex = random(0, width);
-      ey = random(0, height);
+      ex = random(252, 1466);
+      ey = random(272, 945);
       enemies[i] = new Enemy(ex, ey);
     }
     bc = color(random(100, 200), 100, 20);
