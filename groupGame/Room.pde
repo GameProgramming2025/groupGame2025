@@ -10,11 +10,11 @@ class Room {
     float ex, ey;
     this.x=x;
     this.y=y;
-    numEnemies = 10;
+    numEnemies = 7;
     enemies = new Enemy[numEnemies];
     for (int i = 0; i < numEnemies; i++) {
       ex = random(252, 1466);
-      ey = random(272, 945);
+      ey = random(282, 945);
       enemies[i] = new Enemy(ex, ey);
     }
     bc = color(random(100, 200), 100, 20);

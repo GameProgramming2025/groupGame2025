@@ -11,8 +11,8 @@ class Enemy extends ScreenElement {
     this.xPos = x;
     this.yPos = y;
     enemyHealth = 1;
-    xVelo = random(-5, 5);
-    yVelo = random(-5, 5);
+    xVelo = random(-1.5, 1.5);
+    yVelo = random(-1, 1);
   }
 
   void display () {
@@ -54,7 +54,7 @@ class Enemy extends ScreenElement {
       
     }
     
-      if ( yPos < 272  ) {
+      if ( yPos < 282  ) {
       yVelo = -yVelo;
       
     }
