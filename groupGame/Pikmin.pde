@@ -2,7 +2,7 @@ class Pikmin {
   float x, y, xVelo, yVelo;
   PImage Pikmin;
   
-  Pikmin(float x, float y){
+  Pikmin(float x, float y, float xVelo, float yVelo){
    this.x = x;
    this.y = y;
    xVelo = 0;
@@ -14,6 +14,7 @@ class Pikmin {
   void update(){
    x += xVelo;
    y += yVelo;
+       
   }
   
   void display(){
