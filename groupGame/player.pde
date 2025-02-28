@@ -1,7 +1,7 @@
-class Player {
+class Player { //<>// //<>// //<>// //<>// //<>// //<>//
   //W
   //Item
-  HighNoon h;
+ HighNoon h;
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -14,10 +14,10 @@ class Player {
 
   //shooting
   Magic shots[];
-  int nextShot; //<>// //<>//
+  int nextShot; //<>// //<>// //<>//
 
   // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>// //<>// //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>// //<>// //<>// //<>//
 
   //Player Images
   PImage sprites[];
@@ -34,7 +34,7 @@ class Player {
     frames = 60;
     shotsCD = 60;
     shots = new Magic[10];
-    h = new HighNoon(width/2, height/2);
+    h = new HighNoon(width/4, height/4);
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
@@ -45,16 +45,16 @@ class Player {
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
 
-    sprites[0] = spritesheet.get(0, 0, 96, 96);
-    sprites[1] = spritesheet.get(0, 32, 96, 96);
-    sprites[2] = spritesheet.get(0, 0, 96, 96);
-    sprites[3] = spritesheet.get(0, 0, 96, 96);
-    sprites[4] = spritesheet.get(0, 0, 96, 96);
-    sprites[5] = spritesheet.get(0, 0, 96, 96);
-    sprites[6] = spritesheet.get(0, 0, 96, 96);
-    sprites[7] = spritesheet.get(0, 0, 96, 96);
-    sprites[8] = spritesheet.get(0, 0, 96, 96);
-    sprites[9] = spritesheet.get(0, 0, 96, 96);
+    sprites[0] = spritesheet.get(0, 0, 96,96);
+    sprites[1] = spritesheet.get(0, 32, 96,96);
+    sprites[2] = spritesheet.get(0, 0, 96,96);
+    sprites[3] = spritesheet.get(0, 0, 96,96);
+    sprites[4] = spritesheet.get(0, 0, 96,96);
+    sprites[5] = spritesheet.get(0, 0, 96,96);
+    sprites[6] = spritesheet.get(0, 0, 96,96);
+    sprites[7] = spritesheet.get(0, 0, 96,96);
+    sprites[8] = spritesheet.get(0, 0, 96,96);
+    sprites[9] = spritesheet.get(0, 0, 96,96);
   }
 
   void update() {
@@ -63,15 +63,11 @@ class Player {
       text("YOU DIED", width/2, height/2);
     }
     println(p1.y);
-      //right side
-      if (x > 1450 && y < 550) {//top right wall
+    //right side
+    if (x > 1450 && y < 550) {//top left wall
       x = 1450;
-    } else if (x > 1450 && y > 725) {//bottom right wall
+    } else if (x > 1450 && y > 725) {//bottom left wall
       x = 1450;
-    } else if (x > 1450 && y > 650) {// bottom right wall next to door
-      y = 650;
-    } else if (x > 1500 && y < 625) {// top right wall next to door
-      y = 625;
     } else if (x > width) {//right
       x = 40;
       currentI++;
@@ -82,38 +78,19 @@ class Player {
       x = 250;
     } else if (x < 250 && y > 725) {//bottom left wall
       x = 250;
-    } else if (x < 250 && y > 650) {// bottom left wall next to door
-      y = 650;
-    } else if (x < 150 && y < 625) {// top left wall next to door
-      y = 625;
     } else if (x < 0) {//left
       p1.x = width-40;
       currentI--;
     }
-    //bottom
-    if ( x > 970 && y > 925) {// bottom right wall
-      y = 925;
-    } else if( x < 725  && y > 925) { //bottom left wall
-      y = 925;
-    }else if (x < 750 & y > 995) {// left-side wall next to door
-      x = 750;
-    } else if (x > 915 && y > 995) { //right-side wall next to door
-      x = 915;
-    } else if (y > height) {//down
+
+    if (y > height) {//down
       y = 40;
       currentJ++;
     }
-
-    //top
-   if(x < 755 && y < 245) { //left-side wall next to door
-     x = 755; 
-    }else if (x > 925 && y < 245) { //right-side wall next to door
-      x = 925;
-    }else if (y < 0) {//up
+    if (y < 0) {//up
       y = height-40;
       currentJ--;
     }
-
     if (currentI == 4) {
       currentI = 0;
     }
@@ -126,9 +103,7 @@ class Player {
     if (currentJ == -1) {
       currentJ = 3;
     }
-    if (spd < 1) {
-      spd = 1;
-    }
+    spd = constrain(spd, 1, 3);
     if (shotspd < 1) {
       shotspd = 1;
     }
@@ -166,7 +141,7 @@ h.render();
       shotsCD += h.shotsCD;
       atk += h.atk;
     }
-
+    
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);
   }
@@ -177,15 +152,17 @@ h.render();
     y += yVel;
     if (xVel == 0) {
       currentSprite = 1;
-    } else if (xVel >= 0) {
-      currentSprite = 2;
-    } else if (xVel <= 0) {
-      currentSprite = 5;
-    }
-    //else if (){
-    //
-    //}
-
+     }
+     else if (xVel >= 0){
+     currentSprite = 2;
+     }
+     else if (xVel <= 0){
+     currentSprite = 5;
+     }
+     //else if (){
+     //
+     //}
+     
     push();
     translate(x, y);
     imageMode(CENTER);
@@ -232,7 +209,7 @@ h.render();
 
     //shooting
     if (key == CODED && !shooting) {
-      // println(tempX, " ", tempY);
+     // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
       tempX = x;
