@@ -181,14 +181,14 @@ class Player { //<>// //<>// //<>//
         currentSprite = 4;
       }
     }
-    if (yVel == 0 && xVel > 0) {
+    if (yVel == 0 && xVel > 0 || xVel > 0 && yVel > 0 || xVel > 0 && yVel < 0 ) {
       animation--;
       currentSprite = 3;
       if (animation <= 5) {
         currentSprite = 2;
       }
     }
-    if (yVel == 0 && xVel < 0) {
+    if (yVel == 0 && xVel < 0 || yVel < 0 && xVel < 0 || yVel > 0 && xVel < 0) {
       animation--;
       currentSprite = 7;
       if (animation <= 5) {
