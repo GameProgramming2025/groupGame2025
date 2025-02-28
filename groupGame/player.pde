@@ -1,6 +1,6 @@
-class Player { //<>// //<>// //<>//
-  //W
-  //Item
+class Player { //<>//
+  //Items
+  Item items[];
   HighNoon h;
   // position
 
@@ -13,13 +13,12 @@ class Player { //<>// //<>// //<>//
   int animation;
   boolean shooting;
 
-  //shooting
-  Magic shots[];
-
-  int nextShot;
-
-  // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range;
+  //shooting 
+  Magic shots[]; //<>//
+ //<>//
+  int nextShot; 
+  // Player Stats //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
 
   //Player Images
   PImage sprites[];
@@ -38,6 +37,10 @@ class Player { //<>// //<>// //<>//
     shotsCD = 60;
     shots = new Magic[10];
     h = new HighNoon(width/4, height/4);
+    items = new Item[5];
+    for (int j = 0; j < 5; j++) {
+      items[j] = new HighNoon(x, y);
+    }
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
