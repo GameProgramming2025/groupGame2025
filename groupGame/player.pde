@@ -1,4 +1,4 @@
-class Player { 
+class Player { //<>// //<>// //<>//
   //W
   //Item
   HighNoon h;
@@ -142,7 +142,7 @@ class Player {
     if (shotCD <= 0) {
       shooting = false;
     }
-h.render();
+    h.render();
     //not a timer but it counts lul
     if (h.collected == true) {
       shotsCD += h.shotsCD;

@@ -38,9 +38,8 @@ class ScreenElement {
     yVelo += gravity;
     handleCollisions();
   }
-  
+
   void handleCollisions() {
-    
   }
 
   float top() {
@@ -58,8 +57,4 @@ class ScreenElement {
   float right() {
     return xPos + 10;
   }
-  
-  
-
-  
 }
