@@ -5,7 +5,9 @@ class HUD {
   int ammo, w ;
   float t;
   PFont big;
-  Player p, HP;
+  Player p;
+  Item i;
+  HighNoon h;
   PImage heart, brokenHeart;
   float currentHp;
   boolean hasItem;
