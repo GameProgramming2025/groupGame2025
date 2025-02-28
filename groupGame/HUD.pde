@@ -35,7 +35,9 @@ class HUD{
   }
   
   void display(){
-    
+    if(p.emptyItem[0] == p.h){
+     
+    }
     
     if(currentHp ==10){
       image(heart, x,y,s,s);

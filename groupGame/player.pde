@@ -1,7 +1,8 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //W
   //Item
  HighNoon h;
+Item emptyItem[];
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -13,10 +14,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
   boolean shooting;
 
   //shooting
-  Magic shots[];
+  Magic shots[]; //<>//
   int nextShot; //<>// //<>// //<>//
 
-  // Player Stats
+  // Player Stats //<>//
   int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>// //<>// //<>// //<>//
 
   //Player Images
@@ -34,6 +35,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
     frames = 60;
     shotsCD = 60;
     shots = new Magic[10];
+     emptyItem= new Item[5];
     h = new HighNoon(width/4, height/4);
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
@@ -44,7 +46,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
     frame = 0;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
-
+    emptyItem[0] = emptyItem[0];
     sprites[0] = spritesheet.get(0, 0, 96,96);
     sprites[1] = spritesheet.get(0, 32, 96,96);
     sprites[2] = spritesheet.get(0, 0, 96,96);
@@ -58,6 +60,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
   }
 
   void update() {
+    if(dist(h.x,h.y, x,y)<50){
+      emptyItem[0] = h;
+    }
+    
     //print(shooting);
     if (HP < 0) {
       text("YOU DIED", width/2, height/2);
