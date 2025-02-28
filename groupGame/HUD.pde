@@ -8,6 +8,7 @@ class HUD{
   Player p,HP;
   PImage heart, brokenHeart;
   float currentHp;
+  boolean hasItem;
   
   HUD(Player p){
    currentHp = 1;
@@ -34,6 +35,8 @@ class HUD{
   }
   
   void display(){
+    
+    
     if(currentHp ==10){
       image(heart, x,y,s,s);
       image(heart,x+40,y,s,s);
