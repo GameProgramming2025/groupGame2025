@@ -146,12 +146,17 @@ class Player { //<>// //<>// //<>// //<>//
     
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);
+    
+    if(Math.abs(xVel) < 0.3) {
+      xVel = 0;
+    }
+    if(Math.abs(yVel) < 0.3) {
+      yVel = 0;
+    }
   }
 
 
   void display() {
-    x += xVel;
-    y += yVel;
     if (xVel == 0) {
       currentSprite = 1;
      }
