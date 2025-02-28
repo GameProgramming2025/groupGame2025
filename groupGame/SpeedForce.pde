@@ -8,6 +8,7 @@ class SpeedForce extends Item{
     description = "If you know you know no more shooting";
     area = "when Kanon says it can spawn";
     rarity = 5;
+    rarity5 = true;
     spd = 10;
     maxspd = 7;
   }
