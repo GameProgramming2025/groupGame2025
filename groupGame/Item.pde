@@ -67,10 +67,8 @@ class Item {
 
   void render() {
     strokeWeight(8);
-    rectMode(CENTER);
-    rect(0, 0, 100, 100, 10);
-    imageMode(CENTER);
-    image(itemImg, 0, 0);
+    rect(x-10, y-10, 100, 100, 10);
+    image(itemImg, x, y);
   }
   void renderDetails() {
     if (rarity == 1) {
