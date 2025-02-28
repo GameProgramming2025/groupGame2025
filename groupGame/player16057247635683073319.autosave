@@ -1,11 +1,17 @@
 
-class Player { //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>//
+  //W
+  //Item
+ HighNoon h;
+Item emptyItem[];
+
+class Player { //<>// //<>//
   //W
   //Item
   HighNoon h;
 
   // position
- //<>//
+
   float x, y, xVel, yVel, xAcc, yAcc;
   float tempX, tempY;
 
@@ -18,16 +24,22 @@ class Player { //<>// //<>// //<>// //<>//
   //shooting
 
   Magic shots[];
+  int nextShot; //<>// //<>//
+
+  // Player Stats
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>// //<>// //<>//
+
+  Magic shots[];
 
   int nextShot;
 
   // Player Stats
   int HP, shotCD, shotsCD, shotspd, spd, atk, range;
- //<>//
- //<>//
+
+
   //Player Images
-  PImage sprites[]; //<>//
-  int currentSprite; //<>//
+  PImage sprites[];
+  int currentSprite;
   int firstSprite;
   int frame;
 
@@ -41,7 +53,7 @@ class Player { //<>// //<>// //<>// //<>//
     animation = 15;
     shotsCD = 60;
     shots = new Magic[10];
-
+     emptyItem= new Item[5];
     h = new HighNoon(width/4, height/4);
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
@@ -52,6 +64,9 @@ class Player { //<>// //<>// //<>// //<>//
     frame = 0;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
+
+    emptyItem[0] = emptyItem[0];
+   
 
 
     sprites[0] = spritesheet.get(0, 0, 96, 96);
@@ -68,6 +83,9 @@ class Player { //<>// //<>// //<>// //<>//
   }
 
   void update() {
+    if(dist(h.x,h.y, x,y)<50){
+      emptyItem[0] = h;
+    }
     
     //print(shooting);
     if (HP < 0) {
