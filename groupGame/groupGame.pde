@@ -32,10 +32,10 @@ void setup() {
 }
 
 void draw() {
-  println(currentI, " ", currentJ);
+  //println(currentI, " ", currentJ);
   background(0);
   
-  println(frameRate);
+  //println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
@@ -66,7 +66,7 @@ void draw() {
   case SCORE_INPUT:
     break;
   default:
-    println("lost");
+    //println("lost");
     break;
   }
 }
