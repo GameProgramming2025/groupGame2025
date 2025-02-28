@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>//
+class Player { 
   //W
   //Item
   HighNoon h;
@@ -20,7 +20,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
 
   // Player Stats
   int HP, shotCD, shotsCD, shotspd, spd, atk, range;
-
 
   //Player Images
   PImage sprites[];
