@@ -8,6 +8,7 @@ class HUD{
   Player p,HP;
   PImage heart, brokenHeart;
   float currentHp;
+  boolean hasItem;
   
   HUD(Player p){
    currentHp = 1;
@@ -34,6 +35,8 @@ class HUD{
   }
   
   void display(){
+    
+    
     if(currentHp ==10){
       image(heart, x,y,s,s);
       image(heart,x+40,y,s,s);
@@ -102,12 +105,7 @@ class HUD{
     
     
     
-    textFont(big);
-    text("AMMO X", width/5,height/10);
-    textAlign(CENTER);
-    text(w,width/5 +100,height/10);
-    text("HP", 70, 50);
-    text(p.HP, 70, 100);
+   
   }
   
   
