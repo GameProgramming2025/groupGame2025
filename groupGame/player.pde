@@ -1,10 +1,11 @@
 
-class Player { //<>// //<>// //<>// //<>//
-  //W
-  //Item
+class Player { //<>// //<>//
+  //Items
+  Item items[];
+
   HighNoon h;
 
-  // position
+  // position //<>//
  //<>//
   float x, y, xVel, yVel, xAcc, yAcc;
   float tempX, tempY;
@@ -15,19 +16,18 @@ class Player { //<>// //<>// //<>// //<>//
   int animation;
   boolean shooting;
 
-  //shooting
 
-  Magic shots[];
-
-  int nextShot;
-
-  // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range;
+  //shooting 
+  Magic shots[]; //<>//
+ //<>//
+  int nextShot; 
+  // Player Stats //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
  //<>//
  //<>//
   //Player Images
-  PImage sprites[]; //<>//
-  int currentSprite; //<>//
+  PImage sprites[]; //<>// //<>//
+  int currentSprite; //<>// //<>//
   int firstSprite;
   int frame;
 
@@ -43,6 +43,10 @@ class Player { //<>// //<>// //<>// //<>//
     shots = new Magic[10];
 
     h = new HighNoon(width/4, height/4);
+    items = new Item[5];
+    for (int j = 0; j < 5; j++) {
+      items[j] = new HighNoon(x, y);
+    }
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
@@ -189,14 +193,14 @@ class Player { //<>// //<>// //<>// //<>//
         currentSprite = 4;
       }
     }
-    if (yVel == 0 && xVel > 0) {
+    if (yVel == 0 && xVel > 0 || xVel > 0 && yVel > 0 || xVel > 0 && yVel < 0 ) {
       animation--;
       currentSprite = 3;
       if (animation <= 5) {
         currentSprite = 2;
       }
     }
-    if (yVel == 0 && xVel < 0) {
+    if (yVel == 0 && xVel < 0 || yVel < 0 && xVel < 0 || yVel > 0 && xVel < 0) {
       animation--;
       currentSprite = 7;
       if (animation <= 5) {
