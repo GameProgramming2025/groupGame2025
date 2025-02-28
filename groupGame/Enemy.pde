@@ -19,8 +19,8 @@ class Enemy extends ScreenElement {
     ellipse(0, 0, 30, 30);
     pop();
   }
-  
-   void respawn() {
+
+  void respawn() {
     this.xPos = random(30, width - 30);
     this.yPos = random(-height * 2, -100);
     xVelo = random(-4, 4);
@@ -29,7 +29,7 @@ class Enemy extends ScreenElement {
   }
 
   void update () {
-     xPosPrev = xPos;
+    xPosPrev = xPos;
     yPosPrev = yPos;
     xPos += xVelo;
     yPos += yVelo;
