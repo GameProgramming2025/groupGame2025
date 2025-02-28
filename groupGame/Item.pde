@@ -92,11 +92,9 @@ class Item {
       fill(#95bbe6, 200);
     }
   }
-    void keyPressed() {
-      
-    }
-
-    void keyReleased() {
-      
-    }
+  void keyPressed() {
   }
+
+  void keyReleased() {
+  }
+}

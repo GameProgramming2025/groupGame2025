@@ -24,6 +24,5 @@ class Room {
   }
 
   void update () {
-   
   }
 }

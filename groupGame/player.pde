@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //W
   //Item
  HighNoon h;
 Item emptyItem[];
+=======
+class Player { //<>// //<>// //<>//
+  //W
+  //Item
+  HighNoon h;
+>>>>>>> main
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -11,14 +18,24 @@ Item emptyItem[];
   //timers
   float frames;
   int seconds;
+  int animation;
   boolean shooting;
 
   //shooting
+<<<<<<< HEAD
   Magic shots[]; //<>//
   int nextShot; //<>// //<>// //<>//
 
   // Player Stats //<>//
   int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>// //<>// //<>// //<>//
+=======
+  Magic shots[];
+
+  int nextShot;
+
+  // Player Stats
+  int HP, shotCD, shotsCD, shotspd, spd, atk, range;
+>>>>>>> main
 
   //Player Images
   PImage sprites[];
@@ -33,6 +50,7 @@ Item emptyItem[];
     nextShot = 0;
     range = 300;
     frames = 60;
+    animation = 15;
     shotsCD = 60;
     shots = new Magic[10];
      emptyItem= new Item[5];
@@ -46,6 +64,7 @@ Item emptyItem[];
     frame = 0;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
+<<<<<<< HEAD
     emptyItem[0] = emptyItem[0];
     sprites[0] = spritesheet.get(0, 0, 96,96);
     sprites[1] = spritesheet.get(0, 32, 96,96);
@@ -57,6 +76,19 @@ Item emptyItem[];
     sprites[7] = spritesheet.get(0, 0, 96,96);
     sprites[8] = spritesheet.get(0, 0, 96,96);
     sprites[9] = spritesheet.get(0, 0, 96,96);
+=======
+
+    sprites[0] = spritesheet.get(0, 0, 96, 96);
+    sprites[1] = spritesheet.get(96, 0, 96, 96);
+    sprites[2] = spritesheet.get(192, 1, 96, 96);
+    sprites[3] = spritesheet.get(0, 96, 96, 96);
+    sprites[4] = spritesheet.get(96, 97, 96, 96);
+    sprites[5] = spritesheet.get(192, 96, 96, 96);
+    sprites[6] = spritesheet.get(0, 193, 96, 96);
+    sprites[7] = spritesheet.get(94, 192, 96, 96);
+    sprites[8] = spritesheet.get(192, 192, 96, 96);
+    sprites[9] = spritesheet.get(0, 288, 96, 96);
+>>>>>>> main
   }
 
   void update() {
@@ -68,7 +100,7 @@ Item emptyItem[];
     if (HP < 0) {
       text("YOU DIED", width/2, height/2);
     }
-    println(p1.y);
+    //println(p1.y);
     //right side
     if (x > 1450 && y < 550) {//top left wall
       x = 1450;
@@ -133,6 +165,10 @@ Item emptyItem[];
     shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
+    if (animation <= 0) {
+      animation = 15;
+    }
+
     if (frames <= 0) {
 
       frames = 60;
@@ -141,34 +177,67 @@ Item emptyItem[];
     if (shotCD <= 0) {
       shooting = false;
     }
-h.render();
+    h.render();
     //not a timer but it counts lul
     if (h.collected == true) {
       shotsCD += h.shotsCD;
       atk += h.atk;
     }
-    
+
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);
+
+    if (Math.abs(xVel) < 0.3) {
+      xVel = 0;
+    }
+    if (Math.abs(yVel) < 0.3) {
+      yVel = 0;
+    }
   }
 
 
   void display() {
-    x += xVel;
-    y += yVel;
-    if (xVel == 0) {
+    println(yVel);
+    println(xVel);
+    if (xVel == 0 && yVel == 0) {
+      currentSprite = 0;
+    }
+    if (yVel > 0 && xVel == 0) {
+      animation--;
       currentSprite = 1;
-     }
-     else if (xVel >= 0){
-     currentSprite = 2;
-     }
-     else if (xVel <= 0){
-     currentSprite = 5;
-     }
-     //else if (){
-     //
-     //}
-     
+      if (animation <= 5) {
+        currentSprite = 0;
+      }
+    }
+    if (yVel < 0 && xVel == 0) {
+      animation--;
+      currentSprite = 5;
+      if (animation <= 5) {
+        currentSprite = 4;
+      }
+    }
+    if (yVel == 0 && xVel > 0) {
+      animation--;
+      currentSprite = 3;
+      if (animation <= 5) {
+        currentSprite = 2;
+      }
+    }
+    if (yVel == 0 && xVel < 0) {
+      animation--;
+      currentSprite = 7;
+      if (animation <= 5) {
+        currentSprite = 6;
+      }
+    }
+    if (HP == 0) {
+      currentSprite = 9;
+    }
+
+    //else if (){
+    //
+    //}
+
     push();
     translate(x, y);
     imageMode(CENTER);
@@ -215,7 +284,7 @@ h.render();
 
     //shooting
     if (key == CODED && !shooting) {
-     // println(tempX, " ", tempY);
+      // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
       tempX = x;
@@ -238,23 +307,23 @@ h.render();
     switch (key) {
     case 'w':
 
-      firstSprite = 30;
-      currentSprite = 30;
+      //firstSprite = 30;
+      //currentSprite = 30;
       break;
     case 's':
 
-      firstSprite = 18;
-      currentSprite = 18;
+      //firstSprite = 18;
+      //currentSprite = 18;
       break;
     case 'a':
 
-      firstSprite = 24;
-      currentSprite = 24;
+      //firstSprite = 24;
+      //currentSprite = 24;
       break;
     case 'd':
 
-      firstSprite = 24;
-      currentSprite = 24;
+      //firstSprite = 24;
+      //currentSprite = 24;
       break;
     }
   }

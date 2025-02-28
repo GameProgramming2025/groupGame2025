@@ -1,7 +1,7 @@
-class HighNoon extends Item{
-  
-  HighNoon(float x, float y){
-    super(x,y,"Sprites/HN.png");
+class HighNoon extends Item {
+
+  HighNoon(float x, float y) {
+    super(x, y, "Sprites/HN.png");
     this.x=x;
     this.y=y;
     name = "highNoon";
@@ -12,13 +12,13 @@ class HighNoon extends Item{
     shotsCD = 30;
     collected = false;
   }
-  
+
   HighNoon(JSONObject j) {
-      super(j);
+    super(j);
   }
   JSONObject serialize() {
     JSONObject j = super.serialize();
-    j.setString("class","highNoon");
+    j.setString("class", "highNoon");
     return j;
   }
   void render() {
