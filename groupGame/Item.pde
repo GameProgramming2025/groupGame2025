@@ -12,9 +12,10 @@ class Item {
   String imageFileName;
   int rarity;
   int amount;
-  int HP, shotsCD;
+  int HP, shotsCD,maxspd;
   float spd, atk, range, shotspd;
   boolean collected;
+  boolean itemSpawned;
   String rarityStr = "Common";
 
   Item(float x, float y, String imageFileName) {
@@ -31,10 +32,12 @@ class Item {
     HP = 0;
     shotsCD = 0;
     spd = 0;
+    maxspd = 0;
     atk = 0;
     range = 0;
     shotspd = 0;
     collected = false;
+    itemSpawned = false;
   }
   Item(JSONObject j) {
     x = j.getFloat("x");
@@ -66,9 +69,13 @@ class Item {
   }
 
   void render() {
+    if (itemSpawned == false){
+     return; 
+    }
     strokeWeight(8);
     rect(x-10, y-10, 100, 100, 10);
     image(itemImg, x, y);
+    
   }
   void renderDetails() {
     if (rarity == 1) {

@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>//
   //W
   //Item
   HighNoon h;
@@ -14,12 +14,12 @@ class Player { //<>// //<>// //<>//
   boolean shooting;
 
   //shooting
-  Magic shots[];
+  Magic shots[]; //<>//
 
   int nextShot;
-
+ //<>//
   // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range;
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
   //Player Images
   PImage sprites[];
@@ -31,6 +31,7 @@ class Player { //<>// //<>// //<>//
     HP = 10;
     spd = 1;
     shotspd = 5;
+    maxspd = 3;
     nextShot = 0;
     range = 300;
     frames = 60;
@@ -106,7 +107,7 @@ class Player { //<>// //<>// //<>//
     if (currentJ == -1) {
       currentJ = 3;
     }
-    spd = constrain(spd, 1, 3);
+    spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
       shotspd = 1;
     }
