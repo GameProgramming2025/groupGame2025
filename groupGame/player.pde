@@ -126,9 +126,7 @@ class Player {
     if (currentJ == -1) {
       currentJ = 3;
     }
-    if (spd < 1) {
-      spd = 1;
-    }
+    spd = constrain(spd, 1, 3);
     if (shotspd < 1) {
       shotspd = 1;
     }
