@@ -3,50 +3,51 @@ class Room {
   int y;
   int bc;
   int num;
+  int numImages = 3;
   PImage img;
 
   Room(int x, int y) {
     this.x=x;
     this.y=y;
     bc = color(random(100, 200), 100, 20);
-    this.num = 12;
-    if (this.num == 0 ) {
+    num = int (random(0,13));
+    if (num == 0 ) {
       img = loadImage("Sprites/BGFourDoors.png");
     }
-    if (this.num == 1) {
+    if (num == 1) {
       img = loadImage("Sprites/BGNoEastDoor.png");
     }
-    if (this.num == 2) {
+    if (num == 2) {
       img = loadImage("Sprites/BGNoNorthDoor.png");
     }
-    if (this.num == 3) {
+    if (num == 3) {
       img = loadImage("Sprites/BGNoSouthDoor.png");
     }
-    if (this.num == 4) {
+    if (num == 4) {
       img = loadImage("Sprites/BGNoWestDoor.png");
     }
-    if (this.num == 5) {
+    if (num == 5) {
       img = loadImage("Sprites/BGNoWestEastSouth.png");
     }
-    if (this.num == 6) {
+    if (num == 6) {
       img = loadImage("Sprites/BGNoWestOrEast.png");
     }
-    if (this.num == 7) {
+    if (num == 7) {
       img = loadImage("Sprites/BossRoom.png");
     }
-    if (this.num == 8) {
+    if (num == 8) {
       img = loadImage("Sprites/DoorNoNorthEast.png");
     }
-    if (this.num == 9) {
+    if (num == 9) {
       img = loadImage("Sprites/DoorNoNorthEastWest.png");
     }
-    if (this.num == 10) {
+    if (num == 10) {
       img = loadImage("Sprites/DoorNoWestSouth.png");
     }
-    if (this.num == 11) {
+    if (num == 11) {
       img = loadImage("Sprites/ItemRoom.png");
     }
-    if (this.num == 12) {
+    if (num == 12) {
       img = loadImage("Sprites/TrapRoom.png");
     }
     img.resize(width, height);
