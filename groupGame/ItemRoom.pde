@@ -1,10 +1,16 @@
 class ItemRoom extends Room {
+  Player p1;
   HighNoon h;
   PikminItem p;
   SpeedForce s;
 
   float pedx, pedy;
   float spawn;
+  float selected1;
+  float selected2;
+  float selected3;
+  float selected4;
+  
 
   ItemRoom(int x, int y) {
     super(x, y);
@@ -13,6 +19,10 @@ class ItemRoom extends Room {
     pedx = width/2;
     pedy = height/2;
     spawn = random(1, 200);
+    selected1 = random(1,2);
+    selected2 = random(1,2);
+    selected3 = random(1,2);
+    selected4 = random(1,3);
     h = new HighNoon(pedx, pedy);
     p = new PikminItem(pedx, pedy);
   }
@@ -20,24 +30,52 @@ class ItemRoom extends Room {
   void display() {
     rect(pedx, pedy, 150, 150);
   }
+  
+  void update(){
+   if(dist(pedx,pedy,p1.x,p1.y)<75){
+    spawnanitem(); 
+   }
+  }
 
   void spawnanitem() {
-    if (spawn == 1);
-    if (h.rarity5 == true) {
-      h.itemSpawned = true;
+    if (spawn == 1){
+    h.itemSpawned = true;
     }
     if(spawn >= 2 && spawn<=10){
-     //rarity 4 
+     if(selected1 == 1){
+       p.itemSpawned = true;
+     }
+     if(selected1 == 2){
+       //spawn rarity 4 item
+     }
     }
     
     if (spawn >= 11 && spawn <=40){
-     //rarity 3 
+     if(selected2 == 1){
+       
+     }
+     if(selected2 == 2){
+       //spawn rarity 3 item
+     }
     }
     if(spawn>=41 && spawn <=100){
-      //rarity 2
+      if(selected3 == 1){
+       h.itemSpawned= true;
+     }
+     if(selected3 == 2){
+       //spawn rarity 2 item
+     }
     }
     if(spawn>100){
-      //rarity 1
+      if(selected4 == 1){
+       
+     }
+     if(selected4 == 2){
+       
+     }
+     if(selected4 == 3){
+       //spawn rarity 1 item
+     }
     }
   }
 }
