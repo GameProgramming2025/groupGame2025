@@ -1,4 +1,4 @@
-class Player { //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>//
   //Items
   Item items[];
   HighNoon h;
@@ -71,28 +71,58 @@ class Player { //<>// //<>//
     }
     //println(p1.y);
     //right side
-    if (x > 1450 && y < 550) {//top left wall
+    if (x > 1450 && y < 550) {//top right wall
       x = 1450;
-    } else if (x > 1450 && y > 725) {//bottom left wall
+    } else if (x > 1450 && y > 725) {//bottom right wall
       x = 1450;
+    } else if (x > 1450 && y > 650) {// bottom right wall next to door
+      y = 650;
+    } else if (x > 1500 && y < 625) {// top right wall next to door
+      y = 625;
     } else if (x > width) {//right
       x = 40;
       currentI++;
     }
 
     //left side
-    if (x < 250 && y < 550) {//top left wall
-      x = 250;
-    } else if (x < 250 && y > 725) {//bottom left wall
-      x = 250;
+    if (x < 260 && y > 725) { // bottom left wall
+      x = 260;
+    } else if (x < 260 && y < 550) {// top left wall
+      x = 260;
+    } else if (x < 235 && y > 650) {// bottom left wall next to door
+      y = 650;
+    } else if (x < 235 && y < 625) {// top left wall next to door
+      y = 625;
     } else if (x < 0) {//left
       p1.x = width-40;
       currentI--;
     }
 
-    if (y > height) {//down
+    //bottom
+    if ( x > 970 && y > 925) {// bottom right wall
+      y = 925;
+    } else if ( x < 725  && y > 925) { //bottom left wall
+      y = 925;
+    } else if (x < 750 & y > 995) {// left-side wall next to door
+      x = 750;
+    } else if (x > 915 && y > 995) { //right-side wall next to door
+      x = 915;
+    } else if (y > height) {//down
       y = 40;
       currentJ++;
+    }
+    //top
+    if(x < 725 && y < 325) {//top left wall
+      y = 325;
+    } else if(x > 955 && y < 325) {// top right wall
+      y = 325;
+  } else if (x < 755 && y < 245) { //left-side wall next to door
+      x = 755;
+    } else if (x > 925 && y < 245) { //right-side wall next to door
+      x = 925;
+    } else if (y < 0) {//up
+      y = height-40;
+      currentJ--;
     }
     if (y < 0) {//up
       y = height-40;
