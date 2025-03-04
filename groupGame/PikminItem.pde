@@ -13,5 +13,6 @@ class PikminItem extends Item {
     description = "Each shot spawns a mini guy that does half of player dmg once and dies.";
     area = "can be found in Item room or after killing boss.";
     rarity = 4;
+    rarity4 = true;
   }
 }
