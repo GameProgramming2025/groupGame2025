@@ -26,6 +26,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
   int firstSprite;
   int frame;
 
+  //rooms
+  public Room rooms;
+
+
   Player() {
     HP = 10;
     spd = 1;
@@ -36,6 +40,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
     animation = 15;
     shotsCD = 60;
     maxspd = 1000000;
+    rooms = new Room(0, 0);
     shots = new Magic[10];
     h = new HighNoon(width/4, height/4);
     items = new Item[5];
@@ -71,10 +76,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
     }
     //println(p1.y);
     //right side
-    if (x > 1450 && y < 550) {//top left wall
-      x = 1450;
-    } else if (x > 1450 && y > 725) {//bottom left wall
-      x = 1450;
+    if (x > 1470 && y < 550) {//top left wall
+      x = 1470;
+    } else if (x > 1470 && y > 725) {//bottom left wall
+      x = 1470;
     } else if (x > width) {//right
       x = 40;
       currentI++;
@@ -89,20 +94,43 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
       p1.x = width-40;
       currentI--;
     }
-    
+
     //top side
-    if (x > 240 && x < 755 && y < 267 && y > 257) {//top left wall
+    if (x > 240 && x < 765 && y < 267 && y > 257) {//top left wall
       y=266;
-    } else if (x > 918 && x < 1466 && y < 267 && y > 257) {//top right wall
+    } else if (x > 918 && x < 1476 && y < 267 && y > 257) {//top right wall
       y=266;
-    } 
-    
+    }
+
     //bottom side
-    if (x > 240 && x < 755 && y > 933 && y < 943) {//top left wall
+    if (x > 240 && x < 765 && y > 933 && y < 943) {//bottom left wall
       y=932;
-    } else if (x > 918 && x < 1466 && y > 933 && y < 943) {//top right wall
+    } else if (x > 918 && x < 1476 && y > 933 && y < 943) {//bottom right wall
       y=932;
-    } 
+    }
+
+    // different rooms
+    if (rooms.num == 1) {
+      if (x > 1470 && y > 266 && y < 925) {//right wall
+        x = 1470;
+      }
+    }
+    if (rooms.num == 2) {
+      if (y < 267 && y > 257 && x > 240 && x < 1476) {//top wall
+        y=266;
+      }
+    }
+    if (rooms.num == 3) {
+      if (y > 933 && y < 943 && x > 240 && x < 1476) {//bottom wall
+        y=932;
+      }
+    }
+    //if (rooms.num == 4) {
+      //if (x < 250 && y < 550 && y < 250 ) {//left wall
+       // y=250;
+      //}
+   // }
+
 
     println(y);
     println(x);

@@ -8,17 +8,18 @@ class Room {
   PImage img;
 
   Room(int x, int y) {
-    println(time);
+    println(num);
     this.x=x;
     this.y=y;
     bc = color(random(100, 200), 100, 20);
-    num = int (random(0, 13));
+    num = 0;
 
     if (num == 0 ) {
       img = loadImage("Sprites/BGFourDoors.png");
+      num = int(random(0, 13));
     }
     if (num == 1 ) {
-      img = loadImage("Sprites/BGNoEastDoor.png");
+      img = loadImage("Sprites/BGNoEastDoor.png"); 
     }
     if (num == 2) {
       img = loadImage("Sprites/BGNoNorthDoor.png");
@@ -35,22 +36,22 @@ class Room {
     if (num == 6) {
       img = loadImage("Sprites/BGNoWestOrEast.png");
     }
-    if (num == 7) {
+    if (num == 12) {
       img = loadImage("Sprites/BossRoom.png");
     }
-    if (num == 8) {
+    if (num == 7) {
       img = loadImage("Sprites/DoorNoNorthEast.png");
     }
-    if (num == 9) {
+    if (num == 8) {
       img = loadImage("Sprites/DoorNoNorthEastWest.png");
     }
-    if (num == 10) {
+    if (num == 9) {
       img = loadImage("Sprites/DoorNoWestSouth.png");
     }
     if (num == 11) {
       img = loadImage("Sprites/ItemRoom.png");
     }
-    if (num == 12) {
+    if (num == 10) {
       img = loadImage("Sprites/TrapRoom.png");
     }
     img.resize(width, height);
