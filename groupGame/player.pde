@@ -1,4 +1,4 @@
-class Player { //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>//
   //Items
   Item items[];
   HighNoon h;
@@ -13,12 +13,12 @@ class Player { //<>// //<>//
   int animation;
   boolean shooting;
 
-  //shooting 
-  Magic shots[]; //<>// //<>//
- //<>//
-  int nextShot; 
-  // Player Stats //<>// //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
+  //shooting
+  Magic shots[]; //<>//
+
+  int nextShot;
+  // Player Stats //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
   //Player Images
   PImage sprites[];
@@ -89,6 +89,23 @@ class Player { //<>// //<>//
       p1.x = width-40;
       currentI--;
     }
+    
+    //top side
+    if (x > 240 && x < 755 && y < 267 && y > 257) {//top left wall
+      y=266;
+    } else if (x > 918 && x < 1466 && y < 267 && y > 257) {//top right wall
+      y=266;
+    } 
+    
+    //bottom side
+    if (x > 240 && x < 755 && y > 933 && y < 943) {//top left wall
+      y=932;
+    } else if (x > 918 && x < 1466 && y > 933 && y < 943) {//top right wall
+      y=932;
+    } 
+
+    println(y);
+    println(x);
 
     if (y > height) {//down
       y = 40;
