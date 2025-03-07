@@ -19,8 +19,8 @@ void setup() {
   p1.y = height/2;
   currentI = 1;
   currentJ = 1;
-  
-  
+
+
 
   h1 = new HUD(p1);
   rooms = new Room[4][4];
@@ -32,10 +32,10 @@ void setup() {
 }
 
 void draw() {
-  println(currentI, " ", currentJ);
+  //println(currentI, " ", currentJ);
   background(0);
-  
-  println(frameRate);
+
+  //println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
@@ -66,7 +66,7 @@ void draw() {
   case SCORE_INPUT:
     break;
   default:
-    println("lost");
+    //println("lost");
     break;
   }
 }

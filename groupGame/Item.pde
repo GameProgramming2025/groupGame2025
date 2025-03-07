@@ -12,9 +12,15 @@ class Item {
   String imageFileName;
   int rarity;
   int amount;
-  int HP, shotsCD;
+  int HP, shotsCD,maxspd;
   float spd, atk, range, shotspd;
   boolean collected;
+  boolean itemSpawned;
+  boolean rarity1;
+  boolean rarity2;
+  boolean rarity3;
+  boolean rarity4;
+  boolean rarity5;
   String rarityStr = "Common";
 
   Item(float x, float y, String imageFileName) {
@@ -31,10 +37,17 @@ class Item {
     HP = 0;
     shotsCD = 0;
     spd = 0;
+    maxspd = 0;
     atk = 0;
     range = 0;
     shotspd = 0;
     collected = false;
+    itemSpawned = false;
+    rarity1 = false;
+    rarity2 = false;
+    rarity3 = false;
+    rarity4 = false;
+    rarity5 = false;
   }
   Item(JSONObject j) {
     x = j.getFloat("x");
@@ -66,11 +79,13 @@ class Item {
   }
 
   void render() {
+    if (itemSpawned == false){
+     return; 
+    }
     strokeWeight(8);
-    rectMode(CENTER);
-    rect(0, 0, 100, 100, 10);
-    imageMode(CENTER);
-    image(itemImg, 0, 0);
+    rect(x-10, y-10, 100, 100, 10);
+    image(itemImg, x, y);
+    
   }
   void renderDetails() {
     if (rarity == 1) {
@@ -94,11 +109,9 @@ class Item {
       fill(#95bbe6, 200);
     }
   }
-    void keyPressed() {
-      
-    }
-
-    void keyReleased() {
-      
-    }
+  void keyPressed() {
   }
+
+  void keyReleased() {
+  }
+}
