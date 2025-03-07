@@ -3,18 +3,21 @@ class Room {
   int y;
   int bc;
   int num;
+  int time;
   int numImages = 3;
   PImage img;
 
   Room(int x, int y) {
+    println(time);
     this.x=x;
     this.y=y;
     bc = color(random(100, 200), 100, 20);
-    num = int (random(0,13));
+    num = int (random(0, 13));
+
     if (num == 0 ) {
       img = loadImage("Sprites/BGFourDoors.png");
     }
-    if (num == 1) {
+    if (num == 1 ) {
       img = loadImage("Sprites/BGNoEastDoor.png");
     }
     if (num == 2) {
