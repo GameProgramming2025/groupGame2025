@@ -4,12 +4,16 @@ class Enemy extends ScreenElement {
   float xAcc;
   float yAcc;
   float enemyHealth;
+  boolean here;
+  float HpBarHeight;
 
-    Enemy(float x, float y) {
+  Enemy(float x, float y) {
     super();
     this.xPos = x;
     this.yPos = y;
-    enemyHealth = 1;
+    here = true;
+    enemyHealth = 50;
+    HpBarHeight = 10;
     xVelo = random(-2.5, 2.5);
     yVelo = random(-1.5, 1.5);
   }
@@ -23,7 +27,7 @@ class Enemy extends ScreenElement {
     fill(#ffff00);
     ellipse(0, 0, 30, 30);
     fill(#802345);
-    rect(0, -25, 50, 10);
+    rect(0, -25, enemyHealth, HpBarHeight);
     fill(#00ffff);
     pop();
   }
@@ -47,7 +51,7 @@ class Enemy extends ScreenElement {
     // xVelo += xAcc;
     // yVelo += gravity;
     println(xPos);
-  
+
     if ( xPos < 252 ) {
       xVelo = -xVelo;
     }
@@ -63,10 +67,21 @@ class Enemy extends ScreenElement {
     if ( yPos < 282  ) {
       yVelo = -yVelo;
     }
- 
+
+    if (enemyHealth <= 0 ) {
+      enemyHealth = 0;
+      HpBarHeight = 0;
+    }
+
+    if (enemyHealth == 0) {
+      here = false;
+    }
+
+
 
     if (dist(xPos, yPos, p1.x, p1.y ) < 75 ) {
       p1.HP -= 0.000001;
+      enemyHealth -= 1;
     }
   }
 }
