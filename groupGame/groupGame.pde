@@ -56,6 +56,7 @@ void draw() {
       currentI--;
     }
     p1.update();
+    currentRoom.constrainPlayer(p1);
     currentRoom = rooms[currentI][currentJ];
     p1.display();
     h1.update();
