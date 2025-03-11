@@ -3,10 +3,19 @@ class Enemy extends ScreenElement {
   float gravity;
   float xAcc;
   float yAcc;
+  float enemyHealth;
+  boolean here;
+  float HpBarHeight;
 
   Enemy(float x, float y) {
     super();
-    respawn();
+    this.xPos = x;
+    this.yPos = y;
+    here = true;
+    enemyHealth = 50;
+    HpBarHeight = 10;
+    xVelo = random(-2.5, 2.5);
+    yVelo = random(-1.5, 1.5);
   }
 
   void display () {
@@ -17,8 +26,12 @@ class Enemy extends ScreenElement {
     stroke(255);
     fill(#ffff00);
     ellipse(0, 0, 30, 30);
+    fill(#802345);
+    rect(0, -25, enemyHealth, HpBarHeight);
+    fill(#00ffff);
     pop();
   }
+
 
   void respawn() {
     this.xPos = random(30, width - 30);
@@ -28,17 +41,47 @@ class Enemy extends ScreenElement {
     health = 1;
   }
 
+
   void update () {
     xPosPrev = xPos;
     yPosPrev = yPos;
     xPos += xVelo;
     yPos += yVelo;
-    yVelo += yAcc;
-    xVelo += xAcc;
-    yVelo += gravity;
-  }
+    // yVelo += yAcc;
+    // xVelo += xAcc;
+    // yVelo += gravity;
+    println(xPos);
 
-  boolean hit (float x, float y) {
-    return false;
+    if ( xPos < 252 ) {
+      xVelo = -xVelo;
+    }
+
+    if ( xPos > 1466 ) {
+      xVelo = -xVelo;
+    }
+
+    if ( yPos > 945  ) {
+      yVelo = -yVelo;
+    }
+
+    if ( yPos < 282  ) {
+      yVelo = -yVelo;
+    }
+
+    if (enemyHealth <= 0 ) {
+      enemyHealth = 0;
+      HpBarHeight = 0;
+    }
+
+    if (enemyHealth == 0) {
+      here = false;
+    }
+
+
+
+    if (dist(xPos, yPos, p1.x, p1.y ) < 75 ) {
+      p1.HP -= 0.000001;
+      enemyHealth -= 1;
+    }
   }
 }
