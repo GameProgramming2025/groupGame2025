@@ -2,15 +2,24 @@ class Room {
   int x;
   int y;
   int bc;
+  Enemy enemies [];
+  int numEnemies;
   int num;
   int time;
   int numImages = 3;
   PImage img;
 
   Room(int x, int y) {
-    println(num);
+    float ex, ey;
     this.x=x;
     this.y=y;
+    numEnemies = 7;
+    enemies = new Enemy[numEnemies];
+    for (int i = 0; i < numEnemies; i++) {
+      ex = random(252, 1466);
+      ey = random(282, 945);
+      enemies[i] = new Enemy(ex, ey);
+    }
     bc = color(random(100, 200), 100, 20);
     num = int(random(0,13));
     //num = 12;
@@ -66,6 +75,11 @@ class Room {
     stroke(90);
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
+    for (Enemy e : enemies) {
+      e.update();
+      e.display();
+    }
+
     pop();
   }
 

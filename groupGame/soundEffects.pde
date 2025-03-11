@@ -1,7 +1,19 @@
 
+
 /*import processing.sound.*;
 
+
+
+
+/* class soundEffects {
+
+import processing.sound.*;
+
+/*import processing.sound.*;
+
+
 class soundEffects {
+
   boolean start;
   boolean hurt;
   boolean heal;
@@ -20,7 +32,7 @@ class soundEffects {
     start = false;
     hurt = false;
     heal = false;
-    strike = false;
+   strike = false;
     item = false;
     num = -1;
     num2= -2;
@@ -32,12 +44,29 @@ class soundEffects {
     Ehit3 = new SoundFile (groupGame.this, "Enemy_hit3");
   }
 
+
+
+
+  
+      
+
+
+
+
+  void display() {
+    if (start) {
+      BackgroundMusic.play();
+    } else {
+      BackgroundMusic.stop();
+    }
+
   void playSound() {
     //if (start) {
     //BackgroundMusic.play();
     //} else {
     //BackgroundMusic.stop();
     //}
+
 
     if (hurt) {
       num = int(random(1, 3));
@@ -83,10 +112,25 @@ class soundEffects {
     //Walking.stop();
     //}
 
+
+    if (room) {
+      Room.play();
+    } else {
+      Room.stop();
+
+
+    }
+  }
+
+}
+
+    }
+
     //if (room) {
     //Room.play();
     //} else {
     //Room.stop();
     //}
+
   }
 }*/
