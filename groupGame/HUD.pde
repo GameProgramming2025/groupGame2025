@@ -38,8 +38,10 @@ class HUD {
 
   void display() {
     strokeWeight(10);
-rect(width*7/10, 10, 70,70 , 10);
-
+rect(width*7/10, 40, 70,70 , 10);
+rect(width*6.5/10, 40, 70,70 , 10);
+rect(width*7.5/10, 40, 70,70 , 10);
+rect(width*8/10, 40, 70,70 , 10);
           
     
     
