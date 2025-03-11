@@ -21,15 +21,16 @@ class Room {
       enemies[i] = new Enemy(ex, ey);
     }
     bc = color(random(100, 200), 100, 20);
+    
     num = int(random(0,13));
+    println(num);
     //num = 12;
 
     if (num == 0) {
-      img = loadImage("Sprites/BGFourDoors.png");
-      num = int(random(0, 13));
+      img = loadImage("Sprites/BGFourDoors.png");     
     }
     if (num == 1 ) {
-      img = loadImage("Sprites/BGNoEastDoor.png"); 
+      img = loadImage("Sprites/BGNoEastDoor.png");
     }
     if (num == 2) {
       img = loadImage("Sprites/BGNoNorthDoor.png");
