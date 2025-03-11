@@ -1,32 +1,21 @@
-
-
-/*import processing.sound.*;
-
-
-
-
-/* class soundEffects {
-
-import processing.sound.*;
-
-/*import processing.sound.*;
-
+import ddf.minim.*;
 
 class soundEffects {
-
-  boolean start;
+ boolean start;
   boolean hurt;
   boolean heal;
   boolean strike;
   boolean item;
   int num;
   int num2;
-  SoundFile Grunt1;
-  SoundFile Grunt2;
-  SoundFile Grunt3;
-  SoundFile Ehit1;
-  SoundFile Ehit2;
-  SoundFile Ehit3;
+  Minim minim;
+  AudioPlayer Grunt1;
+  AudioPlayer Grunt2;
+  AudioPlayer Grunt3;
+  AudioPlayer Ehit1;
+  AudioPlayer Ehit2;
+  AudioPlayer Ehit3;
+  AudioPlayer Healing;
 
   soundEffects() {
     start = false;
@@ -36,31 +25,19 @@ class soundEffects {
     item = false;
     num = -1;
     num2= -2;
-    Grunt1 = new SoundFile (groupGame.this, "Player_hitV2.mp3");
-    Grunt2 = new SoundFile (groupGame.this, "Player_hitV2.1.mp3");
-    Grunt3 = new SoundFile (groupGame.this, "Player_hitV2.2.mp3");
-    Ehit1 = new SoundFile (groupGame.this, "Enemy_hit1.mp3");
-    Ehit2 = new SoundFile (groupGame.this, "Enemy_hit2");
-    Ehit3 = new SoundFile (groupGame.this, "Enemy_hit3");
+    minim = new Minim(this);
+    Grunt1 = minim.loadFile( "Player_hitV2.mp3");
+    Grunt2 = minim.loadFile( "Player_hitV2.1.mp3");
+    Grunt3 = minim.loadFile ( "Player_hitV2.2.mp3");
+    Ehit1 = minim.loadFile ( "Enemy_hit1.mp3");
+    Ehit2 = minim.loadFile ( "Enemy_hit2.mp3");
+    Ehit3 = minim.loadFile ( "Enemy_hit3.mp3");
+    Healing = minim.loadFile ( "heart_pickup.mp3");
   }
 
 
-
-
-  
-      
-
-
-
-
   void display() {
-    if (start) {
-      BackgroundMusic.play();
-    } else {
-      BackgroundMusic.stop();
-    }
 
-  void playSound() {
     //if (start) {
     //BackgroundMusic.play();
     //} else {
@@ -89,15 +66,20 @@ class soundEffects {
 
     if (strike) {
       num2 = int(random(1, 3));
-    } else if (num2 == 1) {
-      Ehit1.play();
-    } else if (num2 == 2) {
-      Ehit2.play();
-    } else if (num2 == 3) {
-      Ehit3.play();
-    } else {
-      num2 = -2;
-      strike = false;
+      if (num2 == 1) {
+        Ehit1.play();
+      } else if (num2 == 2) {
+        Ehit2.play();
+      } else if (num2 == 3) {
+        Ehit3.play();
+      } else if (num ==-2) {
+        Ehit1.pause();
+        Ehit2.pause();
+        Ehit3.pause();
+      } else {
+        num2 = -2;
+        strike = false;
+      }
     }
 
     //if (item) {
@@ -113,24 +95,11 @@ class soundEffects {
     //}
 
 
-    if (room) {
-      Room.play();
-    } else {
-      Room.stop();
-
-
-    }
-  }
-
-}
-
-    }
-
     //if (room) {
-    //Room.play();
+    //  Room.play();
     //} else {
-    //Room.stop();
+    //  Room.stop();
     //}
+  }
 
   }
-}*/
