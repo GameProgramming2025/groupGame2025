@@ -1,8 +1,7 @@
-
 import ddf.minim.*;
 
 class soundEffects {
-  boolean start;
+ boolean start;
   boolean hurt;
   boolean heal;
   boolean strike;
@@ -22,7 +21,7 @@ class soundEffects {
     start = false;
     hurt = false;
     heal = false;
-    strike = false;
+   strike = false;
     item = false;
     num = -1;
     num2= -2;
@@ -36,12 +35,15 @@ class soundEffects {
     Healing = minim.loadFile ( "heart_pickup.mp3");
   }
 
-  void playSound() {
+
+  void display() {
+
     //if (start) {
     //BackgroundMusic.play();
     //} else {
     //BackgroundMusic.stop();
     //}
+
 
     if (hurt) {
       num = int(random(1, 3));
@@ -92,10 +94,12 @@ class soundEffects {
     //Walking.stop();
     //}
 
+
     //if (room) {
-    //Room.play();
+    //  Room.play();
     //} else {
-    //Room.stop();
+    //  Room.stop();
     //}
   }
-}
+
+  }
