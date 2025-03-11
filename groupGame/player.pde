@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //Items
   Item items[];
   HighNoon h;
@@ -14,10 +14,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
   boolean shooting;
 
   //shooting
-  Magic shots[]; //<>//
+  Magic shots[];
 
   int nextShot;
-  // Player Stats //<>//
+  // Player Stats
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
   //Player Images
@@ -125,12 +125,60 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>//
         y=932;
       }
     }
-    //if (rooms.num == 4) {
-      //if (x < 250 && y < 550 && y < 250 ) {//left wall
-       // y=250;
-      //}
-    //}
-
+    if (rooms.num == 4) {
+      if (x < 255 && y > 266 && y < 932 ) {//left wall
+        x=256;
+      }
+    }
+    if (rooms.num == 5) { //left,bottom,right wall
+      if (x < 255 && y > 266 && y < 932 ) {//left
+        x=256;
+      } else if (y > 933 && y < 943 && x > 240 && x < 1476) {//bottom wall
+        y=932;
+      } else if (x > 1470 && y > 266 && y < 925) {//right wall
+        x = 1469;
+      }
+    }
+    if (rooms.num == 6) { //left,right wall
+      if (x < 255 && y > 266 && y < 932 ) {//left wall
+        x=256;
+      } else if (x > 1470 && y > 266 && y < 925) {//right wall
+        x = 1469;
+      }
+    }
+    if (rooms.num == 7) {//top,right wall
+      if (x > 1470 && y > 266 && y < 925) {//right wall
+        x = 1469;
+      } else if (y < 267 && y > 257 && x > 240 && x < 1476) {//top wall
+        y=266;
+      }
+    }
+    if (rooms.num == 8) {//left,right,top wall
+      if (x < 255 && y > 266 && y < 932 ) {//left wall
+        x=256;
+      }
+      if (x > 1470 && y > 266 && y < 925) {//right wall
+        x = 1469;
+      } else if (y < 267 && y > 257 && x > 240 && x < 1476) {//top wall
+        y=266;
+      }
+    }
+    if (rooms.num == 9) {
+      if (x < 255 && y > 266 && y < 932 ) {//left wall
+        x=256;
+      } else if (y > 933 && y < 943 && x > 240 && x < 1476) {//bottom wall
+        y=932;
+      }
+    }
+    if (rooms.num == 11 || rooms.num == 12) {//left,right wall
+      if (x < 255 && y > 266 && y < 932 ) {//left wall
+        x=256;
+      }
+      if (x > 1470 && y > 266 && y < 925) {//right wall
+        x = 1469;
+      }
+    }
+    
 
     println(y);
     println(x);

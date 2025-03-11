@@ -13,7 +13,7 @@ class Room {
     this.y=y;
     bc = color(random(100, 200), 100, 20);
     num = int(random(0,13));
-    //num = 4;
+    //num = 12;
 
     if (num == 0) {
       img = loadImage("Sprites/BGFourDoors.png");
