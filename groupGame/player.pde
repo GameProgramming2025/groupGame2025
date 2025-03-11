@@ -1,12 +1,12 @@
 
-class Player { //<>// //<>//
+class Player { //<>// //<>// //<>//
   //Items
   Item items[];
 
   HighNoon h;
 
-  // position //<>//
- //<>//
+  // position //<>// //<>//
+ //<>// //<>//
   float x, y, xVel, yVel, xAcc, yAcc;
   float tempX, tempY;
 
@@ -18,15 +18,16 @@ class Player { //<>// //<>//
 
 
   //shooting 
-  Magic shots[]; //<>//
- //<>//
+  Magic shots[]; //<>// //<>// //<>//
+ //<>// //<>//
   int nextShot; 
-  // Player Stats //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, atk, range; //<>//
  //<>//
+  // Player Stats //<>// //<>// //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>//
  //<>//
-  //Player Images
-  PImage sprites[]; //<>// //<>//
+
+  //Player Images //<>//
+  PImage sprites[]; //<>// //<>// //<>//
   int currentSprite; //<>// //<>//
   int firstSprite;
   int frame;
@@ -40,6 +41,7 @@ class Player { //<>// //<>//
     frames = 60;
     animation = 15;
     shotsCD = 60;
+    maxspd = 1000000;
     shots = new Magic[10];
 
     h = new HighNoon(width/4, height/4);
@@ -118,7 +120,7 @@ class Player { //<>// //<>//
     if (currentJ == -1) {
       currentJ = 3;
     }
-    spd = constrain(spd, 1, 3);
+    spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
       shotspd = 1;
     }
