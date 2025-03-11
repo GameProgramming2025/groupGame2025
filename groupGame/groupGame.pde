@@ -6,7 +6,7 @@ GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 Room rooms[][];
 int currentI;
 int currentJ;
-
+Room currentRoom;
 
 
 void setup() {
@@ -29,6 +29,7 @@ void setup() {
       rooms[i][j] = new Room(i, j);
     }
   }
+  currentRoom = rooms[currentI][currentJ];
 }
 
 void draw() {
@@ -55,6 +56,7 @@ void draw() {
       currentI--;
     }
     p1.update();
+    currentRoom = rooms[currentI][currentJ];
     p1.display();
     h1.update();
     h1.display();

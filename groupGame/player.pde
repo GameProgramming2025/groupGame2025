@@ -26,9 +26,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int firstSprite;
   int frame;
 
-  //rooms
-  public Room rooms;
-
 
   Player() {
     HP = 10;
@@ -40,7 +37,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     animation = 15;
     shotsCD = 60;
     maxspd = 1000000;
-    rooms = new Room(0, 0);
     shots = new Magic[10];
     h = new HighNoon(width/4, height/4);
     items = new Item[5];
@@ -110,27 +106,27 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
 
     // different rooms
-    if (rooms.num == 1) {
+    if (currentRoom.num == 1) {
       if (x > 1470 && y > 266 && y < 925) {//right wall
         x = 1470;
       }
     }
-    if (rooms.num == 2) {
+    if (currentRoom.num == 2) {
       if (y < 267 && y > 257 && x > 240 && x < 1476) {//top wall
         y=266;
       }
     }
-    if (rooms.num == 3) {
+    if (currentRoom.num == 3) {
       if (y > 933 && y < 943 && x > 240 && x < 1476) {//bottom wall
         y=932;
       }
     }
-    if (rooms.num == 4) {
+    if (currentRoom.num == 4) {
       if (x < 255 && y > 266 && y < 932 ) {//left wall
         x=256;
       }
     }
-    if (rooms.num == 5) { //left,bottom,right wall
+    if (currentRoom.num == 5) { //left,bottom,right wall
       if (x < 255 && y > 266 && y < 932 ) {//left
         x=256;
       } else if (y > 933 && y < 943 && x > 240 && x < 1476) {//bottom wall
@@ -139,21 +135,21 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
         x = 1469;
       }
     }
-    if (rooms.num == 6) { //left,right wall
+    if (currentRoom.num == 6) { //left,right wall
       if (x < 255 && y > 266 && y < 932 ) {//left wall
         x=256;
       } else if (x > 1470 && y > 266 && y < 925) {//right wall
         x = 1469;
       }
     }
-    if (rooms.num == 7) {//top,right wall
+    if (currentRoom.num == 7) {//top,right wall
       if (x > 1470 && y > 266 && y < 925) {//right wall
         x = 1469;
       } else if (y < 267 && y > 257 && x > 240 && x < 1476) {//top wall
         y=266;
       }
     }
-    if (rooms.num == 8) {//left,right,top wall
+    if (currentRoom.num == 8) {//left,right,top wall
       if (x < 255 && y > 266 && y < 932 ) {//left wall
         x=256;
       }
@@ -163,14 +159,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
         y=266;
       }
     }
-    if (rooms.num == 9) {
+    if (currentRoom.num == 9) {
       if (x < 255 && y > 266 && y < 932 ) {//left wall
         x=256;
       } else if (y > 933 && y < 943 && x > 240 && x < 1476) {//bottom wall
         y=932;
       }
     }
-    if (rooms.num == 11 || rooms.num == 12) {//left,right wall
+    if (currentRoom.num == 11 || currentRoom.num == 12) {//left,right wall
       if (x < 255 && y > 266 && y < 932 ) {//left wall
         x=256;
       }
