@@ -9,6 +9,9 @@ class Enemy extends ScreenElement {
   int hitReg = 500;
   boolean hitCooldown;
   int recordedTime;
+  int rad = 250;
+  float theta = 0;
+  PVector enemy, projectile, target;
 
   //Enemy Images
   PImage sprites[];
@@ -26,7 +29,9 @@ class Enemy extends ScreenElement {
     HpBarHeight = 10;
     xVelo = random(-2.5, 2.5);
     yVelo = random(-1.5, 1.5);
-    
+    enemy = new PVector(x, y);
+    projectile = new PVector(enemy.x, enemy.y);
+    target = new PVector(p1.x, p1.y);
     animation = 15;
     currentSprite = 0;
     firstSprite = 0;
@@ -44,13 +49,14 @@ class Enemy extends ScreenElement {
 
   void display () {
     push();
-    translate(xPos, yPos);
+     ellipse(projectile.x, projectile.y, 10, 10);
+    translate(enemy.x, enemy.y);
     rectMode(CENTER);
-    print(xVelo);
-    
+    print( projectile.x);
+
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
-    
+
     //player animation
     if (xVelo > 0 && yVelo > 0) {
       animation--;
@@ -89,10 +95,21 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    xPosPrev = xPos;
-    yPosPrev = yPos;
-    xPos += xVelo;
-    yPos += yVelo;
+      if (frameCount%180 == 0) {
+      projectile.x = enemy.x;
+      projectile.y = enemy.y;
+      target.x = p1.x-enemy.x;
+      target.y = p1.y-enemy.y;
+      target.normalize();
+      target.x *= 2;
+      target.y *= 2;
+    }
+    projectile.x += target.x;
+    projectile.y += target.y;
+    xPosPrev = enemy.x;
+    yPosPrev = enemy.y;
+    enemy.x += xVelo;
+    enemy.y += yVelo;
     // yVelo += yAcc;
     // xVelo += xAcc;
     // yVelo += gravity;
@@ -102,21 +119,22 @@ class Enemy extends ScreenElement {
 
     println(xPos);
 
-    if ( xPos < 252 ) {
+   if ( enemy.x < 252 ) {
       xVelo = -xVelo;
     }
 
-    if ( xPos > 1466 ) {
+    if ( enemy.x > 1466 ) {
       xVelo = -xVelo;
     }
 
-    if ( yPos > 945  ) {
+    if ( enemy.y > 945  ) {
       yVelo = -yVelo;
     }
 
-    if ( yPos < 282  ) {
+    if ( enemy.y < 282  ) {
       yVelo = -yVelo;
     }
+
 
     if (enemyHealth <= 0 ) {
       enemyHealth = 0;
