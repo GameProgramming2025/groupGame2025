@@ -6,6 +6,9 @@ class Enemy extends ScreenElement {
   float enemyHealth;
   boolean here;
   float HpBarHeight;
+  int hitReg = 500;
+  boolean hitCooldown;
+  int recordedTime;
 
   Enemy(float x, float y) {
     super();
@@ -16,6 +19,7 @@ class Enemy extends ScreenElement {
     HpBarHeight = 10;
     xVelo = random(-2.5, 2.5);
     yVelo = random(-1.5, 1.5);
+    recordedTime = millis() + 1000;
   }
 
   void display () {
@@ -39,6 +43,7 @@ class Enemy extends ScreenElement {
     xVelo = random(-4, 4);
     yVelo = 0;
     health = 1;
+    recordedTime = millis() + 1500; //Spawn Immunity
   }
 
 
@@ -77,12 +82,10 @@ class Enemy extends ScreenElement {
       here = false;
     }
 
-
-
-    if (dist(xPos, yPos, p1.x, p1.y ) < 75 ) {
-      p1.HP = p1.HP-1;
-      xPos = -10000;
-      yPos = -10000;
+    if (dist(xPos, yPos, p1.x, p1.y ) < 75 && millis() > recordedTime + hitReg) {
+      p1.HP -= 1;
+      enemyHealth -= 1;
+      recordedTime = millis();
     }
   }
 }
