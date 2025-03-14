@@ -16,11 +16,6 @@ class Item {
   float spd, atk, range, shotspd;
   boolean collected;
   boolean itemSpawned;
-  boolean rarity1;
-  boolean rarity2;
-  boolean rarity3;
-  boolean rarity4;
-  boolean rarity5;
   String rarityStr = "Common";
 
   Item(float x, float y, String imageFileName) {
@@ -43,11 +38,6 @@ class Item {
     shotspd = 0;
     collected = false;
     itemSpawned = false;
-    rarity1 = false;
-    rarity2 = false;
-    rarity3 = false;
-    rarity4 = false;
-    rarity5 = false;
   }
   Item(JSONObject j) {
     x = j.getFloat("x");
