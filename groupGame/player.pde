@@ -165,7 +165,7 @@ class Player { //<>// //<>// //<>// //<>// //<>//
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
     if (animation <= 0) {
-      animation = 15;
+      animation = 15 - (int)(((int)Math.abs(xVel))^2 + ((int)Math.abs(yVel))^2)^(1/2);
     }
 
     if (frames <= 0) {
@@ -190,6 +190,11 @@ class Player { //<>// //<>// //<>// //<>// //<>//
       xVel = 0;
     }
     if (Math.abs(yVel) < 0.3) {
+      yVel = 0;
+    }
+    
+    if (HP < 0) {
+      xVel = 0;
       yVel = 0;
     }
   }
@@ -243,6 +248,10 @@ class Player { //<>// //<>// //<>// //<>// //<>//
 
     image(sprites[currentSprite], 0, 0);
     pop();
+  }
+  
+  boolean hittingPlayer() {
+    return false;
   }
 
   void keyPressed() {
