@@ -124,8 +124,9 @@ class Enemy extends ScreenElement {
 
 
     if (dist(xPos, yPos, p1.x, p1.y ) < 75 ) {
-      p1.HP -= 0.000001;
-      enemyHealth -= 1;
+      p1.HP = p1.HP-1;
+      xPos = -10000;
+      yPos = -10000;
     }
   }
 }
