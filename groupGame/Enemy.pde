@@ -6,7 +6,7 @@ class Enemy extends ScreenElement {
   float enemyHealth;
   boolean here;
   float HpBarHeight;
-  int hitReg = 500;
+  int hitReg = 250;
   boolean hitCooldown;
   int recordedTime;
   int rad = 250;
@@ -49,10 +49,11 @@ class Enemy extends ScreenElement {
 
   void display () {
     push();
-     ellipse(projectile.x, projectile.y, 10, 10);
+    stroke(255, 0, 0);
+    ellipse(projectile.x, projectile.y, 10, 10);
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
-    print( projectile.x);
+    print(projectile.x);
 
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
@@ -104,8 +105,8 @@ class Enemy extends ScreenElement {
       target.x *= 2;
       target.y *= 2;
     }
-    projectile.x += target.x;
-    projectile.y += target.y;
+    projectile.x += 15*target.x;
+    projectile.y += 15*target.y;
     xPosPrev = enemy.x;
     yPosPrev = enemy.y;
     enemy.x += xVelo;
