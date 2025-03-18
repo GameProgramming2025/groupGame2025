@@ -149,7 +149,11 @@ class Enemy extends ScreenElement {
 
     if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
-      enemyHealth -= 1;
+      enemyHealth -= 15;
+      recordedTime = millis();
+    }
+       if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
+      p1.HP -= 1;
       recordedTime = millis();
     }
   }
