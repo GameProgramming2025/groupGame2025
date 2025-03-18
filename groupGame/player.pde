@@ -57,20 +57,34 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     firstSprite = 0;
     frame = 0;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage("Sprites/PlayerUno.png");
-    
-    
+    PImage spritesheet = loadImage("Sprites/PlayerOne.png");
+
+
     sprites[0] = spritesheet.get(0, 0, 96, 96);
     sprites[1] = spritesheet.get(96, 0, 96, 96);
-    sprites[2] = spritesheet.get(192, 1, 96, 96);
-    sprites[3] = spritesheet.get(0, 96, 96, 96);
-    sprites[4] = spritesheet.get(96, 97, 96, 96);
-    sprites[5] = spritesheet.get(192, 96, 96, 96);
-    sprites[6] = spritesheet.get(0, 193, 96, 96);
-    sprites[7] = spritesheet.get(94, 192, 96, 96);
-    sprites[8] = spritesheet.get(192, 192, 96, 96);
-    sprites[9] = spritesheet.get(0, 288, 96, 96);
-    sprites[10] = spritesheet.get(200, 288, 96, 96);
+    sprites[2] = spritesheet.get(192, 0, 96, 96);
+    sprites[3] = spritesheet.get(288, 0, 96, 96);
+    sprites[4] = spritesheet.get(384, 0, 96, 96);
+
+    sprites[5] = spritesheet.get(0, 96, 96, 96);
+    sprites[6] = spritesheet.get(96, 96, 96, 96);
+    sprites[7] = spritesheet.get(192, 96, 96, 96);
+    sprites[8] = spritesheet.get(288, 96, 96, 96);
+    sprites[9] = spritesheet.get(384, 96, 96, 96);
+
+    sprites[10] = spritesheet.get(0, 192, 96, 96);
+    sprites[11] = spritesheet.get(96, 192, 96, 96);
+    sprites[12] = spritesheet.get(192, 192, 96, 96);
+    sprites[13] = spritesheet.get(288, 192, 96, 96);
+    sprites[14] = spritesheet.get(384, 192, 96, 96);
+
+    sprites[15] = spritesheet.get(0, 288, 96, 96);
+    sprites[16] = spritesheet.get(96, 288, 96, 96);
+    sprites[17] = spritesheet.get(192, 288, 96, 96);
+    sprites[18] = spritesheet.get(288, 288, 96, 96);
+    sprites[19] = spritesheet.get(384, 288, 96, 96);
+
+    sprites[20] = spritesheet.get(0, 384, 96, 96);
   }
 
   void update() {
@@ -171,38 +185,65 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     println(yVel);
     println(xVel);
     if (xVel == 0 && yVel == 0) {
+      animation--;
       currentSprite = 0;
+      if (animation <= 5) {
+        currentSprite = 1;
+      }
     }
     if (yVel > 0 && xVel == 0) {
       animation--;
-      currentSprite = 1;
-      if (animation <= 5) {
-        currentSprite = 0;
+      currentSprite = 3;
+      if (animation <= 10) {
+        currentSprite = 2;
+        if (animation <= 5) {
+          currentSprite = 0;
+        }
       }
     }
     if (yVel < 0 && xVel == 0) {
       animation--;
-      currentSprite = 5;
-      if (animation <= 5) {
-        currentSprite = 4;
+      currentSprite = 7;
+      if (animation <= 10) {
+        currentSprite = 8;
+        if (animation <= 5) {
+          currentSprite = 9;
+        }
       }
     }
     if (yVel == 0 && xVel > 0 || xVel > 0 && yVel > 0 || xVel > 0 && yVel < 0 ) {
       animation--;
-      currentSprite = 3;
-      if (animation <= 5) {
-        currentSprite = 2;
+      currentSprite = 4;
+      if (animation <= 10) {
+        currentSprite = 5;
+        if (animation <= 5) {
+          currentSprite = 6;
+        }
       }
     }
     if (yVel == 0 && xVel < 0 || yVel < 0 && xVel < 0 || yVel > 0 && xVel < 0) {
       animation--;
-      currentSprite = 7;
-      if (animation <= 5) {
-        currentSprite = 6;
+      currentSprite = 10;
+      if (animation <= 10) {
+        currentSprite = 11;
+        if (animation <= 5) {
+          currentSprite = 12;
+        }
       }
     }
     if (HP == 0) {
-      currentSprite = 9;
+      animation = 20;
+      animation--;
+      currentSprite = 17;
+      if (animation <= 15) {
+        currentSprite = 18;
+        if (animation <= 10) {
+          currentSprite = 19;
+          if (animation <= 5) {
+            currentSprite = 20;
+          }
+        }
+      }
     }
 
     //else if (){
