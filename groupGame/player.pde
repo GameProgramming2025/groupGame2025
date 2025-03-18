@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player {  //<>//
   //Items
   Item items[];
   HighNoon h;
@@ -75,8 +75,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     
     
 
-    println(y);
-    println(x);
+    //println(y);
+    //println(x);
 
     if (y > height) {//down
       y = 40;
@@ -159,8 +159,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 
   void display() {
-    println(yVel);
-    println(xVel);
+    //println(yVel);
+    //println(xVel);
     if (xVel == 0 && yVel == 0) {
       currentSprite = 0;
     }

@@ -1,4 +1,5 @@
 class Enemy extends ScreenElement {
+  soundEffects sfx;
   float health;
   float gravity;
   float xAcc;
@@ -45,6 +46,7 @@ class Enemy extends ScreenElement {
     sprites[3] = spritesheet.get(54, 57, 30, 39);
 
     recordedTime = millis() + 1000;
+    sfx = new soundEffects();
   }
 
   void display () {
@@ -53,7 +55,7 @@ class Enemy extends ScreenElement {
     ellipse(projectile.x, projectile.y, 10, 10);
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
-    print(projectile.x);
+    //print(projectile.x);
 
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
@@ -118,7 +120,7 @@ class Enemy extends ScreenElement {
       animation = 15;
     }
 
-    println(xPos);
+    //println(xPos);
 
    if ( enemy.x < 252 ) {
       xVelo = -xVelo;
@@ -150,6 +152,8 @@ class Enemy extends ScreenElement {
       p1.HP -= 1;
       enemyHealth -= 1;
       recordedTime = millis();
+     sfx.strike = true; 
+     sfx.hurt = true;
     }
   }
 }

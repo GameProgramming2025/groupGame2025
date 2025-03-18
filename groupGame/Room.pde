@@ -23,7 +23,7 @@ class Room {
     bc = color(random(100, 200), 100, 20);
 
     num = int(random(0, 13));
-    println(num);
+    //println(num);
     //num = 0;
 
     if (num == 0) {
