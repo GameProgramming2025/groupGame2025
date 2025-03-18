@@ -10,7 +10,6 @@ class Enemy extends ScreenElement {
   boolean hitCooldown;
   int recordedTime;
   int rad = 250;
-  float theta = 0;
   PVector enemy, projectile, target;
 
   //Enemy Images
@@ -126,6 +125,8 @@ class Enemy extends ScreenElement {
     if (animation <= 0) {
       animation = 15;
     }
+    
+   
 
     println(xPos);
 
@@ -152,6 +153,8 @@ class Enemy extends ScreenElement {
     if (enemyHealth <= 0 ) {
       enemyHealth = 0;
       HpBarHeight = 0;
+      enemy.x = 10000;
+      enemy.y = 10000;
     }
 
     if (enemyHealth == 0) {
