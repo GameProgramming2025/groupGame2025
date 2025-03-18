@@ -49,7 +49,7 @@ class Enemy extends ScreenElement {
 
   void display () {
     push();
-     ellipse(projectile.x, projectile.y, 10, 10);
+    ellipse(projectile.x, projectile.y, 10, 10);
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
     print( projectile.x);
@@ -101,8 +101,8 @@ class Enemy extends ScreenElement {
       target.x = p1.x-enemy.x;
       target.y = p1.y-enemy.y;
       target.normalize();
-      target.x *= 2;
-      target.y *= 2;
+      target.x *= 3;
+      target.y *= 3;
     }
     projectile.x += target.x;
     projectile.y += target.y;
