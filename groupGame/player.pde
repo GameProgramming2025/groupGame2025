@@ -1,43 +1,36 @@
 
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
+class Player {  //<>//
   //Items
   Item items[];
 
   HighNoon h;
- //<>// //<>//
-  // position //<>// //<>// //<>// //<>//
- //<>// //<>// //<>//
-  float x, y, xVel, yVel, xAcc, yAcc;
-  float tempX, tempY;
 
+  float x, y, xVel, yVel, xAcc, yAcc; //<>//
+  float tempX, tempY; //<>//
+ //<>//
   //timers
   float frames;
   int seconds;
   int animation;
   boolean shooting;
+  
+  Magic shots[]; 
 
+  int nextShot;  
 
-   //<>// //<>//
-  //shooting  //<>// //<>//
-  Magic shots[]; //<>// //<>// //<>// //<>//
- //<>// //<>// //<>// //<>//
-  int nextShot;  //<>// //<>//
- //<>// //<>// //<>//
-  // Player Stats //<>// //<>// //<>// //<>// //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
- //<>// //<>// //<>//
- //<>// //<>//
-  //Player Images //<>// //<>// //<>//
-  PImage sprites[]; //<>// //<>// //<>// //<>//
-  int currentSprite; //<>// //<>// //<>//
-  int firstSprite;
-  int frame;
-
-  //final frame
-  PImage GameOver;
-
-
+ //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
+ //<>//
+ //<>//
+  PImage sprites[];  //<>//
+  int currentSprite;  //<>//
+  int firstSprite; //<>//
+  int frame; //<>//
+ //<>//
+  //final frame //<>//
+  PImage GameOver; //<>//
+ //<>//
+ //<>//
   Player() {
     HP = 10;
     spd = 1;
