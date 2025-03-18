@@ -10,7 +10,6 @@ class Enemy extends ScreenElement {
   boolean hitCooldown;
   int recordedTime;
   int rad = 250;
-  float theta = 0;
   PVector enemy, projectile, target;
 
   //Enemy Images
@@ -48,8 +47,10 @@ class Enemy extends ScreenElement {
   }
 
   void display () {
+    frame ++;
     push();
     stroke(255, 0, 0);
+    fill(#4287f5);
     ellipse(projectile.x, projectile.y, 10, 10);
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
@@ -96,17 +97,26 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-      if (frameCount%180 == 0) {
-      projectile.x = enemy.x;
-      projectile.y = enemy.y;
-      target.x = p1.x-enemy.x;
-      target.y = p1.y-enemy.y;
-      target.normalize();
-      target.x *= 2;
-      target.y *= 2;
+    if (frame == 180) {
+      if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
+        projectile.x = enemy.x;
+        projectile.y = enemy.y;
+        target.x = p1.x-enemy.x;
+        target.y = p1.y-enemy.y;
+        target.normalize();
+        //target.x *= 3;
+        //target.y *= 3;
+      }
     }
-    projectile.x += 15*target.x;
-    projectile.y += 15*target.y;
+    if (frame == 250) {
+      projectile.x = 10000;
+      projectile.y = 10000;
+      frame = 0;
+      //target.x *= 3;
+      //target.y *= 3;
+    }
+    projectile.x += 10*target.x;
+    projectile.y += 10*target.y;
     xPosPrev = enemy.x;
     yPosPrev = enemy.y;
     enemy.x += xVelo;
@@ -118,9 +128,11 @@ class Enemy extends ScreenElement {
       animation = 15;
     }
 
+
+
     println(xPos);
 
-   if ( enemy.x < 252 ) {
+    if ( enemy.x < 252 ) {
       xVelo = -xVelo;
     }
 
@@ -137,18 +149,30 @@ class Enemy extends ScreenElement {
     }
 
 
+
+
+
     if (enemyHealth <= 0 ) {
       enemyHealth = 0;
       HpBarHeight = 0;
+      enemy.x = 10000;
+      enemy.y = 10000;
     }
 
     if (enemyHealth == 0) {
       here = false;
     }
 
-    if (dist(xPos, yPos, p1.x, p1.y ) < 75 && millis() > recordedTime + hitReg) {
+    if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
-      enemyHealth -= 1;
+      enemyHealth -= 15;
+      recordedTime = millis();
+    }
+
+    if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
+      p1.HP -= 1;
+      projectile.x = 10000;
+      projectile.y = 10000;
       recordedTime = millis();
     }
   }
