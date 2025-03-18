@@ -8,10 +8,10 @@ class HUD {
   Player p;
   Item i;
   HighNoon h;
-  PImage heart, brokenHeart;
+  PImage heart, brokenHeart, highNoon;
   float currentHp;
   boolean hasItem;
-  
+
 
   HUD(Player p) {
     currentHp = 1;
@@ -20,8 +20,9 @@ class HUD {
     y=50;
     heart = loadImage("data/Sprites/heart.png");
     brokenHeart = loadImage("data/Sprites/broken heart.png");
-
+    highNoon = loadImage("data/sprites/HN.png");
     this.p = p;
+    
     //ammo = p.ammo;
     coins=0.0;
     big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
@@ -38,16 +39,18 @@ class HUD {
 
   void display() {
     strokeWeight(10);
-rect(width*7/10, 40, 70,70 , 10);
-rect(width*6.5/10, 40, 70,70 , 10);
-rect(width*7.5/10, 40, 70,70 , 10);
-rect(width*8/10, 40, 70,70 , 10);
-          
-    
-    
-    
-    
-    
+    rect(width*7/10, 40, 70, 70, 10);
+    rect(width*6.5/10, 40, 70, 70, 10);
+    rect(width*7.5/10, 40, 70, 70, 10);
+    rect(width*8/10, 40, 70, 70, 10);
+    rect(width *8.5/10,40,70,70,10);
+
+    for (int i = 0; i < 5; i++) {
+       if (p.items[i] != null) {
+         image(p.items[i].itemImg,10 + width * 6.5 /10 + i * 85, 50, 50, 50); 
+       }
+    }
+
     if (currentHp ==10) {
       image(heart, x, y, s, s);
       image(heart, x+40, y, s, s);
@@ -107,5 +110,4 @@ rect(width*8/10, 40, 70,70 , 10);
       image(brokenHeart, x, y, s, s);
     }
   }
-
 }
