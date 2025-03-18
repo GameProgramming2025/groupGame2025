@@ -39,7 +39,7 @@ class ItemRoom extends Room {
 
   void spawnanitem() {
     if (spawn == 1){
-    h.itemSpawned = true;
+    s.itemSpawned = true;
     }
     if(spawn >= 2 && spawn<=10){
      if(selected1 == 1){
