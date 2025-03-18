@@ -22,7 +22,7 @@ void setup() {
 
 
 
-  h1 = new HUD(p1);
+  
   rooms = new Room[4][4];
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {
@@ -30,6 +30,7 @@ void setup() {
     }
   }
   currentRoom = rooms[currentI][currentJ];
+  h1 = new HUD(p1);
 }
 
 void draw() {
