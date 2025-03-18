@@ -1,7 +1,7 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items
+class Player {
+  //Items //<>//
   Item items[];
-  HighNoon h;
+  HighNoon h; //<>//
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc;
@@ -20,16 +20,17 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   // Player Stats
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
+
   //Player Images
   PImage sprites[];
   int currentSprite;
   int firstSprite;
   int frame;
-
-
+ //<>//
+ //<>//
   Player() {
-    HP = 10;
-    spd = 1;
+    HP = 10; //<>//
+    spd = 1; //<>//
     shotspd = 5;
     nextShot = 0;
     range = 300;
@@ -67,7 +68,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   void update() {
     //print(shooting);
-    if (HP < 0) {
+    if (HP <= 0) {
+      HP = 0;
       text("YOU DIED", width/2, height/2);
     }
     //println(p1.y);
@@ -256,13 +258,13 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       tempX = x;
       tempY = y;
       if (keyCode == UP) {
-        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5));
+        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + 0);
       } else if (keyCode == DOWN) {
-        shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
+        shots[nextShot] = new Magic(x, y+30, 0, shotspd + 0);
       } else if (keyCode == LEFT) {
-        shots[nextShot] = new Magic(x-30, y, -shotspd + (xVel *.5), 0);
+        shots[nextShot] = new Magic(x-30, y, -shotspd + 0, 0);
       } else if (keyCode == RIGHT) {
-        shots[nextShot] = new Magic(x+30, y, shotspd + (xVel *.5), 0);
+        shots[nextShot] = new Magic(x+30, y, shotspd + 0, 0);
       }
       if (nextShot == 9) {
         nextShot = 0;
