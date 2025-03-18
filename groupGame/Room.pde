@@ -24,7 +24,7 @@ class Room {
 
     num = int(random(0, 13));
     println(num);
-    //num = 12;
+    //num = 0;
 
     if (num == 0) {
       img = loadImage("Sprites/BGFourDoors.png");
@@ -123,10 +123,12 @@ class Room {
     }
 
     // different rooms
+    
     if (currentRoom.num == 1) {
       if (p.x > 1470 && p.y > 266 && p.y < 925) {//right wall
         p.x = 1470;
       }
+      
     }
     if (currentRoom.num == 2) {
       if (p.y < 267 && p.y > 257 && p.x > 240 && p.x < 1476) {//top wall
