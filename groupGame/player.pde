@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player {  //<>//
   //Items
   Item items[];
   HighNoon h;
@@ -13,22 +13,18 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int animation;
   boolean shooting;
 
-  //shooting
-  Magic shots[];
-
-  int nextShot;
-  // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+  //shooting 
+  Magic shots[];  //<>//
+ //<>//
+  int nextShot; 
+  // Player Stats  //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
 
   //Player Images
   PImage sprites[];
   int currentSprite;
   int firstSprite;
   int frame;
-
-  //final frame
-  PImage GameOver;
-
 
   Player() {
     HP = 10;
@@ -50,16 +46,12 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
 
-    GameOver = loadImage("Sprites/DeathScreen.png");
-    GameOver.resize(1350, 1012);
-
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
-    
-    
+
     sprites[0] = spritesheet.get(0, 0, 96, 96);
     sprites[1] = spritesheet.get(96, 0, 96, 96);
     sprites[2] = spritesheet.get(192, 1, 96, 96);
@@ -70,26 +62,67 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     sprites[7] = spritesheet.get(94, 192, 96, 96);
     sprites[8] = spritesheet.get(192, 192, 96, 96);
     sprites[9] = spritesheet.get(0, 288, 96, 96);
-    sprites[10] = spritesheet.get(200, 288, 96, 96);
   }
 
   void update() {
     //print(shooting);
     if (HP < 0) {
-      image(GameOver, 170, 50);
-      //currentSprite = 10;
+      text("YOU DIED", width/2, height/2);
     }
     //println(p1.y);
     //right side
+    if (x > 1450 && y < 550) {//top right wall
+      x = 1450;
+    } else if (x > 1450 && y > 725) {//bottom right wall
+      x = 1450;
+    } else if (x > 1450 && y > 650) {// bottom right wall next to door
+      y = 650;
+    } else if (x > 1500 && y < 625) {// top right wall next to door
+      y = 625;
+    } else if (x > width) {//right
+      x = 40;
+      currentI++;
+    }
 
+    //left side
+    if (x < 260 && y > 725) { // bottom left wall
+      x = 260;
+    } else if (x < 260 && y < 550) {// top left wall
+      x = 260;
+    } else if (x < 235 && y > 650) {// bottom left wall next to door
+      y = 650;
+    } else if (x < 235 && y < 625) {// top left wall next to door
+      y = 625;
+    } else if (x < 0) {//left
+      p1.x = width-40;
+      currentI--;
+    }
 
-
-    println(y);
-    println(x);
-
-    if (y > height) {//down
+    //bottom
+    if ( x > 970 && y > 925) {// bottom right wall
+      y = 925;
+    } else if ( x < 725  && y > 925) { //bottom left wall
+      y = 925;
+    } else if (x < 750 & y > 995) {// left-side wall next to door
+      x = 750;
+    } else if (x > 915 && y > 995) { //right-side wall next to door
+      x = 915;
+    } else if (y > height) {//down
       y = 40;
       currentJ++;
+    }
+    //top
+    if(x < 725 && y < 325) {//top left wall
+      y = 325;
+    } else if(x > 955 && y < 325) {// top right wall
+      y = 325;
+  } else if (x < 755 && y < 245) { //left-side wall next to door
+      x = 755;
+    } else if (x > 925 && y < 245) { //right-side wall next to door
+      x = 925;
+    } else if (y < 0) {//up
+      y = height-40;
+      currentJ--;
     }
     if (y < 0) {//up
       y = height-40;
@@ -159,7 +192,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (Math.abs(yVel) < 0.3) {
       yVel = 0;
     }
-
+    
     if (HP < 0) {
       xVel = 0;
       yVel = 0;
@@ -216,7 +249,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     image(sprites[currentSprite], 0, 0);
     pop();
   }
-
+  
   boolean hittingPlayer() {
     return false;
   }
