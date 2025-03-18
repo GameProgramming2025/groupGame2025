@@ -98,13 +98,15 @@ class Enemy extends ScreenElement {
 
   void update () {
     if (frame == 180) {
-      projectile.x = enemy.x;
-      projectile.y = enemy.y;
-      target.x = p1.x-enemy.x;
-      target.y = p1.y-enemy.y;
-      target.normalize();
-      //target.x *= 3;
-      //target.y *= 3;
+      if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
+        projectile.x = enemy.x;
+        projectile.y = enemy.y;
+        target.x = p1.x-enemy.x;
+        target.y = p1.y-enemy.y;
+        target.normalize();
+        //target.x *= 3;
+        //target.y *= 3;
+      }
     }
     if (frame == 250) {
       projectile.x = 10000;
@@ -125,8 +127,8 @@ class Enemy extends ScreenElement {
     if (animation <= 0) {
       animation = 15;
     }
-    
-   
+
+
 
     println(xPos);
 
@@ -166,6 +168,7 @@ class Enemy extends ScreenElement {
       enemyHealth -= 15;
       recordedTime = millis();
     }
+
     if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
       projectile.x = 10000;
