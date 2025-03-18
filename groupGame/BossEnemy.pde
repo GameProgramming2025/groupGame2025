@@ -7,7 +7,6 @@ class BossEnemy extends ScreenElement {
   BossEnemy() {
 
     super();
-
   }
 
   void display () {

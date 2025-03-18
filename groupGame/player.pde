@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>// //<>//
+class Player {  //<>//
   //Items
   Item items[];
   HighNoon h;
@@ -14,10 +14,10 @@ class Player { //<>// //<>// //<>// //<>// //<>//
   boolean shooting;
 
   //shooting 
-  Magic shots[]; //<>// //<>//
+  Magic shots[];  //<>//
  //<>//
   int nextShot; 
-  // Player Stats //<>// //<>//
+  // Player Stats  //<>//
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
 
   //Player Images

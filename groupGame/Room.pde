@@ -10,7 +10,7 @@ class Room {
     this.x=x;
     this.y=y;
     bc = color(random(100, 200), 100, 20);
-    num = int (random(0,13));
+    num = int (random(0, 13));
     if (num == 0 ) {
       img = loadImage("Sprites/BGFourDoors.png");
     }
