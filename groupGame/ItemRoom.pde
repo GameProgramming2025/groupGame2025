@@ -4,7 +4,7 @@ class ItemRoom extends Room {
   PikminItem p;
   SpeedForce s;
   SnipSnip sn;
-  Heatseeker hs;
+  //Heatseeker hs;
 
   float pedx, pedy;
   float spawn;
@@ -58,7 +58,7 @@ class ItemRoom extends Room {
       }
       if (selected2 == 2) {
         //spawn rarity 3 item
-        hs.itemSpawned = true;
+        //hs.itemSpawned = true;
       }
     }
     if (spawn>=41 && spawn <=100) {
