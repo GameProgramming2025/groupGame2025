@@ -48,6 +48,7 @@ class Enemy extends ScreenElement {
   }
 
   void display () {
+    frame ++;
     push();
     stroke(255, 0, 0);
     fill(#4287f5);
@@ -97,12 +98,19 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    if (frameCount%180 == 0) {
+    if (frame == 180) {
       projectile.x = enemy.x;
       projectile.y = enemy.y;
       target.x = p1.x-enemy.x;
       target.y = p1.y-enemy.y;
       target.normalize();
+      //target.x *= 3;
+      //target.y *= 3;
+    }
+    if (frame == 250) {
+      projectile.x = 10000;
+      projectile.y = 10000;
+      frame = 0;
       //target.x *= 3;
       //target.y *= 3;
     }
