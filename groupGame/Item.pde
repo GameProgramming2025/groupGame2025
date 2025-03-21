@@ -13,7 +13,7 @@ class Item {
   int rarity;
   int amount;
   int HP, shotsCD,maxspd;
-  float spd, atk, range, shotspd;
+  float spd, atk, range, shotspd,xSize,ySize;
   boolean collected;
   boolean itemSpawned;
   String rarityStr = "Common";
@@ -36,6 +36,8 @@ class Item {
     atk = 0;
     range = 0;
     shotspd = 0;
+    xSize = 0;
+    ySize = 0;
     collected = false;
     itemSpawned = false;
   }

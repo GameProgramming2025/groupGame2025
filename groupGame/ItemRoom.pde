@@ -4,6 +4,8 @@ class ItemRoom extends Room {
   PikminItem p;
   SpeedForce s;
   SnipSnip sn;
+  ShiftingPrism sp;
+  VeilOfSilence v;
   //Heatseeker hs;
 
   float pedx, pedy;
@@ -27,6 +29,11 @@ class ItemRoom extends Room {
     selected4 = random(1, 3);
     h = new HighNoon(pedx, pedy);
     p = new PikminItem(pedx, pedy);
+    s = new SpeedForce(pedx, pedy);
+    sn = new SnipSnip(pedx, pedy);
+    sp = new ShiftingPrism(pedx, pedy);
+    v = new VeilOfSilence(pedx, pedy);
+    //hs = new Heatseeker(pedx, pedy);
   }
 
   void display() {
@@ -49,6 +56,7 @@ class ItemRoom extends Room {
       }
       if (selected1 == 2) {
         //spawn rarity 4 item
+        v.itemSpawned = true;
       }
     }
 
@@ -67,6 +75,7 @@ class ItemRoom extends Room {
       }
       if (selected3 == 2) {
         //spawn rarity 2 item
+        sp.itemSpawned = true;
       }
     }
     if (spawn>100) {
