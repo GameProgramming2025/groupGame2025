@@ -1,82 +1,346 @@
-class Player {
-float x,y, xVel, yVel, xAcc, yAcc;
-float frames;
-int ShotTimer;
+class Player {   //<>//
+  //Items
+  Item items[];
+  HighNoon h;
+  // position
+
+  float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
+  float tempX, tempY;
+
+  //timers
+  float frames;
+  int seconds;
+  int animation;
+  boolean shooting;
+
+  //shooting
+  Magic shots[];
+
+  int nextShot;
+  // Player Stats
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+
+  //Player Images
+  PImage sprites[];
+  int currentSprite;
+  int firstSprite;
+  int frame;
+
 
   Player() {
-    
+    xSize = 96;
+    ySize = 96;
+    HP = 10;
+    spd = 1;
+    shotspd = 35;
+    nextShot = 0;
+    range = 300;
     frames = 60;
+    animation = 15;
+    shotsCD = 60;
+    maxspd = 1000000;
+    shots = new Magic[10];
+    h = new HighNoon(width/4, height/4);
+    items = new Item[5];
+    for (int j = 0; j < 5; j++) {
+      items[j] = new HighNoon(x, y);
+    }
+    for (int i = 0; i < 10; i++) {
+      shots[i] = new Magic(-4000, -4000, 0, 0);
+    }
+
+    currentSprite = 0;
+    firstSprite = 0;
+    frame = 0;
+    sprites = new PImage[36];
+    PImage spritesheet = loadImage("Sprites/PlayerUno.png");
+    
+    
+    sprites[0] = spritesheet.get(0, 0, 96, 96);
+    sprites[1] = spritesheet.get(96, 0, 96, 96);
+    sprites[2] = spritesheet.get(192, 1, 96, 96);
+    sprites[3] = spritesheet.get(0, 96, 96, 96);
+    sprites[4] = spritesheet.get(96, 97, 96, 96);
+    sprites[5] = spritesheet.get(192, 96, 96, 96);
+    sprites[6] = spritesheet.get(0, 193, 96, 96);
+    sprites[7] = spritesheet.get(94, 192, 96, 96);
+    sprites[8] = spritesheet.get(192, 192, 96, 96);
+    sprites[9] = spritesheet.get(0, 288, 96, 96);
+    sprites[10] = spritesheet.get(200, 288, 96, 96);
   }
 
-  void display() {
+  void update() {
+    //print(shooting);
+    if (HP < 0) {
+      gameState = GameState.GAME_OVER;
+      //currentSprite = 10;
+    }
+    //println(p1.y);
+    //right side
+
+
+
+    //println(y);
+    //println(x);
+
+    if (y > height) {//down
+      y = 40;
+      currentJ++;
+    }
+    if (y < 0) {//up
+      y = height-40;
+      currentJ--;
+    }
+    if (currentI == 4) {
+      currentI = 0;
+    }
+    if (currentI == -1) {
+      currentI = 3;
+    }
+    if (currentJ == 4) {
+      currentJ = 0;
+    }
+    if (currentJ == -1) {
+      currentJ = 3;
+    }
+    spd = constrain(spd, 1, maxspd);
+    if (shotspd < 1) {
+      shotspd = 1;
+    }
     x += xVel;
     y += yVel;
-    // yVel += 
-    rectMode(CENTER);
-    rect(x, y, 50, 50);
+    xVel += xAcc;
+    yVel += yAcc;
+    xVel *= .9;
+    yVel *= .9;
+
+    for (Magic m : shots) {
+      m.update();
+      if (m.x > 0 && m.y > 0) {
+        if (dist(tempX, tempY, m.x, m.y)>range) {
+          m.x = -4000;
+          m.y = -4000;
+        }
+      }
+      m.display();
+    }
+    shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
-    if (frames >= 0);
-    //ShotTimer 
-    
+    if (animation <= 0) {
+      animation = 15 - (int)(((int)Math.abs(xVel))^2 + ((int)Math.abs(yVel))^2)^(1/2);
+    }
+
+    if (frames <= 0) {
+
+      frames = 60;
+      seconds++;
+    }
+    if (shotCD <= 0) {
+      shooting = false;
+    }
+    h.render();
+    //not a timer but it counts lul
+    if (h.collected == true) {
+      shotsCD += h.shotsCD;
+      atk += h.atk;
+    }
+
+    x = constrain(x, 0, width);
+    y = constrain(y, 0, height);
+
+    if (Math.abs(xVel) < 0.3) {
+      xVel = 0;
+    }
+    if (Math.abs(yVel) < 0.3) {
+      yVel = 0;
+    }
+
+    if (HP < 0) {
+      xVel = 0;
+      yVel = 0;
+    }
+  }
+
+
+  void display() {
+    //println(yVel);
+    //println(xVel);
+    if (xVel == 0 && yVel == 0) {
+      currentSprite = 0;
+    }
+    if (yVel > 0 && xVel == 0) {
+      animation--;
+      currentSprite = 1;
+      if (animation <= 5) {
+        currentSprite = 0;
+      }
+    }
+    if (yVel < 0 && xVel == 0) {
+      animation--;
+      currentSprite = 5;
+      if (animation <= 5) {
+        currentSprite = 4;
+      }
+    }
+    if (yVel == 0 && xVel > 0 || xVel > 0 && yVel > 0 || xVel > 0 && yVel < 0 ) {
+      animation--;
+      currentSprite = 3;
+      if (animation <= 5) {
+        currentSprite = 2;
+      }
+    }
+    if (yVel == 0 && xVel < 0 || yVel < 0 && xVel < 0 || yVel > 0 && xVel < 0) {
+      animation--;
+      currentSprite = 7;
+      if (animation <= 5) {
+        currentSprite = 6;
+      }
+    }
+    if (HP == 0) {
+      currentSprite = 9;
+    }
+
+    //else if (){
+    //
+    //}
+
+    push();
+    translate(x, y);
+    imageMode(CENTER);
+
+    image(sprites[currentSprite], 0, 0);
+    pop();
+  }
+
+  boolean hittingPlayer(float targetX, float targetY, float targetXSize, float targetYSize) {
+    //ASSUMES RECTMODE CENTER AND ALL THE OBJECTS BEING RECTANGLES
+    return (
+            targetX + targetXSize > x - xSize || //Collision left side player
+            targetX - targetXSize < x + xSize || //Collision right side player
+            targetY + targetYSize > y - ySize || //Collision top side player
+            targetY - targetYSize < y + ySize    //Collision bottom side player
+           );
   }
 
   void keyPressed() {
-    if (key == 'w'){
-      yVel = -1;
-     // println("Moving Up");
+    if (key == '1') {
+      spd++;
     }
-    if (key == 'a'){
-      xVel = -1;
-      //println("Moving Left");
+    if (key == '2') {
+      spd--;
     }
-    if (key == 's'){
-      yVel = 1;
-      //println("Moving Down");
+    if (key == '3') {
+      shotspd++;
     }
-    if (key == 'd'){
-      xVel = 1;
-   //   println("Moving Right");
+    if (key == '4') {
+      shotspd--;
     }
-    if (key == CODED) {
+    if (key == '5') {
+      range++;
+    }
+    if (key == '6') {
+      range--;
+    }
+    if (key == '7') {
+      HP--;
+    }
+
+    if (key == 'w') {
+      yAcc = -spd;
+    }
+    if (key == 'a') {
+      xAcc = -spd;
+    }
+    if (key == 's') {
+      yAcc = spd;
+    }
+    if (key == 'd') {
+      xAcc = spd;
+    }
+
+    //shooting
+    if (key == CODED && !shooting) {
+      // println(tempX, " ", tempY);
+      shooting = true;
+      shotCD = shotsCD;
+      tempX = x;
+      tempY = y;
       if (keyCode == UP) {
-     //   println("Shooting Up");
+        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5));
       } else if (keyCode == DOWN) {
-       // println("Shooting Down");
+        shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {
-        //println("Shooting Left");
+        shots[nextShot] = new Magic(x-30, y, -shotspd + (xVel *.5), 0);
       } else if (keyCode == RIGHT) {
-      //  println("Shooting Right");
+        shots[nextShot] = new Magic(x+30, y, shotspd + (xVel *.5), 0);
       }
+      if (nextShot == 9) {
+        nextShot = 0;
+      }
+      nextShot++;
+    }
+
+    switch (key) {
+    case 'w':
+
+      //firstSprite = 30;
+      //currentSprite = 30;
+      break;
+    case 's':
+
+      //firstSprite = 18;
+      //currentSprite = 18;
+      break;
+    case 'a':
+
+      //firstSprite = 24;
+      //currentSprite = 24;
+      break;
+    case 'd':
+
+      //firstSprite = 24;
+      //currentSprite = 24;
+      break;
     }
   }
 
+
+
   void keyReleased() {
-    if (key == 'w'){
-      yVel = 0;
-      //println("Stopped moving up");
+    if (key == 'w') {
+      yAcc = 0;
+
+      firstSprite = 0;
+      currentSprite = 0;
     }
-    if (key == 'a'){
-      xVel = 0;
-      //println("Stopped moving left");
+    if (key == 'a') {
+      xAcc = 0;
+
+      firstSprite = 0;
+      currentSprite = 0;
     }
-    if (key == 's'){
-      yVel = 0;
-      //println("Stopped moving down");
+    if (key == 's') {
+      yAcc = 0;
+
+      firstSprite = 0;
+      currentSprite = 0;
     }
-    if (key == 'd'){
-      xVel = 0;
-      //println("Stopped moving right");
+    if (key == 'd') {
+      xAcc = 0;
+
+      firstSprite = 0;
+      currentSprite = 0;
     }
     if (key == CODED) {
       if (keyCode == UP) {
-       // println("Stopped shooting Up");
+        //
       } else if (keyCode == DOWN) {
-        //println("Stopped shooting Down");
+        //
       } else if (keyCode == LEFT) {
-        //println("Stopped shooting Left");
+        //
       } else if (keyCode == RIGHT) {
-        //println("Stopped shooting Right");
+        //
       }
     }
   }
