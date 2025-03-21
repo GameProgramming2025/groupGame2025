@@ -183,5 +183,11 @@ class Enemy extends ScreenElement {
      sfx.strike = true; 
      sfx.hurt = true;
     }
+    
+    for (Magic m : p1.shots) {
+      if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
+        enemyHealth = 0;
+      }
+    }
   }
 }
