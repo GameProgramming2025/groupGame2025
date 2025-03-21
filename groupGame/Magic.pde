@@ -12,11 +12,12 @@ class Magic {
   void update() {
     x += xVel;
     y += yVel;
-
+    
+    
     //check if this hits other things
   }
 
   void display() {
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 50, 50);
   }
 }
