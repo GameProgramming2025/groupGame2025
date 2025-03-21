@@ -1,5 +1,5 @@
 import ddf.minim.*;
-import ddf.minim.AudioPlayer;
+
 
 class soundEffects {
  boolean start;
@@ -17,7 +17,7 @@ class soundEffects {
   AudioPlayer Ehit2;
   AudioPlayer Ehit3;
   AudioPlayer Healing;
-  //InputStream input = createInput("data.txt");
+
 
   soundEffects() {
     start = false;
@@ -39,17 +39,8 @@ class soundEffects {
 
 
   void display() {
-  println(num);
-  println(num2);
-    //if (start) {
-    //BackgroundMusic.play();
-    //} else {
-    //BackgroundMusic.stop();
-    //}
-
 
     if (hurt) { 
-      //input.read();
       num = int(random(1, 3));
     if (num == 1) {
       Grunt1.play();
@@ -81,24 +72,7 @@ class soundEffects {
      num2 = -1;
     }
     }
-    //if (item) {
-    //Cheer.play();
-    //} else {
-    //Cheer.stop();
-    //}
 
-    //if (walking) {
-    //Walking.play();
-    //} else {
-    //Walking.stop();
-    //}
-
-
-    //if (room) {
-    //  Room.play();
-    //} else {
-    //  Room.stop();
-    //}
   }
 
   }
