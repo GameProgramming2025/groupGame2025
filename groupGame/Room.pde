@@ -65,6 +65,7 @@ class Room {
   }
 
   void update () {
+    
   }
   
   void constrainPlayer(Player p) {
