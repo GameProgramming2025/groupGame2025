@@ -1,11 +1,10 @@
-
-class Player { //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //Items
   Item items[]; //<>//
   HighNoon h; //<>//
   // position
 
-  float x, y, xVel, yVel, xAcc, yAcc;
+  float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
 
   //timers
@@ -26,17 +25,18 @@ class Player { //<>//
   PImage sprites[];
   int currentSprite;
   int firstSprite;
-  int frame; //<>//
- //<>//
+  int frame;
+
   //final frame
-  PImage GameOver; //<>//
- //<>//
+  PImage GameOver;
 
 
   Player() {
+    xSize = 96;
+    ySize = 96;
     HP = 10;
     spd = 1;
-    shotspd = 5;
+    shotspd = 35;
     nextShot = 0;
     range = 300;
     frames = 60;
@@ -52,9 +52,6 @@ class Player { //<>//
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
-
-    GameOver = loadImage("Sprites/DeathScreen.png");
-    GameOver.resize(1350, 1012);
 
     currentSprite = 0;
     firstSprite = 0;
@@ -81,6 +78,7 @@ class Player { //<>//
     if (HP <= 0) {
       HP = 0;
       text("YOU DIED", width/2, height/2);
+      gameState = GameState.GAME_OVER;
       image(GameOver, 170, 50);
     }
 
@@ -218,8 +216,14 @@ class Player { //<>//
     pop();
   }
 
-  boolean hittingPlayer() {
-    return false;
+  boolean hittingPlayer(float targetX, float targetY, float targetXSize, float targetYSize) {
+    //ASSUMES RECTMODE CENTER AND ALL THE OBJECTS BEING RECTANGLES
+    return (
+      targetX + targetXSize > x - xSize || //Collision left side player
+      targetX - targetXSize < x + xSize || //Collision right side player
+      targetY + targetYSize > y - ySize || //Collision top side player
+      targetY - targetYSize < y + ySize    //Collision bottom side player
+      );
   }
 
   void keyPressed() {

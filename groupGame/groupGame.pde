@@ -3,6 +3,8 @@ HUD h1;
 
 GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
+PImage GameOver;
+
 Room rooms[][];
 int currentI;
 int currentJ;
@@ -10,6 +12,8 @@ Room currentRoom;
 
 
 void setup() {
+  
+  rectMode(CENTER);
   size(1700, 1200);
 
   p1 = new Player();
@@ -19,8 +23,9 @@ void setup() {
   p1.y = height/2;
   currentI = 1;
   currentJ = 1;
-
-
+  
+  GameOver = loadImage("Sprites/DeathScreen.png");
+  GameOver.resize(1350, 1012);
 
   h1 = new HUD(p1);
   rooms = new Room[4][4];
@@ -63,6 +68,7 @@ void draw() {
     h1.display();
     break;
   case GAME_OVER:
+    image(GameOver, 170, 50);
     break;
   case GAME_DEFEATED:
     break;

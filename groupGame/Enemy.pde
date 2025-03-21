@@ -175,5 +175,11 @@ class Enemy extends ScreenElement {
       projectile.y = 10000;
       recordedTime = millis();
     }
+    
+    for (Magic m : p1.shots) {
+      if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
+        enemyHealth = 0;
+      }
+    }
   }
 }
