@@ -11,6 +11,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   float frames;
   int seconds;
   int animation;
+  int finalAnimation;
   boolean shooting;
 
   //shooting
@@ -37,7 +38,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     nextShot = 0;
     range = 300;
     frames = 60;
-    animation = 15;
+    animation = 30;
+    finalAnimation = 60;
     shotsCD = 60;
     maxspd = 1000000;
     shots = new Magic[10];
@@ -85,11 +87,13 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     sprites[19] = spritesheet.get(384, 288, 96, 96);
 
     sprites[20] = spritesheet.get(0, 384, 96, 96);
+    sprites[21] = spritesheet.get(384, 384, 96, 96);
   }
 
   void update() {
     //print(shooting);
-    if (HP < 0) {
+    if (HP <= 0 && finalAnimation <= 1) {
+
       image(GameOver, 170, 50);
       //currentSprite = 10;
     }
@@ -146,7 +150,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
     if (animation <= 0) {
-      animation = 15 - (int)(((int)Math.abs(xVel))^2 + ((int)Math.abs(yVel))^2)^(1/2);
+      animation = 30 - (int)(((int)Math.abs(xVel))^2 + ((int)Math.abs(yVel))^2)^(1/2);
+    }
+    if (finalAnimation <= 0) {
+      finalAnimation = 30 - (int)(((int)Math.abs(xVel))^2 + ((int)Math.abs(yVel))^2)^(1/2);
     }
 
     if (frames <= 0) {
@@ -187,16 +194,16 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (xVel == 0 && yVel == 0) {
       animation--;
       currentSprite = 0;
-      if (animation <= 5) {
+      if (animation <= 14) {
         currentSprite = 1;
       }
     }
     if (yVel > 0 && xVel == 0) {
       animation--;
       currentSprite = 3;
-      if (animation <= 10) {
+      if (animation <= 19) {
         currentSprite = 2;
-        if (animation <= 5) {
+        if (animation <= 9) {
           currentSprite = 0;
         }
       }
@@ -204,9 +211,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (yVel < 0 && xVel == 0) {
       animation--;
       currentSprite = 7;
-      if (animation <= 10) {
+      if (animation <= 19) {
         currentSprite = 8;
-        if (animation <= 5) {
+        if (animation <= 9) {
           currentSprite = 9;
         }
       }
@@ -214,9 +221,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (yVel == 0 && xVel > 0 || xVel > 0 && yVel > 0 || xVel > 0 && yVel < 0 ) {
       animation--;
       currentSprite = 4;
-      if (animation <= 10) {
+      if (animation <= 19) {
         currentSprite = 5;
-        if (animation <= 5) {
+        if (animation <= 9) {
           currentSprite = 6;
         }
       }
@@ -224,27 +231,31 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (yVel == 0 && xVel < 0 || yVel < 0 && xVel < 0 || yVel > 0 && xVel < 0) {
       animation--;
       currentSprite = 10;
-      if (animation <= 10) {
+      if (animation <= 19) {
         currentSprite = 11;
-        if (animation <= 5) {
+        if (animation <= 9) {
           currentSprite = 12;
         }
       }
     }
-    if (HP == 0) {
-      animation = 20;
-      animation--;
+    if (HP <= 0) {
+      finalAnimation--;
       currentSprite = 17;
-      if (animation <= 15) {
+      if (finalAnimation <= 44) {
         currentSprite = 18;
-        if (animation <= 10) {
+        if (finalAnimation <= 29) {
           currentSprite = 19;
-          if (animation <= 5) {
+          if (finalAnimation <= 14) {
             currentSprite = 20;
+            if (finalAnimation <= 1) {
+              finalAnimation = 1;
+              currentSprite = 21;
+            }
           }
         }
       }
     }
+
 
     //else if (){
     //
