@@ -1,4 +1,4 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player {
   //Items
   Item items[];
   HighNoon h;
@@ -31,10 +31,12 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   PImage GameOver;
 
 
+
   Player() {
     xSize = 96;
     ySize = 96;
     HP = 10;
+    atk = 50;
     spd = 1;
     shotspd = 35;
     nextShot = 0;
@@ -43,13 +45,13 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     animation = 15;
     shotsCD = 60;
     maxspd = 1000000;
-    shots = new Magic[10];
+    shots = new Magic[15];
     h = new HighNoon(width/4, height/4);
     items = new Item[5];
     for (int j = 0; j < 5; j++) {
       items[j] = new HighNoon(x, y);
     }
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 15; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
 
@@ -216,14 +218,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     pop();
   }
 
-  void addShot(Magic m) {
-    shots[nextShot] = m;
-    nextShot++;
-    if (nextShot == 15) {
-      nextShot = 0;
-    }
-  }
-
   boolean hittingPlayer(float targetX, float targetY, float targetXSize, float targetYSize) {
     //ASSUMES RECTMODE CENTER AND ALL THE OBJECTS BEING RECTANGLES
     return (
@@ -232,6 +226,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       targetY + targetYSize > y - ySize || //Collision top side player
       targetY - targetYSize < y + ySize    //Collision bottom side player
       );
+
+  boolean hittingPlayer() {
+    return false;
   }
 
   void keyPressed() {
@@ -268,7 +265,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     if (key == 'd') {
       xAcc = spd;
-    }
+    } 
+  }
 
     //shooting
     if (key == CODED && !shooting) {
@@ -282,9 +280,13 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       } else if (keyCode == DOWN) {
         addShot(new Magic(x, y+30, 0, shotspd + 0));
       } else if (keyCode == LEFT) {
-        addShot(new Magic(x-30, y, -shotspd + 0, 0));
+        shots[nextShot] = new Magic(x-30, y, -shotspd + 0, 0);
       } else if (keyCode == RIGHT) {
-        addShot(new Magic(x+30, y, shotspd + 0, 0));
+        shots[nextShot] = new Magic(x+30, y, shotspd + 0, 0);
+      }
+      nextShot++;
+      if (nextShot == 15) {
+        nextShot = 0;
       }
     }
 
