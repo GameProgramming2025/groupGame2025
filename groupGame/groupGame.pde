@@ -1,3 +1,6 @@
+import ddf.minim.*;
+import ddf.minim.AudioPlayer;
+
 Player p1;
 HUD h1;
 
@@ -10,6 +13,9 @@ int currentI;
 int currentJ;
 Room currentRoom;
 
+SoundEffects soundEffects;
+
+Minim minim;
 
 void setup() {
   
@@ -23,6 +29,10 @@ void setup() {
   p1.y = height/2;
   currentI = 1;
   currentJ = 1;
+  
+  minim = new Minim(this);
+  
+  soundEffects = new SoundEffects(minim);
   
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
@@ -66,6 +76,7 @@ void draw() {
     p1.display();
     h1.update();
     h1.display();
+    soundEffects.update();
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);

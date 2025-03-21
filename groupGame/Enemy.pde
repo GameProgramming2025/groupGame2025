@@ -174,6 +174,9 @@ class Enemy extends ScreenElement {
       projectile.x = 10000;
       projectile.y = 10000;
       recordedTime = millis();
+      soundEffects.hurt = true;
+    } else {
+      soundEffects.hurt = false;
     }
     
     for (Magic m : p1.shots) {
