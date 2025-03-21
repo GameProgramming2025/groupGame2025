@@ -11,6 +11,7 @@ class SnipSnip extends Item{
   range = 600;
   atk = 20;
   shotsCD = 45;
+  shotspd = 10;
  }
  SnipSnip(JSONObject j) {
     super(j);

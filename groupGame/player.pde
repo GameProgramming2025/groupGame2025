@@ -1,6 +1,7 @@
-class Player {
-  //Items //<>//
-  Item items[];
+
+class Player { //<>//
+  //Items
+  Item items[]; //<>//
   HighNoon h; //<>//
   // position
 
@@ -25,12 +26,16 @@ class Player {
   PImage sprites[];
   int currentSprite;
   int firstSprite;
-  int frame;
+  int frame; //<>//
  //<>//
+  //final frame
+  PImage GameOver; //<>//
  //<>//
+
+
   Player() {
-    HP = 10; //<>//
-    spd = 1; //<>//
+    HP = 10;
+    spd = 1;
     shotspd = 5;
     nextShot = 0;
     range = 300;
@@ -48,11 +53,15 @@ class Player {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
 
+    GameOver = loadImage("Sprites/DeathScreen.png");
+    GameOver.resize(1350, 1012);
+
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
+
 
     sprites[0] = spritesheet.get(0, 0, 96, 96);
     sprites[1] = spritesheet.get(96, 0, 96, 96);
@@ -64,6 +73,7 @@ class Player {
     sprites[7] = spritesheet.get(94, 192, 96, 96);
     sprites[8] = spritesheet.get(192, 192, 96, 96);
     sprites[9] = spritesheet.get(0, 288, 96, 96);
+    sprites[10] = spritesheet.get(200, 288, 96, 96);
   }
 
   void update() {
@@ -71,11 +81,9 @@ class Player {
     if (HP <= 0) {
       HP = 0;
       text("YOU DIED", width/2, height/2);
+      image(GameOver, 170, 50);
     }
-    //println(p1.y);
-    //right side
-    
-    
+
 
     println(y);
     println(x);
@@ -152,7 +160,7 @@ class Player {
     if (Math.abs(yVel) < 0.3) {
       yVel = 0;
     }
-    
+
     if (HP < 0) {
       xVel = 0;
       yVel = 0;
@@ -209,7 +217,7 @@ class Player {
     image(sprites[currentSprite], 0, 0);
     pop();
   }
-  
+
   boolean hittingPlayer() {
     return false;
   }
