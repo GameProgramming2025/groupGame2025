@@ -1,4 +1,4 @@
-class Heatseeker extends Item {
+/*class Heatseeker extends Item {
   PVector target;  // Target position (can be the player or an enemy)
   ArrayList<HeatSeekingBullet> bullets;  // List to store all heat-seeking bullets
   float targetX, targetY;  // Target's position coordinates
@@ -47,4 +47,4 @@ class Heatseeker extends Item {
     // Create a new heat-seeking bullet at the mouse position
     bullets.add(new HeatSeekingBullet(mouseX, mouseY, this));
   }
-}
+}*/

@@ -1,5 +1,5 @@
 // HeatSeekingBullet class
-class HeatSeekingBullet {
+/*class HeatSeekingBullet {
   PVector position;
   Heatseeker hs;
   PVector velocity;
@@ -33,4 +33,4 @@ class HeatSeekingBullet {
   boolean isOffScreen() {
     return position.x < 0 || position.x > width || position.y < 0 || position.y > height;
   }
-}
+}*/
