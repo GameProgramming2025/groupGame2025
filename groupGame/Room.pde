@@ -15,6 +15,11 @@ class Room {
     
     bc = color(random(100, 200), 100, 20);
 
+    //num = 0;
+    num = int(random(0, 13));
+
+    println(num);
+
     //NORMAL ROOMS
     num = 0;
     
@@ -58,6 +63,7 @@ class Room {
     }
     
     //ROOMS
+
     if (num == 0) {
       img = loadImage("Sprites/BGFourDoors.png");
     }
@@ -125,6 +131,7 @@ class Room {
 
 
   void constrainPlayer(Player p) {
+
     if (p.x > 1470 && p.y < 550) {//top left wall
       p.x = 1470;
     } else if (p.x > 1470 && p.y > 725) {//bottom left wall
@@ -159,12 +166,11 @@ class Room {
     }
 
     // different rooms
-    
+
     if (currentRoom.num == 1) {
       if (p.x > 1470 && p.y > 266 && p.y < 925) {//right wall
         p.x = 1470;
       }
-      
     }
     if (currentRoom.num == 2) {
       if (p.y < 267 && p.y > 257 && p.x > 240 && p.x < 1476) {//top wall
