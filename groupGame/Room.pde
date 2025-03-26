@@ -2,7 +2,7 @@ class Room {
   int x;
   int y;
   int bc;
-  Enemy enemies [];
+  
   int numEnemies;
   int num;
   int time;
@@ -10,22 +10,54 @@ class Room {
   PImage img;
 
   Room(int x, int y) {
-    float ex, ey;
     this.x=x;
     this.y=y;
-    numEnemies = 7;
-    enemies = new Enemy[numEnemies];
-    for (int i = 0; i < numEnemies; i++) {
-      ex = random(252, 1466);
-      ey = random(282, 945);
-      enemies[i] = new Enemy(ex, ey);
-    }
+    
     bc = color(random(100, 200), 100, 20);
 
-    num = int(random(0, 13));
-    println(num);
-    //num = 0;
+    //NORMAL ROOMS
+    num = 0;
+    
+    //ITEM ROOMS
+    if (x == y) {
+      num = 13; //ItemRoom
+    }
+    
+    //TRAP ROOMS(CONTAINS ENEMIES)
+    if (x == 6 - y) {
+      num = 12; //TrapRoom
+    }
 
+    //EDGE ROOMS
+    if (x == 0) {
+      num = 4; //NoWestDoor
+    } else if(x == 6) {
+      num = 1; //NoEastDoor
+    }
+    
+    if (y == 0) {
+      num = 2; //NoNorthDoor
+    } else if (y == 6) {
+      num = 3; //NoSouthDoor
+    }
+    
+    //BOSS ROOM
+    if (x == 3 && y == 3) {
+      num = 14; //BossRoom
+    }
+    
+    //CORNER ROOMS
+    if (x == 0 && y == 0) {
+      num = 8; //NoNorthWest
+    } else if (x == 0 && y == 6) {
+      num = 10; //NoSouthWest
+    } else if (x == 6 && y == 0) {
+      num = 7; //NoNorthEast
+    } else if (x == 6 && y == 6) {
+      num = 11; //NoSouthEast
+    }
+    
+    //ROOMS
     if (num == 0) {
       img = loadImage("Sprites/BGFourDoors.png");
     }
@@ -47,23 +79,29 @@ class Room {
     if (num == 6) {
       img = loadImage("Sprites/BGNoWestOrEast.png");
     }
-    if (num == 12) {
-      img = loadImage("Sprites/BossRoom.png");
-    }
     if (num == 7) {
       img = loadImage("Sprites/DoorNoNorthEast.png");
     }
     if (num == 8) {
-      img = loadImage("Sprites/DoorNoNorthEastWest.png");
+      img = loadImage("Sprites/DoorNoNorthWest.png");
     }
     if (num == 9) {
-      img = loadImage("Sprites/DoorNoWestSouth.png");
-    }
-    if (num == 11) {
-      img = loadImage("Sprites/ItemRoom.png");
+      img = loadImage("Sprites/DoorNoNorthEastWest.png");
     }
     if (num == 10) {
+      img = loadImage("Sprites/DoorNoSouthWest.png");
+    }
+    if (num == 11) {
+      img = loadImage("Sprites/DoorNoSouthEast.png");
+    }
+    if (num == 12) {
       img = loadImage("Sprites/TrapRoom.png");
+    }
+    if (num == 13) {
+      img = loadImage("Sprites/ItemRoom.png");
+    }
+    if (num == 14) {
+      img = loadImage("Sprites/BossRoom.png");
     }
     img.resize(width, height);
   }
@@ -76,10 +114,7 @@ class Room {
     stroke(90);
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
-    for (Enemy e : enemies) {
-      e.update();
-      e.display();
-    }
+    
 
     pop();
   }
