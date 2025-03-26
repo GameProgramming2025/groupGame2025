@@ -97,29 +97,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 
 
-    println(y);
-    println(x);
+    //println(y);
+    //println(x);
 
-    if (y > height) {//down
-      y = 40;
-      currentJ++;
-    }
-    if (y < 0) {//up
-      y = height-40;
-      currentJ--;
-    }
-    if (currentI == 4) {
-      currentI = 0;
-    }
-    if (currentI == -1) {
-      currentI = 3;
-    }
-    if (currentJ == 4) {
-      currentJ = 0;
-    }
-    if (currentJ == -1) {
-      currentJ = 3;
-    }
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
       shotspd = 1;
@@ -184,8 +164,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 
   void display() {
-    println(yVel);
-    println(xVel);
+    //println(yVel);
+    //println(xVel);
     if (xVel == 0 && yVel == 0) {
       animation--;
       currentSprite = 0;
