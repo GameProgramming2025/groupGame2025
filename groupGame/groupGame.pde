@@ -24,8 +24,8 @@ Minim minim;
 void setup() {
 
   rectMode(CENTER);
-  size(1700, 1200);
-
+  size(1700, 1200, P2D);
+  
   p1 = new Player();
   currentI = 0;
   currentJ = 0;
@@ -62,10 +62,10 @@ void setup() {
 }
 
 void draw() {
-  println(currentI, currentJ);
+  //println(currentI, currentJ);
   background(0);
 
-  //println(frameRate);
+  println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
@@ -105,9 +105,10 @@ void draw() {
       }
     }
 
+    h1.effects(true);
     h1.update();
     h1.display();
-    soundEffects.update();
+    soundEffects.update();    
 
     //Cameron this is embarassing
     if (p1.HP <= 0) gameState = GameState.GAME_OVER;

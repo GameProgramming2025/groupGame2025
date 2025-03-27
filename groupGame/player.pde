@@ -36,7 +36,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     spd = 1;
     shotspd = 35;
     nextShot = 0;
-    range = 300;
+    range = 500;
     frames = 60;
     animation = 30;
     finalAnimation = 60;

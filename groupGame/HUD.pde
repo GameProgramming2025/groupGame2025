@@ -8,6 +8,9 @@ class HUD {
   PImage heart, brokenHeart;
   float currentHp;
   boolean hasItem;
+  
+  //EFFECTS
+  PImage blackRadialGradient;
 
   HUD(Player p) {
     currentHp = 1;
@@ -16,6 +19,10 @@ class HUD {
     y=50;
     heart = loadImage("data/Sprites/heart.png");
     brokenHeart = loadImage("data/Sprites/broken heart.png");
+    
+    blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
+    
+    blackRadialGradient.resize((width*2) + 50, (height*2) + 50);
 
     this.p = p;
     //ammo = p.ammo;
@@ -94,4 +101,13 @@ class HUD {
       image(brokenHeart, x, y, s, s);
     }
   }
+  
+  void effects(boolean enabled) {
+    if(enabled) {
+      imageMode(CENTER);
+      image(blackRadialGradient, p1.x, p1.y);
+      imageMode(CORNER);
+    }
+  }
+  
 }
