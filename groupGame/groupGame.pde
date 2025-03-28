@@ -13,9 +13,7 @@ int currentI;
 int currentJ;
 Room currentRoom;
 
-Enemy enemies [];
-int numEnemies;
-float ex, ey;
+
 
 SoundEffects soundEffects;
 
@@ -49,16 +47,6 @@ void setup() {
     }
   }
   currentRoom = rooms[currentI][currentJ];
-
-
-
-  numEnemies = 7;
-  enemies = new Enemy[numEnemies];
-  for (int i = 0; i < numEnemies; i++) {
-    ex = random(252, 1466);
-    ey = random(282, 945);
-    enemies[i] = new Enemy(ex, ey);
-  }
 }
 
 void draw() {
@@ -75,7 +63,9 @@ void draw() {
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
     background(0);
-    rooms[currentI][currentJ].display();
+    currentRoom = rooms[currentI][currentJ];
+    currentRoom.update();
+    currentRoom.display();
     if (p1.x >= width) {
       p1.x = 40;
       currentI++;
@@ -95,15 +85,7 @@ void draw() {
 
     p1.update();
     currentRoom.constrainPlayer(p1);
-    currentRoom = rooms[currentI][currentJ];
     p1.display();
-
-    if (currentRoom.num == 12) {
-      for (Enemy e : enemies) {
-        e.update();
-        e.display();
-      }
-    }
 
     h1.effects(true);
     h1.update();

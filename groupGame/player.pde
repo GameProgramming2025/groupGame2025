@@ -1,8 +1,7 @@
 class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   
   //Items
-  Item items[];
-  HighNoon h;
+  Item inventory[];
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
@@ -43,10 +42,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     shotsCD = 60;
     maxspd = 1000000;
     shots = new Magic[10];
-    h = new HighNoon(width/4, height/4);
-    items = new Item[5];
+    inventory= new Item[5];
     for (int j = 0; j < 5; j++) {
-      items[j] = new HighNoon(x, y);
+      inventory[j] = new HighNoon(x, y);
     }
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
@@ -121,6 +119,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       }
       m.display();
     }
+    
     shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
@@ -139,12 +138,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (shotCD <= 0) {
       shooting = false;
     }
-    h.render();
-    //not a timer but it counts lul
-    if (h.collected == true) {
-      shotsCD += h.shotsCD;
-      atk += h.atk;
-    }
+    
 
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);
