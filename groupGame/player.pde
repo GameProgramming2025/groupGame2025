@@ -1,7 +1,8 @@
 class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  
+
   //Items
   Item inventory[];
+  int equippedItem;
   // position
 
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
@@ -43,9 +44,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     maxspd = 1000000;
     shots = new Magic[10];
     inventory= new Item[5];
-    for (int j = 0; j < 5; j++) {
-      inventory[j] = new HighNoon(x, y);
-    }
+
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
@@ -89,7 +88,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
-      }
+    }
     //println(p1.y);
     //right side
 
@@ -113,13 +112,12 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       m.update();
       if (m.x > 0 && m.y > 0) {
         if (dist(tempX, tempY, m.x, m.y)>range) {
-          m.x = -4000;
-          m.y = -4000;
+          m.destroyObject();
         }
       }
       m.display();
     }
-    
+
     shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
@@ -138,7 +136,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (shotCD <= 0) {
       shooting = false;
     }
-    
+
 
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);
@@ -241,11 +239,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   boolean hittingPlayer(float targetX, float targetY, float targetXSize, float targetYSize) {
     //ASSUMES RECTMODE CENTER AND ALL THE OBJECTS BEING RECTANGLES
     return (
-            targetX + targetXSize > x - xSize || //Collision left side player
-            targetX - targetXSize < x + xSize || //Collision right side player
-            targetY + targetYSize > y - ySize || //Collision top side player
-            targetY - targetYSize < y + ySize    //Collision bottom side player
-           );
+      targetX + targetXSize > x - xSize || //Collision left side player
+      targetX - targetXSize < x + xSize || //Collision right side player
+      targetY + targetYSize > y - ySize || //Collision top side player
+      targetY - targetYSize < y + ySize    //Collision bottom side player
+      );
   }
 
   void keyPressed() {
