@@ -24,7 +24,7 @@ Minim minim;
 void setup() {
 
   rectMode(CENTER);
-  size(1700, 1200);
+  size(1700, 1200, P3D);
 
   p1 = new Player();
   currentI = 0;
@@ -95,7 +95,7 @@ void draw() {
 
     p1.update();
     currentRoom.constrainPlayer(p1);
-    currentRoom = rooms[currentI][currentJ];
+
     p1.display();
 
     if (currentRoom.num == 12) {

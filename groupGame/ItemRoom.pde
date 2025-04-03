@@ -1,13 +1,6 @@
 class ItemRoom extends Room {
-  Player p1;
-  HighNoon h;
-  PikminItem p;
-  SpeedForce s;
-  SnipSnip sn;
-  ShiftingPrism sp;
-  VeilOfSilence v;
+  Item item;
   //Heatseeker hs;
-
   float pedx, pedy;
   float spawn;
   float selected1;
@@ -27,13 +20,49 @@ class ItemRoom extends Room {
     selected2 = random(1, 2);
     selected3 = random(1, 2);
     selected4 = random(1, 3);
-    h = new HighNoon(pedx, pedy);
-    p = new PikminItem(pedx, pedy);
-    s = new SpeedForce(pedx, pedy);
-    sn = new SnipSnip(pedx, pedy);
-    sp = new ShiftingPrism(pedx, pedy);
-    v = new VeilOfSilence(pedx, pedy);
-    //hs = new Heatseeker(pedx, pedy);
+    if (spawn == 1) {
+      item = new SpeedForce(pedx, pedy);
+    }
+    if (spawn >= 2 && spawn<=10) {
+      if (selected1 == 1) {
+        item = new PikminItem(pedx, pedy);
+      }
+      if (selected1 == 2) {
+        //spawn rarity 4 item
+        item = new VeilOfSilence(pedx, pedy);
+      }
+    }
+
+    if (spawn >= 11 && spawn <=40) {
+      if (selected2 == 1) {
+        item = new SnipSnip(pedx, pedy);
+      }
+      if (selected2 == 2) {
+        //spawn rarity 3 item
+        //item = new Heatseeker(pedx, pedy);
+      }
+    }
+    if (spawn>=41 && spawn <=100) {
+      if (selected3 == 1) {
+        item = new HighNoon(pedx, pedy);
+      }
+      if (selected3 == 2) {
+        //spawn rarity 2 item
+        item = new ShiftingPrism(pedx, pedy);
+      }
+    }
+    if (spawn>100) {
+      if (selected4 == 1) {
+      }
+      if (selected4 == 2) {
+      }
+      if (selected4 == 3) {
+        //spawn rarity 1 item
+      }
+    }
+    if (item != null){
+     item.display(); 
+    }
   }
 
   void display() {
@@ -47,45 +76,6 @@ class ItemRoom extends Room {
   }
 
   void spawnanitem() {
-    if (spawn == 1) {
-      s.itemSpawned = true;
-    }
-    if (spawn >= 2 && spawn<=10) {
-      if (selected1 == 1) {
-        p.itemSpawned = true;
-      }
-      if (selected1 == 2) {
-        //spawn rarity 4 item
-        v.itemSpawned = true;
-      }
-    }
-
-    if (spawn >= 11 && spawn <=40) {
-      if (selected2 == 1) {
-        sn.itemSpawned = true;
-      }
-      if (selected2 == 2) {
-        //spawn rarity 3 item
-        //hs.itemSpawned = true;
-      }
-    }
-    if (spawn>=41 && spawn <=100) {
-      if (selected3 == 1) {
-        h.itemSpawned= true;
-      }
-      if (selected3 == 2) {
-        //spawn rarity 2 item
-        sp.itemSpawned = true;
-      }
-    }
-    if (spawn>100) {
-      if (selected4 == 1) {
-      }
-      if (selected4 == 2) {
-      }
-      if (selected4 == 3) {
-        //spawn rarity 1 item
-      }
-    }
+    
   }
 }
