@@ -54,7 +54,7 @@ class Enemy extends ScreenElement {
     ellipse(projectile.x, projectile.y, 10, 10);
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
-    print(projectile.x);
+    //print(projectile.x);
 
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
@@ -130,7 +130,7 @@ class Enemy extends ScreenElement {
 
 
 
-    println(xPos);
+    //println(xPos);
 
     if ( enemy.x < 252 ) {
       xVelo = -xVelo;
@@ -174,6 +174,9 @@ class Enemy extends ScreenElement {
       projectile.x = 10000;
       projectile.y = 10000;
       recordedTime = millis();
+      soundEffects.hurt = true;
+    } else {
+      soundEffects.hurt = false;
     }
     
     for (Magic m : p1.shots) {
