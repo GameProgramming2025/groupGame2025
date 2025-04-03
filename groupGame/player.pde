@@ -1,39 +1,41 @@
+ //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
- //<>//
 
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   //Items
   Item items[];
- //<>//
-  HighNoon h; //<>//
- //<>// //<>//
-  float x, y, xVel, yVel, xAcc, yAcc; //<>// //<>//
-  float tempX, tempY; //<>// //<>//
- //<>//
+
+  HighNoon h;
+  EmptyItem e;
+
+  float x, y, xVel, yVel, xAcc, yAcc;
+  float tempX, tempY;
+
   //timers
   float frames;
   int seconds;
   int animation;
   boolean shooting;
-  
-  Magic shots[]; 
- //<>//
-  int nextShot;   //<>//
- //<>// //<>//
- //<>// //<>// //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
- //<>// //<>// //<>//
- //<>// //<>// //<>//
-  PImage sprites[];  //<>// //<>// //<>//
-  int currentSprite;  //<>// //<>// //<>//
-  int firstSprite; //<>// //<>// //<>//
-  int frame; //<>// //<>// //<>//
- //<>// //<>// //<>//
-  //final frame //<>// //<>// //<>//
-  PImage GameOver; //<>// //<>//
- //<>// //<>//
- //<>//
+
+  Magic shots[];
+
+  int nextShot;
+  int nextItem;
+
+  //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
+  //<>//
+  //<>//
+  PImage sprites[];  //<>//
+  int currentSprite;  //<>//
+  int firstSprite; //<>//
+  int frame; //<>//
+  //<>//
+  //final frame //<>//
+  PImage GameOver;
+
+
   Player() {
     HP = 10;
     spd = 1;
@@ -45,16 +47,18 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     shotsCD = 60;
     maxspd = 1000000;
     shots = new Magic[10];
-
+    nextItem = 0;
     h = new HighNoon(width/4, height/4);
+    e = new EmptyItem(x,y);
     items = new Item[5];
     for (int j = 0; j < 5; j++) {
-      items[j] = new HighNoon(x, y);
+      items[j] = new EmptyItem(x,y);
     }
+
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
-
+    giveItemToPlayer(h);
     GameOver = loadImage("Sprites/DeathScreen.png");
     GameOver.resize(1350, 1012);
 
@@ -64,8 +68,8 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/PlayerUno.png");
 
-    
-    
+
+
 
     sprites[0] = spritesheet.get(0, 0, 96, 96);
     sprites[1] = spritesheet.get(96, 0, 96, 96);
@@ -79,11 +83,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     sprites[9] = spritesheet.get(0, 288, 96, 96);
 
     sprites[10] = spritesheet.get(200, 288, 96, 96);
-
   }
 
   void update() {
-    
+
     //print(shooting);
     if (HP < 0) {
       image(GameOver, 170, 50);
@@ -91,8 +94,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     //println(p1.y);
     //right side
-
-
 
     println(y);
     println(x);
@@ -229,6 +230,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   boolean hittingPlayer() {
     return false;
+  }
+
+  void giveItemToPlayer(Item i) {
+    items[nextItem] = i;
+    nextItem++;
+    if (nextItem == 5) {
+      nextItem = 0;
+    }
   }
 
   void keyPressed() {
