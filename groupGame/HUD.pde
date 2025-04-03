@@ -1,4 +1,3 @@
-
 class HUD {
   Float hp, coins, items, s;
   float x, y;
