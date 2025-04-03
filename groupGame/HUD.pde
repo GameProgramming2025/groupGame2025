@@ -38,17 +38,17 @@ class HUD {
 
   void display() {
     strokeWeight(10);
-    rect(width*7/10, 40, 70, 70, 10);
-    rect(width*6.5/10, 40, 70, 70, 10);
-    rect(width*7.5/10, 40, 70, 70, 10);
-    rect(width*8/10, 40, 70, 70, 10);
-    rect(width *8.5/10,40,70,70,10);
+    rect(width*7/10, 70, 70, 70, 10);
+    rect(width*6.5/10, 70, 70, 70, 10);
+    rect(width*7.5/10, 70, 70, 70, 10);
+    rect(width*8/10, 70, 70, 70, 10);
+    rect(width *8.5/10,70,70,70,10);
 
-    for (int i = 0; i < 5; i++) {
-       if (p.items[i] != null) {
-         image(p.items[i].itemImg,10 + width * 6.5 /10 + i * 85, 50, 50, 50); 
-       }
-    }
+    //for (int i = 0; i < 5; i++) {
+    //   if (p.items[i] != null) {
+    //     image(p.items[i].itemImg,10 + width * 6.5 /10 + i * 85, 50, 50, 50); 
+    //   }
+    //}
 
     if (currentHp ==10) {
       image(heart, x, y, s, s);

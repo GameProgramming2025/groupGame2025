@@ -1,4 +1,4 @@
- //<>// //<>//
+ //<>// //<>// //<>// //<>//
 class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   
 
@@ -17,10 +17,12 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int animation;
   int finalAnimation;
   boolean shooting;
+  
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
   Magic shots[];
 
-  int nextShot;
+  int nextShot; //<>//
   int nextItem;
 
  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//

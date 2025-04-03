@@ -1,8 +1,8 @@
 class EmptyItem extends Item{
- 
   
-  void Emptyitem(float x, float y) {
-    
+  EmptyItem(float x, float y) {
+    super(x, y, null);
+  }
    
   
 }
