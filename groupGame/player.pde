@@ -17,6 +17,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   //shooting
   Magic shots[];
+  Heatseeker bullets[];
 
   int nextShot;
   // Player Stats
@@ -43,6 +44,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     shotsCD = 60;
     maxspd = 1000000;
     shots = new Magic[10];
+    bullets = new Heatseeker[10];
     inventory= new Item[5];
 
     for (int i = 0; i < 10; i++) {
@@ -116,6 +118,12 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
         }
       }
       m.display();
+    }
+
+    if (currentRoom.e != null) {
+      for (Heatseeker bullet : bullets) {
+        bullet.createBullet();
+      }
     }
 
     shotCD--;
