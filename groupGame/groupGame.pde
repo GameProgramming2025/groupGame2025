@@ -50,10 +50,9 @@ void setup() {
 }
 
 void draw() {
-  //println(currentI, currentJ);
   background(0);
 
-  println(frameRate);
+  //println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:

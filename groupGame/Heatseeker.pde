@@ -8,12 +8,7 @@ class Heatseeker {
   boolean using;
 
 
-  Heatseeker(float posX, float posY) {
-
-    this.posX = posX;
-    this.posY = posY;
-
-
+  Heatseeker() {
     bullet = loadImage("data/VisualEffects/stareffect.png");
     bullet.resize(50, 50);
   }
@@ -24,8 +19,8 @@ class Heatseeker {
       target = new PVector(targetX - posX, targetY - posY);
       target.normalize();
 
-      xVel = targetX * 10;
-      yVel = targetY * 10;
+      xVel = target.x * 1;
+      yVel = target.y * 1;
 
       posX += xVel;
       posY += yVel;
@@ -43,7 +38,10 @@ class Heatseeker {
     }
   }
   
-  void createBullet() {
+  void createBullet(float posX, float posY) {
+    this.posX = posX;
+    this.posY = posY;
+    
     using = true;
   }
   
