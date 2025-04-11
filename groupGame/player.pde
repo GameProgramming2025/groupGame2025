@@ -1,10 +1,9 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
-  //Items
+class Player { //<>//
+  //Items //<>//
   Item inventory[];
   int equippedItem;
-  // position
-
+  HighNoon h;
+  EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
 
@@ -23,17 +22,21 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   float farthestEnemyX;
   float farthestEnemyY;
 
+  int nextShot; //<>//
+  // Player Stats
+
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
+
+  Magic shots[];
 
   int nextShot;
-  // Player Stats
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+  int nextItem;
 
   //Player Images
   PImage sprites[];
   int currentSprite;
   int firstSprite;
   int frame;
-
 
   Player() {
     xSize = 96;
@@ -52,6 +55,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     bullets = new Heatseeker[10];
     inventory= new Item[5];
 
+    nextItem = 0;
+    h = new HighNoon(width/4, height/4);
+    e = new EmptyItem(x, y);
+    items = new Item[5];
+    for (int j = 0; j < 5; j++) {
+      items[j] = new EmptyItem(x, y);
+    }
+
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
@@ -64,11 +75,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     firstSprite = 0;
     frame = 0;
     sprites = new PImage[36];
+
     PImage spritesheet = loadImage("Sprites/PlayerOne.png");
+
 
 
     sprites[0] = spritesheet.get(0, 0, 96, 96);
     sprites[1] = spritesheet.get(96, 0, 96, 96);
+
     sprites[2] = spritesheet.get(192, 0, 96, 96);
     sprites[3] = spritesheet.get(288, 0, 96, 96);
     sprites[4] = spritesheet.get(384, 0, 96, 96);
@@ -96,6 +110,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void update() {
+
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
@@ -105,8 +120,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
 
 
+
     //println(y);
     //println(x);
+
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
@@ -142,7 +159,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
       for (Heatseeker bullet : bullets) {
         bullet.update(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
-       
+
         //if (dist(x, y, bullet.posX, bullet.posY) > range) {
         //  bullet.destroyBullet();
         //}
@@ -289,6 +306,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       );
   }
 
+  void giveItemToPlayer(Item i) {
+    inventory[nextItem] = i;
+    nextItem++;
+    if (nextItem == 5) {
+      nextItem = 0;
+    }
+  }
+
   void keyPressed() {
     if (key == '1') {
       spd++;
@@ -338,7 +363,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
         rect(bullets[nextShot].posX, bullets[nextShot].posY, 50, 50);
         bullets[nextShot].update(farthestEnemyX, farthestEnemyY);
         println(bullets[nextShot].posX, bullets[nextShot].posY, bullets[nextShot].xVel, bullets[nextShot].yVel);
-        
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {
@@ -375,8 +399,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       break;
     }
   }
-
-
 
   void keyReleased() {
     if (key == 'w') {
