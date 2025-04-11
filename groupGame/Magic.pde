@@ -1,8 +1,10 @@
 class Magic {
+  PImage magic;
   float x, y, xVel, yVel;
 
 
   Magic(float x, float y, float xVel, float yVel) {
+    magic = loadImage("magic.png");
     this.x = x;
     this.y = y;
     this.xVel = xVel;
@@ -18,6 +20,7 @@ class Magic {
   }
 
   void display() {
-    ellipse(x, y, 50, 50);
+    image(magic, x , y, 30, 30);
+   
   }
 }

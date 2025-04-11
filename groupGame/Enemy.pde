@@ -180,7 +180,7 @@ class Enemy extends ScreenElement {
     }
     
     for (Magic m : p1.shots) {
-      if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
+      if (dist(enemy.x, enemy.y, m.x, m.y) < 30) {
         enemyHealth = 0;
       }
     }
