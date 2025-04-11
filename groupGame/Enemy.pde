@@ -1,5 +1,5 @@
 class Enemy extends ScreenElement {
-  soundEffects sfx;
+  SoundEffects sfx;
   float health;
   float gravity;
   float xAcc;
@@ -45,7 +45,7 @@ class Enemy extends ScreenElement {
     sprites[3] = spritesheet.get(54, 57, 30, 39);
 
     recordedTime = millis() + 1000;
-    sfx = new soundEffects();
+    sfx = new SoundEffects(minim);
   }
 
   void display () {

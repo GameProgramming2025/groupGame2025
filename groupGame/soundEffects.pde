@@ -57,7 +57,7 @@ class SoundEffects {
       hurt = false;
       num = -1;
     }
-  }
+  
   
     //if (heal) {
     //Healing.play();
