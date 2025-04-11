@@ -108,13 +108,12 @@ class Room {
   void display () {
     push();
     rectMode(CORNER);
+    imageMode(CORNER);
     fill(bc);
     strokeWeight(10);
     stroke(90);
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
-    
-
     pop();
   }
 

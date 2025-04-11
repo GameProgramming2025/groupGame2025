@@ -1,11 +1,5 @@
- //<>// //<>// //<>// //<>//
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  
-
-  //Items
+class Player {  //<>// //<>//
   Item items[];
-
-  HighNoon h;
   EmptyItem e;
 
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
@@ -21,18 +15,12 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
   Magic shots[];
-
   int nextShot; //<>//
-  int nextItem;
-
- //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Player Images
+  int nextItem; //<>//
   PImage sprites[];
   int currentSprite;
   int firstSprite;
   int frame;
-
-
 
   Player() {
     xSize = 96;
@@ -49,8 +37,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     maxspd = 1000000;
     shots = new Magic[10];
     nextItem = 0;
-    h = new HighNoon(width/4, height/4);
-    e = new EmptyItem(x,y);
     items = new Item[5];
     for (int j = 0; j < 5; j++) {
       items[j] = new EmptyItem(x,y);
@@ -156,12 +142,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (shotCD <= 0) {
       shooting = false;
     }
-    h.render();
     //not a timer but it counts lul
-    if (h.collected == true) {
-      shotsCD += h.shotsCD;
-      atk += h.atk;
-    }
+    //if (h.collected == true) {
+    //  shotsCD += h.shotsCD;
+    //  atk += h.atk;
+    //}
 
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);
