@@ -24,7 +24,7 @@ class Item {
     this.imageFileName = imageFileName;
     if(imageFileName != null){
     itemImg = loadImage(imageFileName);
-    itemImg.resize(80, 80);
+    itemImg.resize(50, 50);
     }
     name = "Item";
     description = "An item in the game";
