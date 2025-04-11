@@ -184,5 +184,12 @@ class Enemy extends ScreenElement {
         enemyHealth = 0;
       }
     }
+    for (Heatseeker b : p1.bullets) {
+      if (dist(enemy.x, enemy.y, b.posX, b.posY) < 75) {
+        enemyHealth -= 20;
+      }
+    }
+    xPos = enemy.x;
+    yPos = enemy.y;
   }
 }

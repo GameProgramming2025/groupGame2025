@@ -108,6 +108,7 @@ class Player { //<>//
   }
 
   void update() {
+    
 
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
@@ -138,7 +139,7 @@ class Player { //<>//
     if (currentRoom.enemies != null) {
 
       for (Enemy enemy : currentRoom.enemies) {
-        if (dist(x, y, enemy.xPos, enemy.yPos) > farthestDistance) { //Checks each and every enemy and sees which is the farthest from the player
+        if (dist(x, y, enemy.xPos, enemy.yPos) > farthestDistance && enemy.enemyHealth > 0) { //Checks each and every enemy and sees which is the farthest from the player
           farthestDistance = dist(x, y, enemy.xPos, enemy.yPos);  //Stores the distance to make sure the highest distance is stored
           farthestEnemyX = enemy.xPos;  //Stores the x value of the farthest enemy
           farthestEnemyY = enemy.yPos;  //Stores the y value of the farthest enemy
@@ -148,19 +149,13 @@ class Player { //<>//
 
       for (Heatseeker bullet : bullets) {
         bullet.update(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
-
-        //if (dist(x, y, bullet.posX, bullet.posY) > range) {
-        //  bullet.destroyBullet();
-        //}
+        bullet.display(); //will move it later to display
       }
 
-      rect(farthestEnemyX, farthestEnemyY, 50, 50);
       farthestDistance = 0;
-      farthestEnemyX = 0;
-      farthestEnemyY = 0;//Sets the farthest distance to 0 to make sure we can calculate the farthest enemy again during the next iteration
+      //Sets the farthest distance to 0 to make sure we can calculate the farthest enemy again during the next iteration
     } else {
       for (Heatseeker bullet : bullets) {
-        bullet.update(x, y);
         bullet.destroyBullet();
       }
     }
@@ -341,9 +336,8 @@ class Player { //<>//
       if (keyCode == UP) {
         bullets[nextShot] = new Heatseeker();
         bullets[nextShot].createBullet(x, y-30);
-        rect(bullets[nextShot].posX, bullets[nextShot].posY, 50, 50);
         bullets[nextShot].update(farthestEnemyX, farthestEnemyY);
-        println(bullets[nextShot].posX, bullets[nextShot].posY, bullets[nextShot].xVel, bullets[nextShot].yVel);
+        println(bullets[nextShot].xVel, bullets[nextShot].yVel);
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {

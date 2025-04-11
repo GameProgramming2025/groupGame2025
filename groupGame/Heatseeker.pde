@@ -19,8 +19,8 @@ class Heatseeker {
       target = new PVector(targetX - posX, targetY - posY);
       target.normalize();
 
-      xVel = target.x * 1;
-      yVel = target.y * 1;
+      xVel = target.x * p1.shotspd;
+      yVel = target.y * p1.shotspd;
 
       posX += xVel;
       posY += yVel;
