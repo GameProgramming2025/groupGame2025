@@ -22,8 +22,10 @@ class Item {
     this.x = x;
     this.y = y;
     this.imageFileName = imageFileName;
+    if(imageFileName != null){
     itemImg = loadImage(imageFileName);
     itemImg.resize(80, 80);
+    }
     name = "Item";
     description = "An item in the game";
     rarity = 3;

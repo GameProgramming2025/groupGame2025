@@ -1,6 +1,6 @@
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
-
+//
 Player p1;
 HUD h1;
 
@@ -39,12 +39,14 @@ void setup() {
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
 
+
   h1 = new HUD(p1);
 
 
   rooms = new Room[7][7];
   for (int i = 0; i < 7; i++) {
     for (int j = 0; j < 7; j++) {
+
       rooms[i][j] = new Room(i, j);
     }
   }
@@ -59,6 +61,7 @@ void setup() {
     ey = random(282, 945);
     enemies[i] = new Enemy(ex, ey);
   }
+
 }
 
 void draw() {
