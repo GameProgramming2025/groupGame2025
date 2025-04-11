@@ -67,3 +67,4 @@ class ItemRoom extends Room {
   void display() {
     rect(pedx, pedy, 150, 150);
   }
+}
