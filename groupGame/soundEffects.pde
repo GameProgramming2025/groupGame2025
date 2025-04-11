@@ -9,6 +9,7 @@ class SoundEffects {
   boolean heal;
   boolean strike;
   boolean item;
+  boolean shot;
   int num;
   int num2;
   Minim minim;
@@ -19,14 +20,16 @@ class SoundEffects {
   AudioPlayer ehit2;
   AudioPlayer ehit3;
   AudioPlayer healing;
+  AudioPlayer fireball;
 
 
   SoundEffects(Minim minim) {
-    start = false;
+    //start = false;
     hurt = false;
-    heal = false;
+    //heal = false;
     strike = false;
-    item = false;
+    //item = false;
+    shot = true;
     num = -1;
     num2= -2;
     this.minim = minim;
@@ -36,7 +39,7 @@ class SoundEffects {
     ehit1 = minim.loadFile ("SoundEffects/Enemy_hit1.mp3");
     ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
-   
+    fireball = minim.loadFile ("SoundEffects/Fireballsfx.mp3");
   }
 
 
@@ -57,28 +60,27 @@ class SoundEffects {
       hurt = false;
       num = -1;
     }
-  
-  
-    //if (heal) {
-    //Healing.play();
-    //} else {
-    //Healing.stop();
-    //}
 
     if (strike) {
-     num2 = int(random(1, 3));
-    if (num2 == 1) {
+      num2 = int(random(1, 3));
+      if (num2 == 1) {
         ehit1.play();
       } else if (num2 == 2) {
         ehit2.play();
       } else if (num2 == 3) {
         ehit3.play();
-    }else {
-     strike = false;
-     num2 = -1;
-    }
+      } else {
+        strike = false;
+        num2 = -1;
+      }
     }
 
-  }
-  
+    if (shot) {
+      fireball.play();
+    } else {
+      fireball.pause();
+      shot = false;
+    }
+    
+  }  
 }

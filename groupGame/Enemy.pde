@@ -173,6 +173,10 @@ class Enemy extends ScreenElement {
       p1.HP -= 1;
       enemyHealth -= 15;
       recordedTime = millis();
+      
+      soundEffects.strike = true;
+    }else{
+     soundEffects.strike = false; 
     }
 
     if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
