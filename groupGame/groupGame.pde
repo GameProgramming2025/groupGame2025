@@ -21,6 +21,7 @@ SoundEffects soundEffects;
 
 Minim minim;
 
+
 void setup() {
 
   rectMode(CENTER);
@@ -113,7 +114,7 @@ void draw() {
     soundEffects.update();
 
     //Cameron this is embarassing
-    if (p1.HP <= 0) gameState = GameState.GAME_OVER;
+    if (p1.finalAnimation <= 0 && p1.HP <= 0) gameState = GameState.GAME_OVER;
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);
