@@ -1,7 +1,8 @@
 import ddf.minim.*;
+import ddf.minim.AudioPlayer;
 
-class soundEffects {
- boolean start;
+class SoundEffects {
+  boolean start;
   boolean hurt;
   boolean heal;
   boolean strike;
@@ -17,26 +18,26 @@ class soundEffects {
   AudioPlayer Ehit3;
   AudioPlayer Healing;
 
-  soundEffects() {
+  SoundEffects(Minim minim) {
     start = false;
     hurt = false;
     heal = false;
-   strike = false;
+    strike = false;
     item = false;
     num = -1;
     num2= -2;
-    minim = new Minim(this);
-    Grunt1 = minim.loadFile( "Player_hitV2.mp3");
-    Grunt2 = minim.loadFile( "Player_hitV2.1.mp3");
-    Grunt3 = minim.loadFile ( "Player_hitV2.2.mp3");
-    Ehit1 = minim.loadFile ( "Enemy_hit1.mp3");
-    Ehit2 = minim.loadFile ( "Enemy_hit2.mp3");
-    Ehit3 = minim.loadFile ( "Enemy_hit3.mp3");
-    Healing = minim.loadFile ( "heart_pickup.mp3");
+    this.minim = minim;
+    Grunt1 = minim.loadFile("SoundEffects/Player_hitV2.mp3");
+    Grunt2 = minim.loadFile("SoundEffects/Player_hitV2.1.mp3");
+    Grunt3 = minim.loadFile ("SoundEffects/Player_hitV2.2.mp3");
+    Ehit1 = minim.loadFile ("SoundEffects/Enemy_hit1.mp3");
+    Ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
+    Ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
+    Healing = minim.loadFile ("SoundEffects/heart_pickup.m4a");
   }
 
 
-  void display() {
+  void update() {
 
     //if (start) {
     //BackgroundMusic.play();
@@ -46,13 +47,14 @@ class soundEffects {
 
 
     if (hurt) {
-      num = int(random(1, 3));
-    } else if (num == 1) {
-      Grunt1.play();
-    } else if (num == 2) {
-      Grunt2.play();
-    } else if (num == 3) {
-      Grunt3.play();
+      num = (int)random(1, 4);
+      if (num == 1) {
+        Grunt1.play();
+      } else if (num == 2) {
+        Grunt2.play();
+      } else if (num == 3) {
+        Grunt3.play();
+      }
     } else {
       hurt = false;
       num = -1;
@@ -101,5 +103,4 @@ class soundEffects {
     //  Room.stop();
     //}
   }
-
-  }
+}
