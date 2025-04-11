@@ -1,6 +1,5 @@
 class ItemRoom extends Room {
   Item item;
-  //Heatseeker hs;
   float pedx, pedy;
   float spawn;
   float selected1;
@@ -68,14 +67,3 @@ class ItemRoom extends Room {
   void display() {
     rect(pedx, pedy, 150, 150);
   }
-
-  void update() {
-    if (dist(pedx, pedy, p1.x, p1.y)<75) {
-      spawnanitem();
-    }
-  }
-
-  void spawnanitem() {
-    
-  }
-}
