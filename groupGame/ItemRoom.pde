@@ -9,7 +9,7 @@ class ItemRoom extends Room {
 
 
   ItemRoom(int x, int y) {
-    super(x, y);
+    super(x, y, 13);
     this.x = x;
     this.y = y;
     pedx = width/2;
@@ -65,6 +65,7 @@ class ItemRoom extends Room {
   }
 
   void display() {
+    super.display();
     rect(pedx, pedy, 150, 150);
   }
 }

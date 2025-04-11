@@ -24,11 +24,11 @@ Minim minim;
 void setup() {
 
   rectMode(CENTER);
-  size(1700, 1200, P3D);
+  size(1700, 1200);
 
   p1 = new Player();
-  currentI = 0;
-  currentJ = 0;
+  currentI = 1;
+  currentJ = 1;
   p1.x = width/2;
   p1.y = height/2;
 
@@ -47,12 +47,11 @@ void setup() {
   for (int i = 0; i < 7; i++) {
     for (int j = 0; j < 7; j++) {
 
-      rooms[i][j] = new Room(i, j);
+      rooms[i][j] = new Room(i, j, int(random(0, 13)));
     }
   }
+  rooms[1][1] = new ItemRoom(1, 1);
   currentRoom = rooms[currentI][currentJ];
-
-
 
   numEnemies = 7;
   enemies = new Enemy[numEnemies];
@@ -61,14 +60,10 @@ void setup() {
     ey = random(282, 945);
     enemies[i] = new Enemy(ex, ey);
   }
-
 }
 
 void draw() {
-  println(currentI, currentJ);
   background(0);
-
-  //println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
