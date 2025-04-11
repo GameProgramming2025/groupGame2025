@@ -15,19 +15,17 @@ class Player { //<>//
   boolean shooting;
 
   //shooting
-  Magic shots[];
   Heatseeker bullets[];
   //heatseeker variables
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
 
-  int nextShot; //<>//
   // Player Stats
+ //<>//
+  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
-
-  Magic shots[];
+  Magic shots[]; //<>//
 
   int nextShot;
   int nextItem;
@@ -58,9 +56,9 @@ class Player { //<>//
     nextItem = 0;
     h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
-    items = new Item[5];
+    inventory = new Item[5];
     for (int j = 0; j < 5; j++) {
-      items[j] = new EmptyItem(x, y);
+      inventory[j] = new EmptyItem(x, y);
     }
 
     for (int i = 0; i < 10; i++) {
@@ -115,15 +113,6 @@ class Player { //<>//
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
     }
-    //println(p1.y);
-    //right side
-
-
-
-
-    //println(y);
-    //println(x);
-
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
@@ -176,8 +165,6 @@ class Player { //<>//
       }
     }
 
-
-
     shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
@@ -213,7 +200,6 @@ class Player { //<>//
       yVel = 0;
     }
   }
-
 
   void display() {
     //println(yVel);
@@ -282,11 +268,6 @@ class Player { //<>//
         }
       }
     }
-
-
-    //else if (){
-    //
-    //}
 
     push();
     translate(x, y);
