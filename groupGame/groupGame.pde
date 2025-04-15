@@ -73,6 +73,7 @@ void draw() {
   case GAMEPLAY:
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
+    currentRoom = rooms[currentI][currentJ];
     background(0);
     rooms[currentI][currentJ].display();
     if (p1.x >= width) {
@@ -104,8 +105,7 @@ void draw() {
       }
     }
 
-    h1.update();
-    h1.display();
+    
     soundEffects.update();
 
     //Cameron this is embarassing
@@ -122,6 +122,8 @@ void draw() {
     //println("lost");
     break;
   }
+   h1.update();
+    h1.display();
 }
 
 void keyPressed() {

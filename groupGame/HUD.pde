@@ -5,7 +5,6 @@ class HUD {
   float t;
   PFont big;
   Player p;
-  
   HighNoon h;
   PImage heart, brokenHeart, highNoon;
   float currentHp;
@@ -21,7 +20,7 @@ class HUD {
     brokenHeart = loadImage("data/Sprites/broken heart.png");
     highNoon = loadImage("data/sprites/HN.png");
     this.p = p;
-    
+   
     //ammo = p.ammo;
     coins=0.0;
     big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
@@ -34,6 +33,8 @@ class HUD {
   }
 
   void display() {
+    text("" + currentRoom.x + "",width/2,40);
+    text(""+ currentRoom.y +"",width/2 +20,40);
     strokeWeight(10);
     rect(width*7/10, 70, 70, 70, 10);
     rect(width*6.5/10, 70, 70, 70, 10);

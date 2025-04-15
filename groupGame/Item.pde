@@ -25,7 +25,7 @@ class Item {
 
     if (imageFileName != null) {
       itemImg = loadImage(imageFileName);
-      itemImg.resize(80, 80);
+      itemImg.resize(50, 50);
 
     }
     name = "Item";
