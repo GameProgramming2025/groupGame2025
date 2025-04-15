@@ -9,19 +9,12 @@ class Room {
   int numImages = 3;
   PImage img;
 
-  Room(int x, int y) {
+  Room(int x, int y, int num) {
     this.x=x;
     this.y=y;
+    this.num = num;
     
     bc = color(random(100, 200), 100, 20);
-
-    //num = 0;
-    num = int(random(0, 13));
-
-    println(num);
-
-    //NORMAL ROOMS
-    num = 0;
     
     //ITEM ROOMS
     if (x == y) {
@@ -115,13 +108,12 @@ class Room {
   void display () {
     push();
     rectMode(CORNER);
+    imageMode(CORNER);
     fill(bc);
     strokeWeight(10);
     stroke(90);
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
-    
-
     pop();
   }
 
