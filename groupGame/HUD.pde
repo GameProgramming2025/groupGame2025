@@ -48,8 +48,8 @@ class HUD {
     rect(width *8.5/10,70,70,70,10);
 
     for (int i = 0; i < 5; i++) {
-       if (p.items[i] != null) {
-         image(p.items[i].itemImg,10 + width * 6.5 /10 + (i * 85)-40, 43); 
+       if (p.inventory[i] != null) {
+         image(p.inventory[i].itemImg,10 + width * 6.5 /10 + (i * 85)-40, 43); 
        }
     }
 
