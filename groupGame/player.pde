@@ -1,7 +1,10 @@
-class Player {  //<>// //<>//
-  Item items[];
-  EmptyItem e;
+class Player { //<>//
+  //Items //<>//
+  Item inventory[];
+  int equippedItem;
+  HighNoon h;
 
+  EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
 
@@ -11,12 +14,25 @@ class Player {  //<>// //<>//
   int animation;
   int finalAnimation;
   boolean shooting;
-  
+
+  //shooting
+  Heatseeker bullets[];
+  //heatseeker variables
+  float farthestDistance;
+  float farthestEnemyX;
+  float farthestEnemyY;
+
+  // Player Stats
+ //<>//
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
-  Magic shots[];
-  int nextShot; //<>//
-  int nextItem; //<>//
+  Magic shots[]; //<>//
+
+  int nextShot;
+  int nextItem;
+
+  //Player Images
+
   PImage sprites[];
   int currentSprite;
   int firstSprite;
@@ -29,17 +45,24 @@ class Player {  //<>// //<>//
     spd = 1;
     shotspd = 35;
     nextShot = 0;
-    range = 300;
+    range = 500;
     frames = 60;
     animation = 30;
     finalAnimation = 60;
     shotsCD = 60;
     maxspd = 1000000;
     shots = new Magic[10];
+    bullets = new Heatseeker[10];
+    inventory= new Item[5];
+
     nextItem = 0;
-    items = new Item[5];
+
+    h = new HighNoon(width/4, height/4);
+    e = new EmptyItem(x, y);
+    inventory = new Item[5];
+
     for (int j = 0; j < 5; j++) {
-      items[j] = new EmptyItem(x,y);
+      inventory[j] = new EmptyItem(x, y);
     }
 
 
@@ -47,7 +70,9 @@ class Player {  //<>// //<>//
       shots[i] = new Magic(-4000, -4000, 0, 0);
     }
 
-
+    for (int i = 0; i < 10; i++) {
+      bullets[i] = new Heatseeker();
+    }
 
     currentSprite = 0;
     firstSprite = 0;
@@ -85,24 +110,15 @@ class Player {  //<>// //<>//
 
     sprites[20] = spritesheet.get(0, 384, 96, 96);
     sprites[21] = spritesheet.get(384, 384, 96, 96);
-
   }
 
   void update() {
+    
 
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
-      }
-    //println(p1.y);
-    //right side
-
-
-
-
-    //println(y);
-    //println(x);
-
+    }
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
@@ -119,12 +135,36 @@ class Player {  //<>// //<>//
       m.update();
       if (m.x > 0 && m.y > 0) {
         if (dist(tempX, tempY, m.x, m.y)>range) {
-          m.x = -4000;
-          m.y = -4000;
+          m.destroyObject();
         }
       }
       m.display();
     }
+
+    if (currentRoom.enemies != null) {
+
+      for (Enemy enemy : currentRoom.enemies) {
+        if (dist(x, y, enemy.xPos, enemy.yPos) > farthestDistance && enemy.enemyHealth > 0) { //Checks each and every enemy and sees which is the farthest from the player
+          farthestDistance = dist(x, y, enemy.xPos, enemy.yPos);  //Stores the distance to make sure the highest distance is stored
+          farthestEnemyX = enemy.xPos;  //Stores the x value of the farthest enemy
+          farthestEnemyY = enemy.yPos;  //Stores the y value of the farthest enemy
+        }
+      }
+
+
+      for (Heatseeker bullet : bullets) {
+        bullet.update(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
+        bullet.display(); //will move it later to display
+      }
+
+      farthestDistance = 0;
+      //Sets the farthest distance to 0 to make sure we can calculate the farthest enemy again during the next iteration
+    } else {
+      for (Heatseeker bullet : bullets) {
+        bullet.destroyBullet();
+      }
+    }
+
     shotCD--;
     frames--;
     // ANY AND ALL TIMERS GO IN HERE.
@@ -143,6 +183,7 @@ class Player {  //<>// //<>//
     if (shotCD <= 0) {
       shooting = false;
     }
+
     //not a timer but it counts lul
     //if (h.collected == true) {
     //  shotsCD += h.shotsCD;
@@ -164,7 +205,6 @@ class Player {  //<>// //<>//
       yVel = 0;
     }
   }
-
 
   void display() {
     //println(yVel);
@@ -234,11 +274,6 @@ class Player {  //<>// //<>//
       }
     }
 
-
-    //else if (){
-    //
-    //}
-
     push();
     translate(x, y);
     imageMode(CENTER);
@@ -250,15 +285,15 @@ class Player {  //<>// //<>//
   boolean hittingPlayer(float targetX, float targetY, float targetXSize, float targetYSize) {
     //ASSUMES RECTMODE CENTER AND ALL THE OBJECTS BEING RECTANGLES
     return (
-            targetX + targetXSize > x - xSize || //Collision left side player
-            targetX - targetXSize < x + xSize || //Collision right side player
-            targetY + targetYSize > y - ySize || //Collision top side player
-            targetY - targetYSize < y + ySize    //Collision bottom side player
-           );
+      targetX + targetXSize > x - xSize || //Collision left side player
+      targetX - targetXSize < x + xSize || //Collision right side player
+      targetY + targetYSize > y - ySize || //Collision top side player
+      targetY - targetYSize < y + ySize    //Collision bottom side player
+      );
   }
 
   void giveItemToPlayer(Item i) {
-    items[nextItem] = i;
+    inventory[nextItem] = i;
     nextItem++;
     if (nextItem == 5) {
       nextItem = 0;
@@ -309,7 +344,10 @@ class Player {  //<>// //<>//
       tempX = x;
       tempY = y;
       if (keyCode == UP) {
-        shots[nextShot] = new Magic(x, y-30, 0, -shotspd + (yVel *.5));
+        bullets[nextShot] = new Heatseeker();
+        bullets[nextShot].createBullet(x, y-30);
+        bullets[nextShot].update(farthestEnemyX, farthestEnemyY);
+        println(bullets[nextShot].xVel, bullets[nextShot].yVel);
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic(x, y+30, 0, shotspd + (yVel *.5));
       } else if (keyCode == LEFT) {
@@ -346,8 +384,6 @@ class Player {  //<>// //<>//
       break;
     }
   }
-
-
 
   void keyReleased() {
     if (key == 'w') {
