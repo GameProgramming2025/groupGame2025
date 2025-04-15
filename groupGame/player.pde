@@ -3,6 +3,7 @@ class Player { //<>//
   Item inventory[];
   int equippedItem;
   HighNoon h;
+
   EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
@@ -31,6 +32,7 @@ class Player { //<>//
   int nextItem;
 
   //Player Images
+
   PImage sprites[];
   int currentSprite;
   int firstSprite;
@@ -54,9 +56,11 @@ class Player { //<>//
     inventory= new Item[5];
 
     nextItem = 0;
+
     h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
     inventory = new Item[5];
+
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
     }
@@ -179,6 +183,11 @@ class Player { //<>//
       shooting = false;
     }
 
+    //not a timer but it counts lul
+    //if (h.collected == true) {
+    //  shotsCD += h.shotsCD;
+    //  atk += h.atk;
+    //}
 
     x = constrain(x, 0, width);
     y = constrain(y, 0, height);

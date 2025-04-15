@@ -127,6 +127,7 @@ class Room {
   void display () {
     push();
     rectMode(CORNER);
+    imageMode(CORNER);
     fill(bc);
     strokeWeight(10);
     stroke(90);
