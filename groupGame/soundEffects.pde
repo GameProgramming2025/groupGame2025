@@ -33,7 +33,7 @@ class SoundEffects {
     Ehit1 = minim.loadFile ("SoundEffects/Enemy_hit1.mp3");
     Ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
     Ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
-    Healing = minim.loadFile ("SoundEffects/heart_pickup.m4a");
+    Healing = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
   }
 
 
