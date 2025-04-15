@@ -2,7 +2,11 @@ class Room {
   int x;
   int y;
   int bc;
-  
+  boolean topOpen;
+  boolean bottomOpen;
+  boolean leftOpen;
+  boolean rightOpen;
+
   int numEnemies;
   int num;
   int time;
@@ -12,7 +16,7 @@ class Room {
   Room(int x, int y) {
     this.x=x;
     this.y=y;
-    
+
     bc = color(random(100, 200), 100, 20);
 
     //num = 0;
@@ -22,12 +26,12 @@ class Room {
 
     //NORMAL ROOMS
     num = 0;
-    
+
     //ITEM ROOMS
     if (x == y) {
       num = 13; //ItemRoom
     }
-    
+
     //TRAP ROOMS(CONTAINS ENEMIES)
     if (x == 6 - y) {
       num = 12; //TrapRoom
@@ -36,21 +40,21 @@ class Room {
     //EDGE ROOMS
     if (x == 0) {
       num = 4; //NoWestDoor
-    } else if(x == 6) {
+    } else if (x == 6) {
       num = 1; //NoEastDoor
     }
-    
+
     if (y == 0) {
       num = 2; //NoNorthDoor
     } else if (y == 6) {
       num = 3; //NoSouthDoor
     }
-    
+
     //BOSS ROOM
     if (x == 3 && y == 3) {
       num = 14; //BossRoom
     }
-    
+
     //CORNER ROOMS
     if (x == 0 && y == 0) {
       num = 8; //NoNorthWest
@@ -61,7 +65,7 @@ class Room {
     } else if (x == 6 && y == 6) {
       num = 11; //NoSouthEast
     }
-    
+
     //ROOMS
 
     if (num == 0) {
@@ -120,21 +124,26 @@ class Room {
     stroke(90);
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
-    
+
 
     pop();
   }
 
   void update () {
-    
   }
 
 
   void constrainPlayer(Player p) {
+    println(p.y);
 
-    if (p.x > 1470 && p.y < 550) {//top left wall
+    //right side
+    if (p.x > 1470 && p.y < 550) {//top right wall
       p.x = 1470;
-    } else if (p.x > 1470 && p.y > 725) {//bottom left wall
+    } else if ( p.y < 598 && p.x > 1505 && p.x < 1700) {//top right inner wall
+      p.y = 597;
+    } else if ( p.y > 669 && p.x > 1505 && p.x < 1700) {//bottom right inner wall
+      p.y = 668;
+    } else if (p.x > 1470 && p.y > 725) {//bottom right wall
       p.x = 1470;
     } else if (p.x > width) {//right
       p.x = 40;
@@ -144,6 +153,10 @@ class Room {
     //left side
     if (p.x < 250 && p.y < 550) {//top left wall
       p.x = 250;
+    } else if ( p.y < 598 && p.x > 1 && p.x < 230) {//top left inner wall
+      p.y = 597;
+    } else if ( p.y > 669 && p.x > 1 && p.x < 230) {//bottom left inner wall
+      p.y = 668;
     } else if (p.x < 250 && p.y > 725) {//bottom left wall
       p.x = 250;
     } else if (p.x < 0) {//left
@@ -152,8 +165,14 @@ class Room {
     }
 
     //top side
-    if (p.x > 240 && p.x < 765 && p.y < 267 && p.y > 257) {//top left wall
+    if (p.x > 240 && p.x < 765 && p.y < 267 && p.y > 257) {//top left hallway wall
       p.y=266;
+    } else if (x < 755 && y < 245) { //left-side wall next to door
+      x = 755;
+    } else if (x > 925 && y < 245) { //right-side wall next to door
+      x = 925;
+    } else if ( p.x > 748 && p.y < 1 && p.y > 230) {//left top wall
+      p.x = 747;
     } else if (p.x > 918 && p.x < 1476 && p.y < 267 && p.y > 257) {//top right wall
       p.y=266;
     }
@@ -161,13 +180,19 @@ class Room {
     //bottom side
     if (p.x > 240 && p.x < 765 && p.y > 933 && p.y < 943) {//bottom left wall
       p.y=932;
+    } else if (p.x < 750 & p.y > 995) {// left-side wall next to door
+      x = 750;
+    } else if (x > 915 && y > 995) { //right-side wall next to door
+      x = 915;
     } else if (p.x > 918 && p.x < 1476 && p.y > 933 && p.y < 943) {//bottom right wall
       p.y=932;
     }
 
+
     // different rooms
 
     if (currentRoom.num == 1) {
+      rooms[0],[1], top
       if (p.x > 1470 && p.y > 266 && p.y < 925) {//right wall
         p.x = 1470;
       }
@@ -213,9 +238,6 @@ class Room {
     if (currentRoom.num == 8) {//left,right,top wall
       if (p.x < 255 && p.y > 266 && p.y < 932 ) {//left wall
         p.x=256;
-      }
-      if (p.x > 1470 && p.y > 266 && p.y < 925) {//right wall
-        p.x = 1469;
       } else if (p.y < 267 && p.y > 257 && p.x > 240 && p.x < 1476) {//top wall
         p.y=266;
       }
