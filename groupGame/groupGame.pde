@@ -24,7 +24,7 @@ void setup() {
 
   rectMode(CENTER);
   size(1700, 1200, P2D);
-  
+
   p1 = new Player();
   currentI = 1;
   currentJ = 1;
@@ -45,12 +45,12 @@ void setup() {
   rooms = new Room[7][7];
   for (int i = 0; i < 7; i++) {
     for (int j = 0; j < 7; j++) {
-
-      rooms[i][j] = new Room(i, j, int(random(0, 13)));
+      rooms[i][j] = new Room(i, j);
     }
   }
   rooms[1][1] = new ItemRoom(1, 1);
   currentRoom = rooms[currentI][currentJ];
+}
 
 void draw() {
   background(0);
@@ -90,7 +90,7 @@ void draw() {
     h1.effects(true);
     h1.update();
     h1.display();
-    soundEffects.update();    
+    soundEffects.update();
 
     //Cameron this is embarassing
     if (p1.finalAnimation <= 0 && p1.HP <= 0) gameState = GameState.GAME_OVER;
