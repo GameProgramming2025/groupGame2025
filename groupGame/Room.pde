@@ -2,25 +2,36 @@ class Room {
   int x;
   int y;
   int bc;
-  
-  int numEnemies;
+
+
   int num;
   int time;
   int numImages = 3;
   PImage img;
 
-  Room(int x, int y, int num) {
+  Enemy enemies [];
+  int numEnemies;
+  float ex, ey;
+
+  Room(int x, int y) {
     this.x=x;
     this.y=y;
-    this.num = num;
-    
+
     bc = color(random(100, 200), 100, 20);
-    
+
+    //num = 0;
+    num = int(random(0, 13));
+
+    println(num);
+
+    //NORMAL ROOMS
+    num = 0;
+
     //ITEM ROOMS
     if (x == y) {
       num = 13; //ItemRoom
     }
-    
+
     //TRAP ROOMS(CONTAINS ENEMIES)
     if (x == 6 - y) {
       num = 12; //TrapRoom
@@ -29,21 +40,21 @@ class Room {
     //EDGE ROOMS
     if (x == 0) {
       num = 4; //NoWestDoor
-    } else if(x == 6) {
+    } else if (x == 6) {
       num = 1; //NoEastDoor
     }
-    
+
     if (y == 0) {
       num = 2; //NoNorthDoor
     } else if (y == 6) {
       num = 3; //NoSouthDoor
     }
-    
+
     //BOSS ROOM
     if (x == 3 && y == 3) {
       num = 14; //BossRoom
     }
-    
+
     //CORNER ROOMS
     if (x == 0 && y == 0) {
       num = 8; //NoNorthWest
@@ -54,7 +65,7 @@ class Room {
     } else if (x == 6 && y == 6) {
       num = 11; //NoSouthEast
     }
-    
+
     //ROOMS
 
     if (num == 0) {
@@ -95,6 +106,14 @@ class Room {
     }
     if (num == 12) {
       img = loadImage("Sprites/TrapRoom.png");
+
+      numEnemies = 7;
+      enemies = new Enemy[numEnemies];
+      for (int i = 0; i < numEnemies; i++) {
+        ex = random(252, 1466);
+        ey = random(282, 945);
+        enemies[i] = new Enemy(ex, ey);
+      }
     }
     if (num == 13) {
       img = loadImage("Sprites/ItemRoom.png");
@@ -115,10 +134,20 @@ class Room {
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
     pop();
+    
+    if (currentRoom.num == 12) {
+      for (Enemy e : enemies) {
+        e.display();
+      }
+    }
   }
 
   void update () {
-    
+    if (currentRoom.num == 12) {
+      for (Enemy e : enemies) {
+        e.update();
+      }
+    }
   }
 
 

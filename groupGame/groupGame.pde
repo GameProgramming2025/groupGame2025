@@ -13,9 +13,7 @@ int currentI;
 int currentJ;
 Room currentRoom;
 
-Enemy enemies [];
-int numEnemies;
-float ex, ey;
+
 
 SoundEffects soundEffects;
 
@@ -25,8 +23,8 @@ Minim minim;
 void setup() {
 
   rectMode(CENTER);
-  size(1700, 1200);
-
+  size(1700, 1200, P2D);
+  
   p1 = new Player();
   currentI = 1;
   currentJ = 1;
@@ -54,15 +52,6 @@ void setup() {
   rooms[1][1] = new ItemRoom(1, 1);
   currentRoom = rooms[currentI][currentJ];
 
-  numEnemies = 7;
-  enemies = new Enemy[numEnemies];
-  for (int i = 0; i < numEnemies; i++) {
-    ex = random(252, 1466);
-    ey = random(282, 945);
-    enemies[i] = new Enemy(ex, ey);
-  }
-}
-
 void draw() {
   background(0);
 
@@ -74,7 +63,9 @@ void draw() {
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
     background(0);
-    rooms[currentI][currentJ].display();
+    currentRoom = rooms[currentI][currentJ];
+    currentRoom.update();
+    currentRoom.display();
     if (p1.x >= width) {
       p1.x = 40;
       currentI++;
@@ -94,19 +85,12 @@ void draw() {
 
     p1.update();
     currentRoom.constrainPlayer(p1);
-
     p1.display();
 
-    if (currentRoom.num == 12) {
-      for (Enemy e : enemies) {
-        e.update();
-        e.display();
-      }
-    }
-
+    h1.effects(true);
     h1.update();
     h1.display();
-    soundEffects.update();
+    soundEffects.update();    
 
     //Cameron this is embarassing
     if (p1.finalAnimation <= 0 && p1.HP <= 0) gameState = GameState.GAME_OVER;
