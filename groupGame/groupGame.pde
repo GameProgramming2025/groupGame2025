@@ -21,14 +21,15 @@ SoundEffects soundEffects;
 
 Minim minim;
 
+
 void setup() {
 
   rectMode(CENTER);
   size(1700, 1200);
 
   p1 = new Player();
-  currentI = 0;
-  currentJ = 0;
+  currentI = 1;
+  currentJ = 1;
   p1.x = width/2;
   p1.y = height/2;
 
@@ -47,12 +48,11 @@ void setup() {
   for (int i = 0; i < 7; i++) {
     for (int j = 0; j < 7; j++) {
 
-      rooms[i][j] = new Room(i, j);
+      rooms[i][j] = new Room(i, j, int(random(0, 13)));
     }
   }
+  rooms[1][1] = new ItemRoom(1, 1);
   currentRoom = rooms[currentI][currentJ];
-
-
 
   numEnemies = 7;
   enemies = new Enemy[numEnemies];
@@ -61,14 +61,10 @@ void setup() {
     ey = random(282, 945);
     enemies[i] = new Enemy(ex, ey);
   }
-
 }
 
 void draw() {
-  println(currentI, currentJ);
   background(0);
-
-  //println(frameRate);
 
   switch (gameState) {
   case MAIN_SCREEN:
@@ -98,7 +94,7 @@ void draw() {
 
     p1.update();
     currentRoom.constrainPlayer(p1);
-    currentRoom = rooms[currentI][currentJ];
+
     p1.display();
 
     if (currentRoom.num == 12) {
@@ -113,7 +109,7 @@ void draw() {
     soundEffects.update();
 
     //Cameron this is embarassing
-    if (p1.HP <= 0) gameState = GameState.GAME_OVER;
+    if (p1.finalAnimation <= 0 && p1.HP <= 0) gameState = GameState.GAME_OVER;
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);
