@@ -2,6 +2,7 @@
 class Player { 
   Item items[];
   EmptyItem e;
+  SoundEffects sfx;
 
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
@@ -26,6 +27,7 @@ class Player {
   int frame;
 
   Player() {
+    
     xSize = 96;
     ySize = 96;
     HP = 10;
@@ -88,6 +90,7 @@ class Player {
     sprites[20] = spritesheet.get(0, 384, 96, 96);
     sprites[21] = spritesheet.get(384, 384, 96, 96);
 
+  sfx = new SoundEffects(minim);
   }
 
   void update() {
@@ -322,6 +325,8 @@ class Player {
         nextShot = 0;
       }
       nextShot++;
+      
+      sfx.attack = true;//fireball sfx
     }
 
     switch (key) {
