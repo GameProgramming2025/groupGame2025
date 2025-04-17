@@ -1,4 +1,5 @@
 class Enemy extends ScreenElement {
+  SoundEffects sfx;
   float health;
   float gravity;
   float xAcc;
@@ -69,6 +70,7 @@ class Enemy extends ScreenElement {
     sprites[19] = spritesheet.get(384, 288, 96, 96);
 
     recordedTime = millis() + 1000;
+    sfx = new SoundEffects(minim);
   }
 
   void display () {
@@ -154,8 +156,12 @@ class Enemy extends ScreenElement {
     }
 
 
+    //println(xPos);
+
+
 
     //println(xPos);
+
 
     if ( enemy.x < 252 ) {
       xVelo = -xVelo;
@@ -199,6 +205,10 @@ class Enemy extends ScreenElement {
       p1.HP -= 1;
       enemyHealth -= 15;
       recordedTime = millis();
+      
+      soundEffects.strike = true;
+    }else{
+     soundEffects.strike = false; 
     }
 
     if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
@@ -206,9 +216,11 @@ class Enemy extends ScreenElement {
       projectile.x = 10000;
       projectile.y = 10000;
       recordedTime = millis();
+
       soundEffects.hurt = true;
     } else {
       soundEffects.hurt = false;
+
     }
 
     for (Magic m : p1.shots) {
