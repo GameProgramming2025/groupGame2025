@@ -19,6 +19,7 @@ class Enemy extends ScreenElement {
   int firstSprite;
   int frame;
   int animation;
+  int finTimer;
 
   Enemy(float x, float y) {
     super();
@@ -36,13 +37,37 @@ class Enemy extends ScreenElement {
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
+    finTimer = 270;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage("Sprites/ZombieEnemy.png");
-    spritesheet.resize(96, 96);
-    sprites[0] = spritesheet.get(6, 9, 30, 39);
-    sprites[1] = spritesheet.get(54, 9, 30, 39);
-    sprites[2] = spritesheet.get(6, 57, 30, 39);
-    sprites[3] = spritesheet.get(54, 57, 30, 39);
+    PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
+    //spritesheet.resize(96, 96);
+
+    //Basic Sprites
+    sprites[0] = spritesheet.get(0, 0, 96, 96);
+    sprites[1] = spritesheet.get(96, 0, 96, 96);
+    //Death Sprites
+    sprites[2] = spritesheet.get(192, 0, 96, 96);
+    sprites[3] = spritesheet.get(288, 0, 96, 96);
+    sprites[4] = spritesheet.get(384, 0, 96, 96);
+
+    sprites[5] = spritesheet.get(0, 96, 96, 96);
+    sprites[6] = spritesheet.get(96, 96, 96, 96);
+    sprites[7] = spritesheet.get(192, 96, 96, 96);
+    sprites[8] = spritesheet.get(288, 96, 96, 96);
+    sprites[9] = spritesheet.get(384, 96, 96, 96);
+
+    sprites[10] = spritesheet.get(0, 192, 96, 96);
+    //start of explosion death
+    sprites[11] = spritesheet.get(96, 192, 96, 96);
+    sprites[12] = spritesheet.get(192, 192, 96, 96);
+    sprites[13] = spritesheet.get(288, 192, 96, 96);
+    sprites[14] = spritesheet.get(384, 192, 96, 96);
+
+    sprites[15] = spritesheet.get(0, 288, 96, 96);
+    sprites[16] = spritesheet.get(96, 288, 96, 96);
+    sprites[17] = spritesheet.get(192, 288, 96, 96);
+    sprites[18] = spritesheet.get(288, 288, 96, 96);
+    sprites[19] = spritesheet.get(384, 288, 96, 96);
 
     recordedTime = millis() + 1000;
     sfx = new SoundEffects(minim);
@@ -66,14 +91,14 @@ class Enemy extends ScreenElement {
       animation--;
       currentSprite = 0;
       if (animation <= 5) {
-        currentSprite = 2;
+        currentSprite = 1;
       }
     }
     if (yVelo < 0 && xVelo < 0) {
       animation--;
-      currentSprite = 1;
+      currentSprite = 0;
       if (animation <= 5) {
-        currentSprite = 3;
+        currentSprite = 1;
       }
     }
     imageMode(CENTER);
@@ -82,7 +107,7 @@ class Enemy extends ScreenElement {
     strokeWeight(2);
     stroke(255);
     fill(#ffff00);
-    rect(0, -25, enemyHealth, HpBarHeight);
+    rect(0, -55, enemyHealth, HpBarHeight);
     fill(#00ffff);
     pop();
   }
@@ -159,12 +184,19 @@ class Enemy extends ScreenElement {
 
 
     if (enemyHealth <= 0 ) {
-      enemyHealth = 0;
-      HpBarHeight = 0;
-      enemy.x = 10000;
-      enemy.y = 10000;
-    }
+      finTimer--;
+      xVelo = 0;
+      yVelo = 0;
 
+      currentSprite = int((270-finTimer)/15)+2;
+      if (finTimer <= 1) {
+        HpBarHeight = 0;
+        enemy.x = 10000;
+        enemy.y = 10000;
+        finTimer = 60;
+      }
+    }
+    
     if (enemyHealth == 0) {
       here = false;
     }
@@ -190,11 +222,14 @@ class Enemy extends ScreenElement {
       soundEffects.hurt = false;
 
     }
-    
+
     for (Magic m : p1.shots) {
       if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
         enemyHealth = 0;
       }
     }
+    
+    xPos = enemy.x;
+    yPos = enemy.y;
   }
 }
