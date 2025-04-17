@@ -26,8 +26,8 @@ void setup() {
   size(1700, 1200, P2D);
 
   p1 = new Player();
-  currentI = 1;
-  currentJ = 1;
+  currentI = 0;
+  currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
 
@@ -57,6 +57,7 @@ void draw() {
 
   switch (gameState) {
   case MAIN_SCREEN:
+  
 
     break;
   case GAMEPLAY:
