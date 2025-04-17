@@ -1,5 +1,5 @@
-class Player { //<>// //<>//
-  //Items //<>// //<>//
+class Player { //<>// //<>// //<>//
+  //Items //<>// //<>// //<>//
   Item inventory[];
   int equippedItem;
   HighNoon h;
@@ -23,10 +23,10 @@ class Player { //<>// //<>//
   float farthestEnemyY;
 
   // Player Stats //<>//
- //<>//
+ //<>// //<>//
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
  //<>//
-  Magic shots[]; //<>//
+  Magic shots[]; //<>// //<>//
 
   int nextShot;
   int nextItem;
@@ -340,9 +340,7 @@ class Player { //<>// //<>//
       tempY = y;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x, y-30,0,shotspd+(yVel*.5), false);
-        shots[nextShot].updateHeatseeker(farthestEnemyX, farthestEnemyY);
-
+        shots[nextShot].createObject(x, y-30,0,shotspd+(yVel*.5), true);
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
