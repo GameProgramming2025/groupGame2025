@@ -12,8 +12,8 @@ class Item {
   String imageFileName;
   int rarity;
   int amount;
-  int HP, shotsCD,maxspd;
-  float spd, atk, range, shotspd;
+  int HP, shotsCD, maxspd;
+  float spd, atk, range, shotspd, xSize, ySize;
   boolean collected;
   boolean itemSpawned;
   String rarityStr = "Common";
@@ -22,9 +22,9 @@ class Item {
     this.x = x;
     this.y = y;
     this.imageFileName = imageFileName;
-    if(imageFileName != null){
-    itemImg = loadImage(imageFileName);
-    itemImg.resize(80, 80);
+    if (imageFileName != null) {
+      itemImg = loadImage(imageFileName);
+      itemImg.resize(80, 80);
     }
     name = "Item";
     description = "An item in the game";
@@ -38,8 +38,9 @@ class Item {
     atk = 0;
     range = 0;
     shotspd = 0;
+    xSize = 0;
+    ySize = 0;
     collected = false;
-    itemSpawned = false;
   }
   Item(JSONObject j) {
     x = j.getFloat("x");
@@ -64,21 +65,17 @@ class Item {
   void display() {
     push();
     translate(x, y);
-    rotate(r);
-    scale(s);
+    rotate(0);
+    scale(1);
     render();
     pop();
   }
 
   void render() {
-    if (itemSpawned == false){
-     return; 
-    }
-    strokeWeight(8);
-    rect(x-10, y-10, 100, 100, 10);
-    image(itemImg, x, y);
-    
+    imageMode(CENTER);
+    image(itemImg, 0, 0);
   }
+  
   void renderDetails() {
     if (rarity == 1) {
       rarityStr = "Common";

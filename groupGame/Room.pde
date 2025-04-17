@@ -8,10 +8,16 @@ class Room {
   boolean rightOpen;
 
   int numEnemies;
+
+
   int num;
   int time;
   int numImages = 3;
   PImage img;
+
+  Enemy enemies [];
+  int numEnemies;
+  float ex, ey;
 
   Room(int x, int y) {
     this.x=x;
@@ -106,6 +112,14 @@ class Room {
     }
     if (num == 12) {
       img = loadImage("Sprites/TrapRoom.png");
+
+      numEnemies = 7;
+      enemies = new Enemy[numEnemies];
+      for (int i = 0; i < numEnemies; i++) {
+        ex = random(252, 1466);
+        ey = random(282, 945);
+        enemies[i] = new Enemy(ex, ey);
+      }
     }
     if (num == 13) {
       img = loadImage("Sprites/ItemRoom.png");
@@ -119,6 +133,7 @@ class Room {
   void display () {
     push();
     rectMode(CORNER);
+    imageMode(CORNER);
     fill(bc);
     strokeWeight(10);
     stroke(90);
@@ -127,9 +142,20 @@ class Room {
 
 
     pop();
+    
+    if (currentRoom.num == 12) {
+      for (Enemy e : enemies) {
+        e.display();
+      }
+    }
   }
 
   void update () {
+    if (currentRoom.num == 12) {
+      for (Enemy e : enemies) {
+        e.update();
+      }
+    }
   }
 
 
