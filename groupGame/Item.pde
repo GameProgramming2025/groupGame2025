@@ -44,6 +44,8 @@ class Item {
     ySize = 0;
     collected = false;
   }
+  
+    
   Item(JSONObject j) {
     x = j.getFloat("x");
     y = j.getFloat("y");
@@ -74,6 +76,9 @@ class Item {
   }
 
   void render() {
+    if ( collected == true){
+     return; 
+    }
     imageMode(CENTER);
     image(itemImg, 0, 0);
   }
@@ -105,4 +110,5 @@ class Item {
 
   void keyReleased() {
   }
+  
 }

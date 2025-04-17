@@ -23,6 +23,7 @@ class HighNoon extends Item {
     return j;
   }
   void render() {
+    
     super.render();
   }
   

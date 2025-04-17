@@ -1,6 +1,8 @@
-class Player { //<>//
-  //Items //<>//
+class Player { //<>// //<>// //<>// //<>//
+  //Items
   Item inventory[];
+  ItemRoom ipos;
+  
   int equippedItem;
   HighNoon h;
 
@@ -23,10 +25,10 @@ class Player { //<>//
   float farthestEnemyY;
 
   // Player Stats
- //<>//
+
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
-  Magic shots[]; //<>//
+  Magic shots[];
 
   int nextShot;
   int nextItem;
@@ -39,6 +41,7 @@ class Player { //<>//
   int frame;
 
   Player() {
+    
     xSize = 96;
     ySize = 96;
     HP = 10;
@@ -59,6 +62,7 @@ class Player { //<>//
 
     h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
+
     inventory = new Item[5];
 
     for (int j = 0; j < 5; j++) {
@@ -113,11 +117,16 @@ class Player { //<>//
   }
 
   void update() {
-    
+
 
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
+    }
+    if (dist(x, y,h.x, h.y)<250) {
+      println(h.collected);
+      h.collected = true;
+      inventory[0] = new HighNoon( x,y);
     }
 
     spd = constrain(spd, 1, maxspd);
