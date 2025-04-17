@@ -7,8 +7,8 @@ class ItemRoom extends Room {
   float selected4;
 
 
-  ItemRoom(int x, int y) {
-    super(x, y);
+  ItemRoom(int x, int y,boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+    super(x, y,topOpen,bottomOpen,leftOpen,rightOpen);
     this.x = x;
     this.y = y;
     spawn = random(0, 100);

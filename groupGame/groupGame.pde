@@ -45,10 +45,10 @@ void setup() {
   rooms = new Room[7][7];
   for (int i = 0; i < 7; i++) {
     for (int j = 0; j < 7; j++) {
-      rooms[i][j] = new Room(i, j);
+      rooms[i][j] = new Room(i, j,false,false,false,false);
     }
   }
-  rooms[1][1] = new ItemRoom(1, 1);
+  rooms[1][1] = new ItemRoom(1, 1,true,true,true,true);
   currentRoom = rooms[currentI][currentJ];
 }
 

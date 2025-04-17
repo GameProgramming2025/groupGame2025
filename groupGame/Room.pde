@@ -16,12 +16,15 @@ class Room {
   PImage img;
 
   Enemy enemies [];
-  int numEnemies;
   float ex, ey;
 
-  Room(int x, int y) {
+  Room(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     this.x=x;
     this.y=y;
+    this.topOpen = topOpen;
+    this.bottomOpen=bottomOpen;
+    this.leftOpen=leftOpen;
+    this.rightOpen=rightOpen;
 
     bc = color(random(100, 200), 100, 20);
 
@@ -142,7 +145,7 @@ class Room {
 
 
     pop();
-    
+
     if (currentRoom.num == 12) {
       for (Enemy e : enemies) {
         e.display();
@@ -194,20 +197,20 @@ class Room {
     if (p.x > 240 && p.x < 765 && p.y < 267 && p.y > 257) {//top left hallway wall
       p.y=266;
     } else if (x < 755 && y < 245) { //left-side wall next to door
-      x = 755;
+      x = 754;
     } else if (x > 925 && y < 245) { //right-side wall next to door
-      x = 925;
+      x = 924;
     } else if ( p.x > 748 && p.y < 1 && p.y > 230) {//left top wall
       p.x = 747;
-    } else if (p.x > 918 && p.x < 1476 && p.y < 267 && p.y > 257) {//top right wall
-      p.y=266;
+    } else if (p.x > 918 && p.x < 1476 && p.y < 266 && p.y > 257) {//top right wall
+      p.y=265;
     }
 
     //bottom side
     if (p.x > 240 && p.x < 765 && p.y > 933 && p.y < 943) {//bottom left wall
       p.y=932;
-    } else if (p.x < 750 & p.y > 995) {// left-side wall next to door
-      x = 750;
+    } else if (p.x > 746 & p.y < 1000 && p.y > 1500) {// left-side wall next to door
+      x = 745;
     } else if (x > 915 && y > 995) { //right-side wall next to door
       x = 915;
     } else if (p.x > 918 && p.x < 1476 && p.y > 933 && p.y < 943) {//bottom right wall
