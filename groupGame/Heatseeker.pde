@@ -37,14 +37,14 @@ class Heatseeker {
       imageMode(CORNER);
     }
   }
-  
+
   void createBullet(float posX, float posY) {
     this.posX = posX;
     this.posY = posY;
-    
+
     using = true;
   }
-  
+
   void destroyBullet() {
     using = false;
   }
