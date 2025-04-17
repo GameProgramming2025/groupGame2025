@@ -16,6 +16,7 @@ class HighNoon extends Item {
   HighNoon(JSONObject j) {
     super(j);
   }
+  
   JSONObject serialize() {
     JSONObject j = super.serialize();
     j.setString("class", "highNoon");
@@ -24,4 +25,7 @@ class HighNoon extends Item {
   void render() {
     super.render();
   }
+  
+  
+  
 }
