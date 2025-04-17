@@ -3,7 +3,6 @@ import ddf.minim.AudioPlayer;
 
 class SoundEffects {
   boolean start;
-
   boolean hurt;
   boolean heal;
   boolean strike;
@@ -43,9 +42,6 @@ class SoundEffects {
 
 
   void update() {
-
-
-
 
     if (hurt) {
       num = (int)random(1, 4);
