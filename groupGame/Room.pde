@@ -19,6 +19,8 @@ class Room {
 
     bc = color(random(100, 200), 100, 20);
 
+    //println(num);
+
 
     num = int(random(0, 13));
 

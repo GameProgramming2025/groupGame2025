@@ -1,6 +1,7 @@
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
 
+
 class SoundEffects {
   boolean start;
   boolean hurt;
@@ -22,12 +23,12 @@ class SoundEffects {
 
 
   SoundEffects(Minim minim) {
-    start = false;
+
     hurt = false;
-    heal = false;
+    //heal = false;
     strike = false;
-    item = false;
     attack = false;
+    //item = false;
     num = -1;
     num2= -2;
     this.minim = minim;
@@ -37,7 +38,7 @@ class SoundEffects {
     ehit1 = minim.loadFile ("SoundEffects/Enemy_hit1.mp3");
     ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
-    fireball = minim.loadFile("SoundEffects/fireballsfx.mp3");
+    fireball = minim.loadFile ("SoundEffects/Fireballsfx.mp3");
   }
 
 
@@ -79,4 +80,5 @@ class SoundEffects {
      fireball.pause(); 
     }
   }
+
 }

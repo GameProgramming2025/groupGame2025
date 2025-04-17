@@ -1,6 +1,6 @@
  //<>//
 class Player { //<>// 
-  //Items //<>//
+  //Items //<>// 
   Item inventory[];
   int equippedItem;
   HighNoon h;
@@ -121,7 +121,7 @@ class Player { //<>//
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
 
-      }
+
     //println(p1.y);
     //right side
 
