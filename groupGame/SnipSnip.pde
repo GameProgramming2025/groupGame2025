@@ -5,7 +5,7 @@ class SnipSnip extends Item{
   this.x = x;
   this.y = y;
   name = "SnipSnip";
-  description = "I love the imagery it conjures up—a perfect blend of sharp accuracy and finesse. You are now a deadshot.Improve high noon";
+  description = "I love the imagery it conjures up—a perfect blend of sharp accuracy and finesse. You are now a deadshot. Improved high noon";
   area = "Item Room";
   rarity = 3;
   range = 600;
