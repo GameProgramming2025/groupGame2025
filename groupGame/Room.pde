@@ -218,7 +218,6 @@ class Room {
     // different rooms
 
     if (currentRoom.num == 1) {
-      rooms[0],[1], top
       if (p.x > 1470 && p.y > 266 && p.y < 925) {//right wall
         p.x = 1470;
       }
