@@ -9,10 +9,7 @@ class ItemRoom extends Room {
 
   ItemRoom(int x, int y,boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     super(x, y,topOpen,bottomOpen,leftOpen,rightOpen);
-    this.x = x;
-    this.y = y;
     spawn = random(0, 100);
-    num = 13;
     println(spawn);
     if (spawn < 0.5) {
       item = new SpeedForce(width/2, height/2);
@@ -32,7 +29,6 @@ class ItemRoom extends Room {
   }
 
   void display() {
-    num = 13;
     super.display();
     if (item != null) {
       item.display();
