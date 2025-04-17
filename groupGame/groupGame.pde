@@ -67,7 +67,7 @@ void setup() {
   rooms[4][3] = new Room(4, 3, true, true, false, false);//border on left wall
   rooms[0][4] = new Room(0, 4, true, false, false, true);
   rooms[1][4] = new Room(1, 4, false, true, true, true);//border on top wall
-  rooms[2][4] = new Room(2, 4, true, true, true, true);//item room
+  rooms[2][4] = new ItemRoom(2, 4, true, true, true, true);//item room
   rooms[3][4] = new Room(3, 4, false, true, true, true);//border on top wall
   rooms[4][4] = new Room(4, 4, true, false, true, false);
 

@@ -61,7 +61,58 @@ class Room {
   }
 
   void constrainPlayer(Player p) {
-   // println(p.y);
+    //top
+    println(p.x);
+    if (p.y < 305) {
+      if (p.x > width * 0.4 && p.x < width * 0.6 && topOpen) {
+        currentJ--;
+        p.y = height-265;
+      } else {
+        p.y = 305;
+      }
+    }
+    
+    //bottom
+    if (p.y > height-265) {
+      if (p.x > width * 0.4 && p.x < width * 0.6 && bottomOpen) {
+        currentJ++;
+        p.y = 305;
+      } else {
+        p.y = height-265;
+      }
+    }
+    
+    
+    //left
+    if(p.x < 305) {
+      if (p.y > height * 0.3 && p.y < height * 0.7 && leftOpen) {
+        currentI--;
+        p.x = width-305;
+      } else {
+        p.x = 305;
+      }
+    }
+    
+    
+    //right
+    if(p.x > width - 265) {
+      if (p.y > height * 0.3 && p.y < height * 0.7 && rightOpen) {
+        currentI++;
+        p.x = 305;
+      } else {
+        p.x = width-265;
+      }
+    }
+    
+    
+    
+    
+    
+  }
+
+
+
+    // println(p.y);
     //right side
     //if (p.x > 1470 && p.y < 550) {//top right wall
     //  p.x = 1470;
@@ -182,5 +233,5 @@ class Room {
     //    p.x = 1469;
     //  }
     //}
-  }
+
 }
