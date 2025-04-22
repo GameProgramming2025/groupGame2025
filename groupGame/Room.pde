@@ -229,7 +229,7 @@ class Room {
     if(p.x > width - 225) {
       if (p.y > height * 0.3 && p.y < height * 0.7 && rightOpen) {
         currentI++;
-        p.x = 225;
+        p.x = 265;
       } else {
         p.x = width-225;
       }
