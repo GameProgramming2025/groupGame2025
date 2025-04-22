@@ -1,5 +1,6 @@
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
+//Lindblom talons of darkness
 //
 Player p1;
 HUD h1;

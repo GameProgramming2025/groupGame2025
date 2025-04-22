@@ -72,7 +72,7 @@ class Player { //<>// //<>// //<>// //<>//
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
     }
-inventory[2]= new PikminItem(x,y);
+
 
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic();
