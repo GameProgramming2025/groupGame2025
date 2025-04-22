@@ -38,8 +38,7 @@ class HUD {
   }
 
   void display() {
-    text("" + currentRoom.x + "",width/2,40);
-    text(""+ currentRoom.y +"",width/2 +20,40);
+    
     strokeWeight(10);
     rect(width*7/10, 70, 70, 70, 10);
     rect(width*6.5/10, 70, 70, 70, 10);
