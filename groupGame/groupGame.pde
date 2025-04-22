@@ -59,7 +59,7 @@ void setup() {
   rooms[1][2] = new Room(1, 2, true, true, false, false);//border on left and right wall & trap room
   rooms[2][2] = new Room(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
   rooms[3][2] = new Room(3, 2, true, true, false, false);//borders on left and right wall & trap room
-  rooms[4][2] = new Room(4, 2, true, true, false, true);//border on left wall & trap room
+  rooms[4][2] = new Room(4, 2, true, true, false, false);//border on left wall & trap room
   rooms[0][3] = new Room(0, 3, true, true, false, false);//border on right wall
   rooms[1][3] = new Room(1, 3, true, false, false, true);//border on left and bottom wall
   rooms[2][3] = new Room(2, 3, false, true, true, true);//border to boss room on top wall
@@ -67,8 +67,8 @@ void setup() {
   rooms[4][3] = new Room(4, 3, true, true, false, false);//border on left wall
   rooms[0][4] = new Room(0, 4, true, false, false, true);
   rooms[1][4] = new Room(1, 4, false, true, true, true);//border on top wall
-  rooms[2][4] = new ItemRoom(2, 4, true, true, true, true);//item room
-  rooms[3][4] = new Room(3, 4, false, true, true, true);//border on top wall
+  rooms[2][4] = new ItemRoom(2, 4, true, false, true, true);//item room 
+  rooms[3][4] = new Room(3, 4, false, false, true, true);//border on top wall
   rooms[4][4] = new Room(4, 4, true, false, true, false);
 
   currentRoom = rooms[currentI][currentJ];
