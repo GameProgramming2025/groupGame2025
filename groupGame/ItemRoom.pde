@@ -7,12 +7,9 @@ class ItemRoom extends Room {
   float selected4;
 
 
-  ItemRoom(int x, int y) {
-    super(x, y);
-    this.x = x;
-    this.y = y;
+  ItemRoom(int x, int y,boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+    super(x, y,topOpen,bottomOpen,leftOpen,rightOpen);
     spawn = random(0, 100);
-    num = 13;
     println(spawn);
     if( spawn <= 100){
      item = new HighNoon(width/2, height/2); 
@@ -35,7 +32,6 @@ class ItemRoom extends Room {
   }
 
   void display() {
-    num = 13;
     super.display();
     if (item != null) {
       item.display();
