@@ -1,5 +1,5 @@
-class Player { //<>//
-  //Items //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>//
   Item inventory[];
   int equippedItem;
   HighNoon h;
@@ -23,9 +23,10 @@ class Player { //<>//
   float farthestEnemyY;
 
   // Player Stats
- //<>//
+
   int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
   //<>//
+
   Magic shots[]; //<>//
 
   int nextShot;
@@ -258,6 +259,8 @@ class Player { //<>//
       }
     }
     if (HP <= 0) {
+      xVel = 0;
+      yVel = 0;
       finalAnimation--;
       currentSprite = 17;
       if (finalAnimation <= 44) {
