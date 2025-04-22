@@ -22,8 +22,7 @@ class SoundEffects {
   AudioPlayer fireball;
 
 
-  SoundEffects(Minim minim) {
-
+  SoundEffects(Minim m) {
     hurt = false;
     //heal = false;
     strike = false;
@@ -31,7 +30,7 @@ class SoundEffects {
     //item = false;
     num = -1;
     num2= -2;
-    this.minim = minim;
+    this.minim = m;
     grunt1 = minim.loadFile("SoundEffects/Player_hitV2.mp3");
     grunt2 = minim.loadFile("SoundEffects/Player_hitV2.1.mp3");
     grunt3 = minim.loadFile ("SoundEffects/Player_hitV2.2.mp3");
@@ -39,6 +38,7 @@ class SoundEffects {
     ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
     fireball = minim.loadFile ("SoundEffects/Fireballsfx.mp3");
+    
   }
 
 
@@ -73,6 +73,7 @@ class SoundEffects {
     }
 
     if (attack) {
+      println("attacking");
       if( !fireball.isPlaying() );{
         fireball.play();
       }

@@ -163,7 +163,7 @@ class Room {
 
   void constrainPlayer(Player p) {
     //top
-    println(p.x);
+    //println(p.x);
     if (p.y < 305) {
       if (p.x > width * 0.4 && p.x < width * 0.6 && topOpen) {
         currentJ--;

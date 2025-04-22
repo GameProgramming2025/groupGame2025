@@ -10,7 +10,7 @@ class ItemRoom extends Room {
   ItemRoom(int x, int y,boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     super(x, y,topOpen,bottomOpen,leftOpen,rightOpen);
     spawn = random(0, 100);
-    println(spawn);
+    //println(spawn);
     if (spawn < 0.5) {
       item = new SpeedForce(width/2, height/2);
     } else if (spawn <5) {

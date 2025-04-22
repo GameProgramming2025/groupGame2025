@@ -1,4 +1,4 @@
- //<>//
+ //<>// //<>//
 class Player { //<>// 
   //Items //<>// 
   Item inventory[];
@@ -25,11 +25,11 @@ class Player { //<>//
   float farthestEnemyX;
   float farthestEnemyY;
 
-  // Player Stats //<>//
- //<>// //<>//
+  // Player Stats //<>// //<>//
+ //<>// //<>// //<>//
   int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
- //<>//
-  Magic shots[]; //<>// //<>//
+ //<>// //<>//
+  Magic shots[]; //<>// //<>// //<>//
 
   int nextShot;
   int nextItem;
@@ -60,7 +60,6 @@ class Player { //<>//
     inventory= new Item[5];
 
     nextItem = 0;
-
     h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
     inventory = new Item[5];
@@ -110,7 +109,7 @@ class Player { //<>//
     sprites[20] = spritesheet.get(0, 384, 96, 96);
     sprites[21] = spritesheet.get(384, 384, 96, 96);
 
-  sfx = new SoundEffects(minim);
+
 
   }
 
@@ -354,6 +353,8 @@ class Player { //<>//
       shotCD = shotsCD;
       tempX = x;
       tempY = y;
+      println("attacking");
+      //sfx.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y-30,0,shotspd+(yVel*.5), true);
@@ -372,7 +373,6 @@ class Player { //<>//
       }
       nextShot++;
       
-      sfx.attack = true;//fireball sfx
     }
 
     switch (key) {

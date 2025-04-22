@@ -70,7 +70,7 @@ class Enemy extends ScreenElement {
     sprites[19] = spritesheet.get(384, 288, 96, 96);
 
     recordedTime = millis() + 1000;
-    sfx = new SoundEffects(minim);
+
   }
 
   void display () {
