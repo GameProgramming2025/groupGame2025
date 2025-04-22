@@ -28,8 +28,8 @@ class BossEnemy extends ScreenElement {
     here = true;
     BossEnemyHealth = 500;
     HpBarHeight = 10;
-    xVelo = random(-2.5, 2.5);
-    yVelo = random(-1.5, 1.5);
+    xVelo = 3;
+    yVelo = 3;
     BossEnemy = new PVector(x, y);
     projectile = new PVector(BossEnemy.x, BossEnemy.y);
     target = new PVector(p1.x, p1.y);
