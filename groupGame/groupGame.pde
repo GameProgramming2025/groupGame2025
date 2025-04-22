@@ -3,7 +3,7 @@ import ddf.minim.AudioPlayer;
 //
 Player p1;
 HUD h1;
-
+Item spawned;
 GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
 PImage GameOver;
@@ -30,8 +30,8 @@ void setup() {
   currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
-
-  minim = new Minim(this);
+  
+    minim = new Minim(this);
 
   soundEffects = new SoundEffects(minim);
 
@@ -54,10 +54,11 @@ void setup() {
 
 void draw() {
   background(0);
-
+  for (int i=0; i < 2; i++) {
+  }
   switch (gameState) {
   case MAIN_SCREEN:
-  
+
 
     break;
   case GAMEPLAY:
@@ -110,8 +111,8 @@ void draw() {
     //println("lost");
     break;
   }
-   h1.update();
-    h1.display();
+  h1.update();
+  h1.display();
 }
 
 void keyPressed() {

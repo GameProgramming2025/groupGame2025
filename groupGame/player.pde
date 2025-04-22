@@ -64,7 +64,7 @@ class Player { //<>// //<>// //<>//
 
     nextItem = 0;
 
-    h = new HighNoon(width/4, height/4);
+    
     e = new EmptyItem(x, y);
 
     inventory = new Item[5];
@@ -123,11 +123,7 @@ class Player { //<>// //<>// //<>//
     if (HP <= 0 && finalAnimation <= 1) {
       image(GameOver, 170, 50);
     }
-    if (dist(x, y,h.x, h.y)<250) {
-      println(h.collected);
-      h.collected = true;
-      inventory[0] = new HighNoon( x,y);
-    }
+    
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
