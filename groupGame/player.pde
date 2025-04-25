@@ -1,6 +1,6 @@
- //<>// //<>//
+ //<>//
 class Player { //<>// 
-  //Items //<>// 
+  //Items //<>// //<>//
   Item inventory[];
   int equippedItem;
   HighNoon h;
@@ -25,11 +25,12 @@ class Player { //<>//
   float farthestEnemyX;
   float farthestEnemyY;
 
-  // Player Stats //<>// //<>//
- //<>// //<>// //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
- //<>// //<>//
-  Magic shots[]; //<>// //<>// //<>//
+ //<>//
+ //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+  //<>// //<>//
+ //<>//
+  Magic shots[]; //<>//
 
   int nextShot;
   int nextItem;
@@ -45,6 +46,7 @@ class Player { //<>//
     
     xSize = 96;
     ySize = 96;
+    maxHP = 10;
     HP = 10;
     spd = 1;
     shotspd = 35;
@@ -114,7 +116,7 @@ class Player { //<>//
   }
 
   void update() {
-    
+
 
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
@@ -134,6 +136,11 @@ class Player { //<>//
     if (shotspd < 1) {
       shotspd = 1;
     }
+
+    if (HP > maxHP) {
+      HP = maxHP;
+    }
+
     x += xVel;
     y += yVel;
     xVel += xAcc;
@@ -267,6 +274,8 @@ class Player { //<>//
       }
     }
     if (HP <= 0) {
+      xVel = 0;
+      yVel = 0;
       finalAnimation--;
       currentSprite = 17;
       if (finalAnimation <= 44) {
@@ -357,7 +366,7 @@ class Player { //<>//
       //sfx.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x, y-30,0,shotspd+(yVel*.5), true);
+        shots[nextShot].createObject(x, y-30, 0, shotspd+(yVel*.5), true);
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);

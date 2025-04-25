@@ -7,6 +7,10 @@ class Room {
   boolean leftOpen;
   boolean rightOpen;
   PImage img;
+  PImage topDoor;
+  PImage rightDoor;
+  PImage leftDoor;
+  PImage bottomDoor;
 
   Room(int roomI, int roomJ, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     this.roomI = roomI;
@@ -18,7 +22,11 @@ class Room {
 
     bc = color(random(100, 200), 100, 20);
     img = loadImage("Sprites/BGFourDoors.png");
-
+    topDoor = loadImage("Sprites/DoorTop.png");
+    rightDoor = loadImage("Sprites/DoorRight.png");
+    leftDoor = loadImage("Sprites/DoorLeft.png");
+    bottomDoor = loadImage("Sprites/DoorBottom.png");
+ 
 
     //num = int(random(0, 13));
     ////NORMAL ROOMS
@@ -120,6 +128,10 @@ class Room {
     //}
 
     img.resize(width, height);
+    topDoor.resize(width, height);
+    rightDoor.resize(width, height);
+    leftDoor.resize(width, height);
+    bottomDoor.resize(width, height);
 
     //    numEnemies = 7;
     //    enemies = new Enemy[numEnemies];
@@ -140,6 +152,18 @@ class Room {
     stroke(90);
     rect(20, 20, width-40, height-40);
     image(img, 0, 0);
+    if (!topOpen){
+    image(topDoor, 0, 0);
+    }
+    if (!rightOpen){
+    image(rightDoor, 0, 0);
+    }
+    if (!leftOpen){
+    image(leftDoor, 0, 0);
+    }
+    if (!bottomOpen){
+    image(bottomDoor, 0, 0);
+    }
     pop();
 
     //if (currentRoom.num == 12) {
@@ -185,23 +209,23 @@ class Room {
     
     
     //left
-    if(p.x < 305) {
+    if(p.x < 245) {
       if (p.y > height * 0.3 && p.y < height * 0.7 && leftOpen) {
         currentI--;
-        p.x = width-305;
+        p.x = width-245;
       } else {
-        p.x = 305;
+        p.x = 245;
       }
     }
     
     
     //right
-    if(p.x > width - 265) {
+    if(p.x > width - 225) {
       if (p.y > height * 0.3 && p.y < height * 0.7 && rightOpen) {
         currentI++;
-        p.x = 305;
+        p.x = 265;
       } else {
-        p.x = width-265;
+        p.x = width-225;
       }
     }
     
