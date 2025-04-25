@@ -1,11 +1,8 @@
  //<>//
-class Player { //<>// 
-  //Items //<>// //<>//
+class Player {
   Item inventory[];
   int equippedItem;
   HighNoon h;
-  SoundEffects sfx;
-
   EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
@@ -25,14 +22,14 @@ class Player { //<>//
   float farthestEnemyX;
   float farthestEnemyY;
 
- //<>//
- //<>//
+  //<>//
+  //<>//
   int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+  //<>// //<>// //<>//
   //<>// //<>//
- //<>//
   Magic shots[]; //<>//
-
-  int nextShot;
+ //<>//
+  int nextShot; //<>//
   int nextItem;
 
   //Player Images
@@ -43,7 +40,7 @@ class Player { //<>//
   int frame;
 
   Player() {
-    
+
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -110,9 +107,6 @@ class Player { //<>//
 
     sprites[20] = spritesheet.get(0, 384, 96, 96);
     sprites[21] = spritesheet.get(384, 384, 96, 96);
-
-
-
   }
 
   void update() {
@@ -123,14 +117,14 @@ class Player { //<>//
       image(GameOver, 170, 50);
 
 
-    //println(p1.y);
-    //right side
+      //println(p1.y);
+      //right side
 
 
 
 
-    //println(y);
-    //println(x);
+      //println(y);
+      //println(x);
     }
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
@@ -362,8 +356,7 @@ class Player { //<>//
       shotCD = shotsCD;
       tempX = x;
       tempY = y;
-      println("attacking");
-      //sfx.attack = true;
+      soundEffects.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y-30, 0, shotspd+(yVel*.5), true);
@@ -381,7 +374,6 @@ class Player { //<>//
         nextShot = 0;
       }
       nextShot++;
-      
     }
 
     switch (key) {

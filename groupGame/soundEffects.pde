@@ -38,7 +38,6 @@ class SoundEffects {
     ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
     fireball = minim.loadFile ("SoundEffects/Fireballsfx.mp3");
-    
   }
 
 
@@ -74,12 +73,12 @@ class SoundEffects {
 
     if (attack) {
       println("attacking");
-      if( !fireball.isPlaying() );{
-        fireball.play();
+      if ( !fireball.isPlaying() ){
+        fireball.play(0);
+        attack = false;
       }
-    } else{
-     fireball.pause(); 
+        
+      }
     }
+   
   }
-
-}
