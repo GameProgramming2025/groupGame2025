@@ -4,9 +4,9 @@ class EmptyItem extends Item{
   float y;
   
   EmptyItem(float x, float y) {
-    super(x, y, null);
-    this.x = x;
-    this.y = y;
+
+    super(x, y, "sprites/clear.png");
+
   }
    
   

@@ -1,10 +1,6 @@
- //<>//
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>//
-
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>//
   Item inventory[];
-  ItemRoom ipos;
-
   int equippedItem;
   int nextItemIndex;
   HighNoon h;
@@ -26,16 +22,13 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
- //<>//
-  // Player Stats //<>// //<>//
- //<>//
 
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
- //<>//
-  //<>// //<>// //<>//
- //<>//
-  Magic shots[]; //<>//
+  // Player Stats
 
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
+  //<>//
+
+  Magic shots[];
 
   int nextShot;
   int nextItem;
@@ -48,7 +41,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   int frame;
 
   Player() {
-
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -66,17 +58,15 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     bullets = new Heatseeker[10];
     inventory= new Item[5];
 
-    nextItemIndex = 0;
+    nextItem = 0;
 
-
+    h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
-
     inventory = new Item[5];
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
     }
-
 
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic();
@@ -122,10 +112,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   void update() {
     
-    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
-      println(currentRoom.getItem().name, currentRoom.getItem().x, currentRoom.getItem().y);
+    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && hittingPlayer(currentRoom.getItem().x, currentRoom.getItem().y, 50, 50)) {
+      println(currentRoom.item);
       inventory[nextItemIndex] = currentRoom.getItem();
-      println(inventory[nextItemIndex].name);
       currentRoom.setItem(null);
       nextItemIndex++;
     }
@@ -135,7 +124,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     if (HP <= 0 && finalAnimation <= 1) {
       gameState = GameState.GAME_OVER;
     }
-
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
