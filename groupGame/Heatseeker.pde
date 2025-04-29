@@ -1,51 +1,25 @@
-class Heatseeker {
-  float posX, posY, xVel, yVel;
-  PImage bullet;
-
-  PVector current;
-  PVector target;
-
-  boolean using;
-
-
-  Heatseeker() {
-    bullet = loadImage("data/VisualEffects/stareffect.png");
-    bullet.resize(50, 50);
+class Heatseeker extends Item {
+  
+  Heatseeker(float x, float y) {
+    super(x, y, "Sprites/Heatseeker.png");
+    this.x = x;
+    this.y = y;
+    name = "Heatseeker";
+    description = "A item which targets an enemy but for a price of damage drop off";
+    area = "Item Room";
+    rarity = 3;
+    
   }
-
-  //THIS NEEDS TO BE UPDATED EVERY FRAME
-  void update(float targetX, float targetY) {
-    if (using) {
-      target = new PVector(targetX - posX, targetY - posY);
-      target.normalize();
-
-      xVel = target.x * 20;
-      yVel = target.y * 20;
-
-      posX += xVel;
-      posY += yVel;
-    }
+  Heatseeker(JSONObject j) {
+    super(j);
   }
-
-  void display() {
-    if (using) {
-      imageMode(CENTER);
-      push();
-      translate(posX, posY);
-      image(bullet, 0, 0);
-      pop();
-      imageMode(CORNER);
-    }
+  JSONObject serialize() {
+    JSONObject j = super.serialize();
+    j.setString("class", "ShiftingPrism");
+    return j;
   }
-
-  void createBullet(float posX, float posY) {
-    this.posX = posX;
-    this.posY = posY;
-
-    using = true;
-  }
-
-  void destroyBullet() {
-    using = false;
+  void render() {
+    super.render();
+    rarity = 2;
   }
 }

@@ -5,16 +5,19 @@ class ItemRoom extends Room {
   float selected2;
   float selected3;
   float selected4;
+  PImage irimg;
 
 
   ItemRoom(int x, int y,boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     super(x, y,topOpen,bottomOpen,leftOpen,rightOpen);
+    bc = color(random(100, 200), 100, 20);
+    irimg = loadImage("Sprites/ItemRoom.png");
     spawn = random(0, 100);
     println(spawn);
     if( spawn <= 100){
      item = new HighNoon(width/2, height/2); 
     }
-    /*if (spawn < 0.5) {
+    if (spawn < 0.5) {
       item = new SpeedForce(width/2, height/2);
     } else if (spawn <5) {
       item = new PikminItem(width/2, height/2);
@@ -28,11 +31,17 @@ class ItemRoom extends Room {
       item = new HighNoon(width/2, height/2);
     } else if (spawn <= 100) {
       item = new ShiftingPrism(width/2, height/2);
-    }*/
+
+    }
+    irimg.resize(width, height);
+
   }
 
   void display() {
     super.display();
+    imageMode(CORNER);
+    image(irimg, 0, 0);
+    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
     if (item != null) {
       item.display();
     }

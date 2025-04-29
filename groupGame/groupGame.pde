@@ -53,7 +53,7 @@ void setup() {
   rooms[4][0] = new Room(4, 0, false, true, true, false);
   rooms[0][1] = new Room(0, 1, true, true, false, false);//border on right wall;
   rooms[1][1] = new Room(1, 1, false, true, false, true);//border on top and left wall
-  rooms[2][1] = new Room(2, 1, false, true, true, true);//border on top wall & item toom
+  rooms[2][1] = new ItemRoom(2, 1, false, true, true, true);//border on top wall & item toom
   rooms[3][1] = new Room(3, 1, false, true, true, false);//border on top and right wall
   rooms[4][1] = new Room(4, 1, true, true, false, false);//border on left wall
   rooms[0][2] = new Room(0, 2, true, true, false, false);//border on right wall & trap room
@@ -67,7 +67,7 @@ void setup() {
   rooms[3][3] = new Room(3, 3, true, false, true, false);//border on right and bottom wall
   rooms[4][3] = new Room(4, 3, true, true, false, false);//border on left wall
   rooms[0][4] = new Room(0, 4, true, false, false, true);
-  rooms[1][4] = new Room(1, 4, false, true, true, true);//border on top wall
+  rooms[1][4] = new Room(1, 4, false, false, true, true);//border on top wall
   rooms[2][4] = new ItemRoom(2, 4, true, false, true, true);//item room 
   rooms[3][4] = new Room(3, 4, false, false, true, true);//border on top wall
   rooms[4][4] = new Room(4, 4, true, false, true, false);
