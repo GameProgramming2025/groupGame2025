@@ -7,7 +7,7 @@ class Pikmin {
     this.y = y;
     this.xVelo = xVelo;
     this.yVelo = yVelo;
-    Pikmin = loadImage("Sprites/PikminItem.jpg");
+    Pikmin = loadImage("Sprites/PikminItem.png");
     Pikmin.resize(50, 50);
   }
 

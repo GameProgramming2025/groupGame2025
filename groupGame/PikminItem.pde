@@ -6,7 +6,7 @@ class PikminItem extends Item {
   
   
   PikminItem(float x, float y) {
-    super(x, y, "Sprites/PikminItem.jpg");
+    super(x, y, "Sprites/PikminItem.png");
     this.x = x;
     this. y = y;
     p = new Pikmin[10];
