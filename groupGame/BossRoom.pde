@@ -7,6 +7,7 @@ class BossRoom extends Room {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
     img = loadImage("Sprites/BossRoom.png");
     img.resize(width, height);
+    boss = new BossEnemy(width/2, height/2);
   }
 
   void display () {

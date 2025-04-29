@@ -76,7 +76,7 @@ class BossEnemy extends ScreenElement {
       }
     }
     imageMode(CENTER);
-    image(sprites[currentSprite], 0, 0);
+    //image(sprites[currentSprite], 0, 0);
 
     strokeWeight(2);
     stroke(255);
