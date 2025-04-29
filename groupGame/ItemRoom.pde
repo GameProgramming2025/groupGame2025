@@ -41,4 +41,13 @@ class ItemRoom extends Room {
       item.display();
     }
   }
+  
+  
+  Item getItem() {
+    return item;
+  }
+  
+  void setItem(Item setItem) {
+    this.item = setItem;
+  }
 }
