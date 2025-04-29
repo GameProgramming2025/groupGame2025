@@ -1,4 +1,5 @@
 class Room {
+  Item item;
   int roomI;
   int roomJ;
   int bc;
@@ -13,6 +14,7 @@ class Room {
   PImage bottomDoor;
 
   Room(int roomI, int roomJ, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+    item = new EmptyItem(-100, -100);
     this.roomI = roomI;
     this.roomJ = roomJ;
     this.topOpen = topOpen;
@@ -115,4 +117,13 @@ class Room {
       image(bottomDoor, 0, 0);
     }
   }
+  
+  Item getItem() {
+    return item;
+  }
+  
+  void setItem(Item setItem) {
+    this.item = setItem;
+  }
+ 
 }
