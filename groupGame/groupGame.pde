@@ -20,7 +20,7 @@ Room currentRoom;
 
 SoundEffects soundEffects;
 
-Minim minim;
+Minim min;
 
 
 void setup() {
@@ -33,10 +33,13 @@ void setup() {
   currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
-   noInputCnt = 0;
-    minim = new Minim(this);
 
-  soundEffects = new SoundEffects(minim);
+  min = new Minim(this);
+
+   noInputCnt = 0;
+
+
+  soundEffects = new SoundEffects(min);
 
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
@@ -50,7 +53,7 @@ void setup() {
   
   rooms[0][0] = new Room(0, 0, false, true, false, true);
   rooms[1][0] = new Room(1, 0, false, false, true, true);//border on bottom wall
-  rooms[2][0] = new Room(2, 0, false, false, true, true);//border on bottom wall
+  rooms[2][0] = new Room(2, 0, false, true, true, true);//border on bottom wall
   rooms[3][0] = new Room(3, 0, false, false, true, true);//border on bottom wall
   rooms[4][0] = new Room(4, 0, false, true, true, false);
   rooms[0][1] = new Room(0, 1, true, true, false, false);//border on right wall;
@@ -60,7 +63,7 @@ void setup() {
   rooms[4][1] = new Room(4, 1, true, true, false, false);//border on left wall
   rooms[0][2] = new Room(0, 2, true, true, false, false);//border on right wall & trap room
   rooms[1][2] = new Room(1, 2, true, true, false, false);//border on left and right wall & trap room
-  rooms[2][2] = new Room(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
+  rooms[2][2] = new BossRoom(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
   rooms[3][2] = new Room(3, 2, true, true, false, false);//borders on left and right wall & trap room
   rooms[4][2] = new Room(4, 2, true, true, false, false);//border on left wall & trap room
   rooms[0][3] = new Room(0, 3, true, true, false, false);//border on right wall

@@ -1,5 +1,4 @@
 class Enemy extends ScreenElement {
-  SoundEffects sfx;
   float health;
   float gravity;
   float xAcc;
@@ -70,7 +69,7 @@ class Enemy extends ScreenElement {
     sprites[19] = spritesheet.get(384, 288, 96, 96);
 
     recordedTime = millis() + 1000;
-    sfx = new SoundEffects(minim);
+
   }
 
   void display () {
@@ -124,7 +123,7 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    if (frame == 180) {
+    if (frame == 280) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
         projectile.x = enemy.x;
         projectile.y = enemy.y;
@@ -135,7 +134,7 @@ class Enemy extends ScreenElement {
         //target.y *= 3;
       }
     }
-    if (frame == 250) {
+    if (frame == 350) {
       projectile.x = 10000;
       projectile.y = 10000;
       frame = 0;
@@ -187,6 +186,7 @@ class Enemy extends ScreenElement {
       finTimer--;
       xVelo = 0;
       yVelo = 0;
+      frame = 0;
 
       currentSprite = int((270-finTimer)/15)+2;
       if (finTimer <= 1) {
@@ -205,9 +205,8 @@ class Enemy extends ScreenElement {
       p1.HP -= 1;
       enemyHealth -= 15;
       recordedTime = millis();
-      
       soundEffects.strike = true;
-    }else{
+    } else {
      soundEffects.strike = false; 
     }
 
@@ -216,11 +215,9 @@ class Enemy extends ScreenElement {
       projectile.x = 10000;
       projectile.y = 10000;
       recordedTime = millis();
-
       soundEffects.hurt = true;
     } else {
       soundEffects.hurt = false;
-
     }
 
     for (Magic m : p1.shots) {
