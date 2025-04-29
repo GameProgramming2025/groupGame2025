@@ -7,7 +7,7 @@ class ShiftingPrism extends Item {
     name = "Shifting Prism";
     description = "A mysterious, multi-faceted crystal that pulses with an otherworldly glow. Its power is unpredictable, shifting its essence with every use.";
     area = "Item Room";
-    rarity = 3;
+    rarity = 2;
     atk = random(5,30);
     shotsCD = (int)random(-30,30);
     shotspd = random(5, 15);
