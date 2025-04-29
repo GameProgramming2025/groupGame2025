@@ -58,7 +58,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     bullets = new Heatseeker[10];
     inventory= new Item[5];
 
-    nextItem = 0;
+    nextItemIndex = 0;
 
     h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
@@ -112,9 +112,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   void update() {
     
-    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && hittingPlayer(currentRoom.getItem().x, currentRoom.getItem().y, 50, 50)) {
-      println(currentRoom.item);
+    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
+      println(currentRoom.getItem().name, currentRoom.getItem().x, currentRoom.getItem().y);
       inventory[nextItemIndex] = currentRoom.getItem();
+      println(inventory[nextItemIndex].name);
       currentRoom.setItem(null);
       nextItemIndex++;
     }
