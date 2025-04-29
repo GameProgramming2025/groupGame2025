@@ -1,10 +1,13 @@
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
+//Lindblom talons of the dark
 //
 Player p1;
 HUD h1;
-
+Item spawned;
 GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
+
+long noInputCnt;
 
 PImage GameOver;
 
@@ -30,8 +33,8 @@ void setup() {
   currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
-
-  minim = new Minim(this);
+   noInputCnt = 0;
+    minim = new Minim(this);
 
   soundEffects = new SoundEffects(minim);
 
@@ -76,15 +79,25 @@ void setup() {
 
 void draw() {
   background(0);
+  // if (noInputCnt == 60 * 60 * 30) {
+  // gameState = GameState.BLACK;
+  //} else if (noInputCnt == 60 * 60 * 2) {
+    
+  //} 
+
 
   switch (gameState) {
   case MAIN_SCREEN:
-  
 
+
+    break;
+    case BLACK:
+    
     break;
   case GAMEPLAY:
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
+    currentRoom = rooms[currentI][currentJ];
     background(0);
     currentRoom = rooms[currentI][currentJ];
     currentRoom.update();
@@ -110,9 +123,11 @@ void draw() {
     currentRoom.constrainPlayer(p1);
     p1.display();
 
+
     h1.effects(true);
     h1.update();
     h1.display();
+
     soundEffects.update();
 
     //Cameron this is embarassing
@@ -129,6 +144,8 @@ void draw() {
     //println("lost");
     break;
   }
+  h1.update();
+  h1.display();
 }
 
 void keyPressed() {
@@ -144,5 +161,6 @@ enum GameState {
     GAMEPLAY,
     GAME_OVER,
     GAME_DEFEATED,
-    SCORE_INPUT
+    SCORE_INPUT,
+    BLACK
 }
