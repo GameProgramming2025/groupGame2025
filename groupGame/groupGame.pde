@@ -7,6 +7,8 @@ HUD h1;
 Item spawned;
 GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
+long noInputCnt;
+
 PImage GameOver;
 
 Room rooms[][];
@@ -31,7 +33,7 @@ void setup() {
   currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
-  
+   noInputCnt = 0;
     minim = new Minim(this);
 
   soundEffects = new SoundEffects(minim);
@@ -77,11 +79,20 @@ void setup() {
 
 void draw() {
   background(0);
-  
+  // if (noInputCnt == 60 * 60 * 30) {
+  // gameState = GameState.BLACK;
+  //} else if (noInputCnt == 60 * 60 * 2) {
+    
+  //} 
+
+
   switch (gameState) {
   case MAIN_SCREEN:
 
 
+    break;
+    case BLACK:
+    
     break;
   case GAMEPLAY:
     currentI = constrain(currentI, 0, 6);
@@ -150,5 +161,6 @@ enum GameState {
     GAMEPLAY,
     GAME_OVER,
     GAME_DEFEATED,
-    SCORE_INPUT
+    SCORE_INPUT,
+    BLACK
 }
