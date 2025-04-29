@@ -1,10 +1,13 @@
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
+//Lindblom talons of the dark
 //
 Player p1;
 HUD h1;
-
+Item spawned;
 GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
+
+long noInputCnt;
 
 PImage GameOver;
 
@@ -33,6 +36,9 @@ void setup() {
 
   min = new Minim(this);
 
+   noInputCnt = 0;
+
+
   soundEffects = new SoundEffects(min);
 
   GameOver = loadImage("Sprites/DeathScreen.png");
@@ -47,7 +53,7 @@ void setup() {
   
   rooms[0][0] = new Room(0, 0, false, true, false, true);
   rooms[1][0] = new Room(1, 0, false, false, true, true);//border on bottom wall
-  rooms[2][0] = new Room(2, 0, false, false, true, true);//border on bottom wall
+  rooms[2][0] = new Room(2, 0, false, true, true, true);//border on bottom wall
   rooms[3][0] = new Room(3, 0, false, false, true, true);//border on bottom wall
   rooms[4][0] = new Room(4, 0, false, true, true, false);
   rooms[0][1] = new Room(0, 1, true, true, false, false);//border on right wall;
@@ -57,7 +63,7 @@ void setup() {
   rooms[4][1] = new Room(4, 1, true, true, false, false);//border on left wall
   rooms[0][2] = new Room(0, 2, true, true, false, false);//border on right wall & trap room
   rooms[1][2] = new Room(1, 2, true, true, false, false);//border on left and right wall & trap room
-  rooms[2][2] = new Room(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
+  rooms[2][2] = new BossRoom(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
   rooms[3][2] = new Room(3, 2, true, true, false, false);//borders on left and right wall & trap room
   rooms[4][2] = new Room(4, 2, true, true, false, false);//border on left wall & trap room
   rooms[0][3] = new Room(0, 3, true, true, false, false);//border on right wall
@@ -76,15 +82,25 @@ void setup() {
 
 void draw() {
   background(0);
+  // if (noInputCnt == 60 * 60 * 30) {
+  // gameState = GameState.BLACK;
+  //} else if (noInputCnt == 60 * 60 * 2) {
+    
+  //} 
+
 
   switch (gameState) {
   case MAIN_SCREEN:
-  
 
+
+    break;
+    case BLACK:
+    
     break;
   case GAMEPLAY:
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
+    currentRoom = rooms[currentI][currentJ];
     background(0);
     currentRoom = rooms[currentI][currentJ];
     currentRoom.update();
@@ -110,9 +126,11 @@ void draw() {
     currentRoom.constrainPlayer(p1);
     p1.display();
 
+
     h1.effects(true);
     h1.update();
     h1.display();
+
     soundEffects.update();
 
     //Cameron this is embarassing
@@ -129,6 +147,8 @@ void draw() {
     //println("lost");
     break;
   }
+  h1.update();
+  h1.display();
 }
 
 void keyPressed() {
@@ -144,5 +164,6 @@ enum GameState {
     GAMEPLAY,
     GAME_OVER,
     GAME_DEFEATED,
-    SCORE_INPUT
+    SCORE_INPUT,
+    BLACK
 }

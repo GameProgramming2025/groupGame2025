@@ -5,7 +5,6 @@ class HUD {
   float t;
   PFont big;
   Player p;
-  Item i;
   HighNoon h;
   PImage heart, brokenHeart, highNoon;
   float currentHp;
@@ -26,7 +25,7 @@ class HUD {
     blackRadialGradient.resize((width*2) + 50, (height*2) + 50);
     highNoon = loadImage("data/sprites/HN.png");
     this.p = p;
-    
+   
     //ammo = p.ammo;
     coins=0.0;
     big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
@@ -36,12 +35,10 @@ class HUD {
   void update() {
     currentHp=p.HP;
 
-    if (w<99) {
-      w++;
-    }
   }
 
   void display() {
+    
     strokeWeight(10);
     rect(width*7/10, 70, 70, 70, 10);
     rect(width*6.5/10, 70, 70, 70, 10);
@@ -49,11 +46,11 @@ class HUD {
     rect(width*8/10, 70, 70, 70, 10);
     rect(width *8.5/10,70,70,70,10);
 
-    //for (int i = 0; i < 5; i++) {
-    //   if (p.items[i] != null) {
-    //     image(p.items[i].itemImg,10 + width * 6.5 /10 + i * 85, 50, 50, 50); 
-    //   }
-    //}
+    for (int i = 0; i < 5; i++) {
+       if (p.inventory[i] != null) {
+         image(p.inventory[i].itemImg,10 + width * 6.5 /10 + (i * 85)-40, 43); 
+       }
+    }
 
     if (currentHp ==10) {
       image(heart, x, y, s, s);
