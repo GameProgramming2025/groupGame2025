@@ -5,7 +5,7 @@ class Sord extends Item {
     this.x = x;
     this.y = y;
     name = "Sord";
-    description = "Aditya is annoying so I spelled swoard right multiplke times";
+    description = "Aditya is annoying so I spelled swoard write multiplke times";
     area = "Item Room";
     rarity = 3;
   }
