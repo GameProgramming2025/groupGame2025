@@ -13,10 +13,12 @@ class ItemRoom extends Room {
     bc = color(random(100, 200), 100, 20);
     irimg = loadImage("Sprites/ItemRoom.png");
     spawn = random(0, 100);
+
     println(spawn);
     if( spawn <= 100){
      item = new HighNoon(width/2, height/2); 
     }
+
     if (spawn < 0.5) {
       item = new SpeedForce(width/2, height/2);
     } else if (spawn <5) {

@@ -20,7 +20,7 @@ Room currentRoom;
 
 SoundEffects soundEffects;
 
-Minim minim;
+Minim min;
 
 
 void setup() {
@@ -33,10 +33,13 @@ void setup() {
   currentJ = 0;
   p1.x = width/2;
   p1.y = height/2;
-   noInputCnt = 0;
-    minim = new Minim(this);
 
-  soundEffects = new SoundEffects(minim);
+  min = new Minim(this);
+
+   noInputCnt = 0;
+
+
+  soundEffects = new SoundEffects(min);
 
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);

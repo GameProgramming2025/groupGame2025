@@ -4,12 +4,11 @@ import ddf.minim.AudioPlayer;
 
 class SoundEffects {
   boolean start;
-
   boolean hurt;
   boolean heal;
   boolean strike;
   boolean item;
-  boolean shot;
+  boolean attack;
   int num;
   int num2;
   Minim minim;
@@ -23,16 +22,15 @@ class SoundEffects {
   AudioPlayer fireball;
 
 
-  SoundEffects(Minim minim) {
-    //start = false;
+  SoundEffects(Minim m) {
     hurt = false;
     //heal = false;
     strike = false;
+    attack = false;
     //item = false;
-    shot = true;
     num = -1;
     num2= -2;
-    this.minim = minim;
+    this.minim = m;
     grunt1 = minim.loadFile("SoundEffects/Player_hitV2.mp3");
     grunt2 = minim.loadFile("SoundEffects/Player_hitV2.1.mp3");
     grunt3 = minim.loadFile ("SoundEffects/Player_hitV2.2.mp3");
@@ -45,42 +43,38 @@ class SoundEffects {
 
   void update() {
 
-
-
     if (hurt) {
       num = (int)random(1, 4);
       if (num == 1) {
-        grunt1.play();
+        grunt1.play(0);
       } else if (num == 2) {
-        grunt2.play();
+        grunt2.play(0);
       } else if (num == 3) {
-        grunt3.play();
+        grunt3.play(0);
+      } else {
+        num = -1;
       }
-    } else {
-      hurt = false;
-      num = -1;
     }
 
     if (strike) {
       num2 = int(random(1, 3));
       if (num2 == 1) {
-        ehit1.play();
+        ehit1.play(0);
       } else if (num2 == 2) {
-        ehit2.play();
+        ehit2.play(0);
       } else if (num2 == 3) {
-        ehit3.play();
+        ehit3.play(0);
       } else {
-        strike = false;
         num2 = -1;
       }
     }
 
-    if (shot) {
-      fireball.play();
-    } else {
-      fireball.pause();
-      shot = false;
+    if (attack) {
+      println("attacking");
+      if ( !fireball.isPlaying() ) {
+        fireball.play(0);
+        attack = false;
+      }
     }
-    
-  }  
+  }
 }
