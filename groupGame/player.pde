@@ -23,8 +23,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   float farthestEnemyY;
 
   // Player Stats
+
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
   //<>//
-  int HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
 
   Magic shots[]; //<>//
 
@@ -41,6 +42,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   Player() {
     xSize = 96;
     ySize = 96;
+    maxHP = 10;
     HP = 10;
     spd = 1;
     shotspd = 35;
@@ -119,6 +121,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (shotspd < 1) {
       shotspd = 1;
     }
+
+    if (HP > maxHP) {
+      HP = maxHP;
+    }
+
     x += xVel;
     y += yVel;
     xVel += xAcc;
