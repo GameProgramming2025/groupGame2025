@@ -1,9 +1,8 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>//
   Item inventory[];
   int equippedItem;
   int nextItemIndex;
-  int kanonRealAge;
   HighNoon h;
 
   EmptyItem e;
@@ -23,11 +22,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
+ //<>//
+  // Player Stats //<>//
 
-  // Player Stats
-
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
-  //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>//
+  //<>// //<>//
  //<>//
   Magic shots[]; //<>//
 
@@ -42,7 +41,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int frame;
 
   Player() {
-    kanonRealAge = -1;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -114,11 +112,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   void update() {
     
-    if (currentRoom instanceof ItemRoom && currentRoom.item != null && hittingPlayer(currentRoom.item.x, currentRoom.item.y, 50, 50)) {
+    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && hittingPlayer(currentRoom.getItem().x, currentRoom.getItem().y, 50, 50)) {
       println(currentRoom.item);
-      inventory[nExTiTeMiNdEx] = currentRoom.item;
-      currentRoom.item = null;
-      nExTiTeMiNdEx = nExTiTeMiNdEx + adityarealage;
+      inventory[nextItemIndex] = currentRoom.getItem();
+      currentRoom.setItem(null);
+      nextItemIndex++;
     }
 
 

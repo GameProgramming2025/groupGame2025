@@ -117,4 +117,13 @@ class Room {
       image(bottomDoor, 0, 0);
     }
   }
+  
+  Item getItem() {
+    return item;
+  }
+  
+  void setItem(Item setItem) {
+    this.item = setItem;
+  }
+ 
 }
