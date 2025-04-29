@@ -1,6 +1,10 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>//
+ //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>// //<>//
+
   Item inventory[];
+  ItemRoom ipos;
+
   int equippedItem;
   int nextItemIndex;
   HighNoon h;
@@ -23,12 +27,15 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   float farthestEnemyX;
   float farthestEnemyY;
  //<>//
-  // Player Stats //<>//
+  // Player Stats //<>// //<>//
+ //<>//
 
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>//
-  //<>// //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
+ //<>//
+  //<>// //<>// //<>//
  //<>//
   Magic shots[]; //<>//
+
 
   int nextShot;
   int nextItem;
@@ -41,6 +48,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   int frame;
 
   Player() {
+
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -60,13 +68,15 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
     nextItemIndex = 0;
 
-    h = new HighNoon(width/4, height/4);
+
     e = new EmptyItem(x, y);
+
     inventory = new Item[5];
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
     }
+
 
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic();
@@ -125,6 +135,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     if (HP <= 0 && finalAnimation <= 1) {
       gameState = GameState.GAME_OVER;
     }
+
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {

@@ -22,9 +22,11 @@ class Item {
     this.x = x;
     this.y = y;
     this.imageFileName = imageFileName;
+
     if (imageFileName != null) {
       itemImg = loadImage(imageFileName);
-      itemImg.resize(80, 80);
+      itemImg.resize(50, 50);
+
     }
     name = "Item";
     description = "An item in the game";
@@ -42,6 +44,8 @@ class Item {
     ySize = 0;
     collected = false;
   }
+  
+    
   Item(JSONObject j) {
     x = j.getFloat("x");
     y = j.getFloat("y");
@@ -72,6 +76,9 @@ class Item {
   }
 
   void render() {
+    if ( collected == true){
+     return; 
+    }
     imageMode(CENTER);
     image(itemImg, 0, 0);
   }
@@ -103,4 +110,5 @@ class Item {
 
   void keyReleased() {
   }
+  
 }
