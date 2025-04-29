@@ -1,5 +1,5 @@
 class BossEnemy extends ScreenElement {
-  SoundEffects sfx;
+
   float health;
   float gravity;
   float xAcc;
@@ -44,7 +44,6 @@ class BossEnemy extends ScreenElement {
 
   
     recordedTime = millis() + 1000;
-    sfx = new SoundEffects(minim);
   }
 
   void display () {
