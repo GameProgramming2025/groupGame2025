@@ -187,7 +187,7 @@ class BossEnemy extends ScreenElement {
     }
 
     if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
-      p1.HP -= 1;
+      p1.HP -= 2;
       projectile.x = 10000;
       projectile.y = 10000;
       recordedTime = millis();
