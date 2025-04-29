@@ -1,18 +1,17 @@
 class BossRoom extends Room {
-  BossEnemy Boss;
+  BossEnemy boss;
   float spawn;
-  float selected1;
-  float selected2;
-  float selected3;
-  float selected4;
+  PImage img;
 
   BossRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
+    img = loadImage("Sprites/BossRoom.png");
+    img.resize(width, height);
   }
 
   void display () {
     super.display();
-    Boss.display();
-    Boss.update();
+    boss.display();
+    boss.update();
   }
 }
