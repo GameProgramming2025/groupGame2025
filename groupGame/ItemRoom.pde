@@ -41,4 +41,9 @@ class ItemRoom extends Room {
       item.display();
     }
   }
+  
+  Item getItem() {
+    return item;
+    
+  }
 }

@@ -1,9 +1,8 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>//
   Item inventory[];
   int equippedItem;
-  int nextItemIndex;
-  int kanonRealAge;
+  int nExTiTeMiNdEx;
   HighNoon h;
 
   EmptyItem e;
@@ -26,10 +25,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   // Player Stats
 
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>//
-  //<>//
- //<>//
-  Magic shots[]; //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+ 
+
+  Magic shots[];
 
   int nextShot;
   int nextItem;
@@ -42,7 +41,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int frame;
 
   Player() {
-    kanonRealAge = -1;
+    nExTiTeMiNdEx = 0;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -115,10 +114,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   void update() {
     
     if (currentRoom instanceof ItemRoom && currentRoom.item != null && hittingPlayer(currentRoom.item.x, currentRoom.item.y, 50, 50)) {
-      println(currentRoom.item);
       inventory[nExTiTeMiNdEx] = currentRoom.item;
       currentRoom.item = null;
-      nExTiTeMiNdEx = nExTiTeMiNdEx + adityarealage;
+      nExTiTeMiNdEx = nExTiTeMiNdEx + 1;
+      //dOnEbYkAnOnDeRvIn
     }
 
 
