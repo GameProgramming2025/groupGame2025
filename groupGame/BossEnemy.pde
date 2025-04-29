@@ -28,8 +28,8 @@ class BossEnemy extends ScreenElement {
     here = true;
     BossEnemyHealth = 500;
     HpBarHeight = 10;
-    xVelo = 3;
-    yVelo = 3;
+    xVelo = 3.5;
+    yVelo = 3.5;
     BossEnemy = new PVector(x, y);
     projectile = new PVector(BossEnemy.x, BossEnemy.y);
     target = new PVector(p1.x, p1.y);
@@ -99,7 +99,7 @@ class BossEnemy extends ScreenElement {
 
   void update () {
     if (frame == 280) {
-      if (dist(BossEnemy.x, BossEnemy.y, p1.x, p1.y ) < 400 ) {
+      if (dist(BossEnemy.x, BossEnemy.y, p1.x, p1.y ) < 800 ) {
         projectile.x = BossEnemy.x;
         projectile.y = BossEnemy.y;
         target.x = p1.x-BossEnemy.x;
@@ -116,8 +116,8 @@ class BossEnemy extends ScreenElement {
       //target.x *= 3;
       //target.y *= 3;
     }
-    projectile.x += 10*target.x;
-    projectile.y += 10*target.y;
+    projectile.x += 30*target.x;
+    projectile.y += 30*target.y;
     xPosPrev = BossEnemy.x;
     yPosPrev = BossEnemy.y;
     BossEnemy.x += xVelo;
@@ -177,7 +177,7 @@ class BossEnemy extends ScreenElement {
     }
 
     if (dist(BossEnemy.x, BossEnemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
-      p1.HP -= 1;
+      p1.HP -= 2;
       BossEnemyHealth -= 15;
       recordedTime = millis();
       
