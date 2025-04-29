@@ -124,7 +124,7 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    if (frame == 180) {
+    if (frame == 280) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
         projectile.x = enemy.x;
         projectile.y = enemy.y;
@@ -135,7 +135,7 @@ class Enemy extends ScreenElement {
         //target.y *= 3;
       }
     }
-    if (frame == 250) {
+    if (frame == 350) {
       projectile.x = 10000;
       projectile.y = 10000;
       frame = 0;
@@ -187,6 +187,7 @@ class Enemy extends ScreenElement {
       finTimer--;
       xVelo = 0;
       yVelo = 0;
+      frame = 0;
 
       currentSprite = int((270-finTimer)/15)+2;
       if (finTimer <= 1) {
