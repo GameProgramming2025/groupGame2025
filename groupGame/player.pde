@@ -1,6 +1,6 @@
- //<>//
 class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //Items //<>// //<>// //<>// //<>// //<>//
+
 
   Item inventory[];
   ItemRoom ipos;
@@ -8,7 +8,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   int equippedItem;
   int nextItemIndex;
   HighNoon h;
-
   EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
@@ -20,12 +19,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   int finalAnimation;
   boolean shooting;
 
+
   //shooting
   Heatseeker bullets[];
   //heatseeker variables
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
+
  //<>//
   // Player Stats //<>// //<>//
  //<>//
@@ -38,6 +39,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
 
   int nextShot;
+
   int nextItem;
 
   //Player Images
@@ -65,6 +67,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     shots = new Magic[10];
     bullets = new Heatseeker[10];
     inventory= new Item[5];
+
 
     nextItemIndex = 0;
 
@@ -133,9 +136,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
+
       gameState = GameState.GAME_OVER;
     }
-
 
     spd = constrain(spd, 1, maxspd);
     if (shotspd < 1) {
@@ -367,6 +370,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       shotCD = shotsCD;
       tempX = x;
       tempY = y;
+      soundEffects.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y-30, 0, shotspd+(yVel*.5), true);
