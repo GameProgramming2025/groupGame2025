@@ -31,13 +31,13 @@ class SoundEffects {
     num = -1;
     num2= -2;
     this.minim = m;
-    grunt1 = minim.loadFile("SoundEffects/Player_hitV2.mp3");
-    grunt2 = minim.loadFile("SoundEffects/Player_hitV2.1.mp3");
-    grunt3 = minim.loadFile ("SoundEffects/Player_hitV2.2.mp3");
-    ehit1 = minim.loadFile ("SoundEffects/Enemy_hit1.mp3");
-    ehit2 = minim.loadFile ("SoundEffects/Enemy_hit2.mp3");
-    ehit3 = minim.loadFile ("SoundEffects/Enemy_hit3.mp3");
-    fireball = minim.loadFile ("SoundEffects/Fireballsfx.mp3");
+    grunt1 = minim.loadFile("Data/SoundEffects/Player_hitV2.mp3");
+    grunt2 = minim.loadFile("Data/SoundEffects/Player_hitV2.1.mp3");
+    grunt3 = minim.loadFile ("Data/SoundEffects/Player_hitV2.2.mp3");
+    ehit1 = minim.loadFile ("Data/SoundEffects/Enemy_hit1.mp3");
+    ehit2 = minim.loadFile ("Data/SoundEffects/Enemy_hit2.mp3");
+    ehit3 = minim.loadFile ("Data/SoundEffects/Enemy_hit3.mp3");
+    fireball = minim.loadFile ("Data/SoundEffects/fireballsfx.mp3");
   }
 
 
