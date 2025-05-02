@@ -71,10 +71,10 @@ class SoundEffects {
 
     if (attack) {
       println("attacking");
-      if ( !fireball.isPlaying() ) {
-        fireball.play(0);
-        attack = false;
-      }
+      //if ( !fireball.isPlaying() ) {
+      //  fireball.play(0);
+      //  attack = false;
+      //}
     }
   }
 }

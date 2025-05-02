@@ -10,7 +10,7 @@ GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 long noInputCnt;
 
 PImage GameOver;
-
+PImage TitleScreen;
 Room rooms[][];
 int currentI;
 int currentJ;
@@ -44,7 +44,8 @@ void setup() {
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
 
-
+ TitleScreen = loadImage("Sprites/TitleScreen.png");
+ TitleScreen.resize(1700, 1200);
   h1 = new HUD(p1);
 
 
@@ -82,16 +83,17 @@ void setup() {
 
 void draw() {
   background(0);
-  // if (noInputCnt == 60 * 60 * 30) {
-  // gameState = GameState.BLACK;
-  //} else if (noInputCnt == 60 * 60 * 2) {
+  gameState = GameState.MAIN_SCREEN;
+   if (noInputCnt == 60 * 60 * 30) {
+   gameState = GameState.BLACK;
+  } else if (noInputCnt == 60 * 60 * 2) {
     
-  //} 
+  } 
 
 
   switch (gameState) {
   case MAIN_SCREEN:
-
+background(TitleScreen);
 
     break;
     case BLACK:
@@ -147,8 +149,7 @@ void draw() {
     //println("lost");
     break;
   }
-  h1.update();
-  h1.display();
+  
 }
 
 void keyPressed() {
