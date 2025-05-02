@@ -177,7 +177,7 @@ class BossEnemy extends ScreenElement {
 
     if (dist(BossEnemy.x, BossEnemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 2;
-      BossEnemyHealth -= 15;
+      BossEnemyHealth -= 33;
       recordedTime = millis();
       
       soundEffects.strike = true;
