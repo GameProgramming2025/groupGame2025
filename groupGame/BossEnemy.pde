@@ -19,6 +19,7 @@ class BossEnemy extends ScreenElement {
   int firstSprite;
   int frame;
   int animation;
+  int deadAnimation;
   int finTimer;
 
   BossEnemy(float x, float y) {
@@ -34,75 +35,76 @@ class BossEnemy extends ScreenElement {
     projectile = new PVector(BossEnemy.x, BossEnemy.y);
     target = new PVector(p1.x, p1.y);
     animation = 21;
+    deadAnimation = 21;
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
     finTimer = 270;
-    //spritesheet.resize(96, 96);
     sprites = new PImage[45];
     PImage spritesheet = loadImage("Sprites/BossSprite.png");
+    spritesheet.resize(2016, 2016);
 
     //Basic Sprites
-    sprites[0] = spritesheet.get(0, 0, 192, 192);
-    sprites[1] = spritesheet.get(192, 0, 192, 192);
-    sprites[2] = spritesheet.get(384, 0, 192, 192);
+    sprites[0] = spritesheet.get(0, 0, 288, 288);
+    sprites[1] = spritesheet.get(288, 0, 288, 288);
+    sprites[2] = spritesheet.get(576, 0, 288, 288);
 
     //Attack Sprite
-    sprites[3] = spritesheet.get(576, 0, 192, 192);
+    sprites[3] = spritesheet.get(864, 0, 288, 288);
 
     //LosingHealth Sprites
-    sprites[4] = spritesheet.get(768, 0, 192, 192);
-    sprites[5] = spritesheet.get(960, 0, 192, 192);
-    sprites[6] = spritesheet.get(1152, 0, 192, 192);
+    sprites[4] = spritesheet.get(1152, 0, 288, 288);
+    sprites[5] = spritesheet.get(1440, 0, 288, 288);
+    sprites[6] = spritesheet.get(1728, 0, 288, 288);
 
-    sprites[7] = spritesheet.get(0, 192, 192, 192);
-    sprites[8] = spritesheet.get(192, 192, 192, 192);
-    sprites[9] = spritesheet.get(384, 192, 192, 192);
+    sprites[7] = spritesheet.get(0, 288, 288, 288);
+    sprites[8] = spritesheet.get(288, 288, 288, 288);
+    sprites[9] = spritesheet.get(576, 288, 288, 288);
 
-    sprites[10] = spritesheet.get(576, 192, 192, 192);
-    sprites[11] = spritesheet.get(768, 192, 192, 192);
-    sprites[12] = spritesheet.get(960, 192, 192, 192);
-    sprites[13] = spritesheet.get(1152, 192, 192, 192);
-    sprites[14] = spritesheet.get(0, 384, 192, 192);
+    sprites[10] = spritesheet.get(864, 288, 288, 288);
+    sprites[11] = spritesheet.get(1152, 288, 288, 288);
+    sprites[12] = spritesheet.get(1440, 288, 288, 288);
+    sprites[13] = spritesheet.get(1728, 288, 288, 288);
+    sprites[14] = spritesheet.get(0, 576, 288, 288);
 
-    sprites[15] = spritesheet.get(192, 384, 192, 192);
-    sprites[16] = spritesheet.get(768, 384, 192, 192);
-    sprites[17] = spritesheet.get(960, 384, 192, 192);
-    sprites[18] = spritesheet.get(1152, 384, 192, 192);
+    sprites[15] = spritesheet.get(288, 576, 288, 288);
+    sprites[16] = spritesheet.get(576, 576, 288, 288);
+    sprites[17] = spritesheet.get(864, 576, 288, 288);
+    sprites[18] = spritesheet.get(1152, 576, 288, 288);
 
     //Start of Death
-    sprites[19] = spritesheet.get(480, 384, 192, 192);
-    sprites[20] = spritesheet.get(576, 384, 192, 192);
-    sprites[21] = spritesheet.get(96, 576, 192, 192);
+    sprites[19] = spritesheet.get(1440, 576, 288, 288);
+    sprites[20] = spritesheet.get(1728, 576, 288, 288);
+    sprites[21] = spritesheet.get(0, 864, 288, 288);
 
-    sprites[22] = spritesheet.get(192, 576, 192, 192);
-    sprites[23] = spritesheet.get(288, 576, 192, 192);
-    sprites[24] = spritesheet.get(384, 576, 192, 192);
-    sprites[25] = spritesheet.get(480, 576, 192, 192);
+    sprites[22] = spritesheet.get(288, 864, 288, 288);
+    sprites[23] = spritesheet.get(576, 864, 288, 288);
+    sprites[24] = spritesheet.get(864, 864, 288, 288);
+    sprites[25] = spritesheet.get(1152, 864, 288, 288);
 
-    sprites[26] = spritesheet.get(576, 576, 192, 192);
-    sprites[27] = spritesheet.get(0, 576, 192, 192);
-    sprites[28] = spritesheet.get(96, 768, 192, 192);
-    sprites[29] = spritesheet.get(192, 768, 192, 192);
+    sprites[26] = spritesheet.get(1440, 864, 288, 288);
+    sprites[27] = spritesheet.get(1728, 864, 288, 288);
+    sprites[28] = spritesheet.get(0, 1152, 288, 288);
+    sprites[29] = spritesheet.get(288, 1152, 288, 288);
 
-    sprites[30] = spritesheet.get(288, 768, 192, 192);
-    sprites[31] = spritesheet.get(384, 768, 192, 192);
-    sprites[32] = spritesheet.get(480, 768, 192, 192);
-    sprites[33] = spritesheet.get(576, 768, 192, 192);
+    sprites[30] = spritesheet.get(576, 1152, 288, 288);
+    sprites[31] = spritesheet.get(864, 1152, 288, 288);
+    sprites[32] = spritesheet.get(1152, 1152, 288, 288);
+    sprites[33] = spritesheet.get(1440, 1152, 288, 288);
 
-    sprites[34] = spritesheet.get(0, 768, 192, 192);
-    sprites[35] = spritesheet.get(96, 960, 192, 192);
-    sprites[36] = spritesheet.get(192, 960, 192, 192);
-    sprites[37] = spritesheet.get(288, 960, 192, 192);
+    sprites[34] = spritesheet.get(1728, 1152, 288, 288);
+    sprites[35] = spritesheet.get(0, 1440, 288, 288);
+    sprites[36] = spritesheet.get(288, 1440, 288, 288);
+    sprites[37] = spritesheet.get(576, 1440, 288, 288);
 
-    sprites[38] = spritesheet.get(384, 960, 192, 192);
-    sprites[39] = spritesheet.get(480, 960, 192, 192);
-    sprites[40] = spritesheet.get(576, 960, 192, 192);
-    sprites[41] = spritesheet.get(0, 960, 192, 192);
+    sprites[38] = spritesheet.get(864, 1440, 288, 288);
+    sprites[39] = spritesheet.get(1152, 1440, 288, 288);
+    sprites[40] = spritesheet.get(1440, 1440, 288, 288);
+    sprites[41] = spritesheet.get(1728, 1440, 288, 288);
 
-    sprites[42] = spritesheet.get(96, 1152, 192, 192);
-    sprites[43] = spritesheet.get(192, 1152, 192, 192);
-    sprites[44] = spritesheet.get(288, 1152, 192, 192);
+    sprites[42] = spritesheet.get(0, 1728, 288, 288);
+    sprites[43] = spritesheet.get(288, 1728, 288, 288);
+    sprites[44] = spritesheet.get(576, 1728, 288, 288);
 
     recordedTime = millis() + 1000;
     sfx = new SoundEffects(minim);
@@ -142,6 +144,11 @@ class BossEnemy extends ScreenElement {
         }
       }
     }
+
+    
+     // if (BossEnemyHealth -= 33){
+   // currentSprite = int(map(BossEnemyHealth, 0, 14, 0, 500)) + 4;
+   // }
 
     imageMode(CENTER);
     image(sprites[currentSprite], 0, 0);
@@ -224,7 +231,6 @@ class BossEnemy extends ScreenElement {
 
 
 
-
     if (BossEnemyHealth <= 0 ) {
       finTimer--;
       xVelo = 0;
@@ -248,6 +254,8 @@ class BossEnemy extends ScreenElement {
       p1.HP -= 2;
       BossEnemyHealth -= 15;
       recordedTime = millis();
+
+
 
       soundEffects.strike = true;
     } else {
