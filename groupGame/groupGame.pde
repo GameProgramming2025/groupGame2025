@@ -8,9 +8,11 @@ Item spawned;
 GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
 long noInputCnt;
-
+float a;
 PImage GameOver;
-PImage TitleScreen;
+PImage TitleScreen, SelectScreen;
+boolean starting;
+float fade;
 Room rooms[][];
 int currentI;
 int currentJ;
@@ -35,8 +37,10 @@ void setup() {
   p1.y = height/2;
 
   min = new Minim(this);
-
-   noInputCnt = 0;
+  a = 0;
+  fade=2;
+  starting=false;
+  noInputCnt = 0;
 
 
   soundEffects = new SoundEffects(min);
@@ -44,14 +48,16 @@ void setup() {
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
 
- TitleScreen = loadImage("Sprites/TitleScreen.png");
- TitleScreen.resize(1700, 1200);
+  TitleScreen = loadImage("Sprites/TitleScreen.png");
+  TitleScreen.resize(1700, 1200);
+  SelectScreen = loadImage("Sprites/StartScreen.png");
+  SelectScreen.resize(1700, 1200);
   h1 = new HUD(p1);
 
 
   rooms = new Room[5][5];
   //order is top, bottom, left , and right
-  
+
   rooms[0][0] = new Room(0, 0, false, true, false, true);
   rooms[1][0] = new Room(1, 0, false, false, true, true);//border on bottom wall
   rooms[2][0] = new Room(2, 0, false, true, true, true);//border on bottom wall
@@ -74,7 +80,7 @@ void setup() {
   rooms[4][3] = new Room(4, 3, true, true, false, false);//border on left wall
   rooms[0][4] = new Room(0, 4, true, false, false, true);
   rooms[1][4] = new Room(1, 4, false, false, true, true);//border on top wall
-  rooms[2][4] = new ItemRoom(2, 4, true, false, true, true);//item room 
+  rooms[2][4] = new ItemRoom(2, 4, true, false, true, true);//item room
   rooms[3][4] = new Room(3, 4, false, false, true, true);//border on top wall
   rooms[4][4] = new Room(4, 4, true, false, true, false);
 
@@ -84,20 +90,45 @@ void setup() {
 void draw() {
   background(0);
   gameState = GameState.MAIN_SCREEN;
-   if (noInputCnt == 60 * 60 * 30) {
-   gameState = GameState.BLACK;
+  if (noInputCnt == 60 * 60 * 30) {
+    gameState = GameState.BLACK;
   } else if (noInputCnt == 60 * 60 * 2) {
-    
-  } 
+  }
 
 
   switch (gameState) {
   case MAIN_SCREEN:
-background(TitleScreen);
+    if (fade == 2) {
+      background(TitleScreen);
+    } else {
+      background(SelectScreen);
+      fill(255);
+      rect(width/2 -170,height/2 -100,400,100);
+    }
+    
+    
+    fill(0, 0, 0, a);
+    rect(width/2, height/2, width, height, 0);
+    
+    if (keyPressed) {
+      starting = true;
+    }
+    
+    if (starting) {
+      a=a+fade;
+      if (a >= 255) {
+        fade=-2;
+      }
+      if (a<0) {
+        starting = false;
+      }
+    }
+
+
 
     break;
-    case BLACK:
-    
+  case BLACK:
+
     break;
   case GAMEPLAY:
     currentI = constrain(currentI, 0, 6);
@@ -149,7 +180,6 @@ background(TitleScreen);
     //println("lost");
     break;
   }
-  
 }
 
 void keyPressed() {
