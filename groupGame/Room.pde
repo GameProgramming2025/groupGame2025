@@ -1,4 +1,5 @@
 class Room {
+  Item item;
   int roomI;
   int roomJ;
   int bc;
@@ -13,6 +14,7 @@ class Room {
   PImage bottomDoor;
 
   Room(int roomI, int roomJ, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+    item = new EmptyItem(-100, -100);
     this.roomI = roomI;
     this.roomJ = roomJ;
     this.topOpen = topOpen;
@@ -26,6 +28,105 @@ class Room {
     rightDoor = loadImage("Sprites/DoorRight.png");
     leftDoor = loadImage("Sprites/DoorLeft.png");
     bottomDoor = loadImage("Sprites/DoorBottom.png");
+
+    //num = int(random(0, 13));
+    ////NORMAL ROOMS
+    //num = 0;
+
+    ////ITEM ROOMS
+    //if (x == y) {
+    //  num = 13; //ItemRoom
+    //}
+
+    ////TRAP ROOMS(CONTAINS ENEMIES)
+    //if (x == 6 - y) {
+    //  num = 12; //TrapRoom
+    //}
+
+    ////EDGE ROOMS
+    //if (x == 0) {
+    //  num = 4; //NoWestDoor
+    //} else if (x == 6) {
+    //  num = 1; //NoEastDoor
+    //}
+
+    //if (y == 0) {
+    //  num = 2; //NoNorthDoor
+    //} else if (y == 6) {
+    //  num = 3; //NoSouthDoor
+    //}
+
+    ////BOSS ROOM
+    //if (x == 3 && y == 3) {
+    //  num = 14; //BossRoom
+    //}
+
+    ////CORNER ROOMS
+    //if (x == 0 && y == 0) {
+    //  num = 8; //NoNorthWest
+    //} else if (x == 0 && y == 6) {
+    //  num = 10; //NoSouthWest
+    //} else if (x == 6 && y == 0) {
+    //  num = 7; //NoNorthEast
+    //} else if (x == 6 && y == 6) {
+    //  num = 11; //NoSouthEast
+    //}
+
+    ////ROOMS
+
+    //if (num == 0) {
+    //  img = loadImage("Sprites/BGFourDoors.png");
+    //}
+    //if (num == 1 ) {
+    //  img = loadImage("Sprites/BGNoEastDoor.png");
+    //}
+    //if (num == 2) {
+    //  img = loadImage("Sprites/BGNoNorthDoor.png");
+    //}
+    //if (num == 3) {
+    //  img = loadImage("Sprites/BGNoSouthDoor.png");
+    //}
+    //if (num == 4) {
+    //  img = loadImage("Sprites/BGNoWestDoor.png");
+    //}
+    //if (num == 5) {
+    //  img = loadImage("Sprites/BGNoWestEastSouth.png");
+    //}
+    //if (num == 6) {
+    //  img = loadImage("Sprites/BGNoWestOrEast.png");
+    //}
+    //if (num == 7) {
+    //  img = loadImage("Sprites/DoorNoNorthEast.png");
+    //}
+    //if (num == 8) {
+    //  img = loadImage("Sprites/DoorNoNorthWest.png");
+    //}
+    //if (num == 9) {
+    //  img = loadImage("Sprites/DoorNoNorthEastWest.png");
+    //}
+    //if (num == 10) {
+    //  img = loadImage("Sprites/DoorNoSouthWest.png");
+    //}
+    //if (num == 11) {
+    //  img = loadImage("Sprites/DoorNoSouthEast.png");
+    //}
+    //if (num == 12) {
+    //  img = loadImage("Sprites/TrapRoom.png");
+
+    //  numEnemies = 7;
+    //  enemies = new Enemy[numEnemies];
+    //  for (int i = 0; i < numEnemies; i++) {
+    //    ex = random(252, 1466);
+    //    ey = random(282, 945);
+    //    enemies[i] = new Enemy(ex, ey);
+    //  }
+    //}
+    //if (num == 13) {
+    //  img = loadImage("Sprites/ItemRoom.png");
+    //}
+    //if (num == 14) {
+    //  img = loadImage("Sprites/BossRoom.png");
+    //}
 
 
     img.resize(width, height);
@@ -58,7 +159,7 @@ class Room {
 
   void constrainPlayer(Player p) {
     //top
-    println(p.x);
+    //println(p.x);
     if (p.y < 305) {
       if (p.x > width * 0.4 && p.x < width * 0.6 && topOpen) {
         currentJ--;
@@ -115,4 +216,13 @@ class Room {
       image(bottomDoor, 0, 0);
     }
   }
+  
+  Item getItem() {
+    return item;
+  }
+  
+  void setItem(Item setItem) {
+    this.item = setItem;
+  }
+ 
 }

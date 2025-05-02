@@ -1,13 +1,10 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>//
-
-
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>//
   Item inventory[];
-  ItemRoom ipos;
-
   int equippedItem;
-  int nextItemIndex;
+  int nExTiTeMiNdEx;
   HighNoon h;
+
   EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
@@ -19,7 +16,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   int finalAnimation;
   boolean shooting;
 
-
   //shooting
   Heatseeker bullets[];
   //heatseeker variables
@@ -27,19 +23,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   float farthestEnemyX;
   float farthestEnemyY;
 
- //<>//
-  // Player Stats //<>// //<>//
- //<>//
+  // Player Stats
 
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
- //<>//
-  //<>// //<>// //<>//
- //<>//
-  Magic shots[]; //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range;
+ 
 
+  Magic shots[];
 
   int nextShot;
-
   int nextItem;
 
   //Player Images
@@ -50,7 +41,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   int frame;
 
   Player() {
-
+    nExTiTeMiNdEx = 0;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -68,18 +59,15 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     bullets = new Heatseeker[10];
     inventory= new Item[5];
 
+    nextItem = 0;
 
-    nextItemIndex = 0;
-
-
+    h = new HighNoon(width/4, height/4);
     e = new EmptyItem(x, y);
-
     inventory = new Item[5];
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
     }
-
 
     for (int i = 0; i < 10; i++) {
       shots[i] = new Magic();
@@ -125,18 +113,16 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   void update() {
     
-    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
-      println(currentRoom.getItem().name, currentRoom.getItem().x, currentRoom.getItem().y);
-      inventory[nextItemIndex] = currentRoom.getItem();
-      println(inventory[nextItemIndex].name);
-      currentRoom.setItem(null);
-      nextItemIndex++;
+    if (currentRoom instanceof ItemRoom && currentRoom.item != null && hittingPlayer(currentRoom.item.x, currentRoom.item.y, 50, 50)) {
+      inventory[nExTiTeMiNdEx] = currentRoom.item;
+      currentRoom.item = null;
+      nExTiTeMiNdEx = nExTiTeMiNdEx + 1;
+      //dOnEbYkAnOnDeRvIn
     }
 
 
     //print(shooting);
     if (HP <= 0 && finalAnimation <= 1) {
-
       gameState = GameState.GAME_OVER;
     }
 
@@ -370,7 +356,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       shotCD = shotsCD;
       tempX = x;
       tempY = y;
-      soundEffects.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y-30, 0, shotspd+(yVel*.5), true);
