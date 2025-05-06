@@ -21,7 +21,7 @@ class Magic {
   }
 
   void update() {
-    if (!isDestroyed && !isHeatseeking) {
+    if (!isDestroyed || !isHeatseeking) {
       x += xVel;
       y += yVel;
 
@@ -32,7 +32,7 @@ class Magic {
   }
 
   void updateHeatseeker(float targetX, float targetY) {
-    if (isHeatseeking == false) {
+    if (!isHeatseeking || isDestroyed) {
       return;
     }
     target = new PVector(targetX - x, targetY - y);

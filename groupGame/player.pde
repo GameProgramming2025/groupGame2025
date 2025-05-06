@@ -1,6 +1,5 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>// //<>//
 
   Item inventory[];
   ItemRoom ipos;
@@ -20,28 +19,28 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   boolean shooting;
 
 
-  //shooting
-  Heatseeker bullets[];
+
   Shotgun s;
+
   //heatseeker variables
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
- //<>//
- //<>// //<>// //<>//
-  // Player Stats //<>// //<>// //<>// //<>//
- //<>// //<>//
- //<>//
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>// //<>// //<>//
- //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>// //<>//
- //<>// //<>// //<>//
-  Magic shots[]; //<>// //<>//
+
+
+  //<>//
+  // Player Stats //<>// //<>//
+  //<>//
+
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
+  //<>//
+  //<>// //<>// //<>//
+  //<>//
+  Magic shots[]; //<>//
+
 
 
   int nextShot;
-
-  int nextItem;
 
   //Player Images
 
@@ -66,7 +65,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     shotsCD = 60;
     maxspd = 1000000;
     shots = new Magic[10];
-    bullets = new Heatseeker[10];
     inventory= new Item[5];
     s = new Shotgun(x,y);
 
@@ -126,13 +124,14 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void update() {
+
     s.update();
     s.x = x;
     s.y = y;  
+
+
     if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
-      println(currentRoom.getItem().name, currentRoom.getItem().x, currentRoom.getItem().y);
       inventory[nextItemIndex] = currentRoom.getItem();
-      println(inventory[nextItemIndex].name);
       currentRoom.setItem(null);
       nextItemIndex++;
     }
@@ -162,12 +161,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
     for (Magic m : shots) {
       m.update();
-      if (m.x > 0 && m.y > 0) {
-        if (dist(tempX, tempY, m.x, m.y)>range) {
-          m.destroyMagic();
-        }
-      }
-      m.display();
     }
 
     if (currentRoom.enemies != null) {
@@ -182,15 +175,18 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
 
       for (Magic shot : shots) {
-        shot.updateHeatseeker(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
-        shot.display(); //will move it later to display
+        if (shot.isHeatseeking) { //Checks if the shot is a heatseeker shot or not
+          shot.updateHeatseeker(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
+        }
       }
 
       farthestDistance = 0;
       //Sets the farthest distance to 0 to make sure we can calculate the farthest enemy again during the next iteration
     } else {
       for (Magic shot : shots) {
-        shot.destroyMagic();
+        if (shot.isHeatseeking) {
+          shot.destroyMagic();
+        }
       }
     }
 
@@ -236,7 +232,13 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void display() {
+
     s.display();
+
+    for (Magic m : shots) {
+      m.display();
+    }
+
     //println(yVel);
     //println(xVel);
     if (xVel == 0 && yVel == 0) {
@@ -322,14 +324,6 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       targetY + targetYSize > y - ySize || //Collision top side player
       targetY - targetYSize < y + ySize    //Collision bottom side player
       );
-  }
-
-  void giveItemToPlayer(Item i) {
-    inventory[nextItem] = i;
-    nextItem++;
-    if (nextItem == 5) {
-      nextItem = 0;
-    }
   }
 
   void keyPressed() {
