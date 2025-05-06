@@ -189,6 +189,7 @@ class Enemy extends ScreenElement {
       frame = 0;
 
       currentSprite = int((270-finTimer)/15)+2;
+      
       if (finTimer <= 1) {
         HpBarHeight = 0;
         enemy.x = 10000;
