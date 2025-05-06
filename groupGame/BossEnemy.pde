@@ -39,7 +39,7 @@ class BossEnemy extends ScreenElement {
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
-    finTimer = 270;
+    finTimer = 175;
     sprites = new PImage[45];
     PImage spritesheet = loadImage("Sprites/BossSprite.png");
     spritesheet.resize(2016, 2016);
@@ -199,6 +199,7 @@ class BossEnemy extends ScreenElement {
     // yVelo += yAcc;
     // xVelo += xAcc;
     // yVelo += gravity;
+    
     if (animation <= 0) {
       animation = 15;
     }
@@ -236,7 +237,7 @@ class BossEnemy extends ScreenElement {
       yVelo = 0;
       frame = 0;
 
-      currentSprite = int((270-finTimer)/15)+2;
+      currentSprite = int((175-finTimer)/7)+19;
       if (finTimer <= 1) {
         HpBarHeight = 0;
         BossEnemy.x = 10000;
