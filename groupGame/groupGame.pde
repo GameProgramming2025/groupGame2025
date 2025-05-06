@@ -33,7 +33,7 @@ Minim min;
 void setup() {
 
   rectMode(CENTER);
-  size(1700, 1200, P2D);
+  size(1700, 1200, P3D);
 
   p1 = new Player();
   currentI = 2;

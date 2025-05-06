@@ -6,7 +6,7 @@ class HighNoon extends Item {
     this.y=y;
     name = "highNoon";
     description = "Makes Shot cooldown longer but makes you do more damage";
-    area = "can be found in Item rooms or after killing boss.";
+    area = "can be found in Item rooms";
     rarity = 2;
     atk = 10;
     shotsCD = 30;
