@@ -35,7 +35,7 @@ class BossEnemy extends ScreenElement {
     projectile = new PVector(BossEnemy.x, BossEnemy.y);
     target = new PVector(p1.x, p1.y);
     animation = 21;
-    deadAnimation = 21;
+    deadAnimation = 500;
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
@@ -125,6 +125,11 @@ class BossEnemy extends ScreenElement {
     //player animation
     if (xVelo > 0 && yVelo > 0) {
       animation--;
+      //dying animation
+    if (BossEnemyHealth > deadAnimation) {
+      currentSprite = ((500-deadAnimation)/27)+4;
+      deadAnimation =- 33;
+    }
       currentSprite = 0;
       if (animation <= 14) {
         currentSprite = 1;
@@ -144,10 +149,10 @@ class BossEnemy extends ScreenElement {
       }
     }
 
-    
-     // if (BossEnemyHealth -= 33){
-   // currentSprite = int(map(BossEnemyHealth, 0, 14, 0, 500)) + 4;
-   // }
+
+    // if (BossEnemyHealth -= 33){
+    // currentSprite = int(map(BossEnemyHealth, 0, 14, 0, 500)) + 4;
+    // }
 
     imageMode(CENTER);
     image(sprites[currentSprite], 0, 0);
@@ -199,7 +204,7 @@ class BossEnemy extends ScreenElement {
     // yVelo += yAcc;
     // xVelo += xAcc;
     // yVelo += gravity;
-    
+
     if (animation <= 0) {
       animation = 15;
     }
@@ -230,7 +235,6 @@ class BossEnemy extends ScreenElement {
 
 
 
-
     if (BossEnemyHealth <= 0 ) {
       finTimer--;
       xVelo = 0;
@@ -250,12 +254,11 @@ class BossEnemy extends ScreenElement {
       here = false;
     }
 
+
     if (dist(BossEnemy.x, BossEnemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 2;
       BossEnemyHealth -= 33;
       recordedTime = millis();
-
-
 
       soundEffects.strike = true;
     } else {
