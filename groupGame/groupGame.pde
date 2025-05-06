@@ -60,7 +60,7 @@ void setup() {
   
   rooms[0][0] = new Room(0, 0, false, true, false, true);
   rooms[1][0] = new Room(1, 0, false, false, true, true);//border on bottom wall
-  rooms[2][0] = new Room(2, 0, false, true, true, true);//border on bottom wall
+  rooms[2][0] = new Room(2, 0, false, false, true, true);//border on bottom wall
   rooms[3][0] = new Room(3, 0, false, false, true, true);//border on bottom wall
   rooms[4][0] = new Room(4, 0, false, true, true, false);
   rooms[0][1] = new Room(0, 1, true, true, false, false);//border on right wall;
