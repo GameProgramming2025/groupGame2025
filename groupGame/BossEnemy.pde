@@ -126,10 +126,11 @@ class BossEnemy extends ScreenElement {
     if (xVelo > 0 && yVelo > 0) {
       animation--;
       //dying animation
-    if (BossEnemyHealth > deadAnimation) {
+    if (BossEnemyHealth < deadAnimation) {
       currentSprite = ((500-deadAnimation)/27)+4;
-      deadAnimation =- 33;
-    }
+      deadAnimation -= 50;
+    } 
+    //
       currentSprite = 0;
       if (animation <= 14) {
         currentSprite = 1;
