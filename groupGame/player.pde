@@ -1,5 +1,5 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>// //<>// //<>//
 
 
   Item inventory[];
@@ -27,15 +27,15 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   float farthestEnemyX;
   float farthestEnemyY;
 
- //<>//
-  // Player Stats //<>// //<>//
- //<>//
+ //<>// //<>//
+  // Player Stats //<>// //<>// //<>//
+ //<>// //<>//
 
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
- //<>//
-  //<>// //<>// //<>//
- //<>//
-  Magic shots[]; //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>// //<>//
+ //<>// //<>//
+  //<>// //<>// //<>// //<>//
+ //<>// //<>//
+  Magic shots[]; //<>// //<>//
 
 
   int nextShot;
@@ -373,7 +373,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       soundEffects.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x, y-30, 0, shotspd+(yVel*.5), true);
+        shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
