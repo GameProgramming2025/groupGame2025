@@ -36,7 +36,7 @@ class Enemy extends ScreenElement {
     currentSprite = 0;
     firstSprite = 0;
     frame = 0;
-    finTimer = 270;
+    finTimer = 136;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
     //spritesheet.resize(96, 96);
@@ -188,7 +188,7 @@ class Enemy extends ScreenElement {
       yVelo = 0;
       frame = 0;
 
-      currentSprite = int((270-finTimer)/15)+2;
+      currentSprite = int((136-finTimer)/8)+2;
       
       if (finTimer <= 1) {
         HpBarHeight = 0;
