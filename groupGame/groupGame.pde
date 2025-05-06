@@ -71,7 +71,7 @@ void setup() {
   rooms[0][2] = new TrapRoom(0, 2, true, true, false, false);//border on right wall & trap room
   rooms[1][2] = new TrapRoom(1, 2, true, true, false, false);//border on left and right wall & trap room
   rooms[2][2] = new BossRoom(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
-  rooms[3][2] = new Room(3, 2, true, true, false, false);//borders on left and right wall & trap room
+  rooms[3][2] = new TrapRoom(3, 2, true, true, false, false);//borders on left and right wall & trap room
   rooms[4][2] = new TrapRoom(4, 2, true, true, false, false);//border on left wall & trap room
   rooms[0][3] = new Room(0, 3, true, true, false, false);//border on right wall
   rooms[1][3] = new Room(1, 3, true, false, false, true);//border on left and bottom wall
