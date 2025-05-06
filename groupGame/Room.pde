@@ -1,5 +1,6 @@
 class Room {
   Item item;
+  Enemy[] enemies;
   int roomI;
   int roomJ;
   int bc;
