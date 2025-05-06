@@ -44,37 +44,61 @@ class SoundEffects {
   void update() {
 
     if (hurt) {
-      num = (int)random(1, 4);
+      //println(num);
+      num = (int)random(1, 3);
       if (num == 1) {
-        grunt1.play(0);
-      } else if (num == 2) {
-        grunt2.play(0);
-      } else if (num == 3) {
-        grunt3.play(0);
-      } else {
-        num = -1;
+        if (!grunt1.isPlaying()) {
+          grunt1.play(0);
+          hurt = false;
+        }
+      }
+      if (num == 2) {
+        if (!grunt2.isPlaying()) {
+          grunt2.play(0);
+          hurt = false;
+        }
+      }
+      if (num == 3) {
+        if (!grunt3.isPlaying()) {
+          grunt3.play(0);
+          hurt = false;
+        }
       }
     }
 
     if (strike) {
-      num2 = int(random(1, 3));
+      num2 = (int)random(1, 3);
+      println(num2);
+      
       if (num2 == 1) {
-        ehit1.play(0);
-      } else if (num2 == 2) {
-        ehit2.play(0);
-      } else if (num2 == 3) {
-        ehit3.play(0);
-      } else {
-        num2 = -1;
+        if (!ehit1.isPlaying()) {
+          ehit1.play(0);
+          strike = false;
+        }
+      }
+      
+      if (num2 == 2) {
+        if (!ehit2.isPlaying()) {
+          ehit2.play(0);
+          strike = false;
+        }
+      }
+      
+      if (num2 == 3) {
+        if (!ehit3.isPlaying()) {
+          ehit3.play(0);
+          strike = false;
+        }
       }
     }
 
     if (attack) {
-      println("attacking");
+      //println("attacking");
       if ( !fireball.isPlaying() ) {
         fireball.play(0);
         attack = false;
       }
     }
+    
   }
 }
