@@ -1,5 +1,5 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 
   Item inventory[];
@@ -22,20 +22,21 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   //shooting
   Heatseeker bullets[];
+  Shotgun s;
   //heatseeker variables
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
-
  //<>//
-  // Player Stats //<>// //<>//
+ //<>// //<>// //<>//
+  // Player Stats //<>// //<>// //<>// //<>//
+ //<>// //<>//
  //<>//
-
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
- //<>//
-  //<>// //<>// //<>//
- //<>//
-  Magic shots[]; //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>//
+  Magic shots[]; //<>// //<>//
 
 
   int nextShot;
@@ -67,6 +68,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     shots = new Magic[10];
     bullets = new Heatseeker[10];
     inventory= new Item[5];
+    s = new Shotgun(x,y);
 
 
     nextItemIndex = 0;
@@ -124,7 +126,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void update() {
-    
+    s.update();
+    s.x = x;
+    s.y = y;  
     if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
       println(currentRoom.getItem().name, currentRoom.getItem().x, currentRoom.getItem().y);
       inventory[nextItemIndex] = currentRoom.getItem();
@@ -166,29 +170,29 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       m.display();
     }
 
-    //if (currentRoom.enemies != null) {
+    if (currentRoom.enemies != null) {
 
-    //  for (Enemy enemy : currentRoom.enemies) {
-    //    if (dist(x, y, enemy.xPos, enemy.yPos) > farthestDistance && enemy.enemyHealth > 0) { //Checks each and every enemy and sees which is the farthest from the player
-    //      farthestDistance = dist(x, y, enemy.xPos, enemy.yPos);  //Stores the distance to make sure the highest distance is stored
-    //      farthestEnemyX = enemy.xPos;  //Stores the x value of the farthest enemy
-    //      farthestEnemyY = enemy.yPos;  //Stores the y value of the farthest enemy
-    //    }
-    //  }
+      for (Enemy enemy : currentRoom.enemies) {
+        if (dist(x, y, enemy.xPos, enemy.yPos) > farthestDistance && enemy.enemyHealth > 0) { //Checks each and every enemy and sees which is the farthest from the player
+          farthestDistance = dist(x, y, enemy.xPos, enemy.yPos);  //Stores the distance to make sure the highest distance is stored
+          farthestEnemyX = enemy.xPos;  //Stores the x value of the farthest enemy
+          farthestEnemyY = enemy.yPos;  //Stores the y value of the farthest enemy
+        }
+      }
 
 
-    //  for (Magic shot : shots) {
-    //    shot.updateHeatseeker(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
-    //    shot.display(); //will move it later to display
-    //  }
+      for (Magic shot : shots) {
+        shot.updateHeatseeker(farthestEnemyX, farthestEnemyY);  //Updates the position of the farthest enemy to the heatseeker's update function
+        shot.display(); //will move it later to display
+      }
 
-    //  farthestDistance = 0;
-    //  //Sets the farthest distance to 0 to make sure we can calculate the farthest enemy again during the next iteration
-    //} else {
-    //  for (Magic shot : shots) {
-    //    shot.destroyMagic();
-    //  }
-    //}
+      farthestDistance = 0;
+      //Sets the farthest distance to 0 to make sure we can calculate the farthest enemy again during the next iteration
+    } else {
+      for (Magic shot : shots) {
+        shot.destroyMagic();
+      }
+    }
 
     shotCD--;
     frames--;
@@ -232,6 +236,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void display() {
+    s.display();
     //println(yVel);
     //println(xVel);
     if (xVel == 0 && yVel == 0) {
@@ -328,9 +333,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void keyPressed() {
-    if (key == '1') {
+    s.keyPressed();
+    /*if (key == '1') {
       spd++;
     }
+    */
     if (key == '2') {
       spd--;
     }
@@ -373,7 +380,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       soundEffects.attack = true;
       if (keyCode == UP) {
         shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x, y-30, 0, shotspd+(yVel*.5), true);
+        shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
       } else if (keyCode == DOWN) {
         shots[nextShot] = new Magic();
         shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);

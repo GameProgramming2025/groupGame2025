@@ -1,5 +1,6 @@
 class Room {
   Item item;
+  Enemy[] enemies;
   int roomI;
   int roomJ;
   int bc;
@@ -201,7 +202,7 @@ class Room {
       }
     }
   }
-  
+  // no changing function name
   void joshshouldofdonethisthefirsttimebutkanonhadtofixit(){
     if (!topOpen) {
       image(topDoor, 0, 0);
