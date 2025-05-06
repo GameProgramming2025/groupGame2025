@@ -12,6 +12,7 @@ float a;
 PImage GameOver;
 PImage TitleScreen, SelectScreen;
 boolean starting;
+boolean on_start;
 float fade;
 Room rooms[][];
 int currentI;
@@ -29,7 +30,7 @@ void setup() {
 
   rectMode(CENTER);
   size(1700, 1200, P2D);
-
+  on_start = true;
   p1 = new Player();
   currentI = 2;
   currentJ = 0;
@@ -85,11 +86,12 @@ void setup() {
   rooms[4][4] = new Room(4, 4, true, false, true, false);
 
   currentRoom = rooms[currentI][currentJ];
+  gameState = GameState.MAIN_SCREEN;
 }
 
 void draw() {
   background(0);
-  gameState = GameState.MAIN_SCREEN;
+  
   if (noInputCnt == 60 * 60 * 30) {
     gameState = GameState.BLACK;
   } else if (noInputCnt == 60 * 60 * 2) {
@@ -98,29 +100,44 @@ void draw() {
 
   switch (gameState) {
   case MAIN_SCREEN:
+  if(a<0){
+   a=0; 
+  }
     if (fade == 2) {
       background(TitleScreen);
     } else {
       background(SelectScreen);
-      fill(255);
-      rect(width/2 -170,height/2 -100,400,100);
+
+      rectMode(CORNER);
+      stroke(255);
+      strokeWeight(10);
+
+
+      if (on_start) {
+        rect(width/2 -297, height/2 -155, 562, 178);
+      } else {
+        rect(width/2 -297, height/2 +150, 562, 160);
+      }
+
+
+
+      rectMode(CENTER);
+      strokeWeight(0);
+      stroke(0);
     }
-    
-    
+
+
     fill(0, 0, 0, a);
     rect(width/2, height/2, width, height, 0);
-    
+
     if (keyPressed) {
       starting = true;
     }
-    
+
     if (starting) {
       a=a+fade;
       if (a >= 255) {
         fade=-2;
-      }
-      if (a<0) {
-        starting = false;
       }
     }
 
@@ -183,8 +200,18 @@ void draw() {
 }
 
 void keyPressed() {
-  p1.keyPressed();
+  if (gameState == GameState.GAMEPLAY) {
+    p1.keyPressed();
+  } else if (gameState == GameState.MAIN_SCREEN) {
+    if (key=='w' || key=='s') {
+      on_start = !on_start;
+    }
+    if ( on_start && key == 'e' && a<5 ) {
+      gameState = GameState.GAMEPLAY;
+    }
+  }
 }
+
 
 void keyReleased() {
   p1.keyReleased();
