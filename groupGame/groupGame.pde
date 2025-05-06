@@ -36,8 +36,13 @@ Minim min;
 void setup() {
 
   rectMode(CENTER);
-  size(1700, 1200, P2D);
+  size(1700, 1200, P3D);
+
   on_start = true;
+
+
+
+
   p1 = new Player();
   currentI = 2;
   currentJ = 0;
@@ -98,7 +103,7 @@ void setup() {
 
 void draw() {
   background(0);
-  
+
   if (noInputCnt == 60 * 60 * 30) {
     gameState = GameState.BLACK;
   } else if (noInputCnt == 60 * 60 * 2) {
@@ -107,9 +112,9 @@ void draw() {
 
   switch (gameState) {
   case MAIN_SCREEN:
-  if(a<0){
-   a=0; 
-  }
+    if (a<0) {
+      a=0;
+    }
     if (fade == 2) {
       background(TitleScreen);
     } else {
