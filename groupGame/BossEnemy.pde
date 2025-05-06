@@ -106,7 +106,7 @@ class BossEnemy extends ScreenElement {
     sprites[43] = spritesheet.get(288, 1728, 288, 288);
     sprites[44] = spritesheet.get(576, 1728, 288, 288);
 
-    recordedTime = millis() + 1000;
+    recordedTime = millis() + 2000;
   }
 
   void display () {
@@ -279,7 +279,9 @@ class BossEnemy extends ScreenElement {
 
     for (Magic m : p1.shots) {
       if (dist(BossEnemy.x, BossEnemy.y, m.x, m.y) < 75) {
-        BossEnemyHealth = 0;
+        BossEnemyHealth -= 50;
+        m.x = 10000;
+        m.y = 10000;
       }
     }
 

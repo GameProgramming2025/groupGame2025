@@ -1,5 +1,5 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 
   Item inventory[];
@@ -22,19 +22,20 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   //shooting
   Heatseeker bullets[];
+  Shotgun s;
   //heatseeker variables
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
-
+ //<>//
+ //<>// //<>// //<>//
+  // Player Stats //<>// //<>// //<>// //<>//
  //<>// //<>//
-  // Player Stats //<>// //<>// //<>//
- //<>// //<>//
-
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>// //<>//
- //<>// //<>//
-  //<>// //<>// //<>// //<>//
- //<>// //<>//
+ //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>//
   Magic shots[]; //<>// //<>//
 
 
@@ -67,6 +68,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     shots = new Magic[10];
     bullets = new Heatseeker[10];
     inventory= new Item[5];
+    s = new Shotgun(x,y);
 
 
     nextItemIndex = 0;
@@ -124,7 +126,9 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void update() {
-    
+    s.update();
+    s.x = x;
+    s.y = y;  
     if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
       println(currentRoom.getItem().name, currentRoom.getItem().x, currentRoom.getItem().y);
       inventory[nextItemIndex] = currentRoom.getItem();
@@ -232,6 +236,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void display() {
+    s.display();
     //println(yVel);
     //println(xVel);
     if (xVel == 0 && yVel == 0) {
@@ -328,9 +333,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   }
 
   void keyPressed() {
-    if (key == '1') {
+    s.keyPressed();
+    /*if (key == '1') {
       spd++;
     }
+    */
     if (key == '2') {
       spd--;
     }
