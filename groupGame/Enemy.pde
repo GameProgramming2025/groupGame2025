@@ -19,6 +19,7 @@ class Enemy extends ScreenElement {
   int frame;
   int animation;
   int finTimer;
+  int tick;
 
   Enemy(float x, float y) {
     super();
@@ -36,6 +37,7 @@ class Enemy extends ScreenElement {
     currentSprite = 0;
     firstSprite = 0;
     frame = -1;
+    tick = -1;
     finTimer = 270;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
@@ -122,12 +124,12 @@ class Enemy extends ScreenElement {
 
   void update () {
 
-    if (random(0, 1) < 1/18 && frame == -1) {
+    if (random(0, 1) < 1/18 && tick == -1) {
       println("hi");
-      frame = 0;
+      tick = 0;
     }
 
-    if (frame > -1 && frame < 5) {
+    if (tick > -1 && tick < 5) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
         projectile.x = enemy.x;
         projectile.y = enemy.y;
@@ -138,7 +140,7 @@ class Enemy extends ScreenElement {
         //target.y *= 3;
       }
     }
-    if (frame == 70) {
+    if (tick == 70) {
       projectile.x = 10000;
       projectile.y = 10000;
       frame = 0;
@@ -191,6 +193,7 @@ class Enemy extends ScreenElement {
       xVelo = 0;
       yVelo = 0;
       frame = 0;
+      health = 0;
 
       currentSprite = int((270-finTimer)/15)+2;
 
@@ -239,10 +242,10 @@ class Enemy extends ScreenElement {
     
     
     //timer frame
-    if (frame > -1) {
-      frame++;
-      if (frame > 70) {
-        frame = -1;
+    if (tick > -1) {
+      tick++;
+      if (tick > 70) {
+        tick = -1;
       }
     }
   }

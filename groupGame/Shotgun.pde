@@ -1,5 +1,9 @@
 class Shotgun extends Item {
   Magic b1, b2, b3;
+  float direction;
+  
+  
+  float range = -200;
 
   Shotgun(float x, float y) {
     super(x, y, "Sprites/Shotgun.png");
@@ -27,9 +31,21 @@ class Shotgun extends Item {
     b3.display();
   }
 
-  void shoot() {
-    b1.createObject(x, y, cos(0.15) * 10, sin(0.15) * 10, false);
-    b2.createObject(x, y, cos(0) * 10, sin(0) * 10, false);
-    b3.createObject(x, y, cos(-0.15) * 10, sin(-0.15) * 10, false);
+  void shoot(String dir) {
+    if (dir.equals("UP")) {
+      direction = 270;
+    }
+    if (dir.equals("RIGHT")) {
+      direction = 0;
+    }
+    if (dir.equals("LEFT")) {
+      direction = 180;
+    }
+    if (dir.equals("DOWN")) {
+      direction = 90;
+    }
+    b1.createObject(x, y, cos(radians(direction) + 0.15) * 10, sin(radians(direction) + 0.15) * 10, false);
+    b2.createObject(x, y, cos(radians(direction)) * 10, sin(radians(direction)) * 10, false);
+    b3.createObject(x, y, cos(radians(direction) - 0.15) * 10, sin(radians(direction) - 0.15) * 10, false);
   }
 }

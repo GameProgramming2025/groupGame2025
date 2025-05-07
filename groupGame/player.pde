@@ -372,11 +372,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       tempX = x;
       tempY = y;
       soundEffects.attack = true;
-
+      
+      hasShotgun = false;
       for (Item i : inventory) {
         if (i instanceof Shotgun) {
-          hasShotgun = true;
-        } else {
           hasShotgun = true;
         }
       }
@@ -385,28 +384,40 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
         } else {
-          s.shoot();
+          s.shoot("UP");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
         }
       } else if (keyCode == DOWN) {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
         } else {
-          s.shoot();
+          s.shoot("DOWN");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
         }
       } else if (keyCode == LEFT) {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x-30, y, -shotspd + (xVel *.5), 0, false);
         } else {
-          s.shoot();
+          s.shoot("LEFT");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
         }
       } else if (keyCode == RIGHT) {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x+30, y, shotspd + (xVel *.5), 0, false);
         } else {
-          s.shoot();
+          s.shoot("RIGHT");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
         }
       }
       if (nextShot == 9) {
