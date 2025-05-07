@@ -115,7 +115,13 @@ class HUD {
   void effects(boolean enabled) {
     if(enabled) {
       imageMode(CENTER);
+      if (currentHp < 2) {
+        tint(255, 0, 0);
+      } else {
+        noTint();
+      }
       image(blackRadialGradient, p1.x, p1.y);
+      noTint();
       imageMode(CORNER);
     }
   }
