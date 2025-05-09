@@ -21,6 +21,9 @@ class ShiftingPrism extends Item {
     j.setString("class", "ShiftingPrism");
     return j;
   }
+  void update(){
+   super.update(); 
+  }
   void render() {
     super.render();
     rarity = 2;

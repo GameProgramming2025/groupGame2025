@@ -5,7 +5,7 @@ class VeilOfSilence extends Item {
     this.x = x;
     this.y = y;
     name = "Shifting Prism";
-    description = "A light, ethereal fabric that shifts with the shadows, this veil grants its wearer the ability to move without leaving a trace.";
+    description = "A light, ethereal fabric that shifts with the shadows, this veil grants its wearer the ability to move with deadly precision, and impossible speeds";
     area = "Item Room";
     rarity = 4;
     xSize = -20;
@@ -21,6 +21,9 @@ class VeilOfSilence extends Item {
     JSONObject j = super.serialize();
     j.setString("class", "VeilOfSilence");
     return j;
+  }
+  void update(){
+   super.update(); 
   }
   void render() {
     super.render();
