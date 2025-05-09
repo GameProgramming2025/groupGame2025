@@ -3,12 +3,14 @@ import ddf.minim.AudioPlayer;
 
 
 class SoundEffects {
-  boolean start;
+  boolean background; //background music
   boolean hurt;
   boolean heal;
   boolean strike;
-  boolean item;
+  boolean item;  // Pickup item
   boolean attack;
+  //boolean walking; // walking sfx
+  //boolean explosion; // enemies explosion sfx
   int num;
   int num2;
   Minim minim;
