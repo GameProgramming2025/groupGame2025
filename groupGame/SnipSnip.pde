@@ -21,6 +21,9 @@ class SnipSnip extends Item{
     j.setString("class", "SnipSnip");
     return j;
   }
+  void update(){
+   super.update(); 
+  }
   void render() {
     super.render();
     rarity = 3;

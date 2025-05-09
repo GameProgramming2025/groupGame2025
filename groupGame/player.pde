@@ -1,8 +1,9 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>// //<>//
-
-  Item inventory[];
+class Player { //<>//
+ //<>//
+  Item inventory[]; //<>//
+  ActiveItem act[];
   ItemRoom ipos;
+  Item i;
 
   int equippedItem;
   int nextItemIndex;
@@ -10,8 +11,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   EmptyItem e;
   float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
   float tempX, tempY;
+  float charge = 0;
 
   //timers
+  float chargeSpeed;
   float frames;
   int seconds;
   int animation;
@@ -24,34 +27,30 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   boolean hasShotgun;
 
   //heatseeker variables
-  float farthestDistance;
-  float farthestEnemyX;
-  float farthestEnemyY; //<>//
+  float farthestDistance; //<>//
  //<>//
  //<>//
-  //<>// //<>//
+  float farthestEnemyX; //<>// //<>//
+  float farthestEnemyY; //<>// //<>//
+ //<>// //<>//
   // Player Stats //<>// //<>//
-  //<>//
-
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
-  //<>//
-  //<>// //<>// //<>//
-  //<>//
-  Magic shots[]; //<>//
-
-
-
-  int nextShot;
-
-  //Player Images
-
+  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>//
+ //<>//
+ //<>//
+  Magic shots[]; //<>// //<>//
+ //<>//
+ //<>//
+  int nextShot; //<>//
+ //<>//
+  //Player Images //<>//
   PImage sprites[];
   int currentSprite;
   int firstSprite;
   int frame;
 
   Player() {
-
+    chargeSpeed = 1.0 / shotsCD;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -67,7 +66,10 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     maxspd = 1000000;
     shots = new Magic[10];
     inventory= new Item[5];
+
     s = new Shotgun(x, y);
+
+
 
 
     nextItemIndex = 0;
@@ -76,6 +78,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     e = new EmptyItem(x, y);
 
     inventory = new Item[5];
+    act = new ActiveItem[1];
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
@@ -151,6 +154,11 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
     if (HP > maxHP) {
       HP = maxHP;
+    }
+
+    if (charge < 1.0) {
+      charge += chargeSpeed;
+      if (charge > 1.0) charge = 1.0;
     }
 
     x += xVel;
@@ -314,7 +322,26 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     imageMode(CENTER);
 
     image(sprites[currentSprite], 0, 0);
+    // Draw charge cooldown indicator
     pop();
+
+    if (shotCD >= 0.01) {
+      push ();
+      translate(x + xSize / 2 + 10, y - ySize / 2 - 10); // Position the circle near top-right of the player
+      noFill();
+      stroke(255);
+      strokeWeight(2);
+      fill (#00ff00);
+      ellipse(0, 0, 20, 20); // Outer circle
+
+      // Filled arc representing the charge
+
+      //fill(255, 100, 100, 180); // Semi-transparent red
+      noStroke();
+      fill (#ff0000, 180);
+      arc(0, 0, 20, 20, 0, (2*PI)*(shotCD/shotsCD), PIE);
+      pop();
+    }
   }
 
   boolean hittingPlayer(float targetX, float targetY, float targetXSize, float targetYSize) {

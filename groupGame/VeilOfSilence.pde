@@ -22,6 +22,9 @@ class VeilOfSilence extends Item {
     j.setString("class", "VeilOfSilence");
     return j;
   }
+  void update(){
+   super.update(); 
+  }
   void render() {
     super.render();
     rarity = 4;
