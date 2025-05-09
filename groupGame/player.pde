@@ -1,9 +1,8 @@
-class Player { //<>//
-  //Items //<>//
- //<>//
+class Player {
   Item inventory[];
   ActiveItem act[];
   ItemRoom ipos;
+  Item i;
 
   int equippedItem;
   int nextItemIndex;
@@ -27,12 +26,14 @@ class Player { //<>//
 
   //heatseeker variables
   float farthestDistance;
+
   float farthestEnemyX; //<>//
   float farthestEnemyY; //<>//
  //<>//
   // Player Stats //<>//
   int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>//
   float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>//
+
   Magic shots[]; //<>//
  //<>//
  //<>//
@@ -61,7 +62,9 @@ class Player { //<>//
     maxspd = 1000000;
     shots = new Magic[10];
     inventory= new Item[5];
+
     s = new Shotgun(x, y);
+
 
 
     nextItemIndex = 0;

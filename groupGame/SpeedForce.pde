@@ -12,8 +12,8 @@ class SpeedForce extends Item{
     maxspd = 7;
   }
   
-  void update(){
-    
+ void update(){
+   super.update(); 
   }
   
   void keyPressed(){
