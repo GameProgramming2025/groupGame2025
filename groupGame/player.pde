@@ -1,8 +1,9 @@
-class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  //Items //<>// //<>// //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+  //Items //<>// //<>// //<>// //<>// //<>// //<>//
 
   Item inventory[];
   ItemRoom ipos;
+  Item i;
 
   int equippedItem;
   int nextItemIndex;
@@ -26,16 +27,16 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
   float farthestDistance;
   float farthestEnemyX;
   float farthestEnemyY;
-
-
-  //<>//
-  // Player Stats //<>// //<>//
-  //<>//
-
-  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
-  //<>//
-  //<>// //<>// //<>//
-  //<>//
+ //<>//
+ //<>//
+  //<>// //<>//
+  // Player Stats //<>// //<>// //<>//
+  //<>// //<>//
+ //<>//
+  int maxHP, HP, shotCD, shotsCD, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>// //<>//
+  //<>// //<>//
+  //<>// //<>// //<>// //<>//
+  //<>// //<>//
   Magic shots[]; //<>//
 
 
@@ -67,6 +68,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     shots = new Magic[10];
     inventory= new Item[5];
     s = new Shotgun(x,y);
+    i = new Item(x,y,"Sprites/Shotgun.png");
 
 
     nextItemIndex = 0;
@@ -128,8 +130,7 @@ class Player { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     s.update();
     s.x = x;
     s.y = y;  
-
-
+    println("atk:" + atk);
     if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
