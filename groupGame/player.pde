@@ -64,6 +64,8 @@ class Player { //<>//
     finalAnimation = 60;
     shotsCD = 60;
     maxspd = 1000000;
+   
+    
     shots = new Magic[10];
     inventory= new Item[5];
 
@@ -138,6 +140,17 @@ class Player { //<>//
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
       nextItemIndex++;
+    }
+   
+    if(currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200){
+     
+      fill(0);
+      strokeWeight(0);
+      rect(currentRoom.getItem().x,currentRoom.getItem().y + 100, 120,110, 10);
+      textSize(15);
+      fill(255);
+      text(currentRoom.getItem().description,currentRoom.getItem().x,currentRoom.getItem().y + 60 ,120,1000000);
+     strokeWeight(10);
     }
 
 
