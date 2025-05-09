@@ -1,5 +1,6 @@
-class Player {
-  Item inventory[];
+class Player { //<>//
+ //<>//
+  Item inventory[]; //<>//
   ActiveItem act[];
   ItemRoom ipos;
   Item i;
@@ -23,18 +24,21 @@ class Player {
 
 
   Shotgun s;
+  boolean hasShotgun;
 
   //heatseeker variables
-  float farthestDistance;
-
-  float farthestEnemyX; //<>//
-  float farthestEnemyY; //<>//
+  float farthestDistance; //<>//
  //<>//
-  // Player Stats //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>//
-
-  Magic shots[]; //<>//
+ //<>//
+  float farthestEnemyX; //<>// //<>//
+  float farthestEnemyY; //<>// //<>//
+ //<>// //<>//
+  // Player Stats //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>//
+ //<>//
+ //<>//
+  Magic shots[]; //<>// //<>//
  //<>//
  //<>//
   int nextShot; //<>//
@@ -64,6 +68,7 @@ class Player {
     inventory= new Item[5];
 
     s = new Shotgun(x, y);
+
 
 
 
@@ -127,6 +132,7 @@ class Player {
     s.update();
     s.x = x;
     s.y = y;
+
 
     if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
       inventory[nextItemIndex] = currentRoom.getItem();
@@ -349,11 +355,10 @@ class Player {
   }
 
   void keyPressed() {
-    s.keyPressed();
-    /*if (key == '1') {
-     spd++;
-     }
-     */
+
+    if (key == '1') {
+      spd++;
+    }
     if (key == '2') {
       spd--;
     }
@@ -394,18 +399,53 @@ class Player {
       tempX = x;
       tempY = y;
       soundEffects.attack = true;
+      
+      hasShotgun = false;
+      for (Item i : inventory) {
+        if (i instanceof Shotgun) {
+          hasShotgun = true;
+        }
+      }
       if (keyCode == UP) {
-        shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
+        if (hasShotgun == false) {
+          shots[nextShot] = new Magic();
+          shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
+        } else {
+          s.shoot("UP");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
+        }
       } else if (keyCode == DOWN) {
-        shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
+        if (hasShotgun == false) {
+          shots[nextShot] = new Magic();
+          shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
+        } else {
+          s.shoot("DOWN");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
+        }
       } else if (keyCode == LEFT) {
-        shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x-30, y, -shotspd + (xVel *.5), 0, false);
+        if (hasShotgun == false) {
+          shots[nextShot] = new Magic();
+          shots[nextShot].createObject(x-30, y, -shotspd + (xVel *.5), 0, false);
+        } else {
+          s.shoot("LEFT");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
+        }
       } else if (keyCode == RIGHT) {
-        shots[nextShot] = new Magic();
-        shots[nextShot].createObject(x+30, y, shotspd + (xVel *.5), 0, false);
+        if (hasShotgun == false) {
+          shots[nextShot] = new Magic();
+          shots[nextShot].createObject(x+30, y, shotspd + (xVel *.5), 0, false);
+        } else {
+          s.shoot("RIGHT");
+          shots[0] = s.b1;
+          shots[1] = s.b2;
+          shots[2] = s.b3;
+        }
       }
       if (nextShot == 9) {
         nextShot = 0;

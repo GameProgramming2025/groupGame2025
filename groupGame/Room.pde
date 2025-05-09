@@ -142,10 +142,12 @@ class Room {
     rectMode(CORNER);
     imageMode(CORNER);
     fill(bc);
-    strokeWeight(10);
-    stroke(90);
-    rect(20, 20, width-40, height-40);
-    image(img, 0, 0);
+    //strokeWeight(10);
+    //stroke(90);
+    if (this instanceof ItemRoom == false) {
+      //rect(20, 20, width-40, height-40);
+      image(img, 0, 0);
+    }
     joshshouldofdonethisthefirsttimebutkanonhadtofixit();
     pop();
 
@@ -203,7 +205,7 @@ class Room {
     }
   }
   // no changing function name
-  void joshshouldofdonethisthefirsttimebutkanonhadtofixit(){
+  void joshshouldofdonethisthefirsttimebutkanonhadtofixit() {
     if (!topOpen) {
       image(topDoor, 0, 0);
     }
@@ -217,13 +219,12 @@ class Room {
       image(bottomDoor, 0, 0);
     }
   }
-  
+
   Item getItem() {
     return item;
   }
-  
+
   void setItem(Item setItem) {
     this.item = setItem;
   }
- 
 }

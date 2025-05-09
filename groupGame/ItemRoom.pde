@@ -21,14 +21,14 @@ class ItemRoom extends Room {
 
     if (spawn < 0.5) {
       item = new SpeedForce(width/2, height/2);
-    } else if (spawn <5) {
+    } else if (spawn < 5) {
       item = new PikminItem(width/2, height/2);
     } else  if (spawn < 10) {
       item = new VeilOfSilence(width/2, height/2);
     } else if (spawn < 25) {
       item = new SnipSnip(width/2, height/2);
     } else if (spawn < 40) {
-      //item = new Heatseeker(pedx, pedy);
+      item = new Shotgun(width/2, height/2);
     } else if (spawn < 70) {
       item = new HighNoon(width/2, height/2);
     } else if (spawn <= 100) {
@@ -40,10 +40,9 @@ class ItemRoom extends Room {
   }
 
   void display() {
-    super.display();
     imageMode(CORNER);
     image(irimg, 0, 0);
-    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
+    super.display();
     if (item != null) {
       item.display();
     }
