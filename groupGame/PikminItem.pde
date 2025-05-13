@@ -19,7 +19,9 @@ class PikminItem extends Item {
     rarity = 4;
     
   }
-  
+  void update(){
+   super.update(); 
+  }
   void keyPressed(){
     if (key == CODED && !shooting) {
       // println(tempX, " ", tempY);
