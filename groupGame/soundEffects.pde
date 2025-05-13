@@ -22,6 +22,8 @@ class SoundEffects {
   AudioPlayer ehit3;
   AudioPlayer healing;
   AudioPlayer fireball;
+  AudioPlayer backgrn;
+  AudioPlayer itemfound;
 
 
   SoundEffects(Minim m) {
@@ -40,11 +42,28 @@ class SoundEffects {
     ehit2 = minim.loadFile ("Data/SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("Data/SoundEffects/Enemy_hit3.mp3");
     fireball = minim.loadFile ("Data/SoundEffects/fireballsfx.mp3");
+    backgrn = minim.loadFile ("Data/SoundEffects/backgroundmusic.mp3");
+    itemfound = minim.loadFile ("Data/SoundEffects/itemfound.mp3");
   }
 
 
   void update() {
-
+    if (background){
+      if(!backgrn.isPlaying()){
+       backgrn.play(0);
+      }else{
+       backgrn.pause(); 
+      }
+    }
+    
+    if (item){
+     if(!itemfound.isPlaying()){
+     itemfound.play(0);
+     item = false;
+     }
+    }
+    
+    
     if (hurt) {
       //println(num);
       num = (int)random(1, 3);
