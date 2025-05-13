@@ -5,7 +5,7 @@ class SpeedForce extends Item{
     this.x=x;
     this.y=y;
     name = "SpeedForce";
-    description = "If you know you know no more shooting";
+    description = "you become the flash";
     area = "when Kanon says it can spawn";
     rarity = 5;
     spd = 10;

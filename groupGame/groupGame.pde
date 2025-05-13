@@ -8,11 +8,11 @@ import ddf.minim.ugens.*;
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
 //Lindblom talons of the dark
-//
+
 Player p1;
 HUD h1;
 Item spawned;
-GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
+GameState gameState = GameState.GAMEPLAY; //iowhbaweruyfbu ujfbdsfhasrhj
 
 long noInputCnt;
 float a;
@@ -242,7 +242,7 @@ void keyPressed() {
     if (key=='w' || key=='s') {
       on_start = !on_start;
     }
-    if ( on_start && key == 'e' && a<5 ) {
+    if ( on_start && key == 'z' && a<5 ) {
       gameState = GameState.GAMEPLAY;
     }
   }

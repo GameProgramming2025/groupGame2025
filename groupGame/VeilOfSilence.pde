@@ -5,7 +5,7 @@ class VeilOfSilence extends Item {
     this.x = x;
     this.y = y;
     name = "Shifting Prism";
-    description = "A light, ethereal fabric that shifts with the shadows, this veil grants its wearer the ability to move with deadly precision, and impossible speeds";
+    description = "makes you smaller and faster using the power of the dark";
     area = "Item Room";
     rarity = 4;
     xSize = -20;

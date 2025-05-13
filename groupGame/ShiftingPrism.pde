@@ -5,7 +5,7 @@ class ShiftingPrism extends Item {
     this.x = x;
     this.y = y;
     name = "Shifting Prism";
-    description = "A mysterious, multi-faceted crystal that pulses with an otherworldly glow. Its power is unpredictable, shifting its essence with every use.";
+    description = "crystal that randomizes stats";
     area = "Item Room";
     rarity = 2;
     atk = random(5,30);

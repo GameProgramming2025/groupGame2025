@@ -5,7 +5,7 @@ class Heatseeker extends Item {
     this.x = x;
     this.y = y;
     name = "Heatseeker";
-    description = "A item which targets an enemy but for a price of damage drop off";
+    description = "auto aim with less dmg";
     area = "Item Room";
     rarity = 3;
     
