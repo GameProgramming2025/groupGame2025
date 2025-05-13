@@ -124,8 +124,7 @@ class Enemy extends ScreenElement {
 
   void update () {
 
-    if (random(0, 1) < 1/18 && tick == -1) {
-      println("hi");
+    if (random(0, 1) < 0.0016 && tick == -1) {
       tick = 0;
     }
 
