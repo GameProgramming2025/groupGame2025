@@ -16,10 +16,13 @@ GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
 long noInputCnt;
 float a;
+float b;
 PImage GameOver, RestartButton;
 PImage TitleScreen, SelectScreen;
 boolean starting;
+boolean ending;
 boolean on_start;
+boolean on_end;
 float fade;
 Room rooms[][];
 int currentI;
@@ -39,6 +42,7 @@ void setup() {
   size(1700, 1200, P3D);
 
   on_start = true;
+  on_end = true;
 
 
 
@@ -51,8 +55,10 @@ void setup() {
 
   min = new Minim(this);
   a = 0;
+  b = 0;
   fade=2;
   starting=false;
+  ending = false;
   noInputCnt = 0;
 
 
@@ -61,7 +67,7 @@ void setup() {
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
   RestartButton = loadImage("Sprites/RestartButtons.png");
-  
+
   TitleScreen = loadImage("Sprites/TitleScreen.png");
   TitleScreen.resize(1700, 1200);
   SelectScreen = loadImage("Sprites/StartScreen.png");
@@ -201,7 +207,23 @@ void draw() {
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);
-    image(RestartButton, 500, 650);
+    image(RestartButton, 500, 800);
+
+    if (keyPressed) {
+      ending = true;
+    }
+
+    if (starting) {
+      b=b+fade;
+      if (b >= 255) {
+        fade=-2;
+      }
+    }
+
+    if (on_end) {
+      rect(width/2 -25 , height/2 +360, 593, 219);
+    } 
+
     break;
   case GAME_DEFEATED:
     break;
@@ -224,7 +246,25 @@ void keyPressed() {
       gameState = GameState.GAMEPLAY;
     }
   }
+
+  if (gameState == GameState.GAMEPLAY) {
+    p1.keyPressed();
+  } else if (gameState == GameState.GAME_OVER) {
+    if (key=='w' || key=='s') {
+      on_end = !on_end;
+    }
+    if ( on_start && key == 'e' && a<5 ) {
+      gameState = GameState.MAIN_SCREEN;
+      a = 0;
+      b = 0;
+      fade=2;
+      starting=false;
+      ending = false;
+      p1.HP = 10;
+    }
+  }
 }
+
 
 
 void keyReleased() {
