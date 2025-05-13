@@ -140,6 +140,7 @@ class Player { //<>//
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
       nextItemIndex++;
+      println("atk:" + atk);
     }
    
     if(currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200){
