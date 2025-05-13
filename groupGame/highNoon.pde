@@ -22,6 +22,9 @@ class HighNoon extends Item {
     j.setString("class", "highNoon");
     return j;
   }
+  void update(){
+   super.update(); 
+  }
   void render() {
     
     super.render();

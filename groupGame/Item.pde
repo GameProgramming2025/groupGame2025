@@ -26,7 +26,6 @@ class Item {
     if (imageFileName != null) {
       itemImg = loadImage(imageFileName);
       itemImg.resize(50, 50);
-
     }
     name = "Item";
     description = "An item in the game";
@@ -44,8 +43,8 @@ class Item {
     ySize = 0;
     collected = false;
   }
-  
-    
+
+
   Item(JSONObject j) {
     x = j.getFloat("x");
     y = j.getFloat("y");
@@ -75,14 +74,26 @@ class Item {
     pop();
   }
 
+  void update() {
+    HP += p1.HP;
+    atk += p1.atk;
+    shotsCD += p1.shotsCD;
+    maxspd += p1.maxspd;
+    spd += p1.spd;
+    range += p1.range;
+    shotspd += p1.shotspd;
+    xSize += p1.xSize;
+    ySize += p1.ySize;
+  }
+
   void render() {
-    if ( collected == true){
-     return; 
+    if ( collected == true) {
+      return;
     }
     imageMode(CENTER);
     image(itemImg, 0, 0);
   }
-  
+
   void renderDetails() {
     if (rarity == 1) {
       rarityStr = "Common";
@@ -110,5 +121,4 @@ class Item {
 
   void keyReleased() {
   }
-  
 }
