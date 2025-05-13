@@ -9,9 +9,9 @@ class HUD {
   PImage heart, brokenHeart, highNoon;
   float currentHp;
   boolean hasItem;
-
-  //EFFECTS
-  PImage blackRadialGradient;
+  float pts;
+    //EFFECTS
+    PImage blackRadialGradient;
 
 
   HUD(Player p) {
@@ -46,7 +46,7 @@ class HUD {
     rect(width*8/10, 70, 70, 70, 10);
     rect(width *8.5/10, 70, 70, 70, 10);
     fill(0);
-      for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++) {
       if (p.inventory[i] != null) {
         image(p.inventory[i].itemImg, 10 + width * 6.5 /10 + (i * 85)-40, 43);
       }
@@ -110,6 +110,12 @@ class HUD {
     if (currentHp== 1) {
       image(brokenHeart, x, y, s, s);
     }
+    
+
+    textSize(25);
+    fill(255);
+    text("Pts:", width/2 -300, 100);
+    text(pts,width/2 -320,100);
   }
 
   void effects(boolean enabled) {

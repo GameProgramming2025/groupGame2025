@@ -74,6 +74,9 @@ class Enemy extends ScreenElement {
   }
 
   void display () {
+    if(enemyHealth <= 0){
+      enemyHealth=0;
+    }
     push();
     stroke(255, 0, 0);
     fill(#4287f5);
@@ -108,6 +111,7 @@ class Enemy extends ScreenElement {
     fill(#ffff00);
     rect(0, -55, enemyHealth, HpBarHeight);
     fill(#00ffff);
+    
     pop();
   }
 
