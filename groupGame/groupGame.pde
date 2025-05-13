@@ -16,7 +16,7 @@ GameState gameState = GameState.GAMEPLAY; //TEMPORARY, WILL CHANGE LATER
 
 long noInputCnt;
 float a;
-PImage GameOver;
+PImage GameOver, RestartButton;
 PImage TitleScreen, SelectScreen;
 boolean starting;
 boolean on_start;
@@ -60,7 +60,8 @@ void setup() {
 
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
-
+  RestartButton = loadImage("Sprites/RestartButtons.png");
+  
   TitleScreen = loadImage("Sprites/TitleScreen.png");
   TitleScreen.resize(1700, 1200);
   SelectScreen = loadImage("Sprites/StartScreen.png");
@@ -200,6 +201,7 @@ void draw() {
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);
+    image(RestartButton, 0, 0);
     break;
   case GAME_DEFEATED:
     break;
