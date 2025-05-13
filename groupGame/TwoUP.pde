@@ -1,16 +1,22 @@
 class TwoUP extends ActiveItem {
 
   TwoUP(float x, float y) {
-    super(x, y, "twoup.png", 3); // maxCharge is 3
+    super(x, y, "Sprites/twoup.png", 3); // maxCharge is 3
   }
 
   void itemEffect() {
+    ready = false;
+    charge = 0;
     p1.HP += 1;
   }
 
   void keyPressed() {
-    if (key == 6) {
-      use();
+    if (key == '6') {
+      if (ready) {
+        this.use();
+      } else {
+        incrementCharge();
+      }
     }
   }
 
@@ -21,5 +27,6 @@ class TwoUP extends ActiveItem {
     if (charge >= maxCharge) {
       ready = true;
     }
+    println(charge, " ", ready);
   }
 }

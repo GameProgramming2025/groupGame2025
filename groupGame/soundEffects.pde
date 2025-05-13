@@ -70,10 +70,12 @@ class SoundEffects {
     }
 
     if (attack) {
+
       if ( !fireball.isPlaying() ) {
         fireball.play(0);
         attack = false;
       }
+
     }
   }
 }

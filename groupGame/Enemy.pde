@@ -19,6 +19,7 @@ class Enemy extends ScreenElement {
   int frame;
   int animation;
   int finTimer;
+  int tick;
 
   Enemy(float x, float y) {
     super();
@@ -35,8 +36,9 @@ class Enemy extends ScreenElement {
     animation = 15;
     currentSprite = 0;
     firstSprite = 0;
-    frame = 0;
-    finTimer = 136;
+    frame = -1;
+    tick = -1;
+    finTimer = 270;
     sprites = new PImage[36];
     PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
     //spritesheet.resize(96, 96);
@@ -69,11 +71,9 @@ class Enemy extends ScreenElement {
     sprites[19] = spritesheet.get(384, 288, 96, 96);
 
     recordedTime = millis() + 1000;
-
   }
 
   void display () {
-    frame ++;
     push();
     stroke(255, 0, 0);
     fill(#4287f5);
@@ -123,7 +123,12 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    if (frame == 280) {
+
+    if (random(0, 1) < 0.0016 && tick == -1) {
+      tick = 0;
+    }
+
+    if (tick > -1 && tick < 5) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
         projectile.x = enemy.x;
         projectile.y = enemy.y;
@@ -134,7 +139,7 @@ class Enemy extends ScreenElement {
         //target.y *= 3;
       }
     }
-    if (frame == 350) {
+    if (tick == 70) {
       projectile.x = 10000;
       projectile.y = 10000;
       frame = 0;
@@ -187,9 +192,10 @@ class Enemy extends ScreenElement {
       xVelo = 0;
       yVelo = 0;
       frame = 0;
+      health = 0;
 
-      currentSprite = int((136-finTimer)/8)+2;
-      
+      currentSprite = int((270-finTimer)/15)+2;
+
       if (finTimer <= 1) {
         HpBarHeight = 0;
         enemy.x = 10000;
@@ -197,7 +203,7 @@ class Enemy extends ScreenElement {
         finTimer = 60;
       }
     }
-    
+
     if (enemyHealth == 0) {
       here = false;
     }
@@ -207,7 +213,7 @@ class Enemy extends ScreenElement {
       recordedTime = millis();
       soundEffects.strike = true;
     } else {
-     soundEffects.strike = false; 
+      soundEffects.strike = false;
     }
 
     if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
@@ -227,8 +233,19 @@ class Enemy extends ScreenElement {
         m.y = 10000;
       }
     }
-    
+
     xPos = enemy.x;
     yPos = enemy.y;
+    
+    
+    
+    
+    //timer frame
+    if (tick > -1) {
+      tick++;
+      if (tick > 70) {
+        tick = -1;
+      }
+    }
   }
 }
