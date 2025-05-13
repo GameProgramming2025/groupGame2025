@@ -201,7 +201,7 @@ void draw() {
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);
-    image(RestartButton, 0, 0);
+    image(RestartButton, 500, 650);
     break;
   case GAME_DEFEATED:
     break;
