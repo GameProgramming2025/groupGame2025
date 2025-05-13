@@ -64,6 +64,7 @@ class Player { //<>//
     finalAnimation = 60;
     shotsCD = 60;
     maxspd = 1000000;
+    atk = 10;
    
     
     shots = new Magic[10];
@@ -139,6 +140,7 @@ class Player { //<>//
     if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
+      inventory[nextItemIndex].applyStats();
       nextItemIndex++;
       println("atk:" + atk);
     }

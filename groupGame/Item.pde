@@ -73,8 +73,11 @@ class Item {
     render();
     pop();
   }
+  void update(){
+    
+  }
 
-  void update() {
+  void applyStats() {
     p1.HP += HP;
     p1.atk += atk;
     p1.shotsCD += shotsCD;
