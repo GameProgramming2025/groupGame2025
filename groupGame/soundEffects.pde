@@ -60,6 +60,8 @@ class SoundEffects {
      if(!itemfound.isPlaying()){
      itemfound.play(0);
      item = false;
+     } else {
+      itemfound.pause(); 
      }
     }
     

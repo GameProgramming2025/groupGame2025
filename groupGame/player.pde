@@ -1,6 +1,6 @@
-class Player { //<>//
- //<>//
-  Item inventory[]; //<>//
+class Player { //<>// //<>//
+ //<>// //<>//
+  Item inventory[]; //<>// //<>//
   ActiveItem act[];
   ItemRoom ipos;
   Item i;
@@ -27,23 +27,23 @@ class Player { //<>//
   boolean hasShotgun;
 
   //heatseeker variables
-  float farthestDistance; //<>//
- //<>//
- //<>//
-  float farthestEnemyX; //<>// //<>//
-  float farthestEnemyY; //<>// //<>//
+  float farthestDistance; //<>// //<>//
  //<>// //<>//
-  // Player Stats //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>//
- //<>//
- //<>//
-  Magic shots[]; //<>// //<>//
- //<>//
- //<>//
-  int nextShot; //<>//
- //<>//
-  //Player Images //<>//
+ //<>// //<>//
+  float farthestEnemyX; //<>// //<>// //<>//
+  float farthestEnemyY; //<>// //<>// //<>//
+ //<>// //<>// //<>//
+  // Player Stats //<>// //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>// //<>//
+ //<>// //<>//
+ //<>// //<>//
+  Magic shots[]; //<>// //<>// //<>//
+ //<>// //<>//
+ //<>// //<>//
+  int nextShot; //<>// //<>//
+ //<>// //<>//
+  //Player Images //<>// //<>//
   PImage sprites[];
   int currentSprite;
   int firstSprite;
@@ -140,6 +140,7 @@ class Player { //<>//
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
       nextItemIndex++;
+      soundEffects.item = true;
     }
    
     if(currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200){
