@@ -8,10 +8,10 @@ class ShiftingPrism extends Item {
     description = "crystal that randomizes stats";
     area = "Item Room";
     rarity = 2;
-    atk = random(5,30);
-    shotsCD = (int)random(-30,30);
-    shotspd = random(5, 15);
-    range = random(100,1000);
+    atk = random(-50,50);
+    shotsCD = (int)random(-30,15);
+    shotspd = random(-30, 30);
+    range = random(-499,500);
   }
   ShiftingPrism(JSONObject j) {
     super(j);

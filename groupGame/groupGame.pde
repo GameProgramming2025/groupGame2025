@@ -73,7 +73,7 @@ void setup() {
 
   rooms[0][0] = new ItemRoom(0, 0, false, true, false, true);
   rooms[1][0] = new TrapRoom(1, 0, false, false, true, true);//border on bottom wall
-  rooms[2][0] = new TrapRoom(2, 0, false, false, true, true);//border on bottom wall
+  rooms[2][0] = new Room(2, 0, false, false, true, true);//border on bottom wall
   rooms[3][0] = new TrapRoom(3, 0, false, false, true, true);//border on bottom wall
   rooms[4][0] = new ItemRoom(4, 0, false, true, true, false);
   rooms[0][1] = new TrapRoom(0, 1, true, true, false, false);//border on right wall;
