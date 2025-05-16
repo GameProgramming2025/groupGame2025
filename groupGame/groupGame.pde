@@ -25,6 +25,7 @@ boolean on_start;
 boolean on_end;
 float fade;
 Room rooms[][];
+Sprites sprites[][];
 int currentI;
 int currentJ;
 Room currentRoom;

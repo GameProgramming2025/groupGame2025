@@ -1,5 +1,6 @@
 class Room {
   Item item;
+  Decoration[] decor;
   Enemy[] enemies;
   int roomI;
   int roomJ;
@@ -29,6 +30,10 @@ class Room {
     rightDoor = loadImage("Sprites/DoorRight.png");
     leftDoor = loadImage("Sprites/DoorLeft.png");
     bottomDoor = loadImage("Sprites/DoorBottom.png");
+    
+    decor = new Decoration[2];
+    decor[0] = new Decoration(1, 400, 400);
+    decor[1] = new Decoration(2, 400, 400);
 
     //num = int(random(0, 13));
     ////NORMAL ROOMS
