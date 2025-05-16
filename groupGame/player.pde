@@ -9,10 +9,11 @@ class Player { //<>// //<>// //<>//
   int nextItemIndex;
   HighNoon h;
   EmptyItem e;
-  float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
+  float x, y, xVel, yVel, xAcc, yAcc;
+  int xSize, ySize;
   float tempX, tempY;
   float charge = 0;
-
+  int killsNum;
   //timers
   float chargeSpeed;
   float frames;
@@ -26,7 +27,8 @@ class Player { //<>// //<>// //<>//
   Shotgun s;
   boolean hasShotgun;
 
-  //heatseeker variables
+ //<>//
+  //heatseeker variables //<>// //<>//
   float farthestDistance; //<>// //<>// //<>//
  //<>// //<>// //<>//
  //<>// //<>// //<>//
@@ -42,8 +44,8 @@ class Player { //<>// //<>// //<>//
  //<>// //<>// //<>//
  //<>// //<>// //<>//
   int nextShot; //<>// //<>// //<>//
- //<>// //<>// //<>//
-  //Player Images //<>// //<>// //<>//
+ //<>// //<>//
+  //Player Images //<>//
   PImage sprites[];
   int currentSprite;
   int firstSprite;
@@ -51,6 +53,7 @@ class Player { //<>// //<>// //<>//
 
   Player() {
     chargeSpeed = 1.0 / shotsCD;
+    killsNum = 0;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -62,9 +65,9 @@ class Player { //<>// //<>// //<>//
     frames = 60;
     animation = 30;
     finalAnimation = 60;
-    shotsCD = 60;
+    shotsCD = 15;
     maxspd = 1000000;
-    atk = 0;
+    atk = 20;
    
     
     shots = new Magic[10];
@@ -145,6 +148,12 @@ class Player { //<>// //<>// //<>//
       soundEffects.item = true;
       println("atk:" + atk);
 
+
+      if (currentRoom.getItem() instanceof VeilOfSilence) {
+        for (PImage sprite : sprites) {
+          sprite.resize(xSize, ySize);
+        }
+      }
     }
    
     if(currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200){

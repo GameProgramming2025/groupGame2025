@@ -8,6 +8,7 @@ class SpeedForce extends Item{
     description = "you become the flash";
     area = "when Kanon says it can spawn";
     rarity = 5;
+    shotsCD = -60;
     spd = 10;
     maxspd = 7;
   }
