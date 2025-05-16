@@ -6,10 +6,11 @@ class HUD {
   PFont big;
   Player p;
   HighNoon h;
+  
   PImage heart, brokenHeart, highNoon;
   float currentHp;
   boolean hasItem;
-  float pts;
+  int pts;
     //EFFECTS
     PImage blackRadialGradient;
 
@@ -19,6 +20,7 @@ class HUD {
     s=40.0;
     x=50;
     y=50;
+    
     heart = loadImage("data/Sprites/heart.png");
     brokenHeart = loadImage("data/Sprites/broken heart.png");
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
@@ -37,7 +39,7 @@ class HUD {
   }
 
   void display() {
-
+    
     strokeWeight(10);
     fill(255);
     rect(width*7/10, 70, 70, 70, 10);
@@ -114,8 +116,8 @@ class HUD {
 
     textSize(25);
     fill(255);
-    text("Pts:", width/2 -300, 100);
-    text(pts,width/2 -320,100);
+    text("kills:", width/2 -300, 100);
+    text(p1.killsNum,width/2 -260,100);
   }
 
   void effects(boolean enabled) {
