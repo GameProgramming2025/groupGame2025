@@ -207,7 +207,6 @@ class Enemy extends ScreenElement {
 
     if (enemyHealth == 0) {
       here = false;
-      soundEffects.explosion = true;
     }
 
 

@@ -44,7 +44,7 @@ class SoundEffects {
     ehit2 = minim.loadFile ("Data/SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("Data/SoundEffects/Enemy_hit3.mp3");
     fireball = minim.loadFile ("Data/SoundEffects/fireballsfx.mp3");
-    backgrn = minim.loadFile ("Data/SoundEffects/backgroundmusic.mp3");
+    backgrn = minim.loadFile ("Data/SoundEffects/backgroundQ.mp3");
     itemfound = minim.loadFile ("Data/SoundEffects/itemfound.mp3");
     boom = minim.loadFile ("Data/SoundEffects/explosion.mp3");
   }
@@ -54,9 +54,10 @@ class SoundEffects {
     if (background){
       if(!backgrn.isPlaying()){
        backgrn.play(0);
-      }else{
-       backgrn.pause(); 
       }
+    } 
+    if( background == false){
+      backgrn.pause();
     }
     
     if (item){
