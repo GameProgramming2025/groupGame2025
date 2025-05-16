@@ -64,7 +64,7 @@ class Player { //<>//
     finalAnimation = 60;
     shotsCD = 60;
     maxspd = 1000000;
-    atk = 10;
+    atk = 0;
    
     
     shots = new Magic[10];
