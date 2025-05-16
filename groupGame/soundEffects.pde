@@ -10,7 +10,7 @@ class SoundEffects {
   boolean item;  // Pickup item
   boolean attack;
   //boolean walking; // walking sfx
-  //boolean explosion; // enemies explosion sfx
+  boolean explosion; // enemies explosion sfx
   int num;
   int num2;
   Minim minim;
@@ -24,6 +24,7 @@ class SoundEffects {
   AudioPlayer fireball;
   AudioPlayer backgrn;
   AudioPlayer itemfound;
+  AudioPlayer boom;
 
 
   SoundEffects(Minim m) {
@@ -31,7 +32,8 @@ class SoundEffects {
     //heal = false;
     strike = false;
     attack = false;
-    //item = false;
+    item = false;
+    explosion = false;
     num = -1;
     num2= -2;
     this.minim = m;
@@ -44,6 +46,7 @@ class SoundEffects {
     fireball = minim.loadFile ("Data/SoundEffects/fireballsfx.mp3");
     backgrn = minim.loadFile ("Data/SoundEffects/backgroundmusic.mp3");
     itemfound = minim.loadFile ("Data/SoundEffects/itemfound.mp3");
+    boom = minim.loadFile ("Data/SoundEffects/explosion.mp3");
   }
 
 
@@ -120,8 +123,17 @@ class SoundEffects {
         fireball.play(0);
         attack = false;
       }
-
     }
+    
+    if (explosion){
+     if(!boom.isPlaying() ) {
+      boom.play(0);
+      explosion = false;
+     } else{
+      boom.pause(); 
+     }
+    }
+    
     
   }
 }

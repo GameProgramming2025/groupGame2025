@@ -188,6 +188,7 @@ class Enemy extends ScreenElement {
 
 
     if (enemyHealth <= 0 ) {
+
       finTimer--;
       xVelo = 0;
       yVelo = 0;
@@ -206,7 +207,10 @@ class Enemy extends ScreenElement {
 
     if (enemyHealth == 0) {
       here = false;
+      soundEffects.explosion = true;
     }
+
+
 
     if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
@@ -221,7 +225,7 @@ class Enemy extends ScreenElement {
       projectile.y = 10000;
       recordedTime = millis();
       soundEffects.hurt = true;
-    } 
+    }
 
     for (Magic m : p1.shots) {
       if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
@@ -230,15 +234,14 @@ class Enemy extends ScreenElement {
         m.x = 10000;
         m.y = 10000;
       }
-      
     }
 
     xPos = enemy.x;
     yPos = enemy.y;
-    
-    
-    
-    
+
+
+
+
     //timer frame
     if (tick > -1) {
       tick++;
