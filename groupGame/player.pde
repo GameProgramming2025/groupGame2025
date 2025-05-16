@@ -9,7 +9,8 @@ class Player { //<>//
   int nextItemIndex;
   HighNoon h;
   EmptyItem e;
-  float x, y, xVel, yVel, xAcc, yAcc, xSize, ySize;
+  float x, y, xVel, yVel, xAcc, yAcc;
+  int xSize, ySize;
   float tempX, tempY;
   float charge = 0;
 
@@ -64,7 +65,7 @@ class Player { //<>//
     finalAnimation = 60;
     shotsCD = 60;
     maxspd = 1000000;
-    atk = 0;
+    atk = 50;
    
     
     shots = new Magic[10];
@@ -142,7 +143,11 @@ class Player { //<>//
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
       nextItemIndex++;
-      println("atk:" + atk);
+      if (currentRoom.getItem() instanceof VeilOfSilence) {
+        for (PImage sprite : sprites) {
+          sprite.resize(xSize, ySize);
+        }
+      }
     }
    
     if(currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200){

@@ -11,6 +11,7 @@ class HighNoon extends Item {
     atk = 10;
     shotsCD = 30;
     collected = false;
+    shotspd = 30;
   }
 
   HighNoon(JSONObject j) {
