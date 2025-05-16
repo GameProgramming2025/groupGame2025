@@ -73,17 +73,20 @@ class Item {
     render();
     pop();
   }
+  void update(){
+    
+  }
 
-  void update() {
-    HP += p1.HP;
-    atk += p1.atk;
-    shotsCD += p1.shotsCD;
-    maxspd += p1.maxspd;
-    spd += p1.spd;
-    range += p1.range;
-    shotspd += p1.shotspd;
-    xSize += p1.xSize;
-    ySize += p1.ySize;
+  void applyStats() {
+    p1.HP += HP;
+    p1.atk += atk;
+    p1.shotsCD += shotsCD;
+    p1.maxspd += maxspd;
+    p1.spd += spd;
+    p1.range += range;
+    p1.shotspd += shotspd;
+    p1.xSize += xSize;
+    p1.ySize += ySize;
   }
 
   void render() {

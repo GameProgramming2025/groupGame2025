@@ -12,6 +12,7 @@ class VeilOfSilence extends Item {
     ySize = -20;
     spd = 2;
     atk = 5;
+    range = -200;
   }
 
   VeilOfSilence(JSONObject j) {
