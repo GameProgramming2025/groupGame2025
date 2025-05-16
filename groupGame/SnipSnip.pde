@@ -9,9 +9,9 @@ class SnipSnip extends Item{
   area = "Item Room";
   rarity = 3;
   range = 600;
-  atk = 20;
-  shotsCD = 45;
-  shotspd = 10;
+  atk = 30;
+  shotsCD = 40;
+  shotspd = 80;
  }
  SnipSnip(JSONObject j) {
     super(j);

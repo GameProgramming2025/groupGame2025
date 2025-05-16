@@ -17,6 +17,7 @@ class PikminItem extends Item {
     description = "spawn new minions each shot";
     area = "can be found in Item room or after killing boss.";
     rarity = 4;
+    shotsCD = -30;
     
   }
   void update(){

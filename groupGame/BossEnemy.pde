@@ -126,11 +126,10 @@ class BossEnemy extends ScreenElement {
     if (xVelo > 0 && yVelo > 0) {
       animation--;
       //dying animation
-    //if (BossEnemyHealth < deadAnimation) {
-    //  currentSprite = ((500-deadAnimation)/27)+4;
-  //    deadAnimation -= 50;
-  //  } 
-    //
+      if (BossEnemyHealth > deadAnimation) {
+        currentSprite = ((500-deadAnimation)/27)+4;
+        deadAnimation =- 33;
+      }
       currentSprite = 0;
       if (animation <= 14) {
         currentSprite = 1;
@@ -185,10 +184,15 @@ class BossEnemy extends ScreenElement {
         target.x = p1.x-BossEnemy.x;
         target.y = p1.y-BossEnemy.y;
         target.normalize();
-        //target.x *= 3;
-        //target.y *= 3;
       }
     }
+
+    if (frame > 280 && frame < 350) {
+      target.x = 3*(p1.x - BossEnemy.x);
+      target.y = 3*(p1.y - BossEnemy.y);
+      target.normalize();
+    }
+
     if (frame == 350) {
       projectile.x = 10000;
       projectile.y = 10000;
@@ -279,10 +283,7 @@ class BossEnemy extends ScreenElement {
 
     for (Magic m : p1.shots) {
       if (dist(BossEnemy.x, BossEnemy.y, m.x, m.y) < 75) {
-        BossEnemyHealth -= 50;
-       // deadAnimation = 15;
-        
-        //currentSprite = ((500 - BossEnemyHealth)/27)+4;
+        BossEnemyHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;
       }

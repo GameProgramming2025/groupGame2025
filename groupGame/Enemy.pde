@@ -4,6 +4,7 @@ class Enemy extends ScreenElement {
   float xAcc;
   float yAcc;
   float enemyHealth;
+  boolean dead;
   boolean here;
   float HpBarHeight;
   int hitReg = 250;
@@ -25,6 +26,7 @@ class Enemy extends ScreenElement {
     super();
     this.xPos = x;
     this.yPos = y;
+    
     here = true;
     enemyHealth = 100;
     HpBarHeight = 10;
@@ -74,6 +76,9 @@ class Enemy extends ScreenElement {
   }
 
   void display () {
+    if(enemyHealth <= 0){
+      enemyHealth=0;
+    }
     push();
     stroke(255, 0, 0);
     fill(#4287f5);
@@ -108,6 +113,7 @@ class Enemy extends ScreenElement {
     fill(#ffff00);
     rect(0, -55, enemyHealth, HpBarHeight);
     fill(#00ffff);
+    
     pop();
   }
 
@@ -123,6 +129,14 @@ class Enemy extends ScreenElement {
 
 
   void update () {
+    if(enemyHealth == 0 && finTimer == 269 ){
+      dead = true;
+    } 
+    
+    if(dead){
+      p1.killsNum++;
+      dead =false;
+    }
 
     if (random(0, 1) < 0.0016 && tick == -1) {
       tick = 0;
@@ -130,6 +144,7 @@ class Enemy extends ScreenElement {
 
     if (tick > -1 && tick < 5) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
+        
         projectile.x = enemy.x;
         projectile.y = enemy.y;
         target.x = p1.x-enemy.x;
@@ -228,7 +243,7 @@ class Enemy extends ScreenElement {
 
     for (Magic m : p1.shots) {
       if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
-        enemyHealth -= 50;
+        enemyHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;
       }
