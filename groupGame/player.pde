@@ -13,7 +13,7 @@ class Player { //<>//
   int xSize, ySize;
   float tempX, tempY;
   float charge = 0;
-
+  int killsNum;
   //timers
   float chargeSpeed;
   float frames;
@@ -52,6 +52,7 @@ class Player { //<>//
 
   Player() {
     chargeSpeed = 1.0 / shotsCD;
+    killsNum = 0;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
