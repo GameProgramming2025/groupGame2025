@@ -14,7 +14,7 @@ class PikminItem extends Item {
       p[i] = new Pikmin(x, y,xVelo,yVelo);
     }
     name = "Pikmin";
-    description = "Each shot spawns a mini guy that does half of player dmg once and dies.";
+    description = "spawn new minions each shot";
     area = "can be found in Item room or after killing boss.";
     rarity = 4;
     
