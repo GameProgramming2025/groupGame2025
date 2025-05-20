@@ -45,8 +45,8 @@ void setup() {
 
 
   p1 = new Player();
-  currentI = 2;
-  currentJ = 0;
+  currentI = 1;
+  currentJ = 1;
   p1.x = width/2;
   p1.y = height/2;
 
