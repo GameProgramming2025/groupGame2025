@@ -73,9 +73,10 @@ void setup() {
   //order is top, bottom, left , and right
 
   rooms[0][0] = new ItemRoom(0, 0, false, true, false, true);
-  rooms[1][0] = new TrapRoom(1, 0, false, false, false, false);//border on bottom wall
-  rooms[2][0] = new ItemRoom(2, 0, false, false, true, true);//border on bottom wall
-  rooms[3][0] = new TrapRoom(3, 0, false, false, false, false);//border on bottom wall
+
+  rooms[1][0] = new TrapRoom(1, 0, false, false, true, true);//border on bottom wall
+  rooms[2][0] = new Room(2, 0, false, false, true, true);//border on bottom wall
+  rooms[3][0] = new TrapRoom(3, 0, false, false, true, true);//border on bottom wall
   rooms[4][0] = new ItemRoom(4, 0, false, true, true, false);
   rooms[0][1] = new TrapRoom(0, 1, false, false, false, false);//border on right wall;
   rooms[1][1] = new TrapRoom(1, 1, false, false, false, false);//border on top and left wall
@@ -168,6 +169,7 @@ void draw() {
     currentRoom = rooms[currentI][currentJ];
     currentRoom.update();
     currentRoom.display();
+    
     if (p1.x >= width) {
       p1.x = 40;
       currentI++;
