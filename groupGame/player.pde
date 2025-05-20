@@ -36,7 +36,7 @@ class Player { //<>// //<>//
  //<>// //<>// //<>//
   // Player Stats //<>// //<>// //<>//
   int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>// //<>//
+  int shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>// //<>//
  //<>// //<>//
  //<>// //<>//
   Magic shots[]; //<>// //<>// //<>//
