@@ -129,6 +129,12 @@ class Enemy extends ScreenElement {
 
 
   void update () {
+    if( currentSprite == 19){
+     soundEffects.explosion = true; 
+    }else{
+     soundEffects.explosion = false; 
+    }
+    
     if(enemyHealth == 0 && finTimer == 269 ){
       dead = true;
     } 
@@ -229,7 +235,6 @@ class Enemy extends ScreenElement {
     if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
       recordedTime = millis();
-      soundEffects.hurt = true;
       soundEffects.strike = true;
     }
 
