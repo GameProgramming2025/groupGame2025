@@ -167,6 +167,7 @@ void draw() {
     currentRoom = rooms[currentI][currentJ];
     currentRoom.update();
     currentRoom.display();
+    
     if (p1.x >= width) {
       p1.x = 40;
       currentI++;
