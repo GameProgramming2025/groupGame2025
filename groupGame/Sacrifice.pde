@@ -4,6 +4,9 @@ class Sacrifice extends ActiveItem {
   Sacrifice(float x, float y) {
     super(x, y, "Sprites/jagger.png", 0);
     ready = true;
+     name = "Sacrificial Dagger";
+      rarity = 2;
+    description = "NO CHARGE | Sacrifice HP for more attack...";
   }
 
   void itemEffect() {

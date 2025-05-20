@@ -12,6 +12,7 @@ class ActiveItem extends Item {
     this.charge = maxCharge;
     name = "Item";
     description = "An item in the game";
+    rarity = 0;
     area = "Where it can be found";
   }
 
