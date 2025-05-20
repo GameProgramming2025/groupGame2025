@@ -130,11 +130,11 @@ class SoundEffects {
      if(!boom.isPlaying() ) {
       boom.play(0);
       explosion = false;
-     } else{
-      boom.pause(); 
+     } else if (explosion == false) {
+      explosion = false;
+      boom.pause();
      }
     }
-    
     
   }
 }

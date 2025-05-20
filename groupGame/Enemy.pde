@@ -129,9 +129,10 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    if( currentSprite == 19){
+    if ( currentSprite > 10 && enemyHealth == 0){
      soundEffects.explosion = true; 
-    }else{
+    } 
+    if (currentSprite >=17 && enemyHealth <0){
      soundEffects.explosion = false; 
     }
     
