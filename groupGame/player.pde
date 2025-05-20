@@ -1,6 +1,6 @@
-class Player { //<>//
- //<>//
-  Item inventory[]; //<>//
+class Player { //<>// //<>//
+ //<>// //<>//
+  Item inventory[]; //<>// //<>//
   ActiveItem act[];
   ItemRoom ipos;
   Item i;
@@ -13,7 +13,7 @@ class Player { //<>//
   int xSize, ySize;
   float tempX, tempY;
   float charge = 0;
-
+  int killsNum;
   //timers
   float chargeSpeed;
   float frames;
@@ -27,23 +27,23 @@ class Player { //<>//
   Shotgun s;
   boolean hasShotgun;
 
-  //heatseeker variables
-  float farthestDistance; //<>//
- //<>//
- //<>//
-  float farthestEnemyX; //<>// //<>//
-  float farthestEnemyY; //<>// //<>//
+  //heatseeker variables //<>//
+  float farthestDistance; //<>// //<>//
  //<>// //<>//
-  // Player Stats //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>//
- //<>//
- //<>//
-  Magic shots[]; //<>// //<>//
- //<>//
- //<>//
-  int nextShot; //<>//
- //<>//
+ //<>// //<>//
+  float farthestEnemyX; //<>// //<>// //<>//
+  float farthestEnemyY; //<>// //<>// //<>//
+ //<>// //<>// //<>//
+  // Player Stats //<>// //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>// //<>//
+ //<>// //<>//
+ //<>// //<>//
+  Magic shots[]; //<>// //<>// //<>//
+ //<>// //<>//
+ //<>// //<>//
+  int nextShot; //<>// //<>//
+ //<>// //<>//
   //Player Images //<>//
   PImage sprites[];
   int currentSprite;
@@ -52,6 +52,7 @@ class Player { //<>//
 
   Player() {
     chargeSpeed = 1.0 / shotsCD;
+    killsNum = 0;
     xSize = 96;
     ySize = 96;
     maxHP = 10;
@@ -63,9 +64,9 @@ class Player { //<>//
     frames = 60;
     animation = 30;
     finalAnimation = 60;
-    shotsCD = 60;
+    shotsCD = 15;
     maxspd = 1000000;
-    atk = 50;
+    atk = 20;
    
     
     shots = new Magic[10];

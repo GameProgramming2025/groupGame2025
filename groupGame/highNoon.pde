@@ -8,8 +8,8 @@ class HighNoon extends Item {
     description = "Makes Shot cooldown longer but makes you do more damage";
     area = "can be found in Item rooms";
     rarity = 2;
-    atk = 10;
-    shotsCD = 30;
+    atk = 15;
+    shotsCD = 20;
     collected = false;
     shotspd = 30;
   }
