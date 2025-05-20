@@ -5,6 +5,7 @@ class Room {
   int roomI;
   int roomJ;
   int bc;
+  int currentDecor;
   boolean topOpen;
   boolean bottomOpen;
   boolean leftOpen;
@@ -31,9 +32,12 @@ class Room {
     leftDoor = loadImage("Sprites/DoorLeft.png");
     bottomDoor = loadImage("Sprites/DoorBottom.png");
     
+    currentDecor = 0;
+
     decor = new Decoration[2];
     decor[0] = new Decoration(1, 400, 400);
     decor[1] = new Decoration(2, 400, 400);
+
 
     //num = int(random(0, 13));
     ////NORMAL ROOMS
