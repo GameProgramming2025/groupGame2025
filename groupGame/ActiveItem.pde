@@ -10,13 +10,19 @@ class ActiveItem extends Item {
     ready = false;
     this.maxCharge = maxCharge;
     this.charge = maxCharge;
+    name = "Item";
+    description = "An item in the game";
+    area = "Where it can be found";
   }
 
   void update() {
-    super.render();
+    super.update();
     if (charge == 0) {
       ready = true;
     }
+  }
+  void render() {
+    super.render();
   }
 
   void use() {
@@ -30,9 +36,16 @@ class ActiveItem extends Item {
   void itemEffect() {
   }
 
-  void keyPressed() {
-    if (key == '6') {
-      use();
+  void activateItem() {
+  }
+
+  void incrementCharge() {
+    if (charge < maxCharge) {
+      charge++;
     }
+    if (charge >= maxCharge) {
+      ready = true;
+    }
+    println(charge, " ", ready);
   }
 }

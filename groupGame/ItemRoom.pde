@@ -30,9 +30,9 @@ class ItemRoom extends Room {
     } else if (spawn < 40) {
       item = new Shotgun(width/2, height/2);
     } else if (spawn < 70) {
-      item = new HighNoon(width/2, height/2);
+      item = new TwoUP(width/2, height/2);
     } else if (spawn <= 100) {
-      item = new ShiftingPrism(width/2, height/2);
+      item = new TwoUP(width/2, height/2);
 
     }
     irimg.resize(width, height);
