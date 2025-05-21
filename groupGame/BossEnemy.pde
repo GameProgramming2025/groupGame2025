@@ -27,7 +27,7 @@ class BossEnemy extends ScreenElement {
     this.xPos = x;
     this.yPos = y;
     here = true;
-    BossEnemyHealth = 500;
+    BossEnemyHealth = 2000;
     HpBarHeight = 10;
     xVelo = 3.5;
     yVelo = 3.5;
@@ -160,7 +160,7 @@ class BossEnemy extends ScreenElement {
     strokeWeight(2);
     stroke(255);
     fill(#ffff00);
-    rect(0, -55, BossEnemyHealth, HpBarHeight);
+    rect(0, -55, BossEnemyHealth/4, HpBarHeight);
     fill(#00ffff);
     pop();
   }
