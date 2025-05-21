@@ -205,7 +205,7 @@ class Room {
       }
     }
   }
-  // no changing function name
+  
   void showDoors() {
     if (!topOpen) {
       image(topDoor, 0, 0);
