@@ -28,6 +28,7 @@ class Player { //<>// //<>//
   boolean hasShotgun;
 
   //heatseeker variables //<>// //<>//
+ //<>//
   float farthestDistance;  //<>// //<>//
   //<>// //<>//
   float farthestEnemyX;  //<>// //<>//
@@ -44,7 +45,8 @@ class Player { //<>// //<>//
   //Player Images  //<>// //<>//
   PImage sprites[];  //<>// //<>//
   int currentSprite;  //<>// //<>//
-  int firstSprite; //<>// //<>//
+  int firstSprite; //<>//
+
   int frame;
 
   Player() {
@@ -129,7 +131,7 @@ class Player { //<>// //<>//
   }
 
   void update() {
-    
+
     s.update();
     s.x = x;
     s.y = y;
