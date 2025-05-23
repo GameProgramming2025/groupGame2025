@@ -144,8 +144,7 @@ class Room {
     fill(bc);
     //strokeWeight(10);
     //stroke(90);
-    if (this instanceof ItemRoom == false) {
-      //rect(20, 20, width-40, height-40);
+    if (this instanceof ItemRoom == false && this instanceof HealthRoom == false) {
       image(img, 0, 0);
     }
     showDoors();
