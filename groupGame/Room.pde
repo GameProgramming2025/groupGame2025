@@ -1,10 +1,12 @@
 class Room {
   Item item;
   Decoration[] decor;
+
   Enemy[] enemies;
   int roomI;
   int roomJ;
   int bc;
+  int currentDecor;
   boolean topOpen;
   boolean bottomOpen;
   boolean leftOpen;
@@ -30,10 +32,16 @@ class Room {
     rightDoor = loadImage("Sprites/DoorRight.png");
     leftDoor = loadImage("Sprites/DoorLeft.png");
     bottomDoor = loadImage("Sprites/DoorBottom.png");
-    
+
+    currentDecor = 0;
+
     decor = new Decoration[2];
-    decor[0] = new Decoration(1, 400, 400);
-    decor[1] = new Decoration(2, 400, 400);
+    int dumber = int(random(1, 3));
+    //int randHeight =
+    decor[0] = new Decoration(dumber, width*.1, height*.3);
+    dumber = int(random(1, 3));
+    decor[1] = new Decoration(dumber, width*.85, height*.7);
+    println(dumber);
 
     //num = int(random(0, 13));
     ////NORMAL ROOMS
@@ -153,7 +161,11 @@ class Room {
       //rect(20, 20, width-40, height-40);
       image(img, 0, 0);
     }
-    showDoors();
+    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
+    for (Decoration d : decor) {
+      d.update();
+      d.display();
+    }
     pop();
 
     fill(255, 50);
@@ -163,7 +175,6 @@ class Room {
   }
 
   void update () {
-    
   }
 
   void constrainPlayer(Player p) {
@@ -210,8 +221,8 @@ class Room {
       }
     }
   }
-  
-  void showDoors() {
+  // no changing function name
+  void joshshouldofdonethisthefirsttimebutkanonhadtofixit() {
     if (!topOpen) {
       image(topDoor, 0, 0);
     }
