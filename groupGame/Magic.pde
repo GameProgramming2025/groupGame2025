@@ -21,12 +21,14 @@ class Magic {
   }
 
   void update() {
-    if (!isDestroyed || !isHeatseeking) {
-      x += xVel;
-      y += yVel;
+    if (!isHeatseeking) {
+      if (!isDestroyed) {
+        x += xVel;
+        y += yVel;
 
-      if (dist(p1.x, p1.y, x, y) > p1.range) {
-        destroyMagic();
+        if (dist(p1.x, p1.y, x, y) > p1.range) {
+          destroyMagic();
+        }
       }
     }
   }
@@ -56,14 +58,14 @@ class Magic {
       imageMode(CORNER);
     }
   }
-  
+
   void createObject(float x, float y, float xVel, float yVel, boolean isHeatseeking) {
     this.x = x;
     this.y = y;
     this.xVel = xVel;
     this.yVel = yVel;
     this.isHeatseeking = isHeatseeking;
-    
+
     isDestroyed = false;
   }
 
