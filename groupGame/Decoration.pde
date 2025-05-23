@@ -81,4 +81,4 @@ class Decoration {
   void display() {
     image(decor, xPos, yPos);
   }
-}
+} 

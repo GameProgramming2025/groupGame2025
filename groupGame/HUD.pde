@@ -7,6 +7,9 @@ class HUD {
   PFont big;
   Player p;
   HighNoon h;
+  float startX;
+  float startY;
+  float lines;
 
   PImage heart, brokenHeart, highNoon;
   float currentHp;
@@ -17,27 +20,43 @@ class HUD {
 
 
   HUD(Player p) {
-    font = loadFont("data/fonts/Algerian.vlw");
+    //font = loadFont("data/fonts/Algerian.vlw");
+    font = loadFont("data/fonts/knight.ttf");
     textFont(font, 40);
     currentHp = 1;
     s=40.0;
     x=50;
     y=50;
+    startX = 20;
+    startY = height;
+    lines = 28 + 6;
 
     heart = loadImage("data/Sprites/heart.png");
     brokenHeart = loadImage("data/Sprites/broken heart.png");
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
     blackRadialGradient.resize((width*2) + 50, (height*2) + 50);
-    highNoon = loadImage("data/sprites/HN.png");
+    highNoon = loadImage("data/Sprites/HN.png");
     this.p = p;
 
     //ammo = p.ammo;
     coins=0.0;
-    big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
+    big= createFont("data/fonts/comicsands.ttf", 50);
     items=0.0;
   }
 
   void update() {
+    textSize(28);
+    fill(255);
+    textAlign(LEFT, TOP);
+
+    text("SPD: " + p1.spd, startX, startY - lines * 1);
+    text("ATK: " + p1.atk, startX, startY - lines * 2);
+    text("CD: " + (p1.shotsCD), startX, startY - lines * 3);
+    text("SHOT SPEED: " + p1.shotspd, startX, startY - lines * 4);
+    text("CHARGES: " + p1.act.charge, startX, startY - lines * 5);
+    textSize(50);
+    text("KILLS: " + p1.killsNum, startX+400, startY - lines * 34);
+    textSize(28);
     currentHp=p.HP;
   }
 
@@ -117,19 +136,6 @@ class HUD {
         image(p.inventory[i].itemImg, 10 + width * 6.5 /10 + (i * 85)-40, 43);
       }
     }
-
-
-    textSize(40);
-    fill(255);
-
-    text("kills:", width/2 -330, height-30);
-    text(p1.killsNum, width/2 -260, height-30);
-    text(p1.atk, width/2 -250, height-70);
-    text("atk:", width/2 -325, height-70);
-    text(p1.shotsCD, width/2 -420, height-30);
-    text("CD:", width/2 - 470, height -30);
-    text("spd:",width/2 -455, height-70);
-    text(p1.spd,width/2 -400,height-70);
   }
 
   void effects(boolean enabled) {
