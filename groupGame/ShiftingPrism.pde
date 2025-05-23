@@ -9,7 +9,7 @@ class ShiftingPrism extends Item {
     area = "Item Room";
     rarity = 2;
     atk = random(-50,50);
-    shotsCD = (int)random(-30,15);
+    shotsCD = (int)random(-15,15);
     shotspd = random(-30, 30);
     range = random(-499,500);
   }
