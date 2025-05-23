@@ -57,24 +57,24 @@ class Decoration {
       timer--;
       if (timer >= 8) {
         decor = decorSpritesheet.get(0, 192, 96, 96);
-        if (timer <= 7) {
-          decor = decorSpritesheet.get(96, 192, 96, 96);
-          if (timer <= 0) {
-            timer = 15;
-          }
-        }
+      }
+      if (timer <= 7) {
+        decor = decorSpritesheet.get(96, 192, 96, 96);
+      }
+      if (timer <= 0) {
+        timer = 15;
       }
     }
     if (type == 8) {
       timerdos--;
       if (timerdos >= 8) {
         decor = decorSpritesheet.get(192, 192, 96, 96);
-        if (timerdos <= 7) {
-          decor = decorSpritesheet.get(0, 288, 96, 96);
-          if (timerdos <= 0) {
-            timerdos = 15;
-          }
-        }
+      }
+      if (timerdos <= 7) {
+        decor = decorSpritesheet.get(0, 288, 96, 96);
+      }
+      if (timerdos <= 0) {
+        timerdos = 15;
       }
     }
   }
