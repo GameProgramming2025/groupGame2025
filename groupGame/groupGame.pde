@@ -12,7 +12,7 @@ Player p1;
 HUD h1;
 Item spawned;
 GameState gameState = GameState.MAIN_SCREEN; //iowhbaweruyfbu ujfbdsfhasrhj
-
+Heart h2;
 long noInputCnt;
 float a;
 PImage GameOver;
@@ -65,6 +65,7 @@ void setup() {
   SelectScreen = loadImage("Sprites/StartScreen.png");
   SelectScreen.resize(width, height);
   h1 = new HUD(p1);
+  
 
 
   rooms = new Room[5][5];
@@ -170,6 +171,7 @@ void draw() {
     currentRoom = rooms[currentI][currentJ];
     currentRoom.update();
     currentRoom.display();
+    
     if (p1.x >= width) {
       p1.x = 40;
       currentI++;
@@ -195,7 +197,7 @@ void draw() {
     h1.effects(true);
     h1.update();
     h1.display();
-
+ 
     soundEffects.update();
 
     //Cameron this is embarassing

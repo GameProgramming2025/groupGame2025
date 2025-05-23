@@ -1,10 +1,10 @@
 class HUD {
   PFont font;
-  Float hp, coins, items, s;
+  Float  coins, items, s;
   float x, y;
   int ammo, w ;
   float t;
-  PFont big;
+  Heart hp[];
   Player p;
   HighNoon h;
 
@@ -24,8 +24,10 @@ class HUD {
     x=50;
     y=50;
 
-    heart = loadImage("data/Sprites/heart.png");
-    brokenHeart = loadImage("data/Sprites/broken heart.png");
+    hp = new Heart[p.HP];
+
+
+
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
     blackRadialGradient.resize((width*2) + 50, (height*2) + 50);
     highNoon = loadImage("data/sprites/HN.png");
@@ -33,11 +35,20 @@ class HUD {
 
     //ammo = p.ammo;
     coins=0.0;
-    big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
+
     items=0.0;
+
+    for (int i = 0; i < p.maxHP; i++) {
+      hp[i] = new Heart(3, x+(i+1)*40, y);
+    }
   }
 
   void update() {
+    
+    if (currentHp != 9 && p.HP==9) {
+      hp[9] = new Heart(2, x+(10)*40, y);
+      
+    }
     currentHp=p.HP;
   }
 
@@ -51,66 +62,72 @@ class HUD {
     rect(width*8/10, 70, 70, 70, 10);
     rect(width *8.5/10, 70, 70, 70, 10);
     fill(0);
+    
+    for (int i = 0; i < p.maxHP; i++) {
+      hp[i].display(); 
+    }
+    
 
 
-    if (currentHp ==10) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-      image(heart, x+80, y, s, s);
-      image(heart, x+120, y, s, s);
-      image(heart, x+160, y, s, s);
-    }
 
-    if (currentHp==9) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-      image(heart, x+80, y, s, s);
-      image(heart, x+120, y, s, s);
-      image(brokenHeart, x+160, y, s, s);
-    }
+    //if (currentHp ==10) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //  image(heart, x+80, y, s, s);
+    //  image(heart, x+120, y, s, s);
+    //  image(heart, x+160, y, s, s);
+    //}
 
-    if (currentHp==8) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-      image(heart, x+80, y, s, s);
-      image(heart, x+120, y, s, s);
-    }
+    //if (currentHp==9) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //  image(heart, x+80, y, s, s);
+    //  image(heart, x+120, y, s, s);
+    //  image(brokenHeart, x+160, y, s, s);
+    //}
 
-    if (currentHp==7) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-      image(heart, x+80, y, s, s);
-      image(brokenHeart, x+120, y, s, s);
-    }
+    //if (currentHp==8) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //  image(heart, x+80, y, s, s);
+    //  image(heart, x+120, y, s, s);
+    //}
 
-    if (currentHp==6) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-      image(heart, x+80, y, s, s);
-    }
+    //if (currentHp==7) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //  image(heart, x+80, y, s, s);
+    //  image(brokenHeart, x+120, y, s, s);
+    //}
 
-    if (currentHp==5) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-      image(brokenHeart, x+80, y, s, s);
-    }
+    //if (currentHp==6) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //  image(heart, x+80, y, s, s);
+    //}
 
-    if (currentHp==4) {
-      image(heart, x, y, s, s);
-      image(heart, x+40, y, s, s);
-    }
+    //if (currentHp==5) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //  image(brokenHeart, x+80, y, s, s);
+    //}
 
-    if (currentHp==3) {
-      image(heart, x, y, s, s);
-      image(brokenHeart, x+40, y, s, s);
-    }
-    if (currentHp==2) {
-      image(heart, x, y, s, s);
-    }
+    //if (currentHp==4) {
+    //  image(heart, x, y, s, s);
+    //  image(heart, x+40, y, s, s);
+    //}
 
-    if (currentHp== 1) {
-      image(brokenHeart, x, y, s, s);
-    }
+    //if (currentHp==3) {
+    //  image(heart, x, y, s, s);
+    //  image(brokenHeart, x+40, y, s, s);
+    //}
+    //if (currentHp==2) {
+    //  image(heart, x, y, s, s);
+    //}
+
+    //if (currentHp== 1) {
+    //  image(brokenHeart, x, y, s, s);
+    //}
 
     for (int i = 0; i < 5; i++) {
       if (p.inventory[i] != null) {
@@ -126,10 +143,8 @@ class HUD {
     text(p1.killsNum, width/2 -260, height-30);
     text(p1.atk, width/2 -250, height-70);
     text("atk:", width/2 -325, height-70);
-    text((int) p1.shotsCD, width/2 -420, height-30);
-    text("CD:", width/2 - 470, height -30);
-    text("spd:",width/2 -455, height-70);
-    text(p1.spd,width/2 -400,height-70);
+    text("spd:", width/2 -455, height-70);
+    text(p1.spd, width/2 -400, height-70);
   }
 
   void effects(boolean enabled) {

@@ -54,8 +54,8 @@ class Player { //<>// //<>//
     killsNum = 0;
     xSize = 96;
     ySize = 96;
-    maxHP = 9;
-    HP = 9;
+    maxHP = 10;
+    HP = 10;
     spd = 1;
     shotspd = 35;
     nextShot = 0;
