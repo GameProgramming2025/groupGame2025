@@ -48,7 +48,6 @@ void setup() {
 
 
 
-
   p1 = new Player();
   currentI = 2;
   currentJ = 2;
