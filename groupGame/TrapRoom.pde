@@ -43,7 +43,7 @@ class TrapRoom extends Room {
       image(leftDoor, 0, 0);
       image(rightDoor, 0, 0);
     } else {
-      super.showDoors();
+      //super.showDoors();
     }
   }
 
