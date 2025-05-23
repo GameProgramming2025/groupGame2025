@@ -22,7 +22,7 @@ class Enemy extends ScreenElement {
   int finTimer;
   int tick;
 
-  Enemy(float x, float y) {
+  Enemy(float x, float y,String spriteFilename) {
     super();
     this.xPos = x;
     this.yPos = y;
@@ -42,7 +42,7 @@ class Enemy extends ScreenElement {
     tick = -1;
     finTimer = 270;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
+    PImage spritesheet = loadImage(spriteFilename);
     //spritesheet.resize(96, 96);
 
     //Basic Sprites

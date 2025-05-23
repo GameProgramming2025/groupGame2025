@@ -1,9 +1,11 @@
 class TrapRoom extends Room {
   Enemy enemies[];
+  Slime slimes[];
   int numEnemies;
   float spawn;
   PImage img;
   protected boolean enemiesDead;
+  String enemyImg;
 
   TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
@@ -12,10 +14,11 @@ class TrapRoom extends Room {
     numEnemies = 9;
     float ex, ey;
     enemies = new Enemy[numEnemies];
+    enemyImg = "Data/Sprites/SlimeBasic.png";
     for (int i = 0; i < numEnemies; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
-      enemies[i] = new Enemy(ex, ey);
+      enemies[i] = new Slime(ex, ey,enemyImg);
     }
   }
 
