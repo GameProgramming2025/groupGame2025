@@ -19,6 +19,7 @@ float a;
 float b;
 PImage GameOver, RestartButton;
 PImage TitleScreen, SelectScreen;
+PImage decorSpritesheet;
 boolean starting;
 boolean ending;
 boolean on_start;
@@ -111,6 +112,7 @@ void setup() {
 
   currentRoom = rooms[currentI][currentJ];
   gameState = GameState.MAIN_SCREEN;
+  
 }
 
 void draw() {
