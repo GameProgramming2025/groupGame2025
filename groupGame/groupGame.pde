@@ -4,7 +4,6 @@ import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-
 import ddf.minim.*;
 import ddf.minim.AudioPlayer;
 //Lindblom talons of the dark
@@ -12,7 +11,7 @@ import ddf.minim.AudioPlayer;
 Player p1;
 HUD h1;
 Item spawned;
-GameState gameState = GameState.GAMEPLAY; //iowhbaweruyfbu ujfbdsfhasrhj
+GameState gameState = GameState.MAIN_SCREEN; //iowhbaweruyfbu ujfbdsfhasrhj
 
 long noInputCnt;
 float a;
@@ -102,7 +101,7 @@ void setup() {
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
   currentRoom = rooms[currentI][currentJ];
-  gameState = GameState.MAIN_SCREEN;
+  
 }
 
 void draw() {

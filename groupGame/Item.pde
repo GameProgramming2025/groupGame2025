@@ -85,8 +85,6 @@ class Item {
     p1.spd += spd;
     p1.range += range;
     p1.shotspd += shotspd;
-    p1.xSize += xSize;
-    p1.ySize += ySize;
   }
 
   void render() {
