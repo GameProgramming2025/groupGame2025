@@ -11,7 +11,7 @@ import ddf.minim.AudioPlayer;
 Player p1;
 HUD h1;
 Item spawned;
-GameState gameState = GameState.GAMEPLAY; //iowhbaweruyfbu ujfbdsfhasrhj
+GameState gameState = GameState.MAIN_SCREEN; //iowhbaweruyfbu ujfbdsfhasrhj
 
 long noInputCnt;
 float a;
