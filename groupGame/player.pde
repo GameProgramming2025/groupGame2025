@@ -1,6 +1,6 @@
-class Player { //<>//
- //<>//
-  Item inventory[]; //<>//
+class Player { //<>// //<>//
+ //<>// //<>//
+  Item inventory[]; //<>// //<>//
   ActiveItem act;
   ItemRoom ipos;
   Item i;
@@ -27,24 +27,24 @@ class Player { //<>//
   Shotgun s;
   boolean hasShotgun;
 
-  //heatseeker variables //<>//
-  float farthestDistance;  //<>//
-  //<>//
-  float farthestEnemyX;  //<>//
-  float farthestEnemyY;  //<>//
- //<>//
-  // Player Stats //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>//
-  //<>//
-  Magic shots[];  //<>//
-  //<>//
-  int nextShot;  //<>//
-  //<>//
-  //Player Images  //<>//
-  PImage sprites[];  //<>//
-  int currentSprite;  //<>//
-  int firstSprite; //<>//
+  //heatseeker variables //<>// //<>//
+  float farthestDistance;  //<>// //<>//
+  //<>// //<>//
+  float farthestEnemyX;  //<>// //<>//
+  float farthestEnemyY;  //<>// //<>//
+ //<>// //<>//
+  // Player Stats //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>//
+  //<>// //<>//
+  Magic shots[];  //<>// //<>//
+  //<>// //<>//
+  int nextShot;  //<>// //<>//
+  //<>// //<>//
+  //Player Images  //<>// //<>//
+  PImage sprites[];  //<>// //<>//
+  int currentSprite;  //<>// //<>//
+  int firstSprite; //<>// //<>//
   int frame;
 
   Player() {
@@ -79,7 +79,7 @@ class Player { //<>//
     e = new EmptyItem(x, y);
 
     inventory = new Item[5];
-    act = new Sacrifice(x, y);
+    act = new TwoUP(x, y);
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
