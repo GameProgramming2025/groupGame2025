@@ -97,7 +97,7 @@ void setup() {
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
   currentRoom = rooms[currentI][currentJ];
-  gameState = GameState.MAIN_SCREEN;
+  
 }
 
 void draw() {

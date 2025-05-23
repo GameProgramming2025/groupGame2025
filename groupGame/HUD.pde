@@ -122,12 +122,14 @@ class HUD {
     textSize(40);
     fill(255);
 
-    text("kills:", width/2 -300, height-30);
+    text("kills:", width/2 -330, height-30);
     text(p1.killsNum, width/2 -260, height-30);
-    text(p1.atk, width/2 -260, height-70);
-    text("atk:", width/2 -305, height-70);
-    text(p1.shotsCD, width/2 -380, height-30);
-    text("shotCD:", width/2 - 440, height -30);
+    text(p1.atk, width/2 -250, height-70);
+    text("atk:", width/2 -325, height-70);
+    text(p1.shotsCD, width/2 -420, height-30);
+    text("CD:", width/2 - 470, height -30);
+    text("spd:",width/2 -455, height-70);
+    text(p1.spd,width/2 -400,height-70);
   }
 
   void effects(boolean enabled) {
