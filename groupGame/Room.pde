@@ -148,7 +148,7 @@ class Room {
       //rect(20, 20, width-40, height-40);
       image(img, 0, 0);
     }
-    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
+    showDoors();
     pop();
 
     fill(255, 50);
@@ -158,6 +158,7 @@ class Room {
   }
 
   void update () {
+    
   }
 
   void constrainPlayer(Player p) {
@@ -204,8 +205,8 @@ class Room {
       }
     }
   }
-  // no changing function name
-  void joshshouldofdonethisthefirsttimebutkanonhadtofixit() {
+  
+  void showDoors() {
     if (!topOpen) {
       image(topDoor, 0, 0);
     }

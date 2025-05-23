@@ -1,7 +1,7 @@
 class Player { //<>// //<>//
  //<>// //<>//
   Item inventory[]; //<>// //<>//
-  ActiveItem act[];
+  ActiveItem act;
   ItemRoom ipos;
   Item i;
 
@@ -27,27 +27,26 @@ class Player { //<>// //<>//
   Shotgun s;
   boolean hasShotgun;
 
-  //heatseeker variables //<>//
-  float farthestDistance; //<>// //<>//
+  //heatseeker variables //<>// //<>//
+ //<>//
+  float farthestDistance;  //<>// //<>//
+  //<>// //<>//
+  float farthestEnemyX;  //<>// //<>//
+  float farthestEnemyY;  //<>// //<>//
  //<>// //<>//
- //<>// //<>//
-  float farthestEnemyX; //<>// //<>// //<>//
-  float farthestEnemyY; //<>// //<>// //<>//
- //<>// //<>// //<>//
-  // Player Stats //<>// //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range; //<>// //<>// //<>//
-  int shotCD /* the actual timer*/, shotsCD; /*the baseline */ //<>// //<>// //<>//
- //<>// //<>//
- //<>// //<>//
-  Magic shots[]; //<>// //<>// //<>//
- //<>// //<>//
- //<>// //<>//
-  int nextShot; //<>// //<>//
- //<>// //<>//
-  //Player Images //<>//
-  PImage sprites[];
-  int currentSprite;
-  int firstSprite;
+  // Player Stats //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>//
+  //<>// //<>//
+  Magic shots[];  //<>// //<>//
+  //<>// //<>//
+  int nextShot;  //<>// //<>//
+  //<>// //<>//
+  //Player Images  //<>// //<>//
+  PImage sprites[];  //<>// //<>//
+  int currentSprite;  //<>// //<>//
+  int firstSprite; //<>//
+
   int frame;
 
   Player() {
@@ -55,8 +54,8 @@ class Player { //<>// //<>//
     killsNum = 0;
     xSize = 96;
     ySize = 96;
-    maxHP = 10;
-    HP = 10;
+    maxHP = 9;
+    HP = 9;
     spd = 1;
     shotspd = 35;
     nextShot = 0;
@@ -67,8 +66,7 @@ class Player { //<>// //<>//
     shotsCD = 15;
     maxspd = 1000000;
     atk = 20;
-   
-    
+
     shots = new Magic[10];
     inventory= new Item[5];
 
@@ -83,7 +81,7 @@ class Player { //<>// //<>//
     e = new EmptyItem(x, y);
 
     inventory = new Item[5];
-    act = new ActiveItem[1];
+    act = new Sacrifice(x, y);
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
@@ -150,16 +148,16 @@ class Player { //<>// //<>//
         }
       }
     }
-   
-    if(currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200){
-     
+
+    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
+
       fill(0);
       strokeWeight(0);
-      rect(currentRoom.getItem().x,currentRoom.getItem().y + 100, 120,110, 10);
+      rect(currentRoom.getItem().x, currentRoom.getItem().y + 100, 120, 110, 10);
       textSize(15);
       fill(255);
-      text(currentRoom.getItem().description,currentRoom.getItem().x,currentRoom.getItem().y + 100 ,120,1000000);
-     strokeWeight(10);
+      text(currentRoom.getItem().description, currentRoom.getItem().x, currentRoom.getItem().y + 100, 120, 1000000);
+      strokeWeight(10);
     }
 
 
@@ -379,25 +377,10 @@ class Player { //<>// //<>//
   void keyPressed() {
 
     if (key == '1') {
-      spd++;
+      act.activateItem();
     }
     if (key == '2') {
       spd--;
-    }
-    if (key == '3') {
-      shotspd++;
-    }
-    if (key == '4') {
-      shotspd--;
-    }
-    if (key == '5') {
-      range++;
-    }
-    if (key == '6') {
-      range--;
-    }
-    if (key == '7') {
-      HP--;
     }
 
     if (key == 'w') {
@@ -421,7 +404,7 @@ class Player { //<>// //<>//
       tempX = x;
       tempY = y;
       soundEffects.attack = true;
-      
+
       hasShotgun = false;
       for (Item i : inventory) {
         if (i instanceof Shotgun) {
