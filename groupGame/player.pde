@@ -4,6 +4,7 @@ class Player { //<>// //<>//
   ItemRoom ipos;
   Item i;
 
+
   int equippedItem;
   int nextItemIndex;
   HighNoon h;
@@ -25,9 +26,9 @@ class Player { //<>// //<>//
 
   Shotgun s;
   boolean hasShotgun;
-
+ //<>//
   //heatseeker variables //<>// //<>// //<>//
- //<>// //<>//
+  //<>//
   float farthestDistance;  //<>// //<>// //<>//
   //<>// //<>// //<>//
   float farthestEnemyX;  //<>// //<>// //<>//
@@ -43,7 +44,7 @@ class Player { //<>// //<>//
   //<>// //<>// //<>//
   //Player Images  //<>// //<>// //<>//
   PImage sprites[];  //<>// //<>// //<>//
-  int currentSprite;  //<>// //<>// //<>//
+  int currentSprite;  //<>// //<>//
   int firstSprite; //<>//
 
   int frame;
@@ -70,7 +71,6 @@ class Player { //<>// //<>//
     inventory= new Item[5];
 
     s = new Shotgun(x, y);
-
 
 
 
