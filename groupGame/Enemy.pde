@@ -22,11 +22,11 @@ class Enemy extends ScreenElement {
   int finTimer;
   int tick;
 
-  Enemy(float x, float y) {
+  Enemy(float x, float y,String spriteFilename) {
     super();
     this.xPos = x;
     this.yPos = y;
-    
+
     here = true;
     enemyHealth = 100;
     HpBarHeight = 10;
@@ -42,7 +42,7 @@ class Enemy extends ScreenElement {
     tick = -1;
     finTimer = 270;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
+    PImage spritesheet = loadImage(spriteFilename);
     //spritesheet.resize(96, 96);
 
     //Basic Sprites
@@ -76,7 +76,7 @@ class Enemy extends ScreenElement {
   }
 
   void display () {
-    if(enemyHealth <= 0){
+    if (enemyHealth <= 0) {
       enemyHealth=0;
     }
     push();
@@ -111,9 +111,11 @@ class Enemy extends ScreenElement {
     strokeWeight(2);
     stroke(255);
     fill(#ffff00);
-    rect(0, -55, enemyHealth, HpBarHeight);
+    if (enemyHealth > 0) {
+      rect(0, -55, enemyHealth, HpBarHeight);
+    }
     fill(#00ffff);
-    
+
     pop();
   }
 
@@ -129,11 +131,12 @@ class Enemy extends ScreenElement {
 
 
   void update () {
+ 
     if(enemyHealth == 0 && finTimer == 269 ){
       dead = true;
-    } 
-    
-    if(dead){
+    }
+
+    if (dead) {
       p1.killsNum++;
       dead =false;
     }
@@ -144,7 +147,7 @@ class Enemy extends ScreenElement {
 
     if (tick > -1 && tick < 5) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
-        
+
         projectile.x = enemy.x;
         projectile.y = enemy.y;
         target.x = p1.x-enemy.x;
@@ -230,7 +233,6 @@ class Enemy extends ScreenElement {
     if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
       recordedTime = millis();
-      soundEffects.hurt = true;
       soundEffects.strike = true;
     }
 

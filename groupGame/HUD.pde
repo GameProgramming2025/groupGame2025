@@ -1,4 +1,5 @@
 class HUD {
+  PFont font;
   Float hp, coins, items, s;
   float x, y;
   int ammo, w ;
@@ -6,21 +7,23 @@ class HUD {
   PFont big;
   Player p;
   HighNoon h;
-  
+
   PImage heart, brokenHeart, highNoon;
   float currentHp;
   boolean hasItem;
   int pts;
-    //EFFECTS
-    PImage blackRadialGradient;
+  //EFFECTS
+  PImage blackRadialGradient;
 
 
   HUD(Player p) {
+    font = loadFont("data/fonts/Algerian.vlw");
+    textFont(font, 40);
     currentHp = 1;
     s=40.0;
     x=50;
     y=50;
-    
+
     heart = loadImage("data/Sprites/heart.png");
     brokenHeart = loadImage("data/Sprites/broken heart.png");
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
@@ -39,7 +42,7 @@ class HUD {
   }
 
   void display() {
-    
+
     strokeWeight(10);
     fill(255);
     rect(width*7/10, 70, 70, 70, 10);
@@ -48,11 +51,7 @@ class HUD {
     rect(width*8/10, 70, 70, 70, 10);
     rect(width *8.5/10, 70, 70, 70, 10);
     fill(0);
-    for (int i = 0; i < 5; i++) {
-      if (p.inventory[i] != null) {
-        image(p.inventory[i].itemImg, 10 + width * 6.5 /10 + (i * 85)-40, 43);
-      }
-    }
+
 
     if (currentHp ==10) {
       image(heart, x, y, s, s);
@@ -112,12 +111,25 @@ class HUD {
     if (currentHp== 1) {
       image(brokenHeart, x, y, s, s);
     }
-    
 
-    textSize(25);
+    for (int i = 0; i < 5; i++) {
+      if (p.inventory[i] != null) {
+        image(p.inventory[i].itemImg, 10 + width * 6.5 /10 + (i * 85)-40, 43);
+      }
+    }
+
+
+    textSize(40);
     fill(255);
-    text("kills:", width/2 -300, 100);
-    text(p1.killsNum,width/2 -260,100);
+
+    text("kills:", width/2 -330, height-30);
+    text(p1.killsNum, width/2 -260, height-30);
+    text(p1.atk, width/2 -250, height-70);
+    text("atk:", width/2 -325, height-70);
+    text(p1.shotsCD, width/2 -420, height-30);
+    text("CD:", width/2 - 470, height -30);
+    text("spd:",width/2 -455, height-70);
+    text(p1.spd,width/2 -400,height-70);
   }
 
   void effects(boolean enabled) {
