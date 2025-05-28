@@ -20,8 +20,7 @@ class HUD {
 
 
   HUD(Player p) {
-    //font = loadFont("data/fonts/Algerian.vlw");
-    font = loadFont("data/fonts/knight.ttf");
+    font = loadFont("data/fonts/Algerian.vlw");
     textFont(font, 40);
     currentHp = 1;
     s=40.0;
@@ -53,7 +52,7 @@ class HUD {
     text("ATK: " + p1.atk, startX, startY - lines * 2);
     text("CD: " + (p1.shotsCD), startX, startY - lines * 3);
     text("SHOT SPEED: " + p1.shotspd, startX, startY - lines * 4);
-    text("CHARGES: " + p1.act.charge, startX, startY - lines * 5);
+    //text("CHARGES: " + p1.Item.charge, startX, startY - lines * 5);
     textSize(50);
     text("KILLS: " + p1.killsNum, startX+400, startY - lines * 34);
     textSize(28);
