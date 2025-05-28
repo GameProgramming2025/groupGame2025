@@ -137,6 +137,7 @@ class Enemy extends ScreenElement {
 
     if (dead) {
       p1.killsNum++;
+      p1.act.incrementCharge();
       dead =false;
     }
 
