@@ -22,6 +22,7 @@ class ActiveItem extends Item {
       ready = true;
     }
   }
+
   void render() {
     super.render();
   }
