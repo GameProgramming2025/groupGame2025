@@ -143,7 +143,7 @@ class Enemy extends ScreenElement {
       dead =false;
     }
 
-    if (random(0, 1) < 0.0016 && tick == -1) {
+    if (random(0, 1) < 0.005 && tick == -1) {
       tick = 0;
     }
 
