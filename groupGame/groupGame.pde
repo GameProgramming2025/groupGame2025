@@ -107,6 +107,7 @@ void setup() {
 }
 
 void draw() {
+  println(frameRate);
   background(0);
 
   if (noInputCnt == 60 * 60 * 30) {

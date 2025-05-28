@@ -128,7 +128,6 @@ class Player { //<>// //<>// //<>//
   }
 
   void update() {
-    println();
 
     s.update();
     s.x = x;
@@ -136,20 +135,16 @@ class Player { //<>// //<>// //<>//
 
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
+      if (currentRoom.getItem() instanceof ActiveItem) {
+        actItem = currentRoom.getItem();
+        currentRoom.setItem(null);
+        println("picked up item");
+        return;
+      }
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
       nextItemIndex++;
-      if (currentRoom.getItem() instanceof VeilOfSilence) {
-        for (PImage sprite : sprites) {
-          sprite.resize(xSize, ySize);
-        }
-      }
-      
-      if (currentRoom.getItem() instanceof ActiveItem) {
-        actItem = currentRoom.getItem();
-        println("picked up item");
-      }
     }
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
