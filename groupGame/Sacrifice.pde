@@ -12,7 +12,7 @@ class Sacrifice extends ActiveItem {
   void itemEffect() {
     println("HP CONSUMED. REAP YOUR BENEFIT.");
     p1.HP = p1.HP + -1;
-    p1.atk = p1.atk + 50;
+    p1.atk = p1.atk + 1000000121;
     println( "YOUR CURRENT ATTACK IS" , p1.atk);
     ready = true;
   }

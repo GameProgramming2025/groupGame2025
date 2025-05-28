@@ -380,7 +380,7 @@ class Player { //<>// //<>//
       act.activateItem();
     }
     if (key == '2') {
-      spd--;
+      HP++;
     }
 
     if (key == 'w') {

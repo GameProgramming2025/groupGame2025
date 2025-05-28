@@ -139,6 +139,9 @@ class Enemy extends ScreenElement {
       p1.killsNum++;
       dead =false;
     }
+    if (p1.killsNum > 0){
+     enemyHealth = 0; 
+    }
 
     if (random(0, 1) < 0.0016 && tick == -1) {
       tick = 0;
@@ -264,5 +267,11 @@ class Enemy extends ScreenElement {
         tick = -1;
       }
     }
+  }
+  
+  void keyPressed(){
+   if (key == 'k'){
+     enemyHealth = 0;
+   }
   }
 }

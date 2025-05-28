@@ -228,4 +228,8 @@ class Room {
   void setItem(Item setItem) {
     this.item = setItem;
   }
+  
+  void keyPressed(){
+   
+  }
 }
