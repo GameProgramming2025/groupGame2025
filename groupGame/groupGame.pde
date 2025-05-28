@@ -17,6 +17,7 @@ long noInputCnt;
 float a;
 PImage GameOver;
 PImage TitleScreen, SelectScreen;
+PImage decorSpritesheet;
 boolean starting;
 boolean on_start;
 float fade;
@@ -106,11 +107,11 @@ void setup() {
 }
 
 void draw() {
+  println(frameRate);
   background(0);
 
   if (noInputCnt == 60 * 60 * 30) {
     gameState = GameState.BLACK;
-  } else if (noInputCnt == 60 * 60 * 2) {
   }
 
 
