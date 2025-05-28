@@ -1,4 +1,4 @@
-class Decoration {
+/*class Decoration {
   PImage decor;
   int type;
   float xPos;
@@ -81,4 +81,4 @@ class Decoration {
   void display() {
     image(decor, xPos, yPos);
   }
-}
+}*/

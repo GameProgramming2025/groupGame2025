@@ -1,6 +1,6 @@
 class Room {
   Item item;
-  Decoration[] decor;
+  //Decoration[] decor;
 
   Enemy[] enemies;
   int roomI;
@@ -35,16 +35,16 @@ class Room {
 
     currentDecor = 0;
 
-    decor = new Decoration[2];
+    //decor = new Decoration[2];
     int dumber = int(random(1, 11));
     int ranheight = int(random(305, 900));
     int ranwidth = int(random(1275, 1450));
     //int randHeight =
-    decor[0] = new Decoration(dumber, ranwidth, ranheight);
+    //decor[0] = new Decoration(dumber, ranwidth, ranheight);
     dumber = int(random(1, 11));
     ranheight = int(random(305, 936));
     ranwidth = int(random(245, 575));
-    decor[1] = new Decoration(dumber, ranwidth, ranheight);
+    //decor[1] = new Decoration(dumber, ranwidth, ranheight);
     println(dumber);
 
     //num = int(random(0, 13));
@@ -165,16 +165,16 @@ class Room {
       image(img, 0, 0);
     }
     joshshouldofdonethisthefirsttimebutkanonhadtofixit();
-    for (Decoration d : decor) {
-      d.update();
-      d.display();
-    }
-    pop();
+    //for (Decoration d : decor) {
+      //d.update();
+      //d.display();
+    //}
+    //pop();
 
-    fill(255, 50);
-    textSize(400);
-    textAlign(CENTER, CENTER);
-    text(roomI + ", " + roomJ, width/2, height/2);
+    //fill(255, 50);
+    //textSize(400);
+    //textAlign(CENTER, CENTER);
+    //text(roomI + ", " + roomJ, width/2, height/2);
   }
 
   void update () {
