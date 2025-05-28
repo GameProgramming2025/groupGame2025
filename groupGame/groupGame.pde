@@ -11,7 +11,7 @@ import ddf.minim.AudioPlayer;
 Player p1;
 HUD h1;
 Item spawned;
-GameState gameState = GameState.MAIN_SCREEN; //iowhbaweruyfbu ujfbdsfhasrhj
+GameState gameState; //iowhbaweruyfbu ujfbdsfhasrhj
 
 long noInputCnt;
 float a;
@@ -101,6 +101,7 @@ void setup() {
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
   currentRoom = rooms[currentI][currentJ];
+  gameState = GameState.MAIN_SCREEN;
   
 }
 
