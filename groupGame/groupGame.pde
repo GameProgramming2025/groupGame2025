@@ -112,7 +112,6 @@ void draw() {
 
   if (noInputCnt == 60 * 60 * 30) {
     gameState = GameState.BLACK;
-  } else if (noInputCnt == 60 * 60 * 2) {
   }
 
 

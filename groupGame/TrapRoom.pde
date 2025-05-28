@@ -11,7 +11,7 @@ class TrapRoom extends Room {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
     img = loadImage("Sprites/BGFourDoors.png");
     img.resize(width, height);
-    numEnemies = 9;
+    numEnemies = 13;
     float ex, ey;
     enemies = new Enemy[numEnemies];
     enemyImg = "Data/Sprites/SlimeBasic.png";
