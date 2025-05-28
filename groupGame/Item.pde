@@ -117,6 +117,10 @@ class Item {
       fill(#95bbe6, 200);
     }
   }
+  
+  void activateItem() {}
+  
+  
   void keyPressed() {
   }
 

@@ -7,6 +7,8 @@ class TwoUP extends ActiveItem {
     description = "3 CHARGE | An item that heals you!";
   }
 
+
+
   void itemEffect() {
     println("Item used!");
     ready = false;
@@ -19,7 +21,7 @@ class TwoUP extends ActiveItem {
     if (ready) {
       this.use();
     } else {
-      incrementCharge();
+      println("Item not ready");
     }
   }
 }
