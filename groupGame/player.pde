@@ -1,6 +1,6 @@
-class Player { //<>// //<>// //<>//
- //<>// //<>// //<>//
-  Item inventory[]; //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>//
+  Item inventory[]; //<>// //<>// //<>// //<>//
 
   ItemRoom ipos;
   Item i;
@@ -27,25 +27,25 @@ class Player { //<>// //<>// //<>//
 
   Shotgun s;
   boolean hasShotgun; //<>//
- //<>//
-  //heatseeker variables //<>// //<>// //<>// //<>//
-  //<>// //<>//
-  float farthestDistance;  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  float farthestEnemyX;  //<>// //<>// //<>// //<>//
-  float farthestEnemyY;  //<>// //<>// //<>// //<>//
- //<>// //<>// //<>// //<>//
-  // Player Stats //<>// //<>// //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>// //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  Magic shots[];  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  int nextShot;  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  //Player Images  //<>// //<>// //<>// //<>//
-  PImage sprites[];  //<>// //<>// //<>//
-  int currentSprite;  //<>// //<>//
+ //<>// //<>//
+  //heatseeker variables //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>//
+  float farthestDistance;  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  float farthestEnemyX;  //<>// //<>// //<>// //<>// //<>//
+  float farthestEnemyY;  //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>// //<>//
+  // Player Stats //<>// //<>// //<>// //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>// //<>// //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  Magic shots[];  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  int nextShot;  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  //Player Images  //<>// //<>// //<>// //<>// //<>//
+  PImage sprites[];  //<>// //<>// //<>// //<>//
+  int currentSprite;  //<>// //<>// //<>//
   int firstSprite; //<>//
 
   int frame;
@@ -382,7 +382,12 @@ class Player { //<>// //<>// //<>//
   }
 
   void keyPressed() {
-
+if(key == '7'){
+  HP++;
+  maxHP++;
+ 
+}
+    
     if (key == '1') {
       for (Item item : inventory) {
         if (item instanceof ActiveItem) {

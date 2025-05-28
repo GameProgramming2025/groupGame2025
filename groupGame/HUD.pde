@@ -24,7 +24,7 @@ class HUD {
     x=50;
     y=50;
 
-    hp = new Heart[p.HP];
+    hp = new Heart[100];
 
 
 
@@ -39,17 +39,18 @@ class HUD {
     items=0.0;
 
     for (int i = 0; i < p.maxHP; i++) {
-      hp[i] = new Heart(3, x+(i+1)*40, y);
+      hp[i] = new Heart(i<currentHp ? 3 : 1, x+(i+1)*40, y );
+      
     }
   }
 
   void update() {
-    
-    if (currentHp != 9 && p.HP==9) {
-      hp[9] = new Heart(2, x+(10)*40, y);
-      
+    if (currentHp != p.HP) {
+      currentHp=p.HP;
+      for (int i = 0; i < p.maxHP; i++) {
+        hp[i] = new Heart(i<currentHp ? 3 : 1, x+(i+1)*40, y );
+      }
     }
-    currentHp=p.HP;
   }
 
   void display() {
@@ -62,11 +63,11 @@ class HUD {
     rect(width*8/10, 70, 70, 70, 10);
     rect(width *8.5/10, 70, 70, 70, 10);
     fill(0);
-    
+
     for (int i = 0; i < p.maxHP; i++) {
-      hp[i].display(); 
+      hp[i].display();
     }
-    
+
 
 
 
