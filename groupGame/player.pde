@@ -1,6 +1,6 @@
- //<>//
-class Player {  //<>// //<>// //<>//
-  Item inventory[]; //<>// //<>// //<>//
+ //<>// //<>//
+class Player {  //<>// //<>// //<>// //<>//
+  Item inventory[]; //<>// //<>// //<>// //<>//
   ActiveItem act; //<>//
 
   ItemRoom ipos;
@@ -23,28 +23,29 @@ class Player {  //<>// //<>// //<>//
   int animation;
   int finalAnimation;
   boolean shooting;
+  public Item actItem;
 
 
 
-  Shotgun s;
- //<>//
-  boolean hasShotgun;  //<>//
-  //heatseeker variables  //<>//
-  float farthestDistance;   //<>//
-  float farthestEnemyX;   //<>//
-  float farthestEnemyY;   //<>//
-  // Player Stats  //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;   //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */   //<>//
-  Magic shots[];  //<>//
-  int nextShot;   //<>//
-  //Player Images  //<>//
-  PImage sprites[];     //<>//
-  int currentSprite;   //<>//
-  int firstSprite;  //<>//
- //<>//
-  int frame; //<>//
- //<>//
+  Shotgun s; //<>//
+ //<>// //<>//
+  boolean hasShotgun;  //<>// //<>//
+  //heatseeker variables  //<>// //<>//
+  float farthestDistance;   //<>// //<>//
+  float farthestEnemyX;   //<>// //<>//
+  float farthestEnemyY;   //<>// //<>//
+  // Player Stats  //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;   //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */   //<>// //<>//
+  Magic shots[];  //<>// //<>//
+  int nextShot;   //<>// //<>//
+  //Player Images  //<>// //<>//
+  PImage sprites[];     //<>// //<>//
+  int currentSprite;   //<>// //<>//
+  int firstSprite;  //<>// //<>//
+ //<>// //<>//
+  int frame; //<>// //<>//
+ //<>// //<>//
   Player() { //<>//
     chargeSpeed = 1.0 / shotsCD;
     killsNum = 0;
@@ -68,10 +69,7 @@ class Player {  //<>// //<>// //<>//
 
     s = new Shotgun(x, y);
 
-
-
     nextItemIndex = 0;
-
 
     e = new EmptyItem(x, y);
 
@@ -132,11 +130,17 @@ class Player {  //<>// //<>// //<>//
 
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
+      if (currentRoom.getItem() instanceof ActiveItem) {
+        actItem = currentRoom.getItem();
+        currentRoom.setItem(null);
+        println("picked up item");
+        return;
+      }
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
       nextItemIndex++;
-      soundEffects.item = true;
++      soundEffects.item = true;
       println("atk:" + atk);
 
 
@@ -153,6 +157,8 @@ class Player {  //<>// //<>// //<>//
           }
         }
       }
+
+
     }
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
@@ -383,11 +389,7 @@ class Player {  //<>// //<>// //<>//
   void keyPressed() {
 
     if (key == '1') {
-      for (Item item : inventory) {
-        if (item instanceof ActiveItem) {
-          item.activateItem();
-        }
-      }
+      actItem.activateItem();
     }
     if (key == '2') {
       
