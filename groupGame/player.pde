@@ -22,6 +22,7 @@ class Player { //<>// //<>// //<>//
   int animation;
   int finalAnimation;
   boolean shooting;
+  public Item actItem;
 
 
 
@@ -73,10 +74,7 @@ class Player { //<>// //<>// //<>//
 
     s = new Shotgun(x, y);
 
-
-
     nextItemIndex = 0;
-
 
     e = new EmptyItem(x, y);
 
@@ -130,6 +128,7 @@ class Player { //<>// //<>// //<>//
   }
 
   void update() {
+    println();
 
     s.update();
     s.x = x;
@@ -148,11 +147,8 @@ class Player { //<>// //<>// //<>//
       }
       
       if (currentRoom.getItem() instanceof ActiveItem) {
-        for (Item item : inventory) {
-          if (item instanceof ActiveItem) {
-            item = currentRoom.getItem();
-          }
-        }
+        actItem = currentRoom.getItem();
+        println("picked up item");
       }
     }
 
@@ -384,11 +380,7 @@ class Player { //<>// //<>// //<>//
   void keyPressed() {
 
     if (key == '1') {
-      for (Item item : inventory) {
-        if (item instanceof ActiveItem) {
-          item.activateItem();
-        }
-      }
+      actItem.activateItem();
     }
     if (key == '2') {
       

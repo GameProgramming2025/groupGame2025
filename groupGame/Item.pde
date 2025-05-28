@@ -120,6 +120,8 @@ class Item {
   
   void activateItem() {}
   
+  void incrementCharge() {}
+  
   
   void keyPressed() {
   }

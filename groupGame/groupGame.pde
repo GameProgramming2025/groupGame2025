@@ -17,6 +17,7 @@ long noInputCnt;
 float a;
 PImage GameOver;
 PImage TitleScreen, SelectScreen;
+PImage decorSpritesheet;
 boolean starting;
 boolean on_start;
 float fade;
