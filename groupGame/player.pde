@@ -1,9 +1,11 @@
- //<>// //<>//
-class Player {  //<>// //<>//
-  Item inventory[]; //<>// //<>//
+ //<>//
+class Player {  //<>// //<>// //<>//
+  Item inventory[]; //<>// //<>// //<>//
   ActiveItem act; //<>//
+
   ItemRoom ipos;
   Item i;
+
 
   int equippedItem;
   int nextItemIndex;
@@ -25,29 +27,25 @@ class Player {  //<>// //<>//
 
 
   Shotgun s;
-  boolean hasShotgun;
-
-  //heatseeker variables  //<>// //<>// //<>//
-  float farthestDistance;   //<>// //<>// //<>//
-   //<>// //<>// //<>//
-  float farthestEnemyX;   //<>// //<>// //<>//
-  float farthestEnemyY;   //<>// //<>// //<>//
-  //<>// //<>// //<>//
-  // Player Stats  //<>// //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;   //<>// //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */   //<>// //<>// //<>//
-   //<>// //<>// //<>//
-  Magic shots[];   //<>// //<>// //<>//
-   //<>// //<>// //<>//
-  int nextShot;   //<>// //<>// //<>//
-  //Player Images   //<>// //<>// //<>//
-  PImage sprites[];   //<>// //<>// //<>//
-  int currentSprite;   //<>// //<>//
-  int firstSprite;  //<>// //<>//
+ //<>//
+  boolean hasShotgun;  //<>//
+  //heatseeker variables  //<>//
+  float farthestDistance;   //<>//
+  float farthestEnemyX;   //<>//
+  float farthestEnemyY;   //<>//
+  // Player Stats  //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;   //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */   //<>//
+  Magic shots[];  //<>//
+  int nextShot;   //<>//
+  //Player Images  //<>//
+  PImage sprites[];     //<>//
+  int currentSprite;   //<>//
+  int firstSprite;  //<>//
  //<>//
   int frame; //<>//
-
-  Player() {
+ //<>//
+  Player() { //<>//
     chargeSpeed = 1.0 / shotsCD;
     killsNum = 0;
     xSize = 96;
@@ -72,14 +70,12 @@ class Player {  //<>// //<>//
 
 
 
-
     nextItemIndex = 0;
 
 
     e = new EmptyItem(x, y);
 
     inventory = new Item[5];
-    act = new Sacrifice(x, y);
 
     for (int j = 0; j < 5; j++) {
       inventory[j] = new EmptyItem(x, y);
@@ -135,7 +131,7 @@ class Player {  //<>// //<>//
     s.y = y;
 
 
-    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
+    if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 100) {
       inventory[nextItemIndex] = currentRoom.getItem();
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
@@ -149,9 +145,17 @@ class Player {  //<>// //<>//
           sprite.resize(xSize, ySize);
         }
       }
+      
+      if (currentRoom.getItem() instanceof ActiveItem) {
+        for (Item item : inventory) {
+          if (item instanceof ActiveItem) {
+            item = currentRoom.getItem();
+          }
+        }
+      }
     }
 
-    if (currentRoom instanceof ItemRoom && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
+    if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
 
       fill(0);
       strokeWeight(0);
@@ -379,10 +383,14 @@ class Player {  //<>// //<>//
   void keyPressed() {
 
     if (key == '1') {
-      act.activateItem();
+      for (Item item : inventory) {
+        if (item instanceof ActiveItem) {
+          item.activateItem();
+        }
+      }
     }
     if (key == '2') {
-      spd--;
+      
     }
 
     if (key == 'w') {
