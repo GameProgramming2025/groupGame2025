@@ -1,9 +1,12 @@
 class Room {
   Item item;
+  Decoration[] decor;
+
   Enemy[] enemies;
   int roomI;
   int roomJ;
   int bc;
+  int currentDecor;
   boolean topOpen;
   boolean bottomOpen;
   boolean leftOpen;
@@ -29,6 +32,20 @@ class Room {
     rightDoor = loadImage("Sprites/DoorRight.png");
     leftDoor = loadImage("Sprites/DoorLeft.png");
     bottomDoor = loadImage("Sprites/DoorBottom.png");
+
+    currentDecor = 0;
+
+    decor = new Decoration[2];
+    int dumber = int(random(1, 11));
+    int ranheight = int(random(305, 900));
+    int ranwidth = int(random(1275, 1450));
+    //int randHeight =
+    decor[0] = new Decoration(dumber, ranwidth, ranheight);
+    dumber = int(random(1, 11));
+    ranheight = int(random(305, 936));
+    ranwidth = int(random(245, 575));
+    decor[1] = new Decoration(dumber, ranwidth, ranheight);
+    println(dumber);
 
     //num = int(random(0, 13));
     ////NORMAL ROOMS
@@ -144,11 +161,14 @@ class Room {
     fill(bc);
     //strokeWeight(10);
     //stroke(90);
-    if (this instanceof ItemRoom == false) {
-      //rect(20, 20, width-40, height-40);
+    if (this instanceof ItemRoom == false && this instanceof HealthRoom == false) {
       image(img, 0, 0);
     }
-    showDoors();
+    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
+    for (Decoration d : decor) {
+      d.update();
+      d.display();
+    }
     pop();
 
     fill(255, 50);
@@ -158,7 +178,6 @@ class Room {
   }
 
   void update () {
-    
   }
 
   void constrainPlayer(Player p) {
@@ -205,8 +224,8 @@ class Room {
       }
     }
   }
-  
-  void showDoors() {
+  // no changing function name
+  void joshshouldofdonethisthefirsttimebutkanonhadtofixit() {
     if (!topOpen) {
       image(topDoor, 0, 0);
     }
