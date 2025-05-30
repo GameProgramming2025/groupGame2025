@@ -1,7 +1,9 @@
 class TrapRoom extends Room {
   Enemy enemies[];
+  Runner runners[];
   int numEnemies;
   float spawn;
+  float ex, ey;
   PImage img;
   protected boolean enemiesDead;
 
@@ -10,12 +12,18 @@ class TrapRoom extends Room {
     img = loadImage("Sprites/BGFourDoors.png");
     img.resize(width, height);
     numEnemies = 13;
-    float ex, ey;
+   
     enemies = new Enemy[numEnemies];
-    for (int i = 0; i < numEnemies; i++) {
+    runners = new Runner[numEnemies];
+    /*for (int i = 0; i < numEnemies; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
       enemies[i] = new Enemy(ex, ey);
+    }*/
+    for (int i = 0; i < numEnemies; i++) {
+      ex = random(252, 1466);
+      ey = random(282, 945);
+      runners[i] = new Runner(ex, ey);
     }
   }
 
@@ -23,17 +31,25 @@ class TrapRoom extends Room {
     super.display();
 
     enemiesDead = true;
-    for (Enemy e : enemies) {
+    /*for (Enemy e : enemies) {
       e.update();
       if (e.enemyHealth > 0) {
         enemiesDead = false;
       }
       e.display();
+    }*/
+    for (Runner r : runners) {
+      r.update();
+      if (r.runnerHealth > 0) {
+        enemiesDead = false;
+      }
+      r.display();
     }
   }
   
   void update() {
     super.update();
+    
   }
 
   void showDoors() {
