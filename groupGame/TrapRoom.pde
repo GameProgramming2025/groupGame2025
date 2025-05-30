@@ -5,11 +5,11 @@ class TrapRoom extends Room {
   PImage img;
   protected boolean enemiesDead;
 
-  TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+  TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen, int level) {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
     img = loadImage("Sprites/BGFourDoors.png");
     img.resize(width, height);
-    numEnemies = 13;
+    numEnemies = 7 + 6 * (level - 1);
     float ex, ey;
     enemies = new Enemy[numEnemies];
     for (int i = 0; i < numEnemies; i++) {
@@ -43,7 +43,7 @@ class TrapRoom extends Room {
       image(leftDoor, 0, 0);
       image(rightDoor, 0, 0);
     } else {
-      //super.showDoors();
+      super.showDoors();
     }
   }
 
