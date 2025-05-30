@@ -7,7 +7,7 @@ class TrapRoom extends Room {
   PImage img;
   protected boolean enemiesDead;
 
-  TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+  TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen, int bullshet) {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
     img = loadImage("Sprites/BGFourDoors.png");
     img.resize(width, height);
@@ -40,10 +40,10 @@ class TrapRoom extends Room {
     }*/
     for (Runner r : runners) {
       r.update();
+      r.display();
       if (r.runnerHealth > 0) {
         enemiesDead = false;
       }
-      r.display();
     }
   }
   

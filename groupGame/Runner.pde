@@ -75,6 +75,7 @@ class Runner extends ScreenElement {
   }
 
   void display () {
+    println("I'm here Sir, pick me up at coordinates " + runner.x +","+ runner.y);
     if (runnerHealth <= 0) {
       runnerHealth=0;
     }
@@ -141,9 +142,9 @@ class Runner extends ScreenElement {
       }
       dead =false;
     }
-    if (p1.killsNum > 0) {
+    /*if (p1.killsNum > 0) {
       runnerHealth = 0;
-    }
+    }*/
 
     if (random(0, 1) < 0.005 && tick == -1) {
       tick = 0;
@@ -151,13 +152,21 @@ class Runner extends ScreenElement {
 
     if (tick > -1 && tick < 5) {
       if (dist(runner.x, runner.y, p1.x, p1.y ) < 400 ) {
-        runner.x += xVelo;
-        runner.y += yVelo;
+        
         target.x = p1.x-runner.x;
         target.y = p1.y-runner.y;
         target.normalize();
         xVelo = target.x * 20;
         yVelo = target.y * 20;
+        
+        
+        
+        
+        
+        
+        
+
+        
       }
     }
     if (tick == 70) {
@@ -165,8 +174,6 @@ class Runner extends ScreenElement {
       //target.x *= 3;
       //target.y *= 3;
     }
-    xVelo+= 10*target.x;
-    yVelo += 10*target.y;
     xPosPrev = runner.x;
     yPosPrev = runner.y;
     runner.x += xVelo;
