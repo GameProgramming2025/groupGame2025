@@ -11,12 +11,13 @@ import ddf.minim.AudioPlayer;
 Player p1;
 HUD h1;
 Item spawned;
-GameState gameState = GameState.MAIN_SCREEN; //iowhbaweruyfbu ujfbdsfhasrhj
+GameState gameState; //iowhbaweruyfbu ujfbdsfhasrhj
 
 long noInputCnt;
 float a;
 PImage GameOver;
 PImage TitleScreen, SelectScreen;
+PImage decorSpritesheet;
 boolean starting;
 boolean on_start;
 float fade;
@@ -101,15 +102,16 @@ void setup() {
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
   currentRoom = rooms[currentI][currentJ];
+  gameState = GameState.MAIN_SCREEN;
   
 }
 
 void draw() {
+  println(frameRate);
   background(0);
 
   if (noInputCnt == 60 * 60 * 30) {
     gameState = GameState.BLACK;
-  } else if (noInputCnt == 60 * 60 * 2) {
   }
 
 
