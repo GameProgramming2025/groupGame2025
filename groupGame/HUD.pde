@@ -35,7 +35,7 @@ class HUD {
 
     //ammo = p.ammo;
     coins=0.0;
-    big= createFont("data/fonts/Tourney/static/Tourney_Condensed-BlackItalic.ttf", 50);
+    
     items=0.0;
   }
 
