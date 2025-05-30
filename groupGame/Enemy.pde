@@ -146,11 +146,11 @@ class Enemy extends ScreenElement {
      enemyHealth = 0; 
     }*/
 
-    if (random(0, 1) < 0.005 && tick == -1) {
+    if (random(0, 1) < 0.003 && tick == -1) {
       tick = 0;
     }
 
-    if (tick > -1 && tick < 5) {
+    if (tick > -1 && tick <= 0) {
       if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
 
         projectile.x = enemy.x;
