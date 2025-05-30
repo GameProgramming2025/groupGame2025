@@ -164,7 +164,7 @@ class Room {
     if (this instanceof ItemRoom == false && this instanceof HealthRoom == false) {
       image(img, 0, 0);
     }
-    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
+    showDoors();
     for (Decoration d : decor) {
       d.update();
       d.display();
@@ -225,7 +225,7 @@ class Room {
     }
   }
   // no changing function name
-  void joshshouldofdonethisthefirsttimebutkanonhadtofixit() {
+  void showDoors() {
     if (!topOpen) {
       image(topDoor, 0, 0);
     }
