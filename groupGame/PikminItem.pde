@@ -3,7 +3,7 @@ class PikminItem extends Item {
   boolean shooting;
   float shotCD;
   int nextShot;
-  
+    
   
   PikminItem(float x, float y) {
     super(x, y, "Sprites/PikminItem.png");
