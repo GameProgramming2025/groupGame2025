@@ -75,7 +75,6 @@ class Runner extends ScreenElement {
   }
 
   void display () {
-    println("I'm here Sir, pick me up at coordinates " + runner.x +","+ runner.y);
     if (runnerHealth <= 0) {
       runnerHealth=0;
     }
@@ -152,21 +151,11 @@ class Runner extends ScreenElement {
 
     if (tick > -1 && tick < 5) {
       if (dist(runner.x, runner.y, p1.x, p1.y ) < 400 ) {
-        
         target.x = p1.x-runner.x;
         target.y = p1.y-runner.y;
         target.normalize();
         xVelo = target.x * 20;
         yVelo = target.y * 20;
-        
-        
-        
-        
-        
-        
-        
-
-        
       }
     }
     if (tick == 70) {
@@ -184,14 +173,6 @@ class Runner extends ScreenElement {
     if (animation <= 0) {
       animation = 15;
     }
-
-
-    
-
-
-
-    //println(xPos);
-
 
     if ( runner.x < 252 ) {
       xVelo = -xVelo;
@@ -244,7 +225,7 @@ class Runner extends ScreenElement {
 
 
     for (Magic m : p1.shots) {
-      if (dist(runner.x, runner.y, m.x, m.y) < 75) {
+      if (dist(runner.x, runner.y, m.x, m.y) < 75 && m.isDestroyed == false) {
         runnerHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;
