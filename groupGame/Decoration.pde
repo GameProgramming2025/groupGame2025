@@ -1,4 +1,4 @@
-/*class Decoration {
+class Decoration {
   PImage decor;
   PImage decorSpritesheet;
   int type;
@@ -7,7 +7,6 @@
   int currentSprite;
   int timer;
   int timerdos;
-  PImage decorSpritesheet;
 
 
   Decoration(int type, float xPos, float yPos) {
@@ -84,5 +83,4 @@
     image(decor, xPos, yPos);
   }
 
-}*/
-
+}

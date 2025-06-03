@@ -1,6 +1,7 @@
 class Room {
   Item item;
-  //Decoration[] decor;
+
+  Decoration[] decor;
 
   Enemy[] enemies;
   int roomI;
@@ -35,20 +36,33 @@ class Room {
 
     currentDecor = 0;
 
-    //decor = new Decoration[2];
+    decor = new Decoration[6];
     int dumber = int(random(1, 11));
     int ranheight = int(random(345, 890));
     int ranwidth = int(random(1275, 1400));
-    //int randHeight =
-    //decor[0] = new Decoration(dumber, ranwidth, ranheight);
+    decor[0] = new Decoration(dumber, ranwidth, ranheight);
     dumber = int(random(1, 11));
     ranheight = int(random(345, 890));
     ranwidth = int(random(245, 575));
-
     decor[1] = new Decoration(dumber, ranwidth, ranheight);
+    dumber = int(random(1, 11));
+    ranheight = int(random(345, 890));
+    ranwidth = int(random(245, 575));
+    decor[2] = new Decoration(dumber, ranwidth, ranheight);
+    dumber = int(random(1, 11));
+    ranheight = int(random(345, 890));
+    ranwidth = int(random(245, 575));
+    decor[3] = new Decoration(dumber, ranwidth, ranheight);
+    dumber = int(random(1, 11));
+    ranheight = int(random(345, 890));
+    ranwidth = int(random(245, 575));
+    decor[4] = new Decoration(dumber, ranwidth, ranheight);
+    dumber = int(random(1, 11));
+    ranheight = int(random(345, 890));
+    ranwidth = int(random(245, 575));
+    decor[5] = new Decoration(dumber, ranwidth, ranheight);
 
 
-  
 
 
     img.resize(width, height);
@@ -83,7 +97,6 @@ class Room {
   }
 
   void update () {
-    
   }
 
   void constrainPlayer(Player p) {
@@ -153,8 +166,7 @@ class Room {
   void setItem(Item setItem) {
     this.item = setItem;
   }
-  
-  void keyPressed(){
-   
+
+  void keyPressed() {
   }
 }

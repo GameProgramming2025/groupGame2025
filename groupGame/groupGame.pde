@@ -11,6 +11,7 @@ import ddf.minim.AudioPlayer;
 Player p1;
 HUD h1;
 Item spawned;
+Decoration[] decor;
 
 GameState gameState; //iowhbaweruyfbu ujfbdsfhasrhj
 
@@ -41,10 +42,7 @@ void setup() {
   size(1700, 1200, P3D);
 
   on_start = true;
-
-
-
-
+  
   p1 = new Player();
   currentI = 2;
   currentJ = 0;
@@ -69,7 +67,7 @@ void setup() {
   SelectScreen.resize(width, height);
   h1 = new HUD(p1);
   
-
+  
 
   rooms = new Room[5][5];
   //order is top, bottom, left, and right
