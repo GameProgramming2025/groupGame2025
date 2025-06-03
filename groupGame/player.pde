@@ -1,8 +1,6 @@
-class Player { //<>// //<>// //<>// //<>//
- //<>// //<>// //<>// //<>//
-  Item inventory[]; //<>// //<>// //<>// //<>//
+class Player {
 
-
+  Item inventory[];
   ItemRoom ipos;
   Item i;
 
@@ -24,6 +22,7 @@ class Player { //<>// //<>// //<>// //<>//
   int finalAnimation;
   boolean shooting;
   public Item actItem;
+
 
   Shotgun s;   
 
@@ -137,16 +136,16 @@ class Player { //<>// //<>// //<>// //<>//
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
       nextItemIndex++;
-+      soundEffects.item = true;
-      println("atk:" + atk);
 
+      soundEffects.item = true;
+      println("atk:" + atk);
 
       if (currentRoom.getItem() instanceof VeilOfSilence) {
         for (PImage sprite : sprites) {
           sprite.resize(xSize, ySize);
         }
       }
-      
+
       if (currentRoom.getItem() instanceof ActiveItem) {
         for (Item item : inventory) {
           if (item instanceof ActiveItem) {
@@ -154,7 +153,6 @@ class Player { //<>// //<>// //<>// //<>//
           }
         }
       }
-
 
     }
 
@@ -394,7 +392,8 @@ if(key == '7'){
       actItem.activateItem();
     }
     if (key == '2') {
-      HP++;
+
+
     }
 
     if (key == 'w') {
