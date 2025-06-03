@@ -25,9 +25,6 @@ class Player { //<>// //<>// //<>// //<>//
   boolean shooting;
   public Item actItem;
 
-
-
-
   Shotgun s;   
 
   boolean hasShotgun;  
@@ -44,7 +41,6 @@ class Player { //<>// //<>// //<>// //<>//
   PImage sprites[];     
   int currentSprite; 
   int firstSprite;
-
   int frame;
 
   Player() {
@@ -52,8 +48,8 @@ class Player { //<>// //<>// //<>// //<>//
     killsNum = 0;
     xSize = 96;
     ySize = 96;
-    maxHP = 9;
-    HP = 9;
+    maxHP = 10;
+    HP = 10;
     spd = 1;
     shotspd = 35;
     nextShot = 0;
@@ -388,7 +384,12 @@ class Player { //<>// //<>// //<>// //<>//
   }
 
   void keyPressed() {
-
+if(key == '7'){
+  HP++;
+  maxHP++;
+ 
+}
+    
     if (key == '1') {
       actItem.activateItem();
     }
