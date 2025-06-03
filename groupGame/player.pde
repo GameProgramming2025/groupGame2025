@@ -24,21 +24,22 @@ class Player {
   public Item actItem;
 
 
-  Shotgun s;   
+  Shotgun s;
 
-  boolean hasShotgun;  
-  //heatseeker variables 
-  float farthestDistance;  
-  float farthestEnemyX;   
-  float farthestEnemyY;   
-  // Player Stats  
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;  
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  
-  Magic shots[];  
-  int nextShot;  
-  //Player Images  
-  PImage sprites[];     
-  int currentSprite; 
+  boolean hasShotgun;
+  //heatseeker variables
+  float farthestDistance;
+  float farthestEnemyX;
+  float farthestEnemyY;
+  // Player Stats
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */
+
+  Magic shots[];
+  int nextShot;
+  //Player Images
+  PImage sprites[];
+  int currentSprite;
   int firstSprite;
   int frame;
 
@@ -153,7 +154,6 @@ class Player {
           }
         }
       }
-
     }
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
@@ -382,18 +382,16 @@ class Player {
   }
 
   void keyPressed() {
-if(key == '7'){
-  HP++;
-  maxHP++;
- 
-}
-    
-    if (key == '1') {
+    //if (key == '7') {
+    //  HP++;
+    //  maxHP++;
+    //}
+
+    if (key == '1' && actItem != null) {
       actItem.activateItem();
     }
     if (key == '2') {
-
-
+      
     }
 
     if (key == 'w') {
@@ -410,7 +408,7 @@ if(key == '7'){
     }
 
     //shooting
-    if (key == CODED && !shooting) {
+    if ((key == 'i' || key == 'j' || key == 'k' || key == 'l')!shooting) {
       // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
@@ -424,7 +422,7 @@ if(key == '7'){
           hasShotgun = true;
         }
       }
-      if (keyCode == UP) {
+      if (key == 'i') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
@@ -434,7 +432,7 @@ if(key == '7'){
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == DOWN) {
+      } else if (key == 'k') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
@@ -444,7 +442,7 @@ if(key == '7'){
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == LEFT) {
+      } else if (key == 'j') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x-30, y, -shotspd + (xVel *.5), 0, false);
@@ -454,7 +452,7 @@ if(key == '7'){
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == RIGHT) {
+      } else if (key == 'l') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x+30, y, shotspd + (xVel *.5), 0, false);
