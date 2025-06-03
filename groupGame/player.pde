@@ -2,6 +2,7 @@ class Player { //<>// //<>// //<>// //<>//
  //<>// //<>// //<>// //<>//
   Item inventory[]; //<>// //<>// //<>// //<>//
 
+
   ItemRoom ipos;
   Item i;
 
@@ -24,31 +25,22 @@ class Player { //<>// //<>// //<>// //<>//
   boolean shooting;
   public Item actItem;
 
+  Shotgun s;   
 
-
-  Shotgun s;
-  boolean hasShotgun; //<>// //<>//
- //<>// //<>//
-  //heatseeker variables //<>// //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>//
-  float farthestDistance;  //<>// //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>// //<>//
-  float farthestEnemyX;  //<>// //<>// //<>// //<>// //<>//
-  float farthestEnemyY;  //<>// //<>// //<>// //<>// //<>//
- //<>// //<>// //<>// //<>// //<>//
-  // Player Stats //<>// //<>// //<>// //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>// //<>// //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>// //<>//
-  Magic shots[];  //<>// //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>// //<>//
-  int nextShot;  //<>// //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>// //<>//
-  //Player Images  //<>// //<>// //<>// //<>// //<>//
-  PImage sprites[];  //<>// //<>// //<>// //<>//
-  int currentSprite;  //<>// //<>//
-  int firstSprite; //<>//
-
+  boolean hasShotgun;  
+  //heatseeker variables 
+  float farthestDistance;  
+  float farthestEnemyX;   
+  float farthestEnemyY;   
+  // Player Stats  
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;  
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  
+  Magic shots[];  
+  int nextShot;  
+  //Player Images  
+  PImage sprites[];     
+  int currentSprite; 
+  int firstSprite;
   int frame;
 
   Player() {
@@ -56,8 +48,8 @@ class Player { //<>// //<>// //<>// //<>//
     killsNum = 0;
     xSize = 96;
     ySize = 96;
-    maxHP = 9;
-    HP = 9;
+    maxHP = 10;
+    HP = 10;
     spd = 1;
     shotspd = 35;
     nextShot = 0;
@@ -145,6 +137,25 @@ class Player { //<>// //<>// //<>// //<>//
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
       nextItemIndex++;
++      soundEffects.item = true;
+      println("atk:" + atk);
+
+
+      if (currentRoom.getItem() instanceof VeilOfSilence) {
+        for (PImage sprite : sprites) {
+          sprite.resize(xSize, ySize);
+        }
+      }
+      
+      if (currentRoom.getItem() instanceof ActiveItem) {
+        for (Item item : inventory) {
+          if (item instanceof ActiveItem) {
+            item = currentRoom.getItem();
+          }
+        }
+      }
+
+
     }
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
@@ -373,7 +384,12 @@ class Player { //<>// //<>// //<>// //<>//
   }
 
   void keyPressed() {
-
+if(key == '7'){
+  HP++;
+  maxHP++;
+ 
+}
+    
     if (key == '1') {
       actItem.activateItem();
     }

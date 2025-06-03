@@ -22,7 +22,7 @@ class Enemy extends ScreenElement {
   int finTimer;
   int tick;
 
-  Enemy(float x, float y) {
+  Enemy(float x, float y,String spriteFilename) {
     super();
     this.xPos = x;
     this.yPos = y;
@@ -42,7 +42,7 @@ class Enemy extends ScreenElement {
     tick = -1;
     finTimer = 270;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
+    PImage spritesheet = loadImage(spriteFilename);
     //spritesheet.resize(96, 96);
 
     //Basic Sprites
@@ -131,7 +131,8 @@ class Enemy extends ScreenElement {
 
 
   void update () {
-    if (enemyHealth == 0 && finTimer == 269 ) {
+ 
+    if(enemyHealth == 0 && finTimer == 269 ){
       dead = true;
     }
 
@@ -213,6 +214,7 @@ class Enemy extends ScreenElement {
 
 
     if (enemyHealth <= 0 ) {
+
       finTimer--;
       xVelo = 0;
       yVelo = 0;
@@ -231,14 +233,15 @@ class Enemy extends ScreenElement {
 
     if (enemyHealth == 0) {
       here = false;
+      soundEffects.explosion = true;
     }
+
+
 
     if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
       recordedTime = millis();
       soundEffects.strike = true;
-    } else {
-      soundEffects.strike = false;
     }
 
     if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
@@ -247,12 +250,12 @@ class Enemy extends ScreenElement {
       projectile.y = 10000;
       recordedTime = millis();
       soundEffects.hurt = true;
-    } else {
-      soundEffects.hurt = false;
     }
 
     for (Magic m : p1.shots) {
       if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
+        soundEffects.strike = true;
+        enemyHealth -= 50;
         enemyHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;

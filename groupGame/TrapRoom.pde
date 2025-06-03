@@ -1,11 +1,14 @@
 class TrapRoom extends Room {
   Enemy enemies[];
+
   Runner runners[];
+
   int numEnemies;
   float spawn;
   float ex, ey;
   PImage img;
   protected boolean enemiesDead;
+  String enemyImg;
 
   TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen, int bullshet) {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
@@ -14,6 +17,7 @@ class TrapRoom extends Room {
     numEnemies = 13;
    
     enemies = new Enemy[numEnemies];
+
     runners = new Runner[numEnemies];
     /*for (int i = 0; i < numEnemies; i++) {
       ex = random(252, 1466);
