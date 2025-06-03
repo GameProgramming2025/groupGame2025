@@ -40,7 +40,7 @@ void setup() {
 
   rectMode(CENTER);
   size(1700, 1200, P3D);
-  //fullScreen(P3D);
+  fullScreen(P3D);
 
   on_start = true;
 

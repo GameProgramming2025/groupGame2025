@@ -408,7 +408,7 @@ class Player {
     }
 
     //shooting
-    if (key == CODED && !shooting) {
+    if ((key == 'i' || key == 'j' || key == 'k' || key == 'l')!shooting) {
       // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
@@ -422,7 +422,7 @@ class Player {
           hasShotgun = true;
         }
       }
-      if (keyCode == 'i') {
+      if (key == 'i') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
@@ -432,7 +432,7 @@ class Player {
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == 'k') {
+      } else if (key == 'k') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
@@ -442,7 +442,7 @@ class Player {
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == 'j') {
+      } else if (key == 'j') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x-30, y, -shotspd + (xVel *.5), 0, false);
@@ -452,7 +452,7 @@ class Player {
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == 'l') {
+      } else if (key == 'l') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x+30, y, shotspd + (xVel *.5), 0, false);
