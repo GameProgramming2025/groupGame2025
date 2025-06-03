@@ -14,7 +14,7 @@ class HealthRoom extends Room {
     irimg = loadImage("Sprites/HealthRoom.png");
     spawn = random(0, 100);
 
-    println(spawn);
+    //println(spawn);
     if( spawn <= 100){
      item = new TwoUP(width/2, height/2); 
     }

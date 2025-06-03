@@ -11,7 +11,9 @@ import ddf.minim.AudioPlayer;
 Player p1;
 HUD h1;
 Item spawned;
+
 GameState gameState; //iowhbaweruyfbu ujfbdsfhasrhj
+
 
 long noInputCnt;
 float a;
@@ -66,39 +68,42 @@ void setup() {
   SelectScreen = loadImage("Sprites/StartScreen.png");
   SelectScreen.resize(width, height);
   h1 = new HUD(p1);
+  
 
 
   rooms = new Room[5][5];
   //order is top, bottom, left, and right
 
   rooms[0][0] = new ItemRoom(0, 0, false, true, false, true);
-  rooms[1][0] = new TrapRoom(1, 0, false, false, true, true);//border on bottom wall
+  rooms[1][0] = new TrapRoom(1, 0, false, false, true, true, 1);//border on bottom wall
   rooms[2][0] = new Room(2, 0, false, false, true, true);//border on bottom wall
-  rooms[3][0] = new TrapRoom(3, 0, false, false, true, true);//border on bottom wall
+  rooms[3][0] = new TrapRoom(3, 0, false, false, true, true, 1);//border on bottom wall
   rooms[4][0] = new ItemRoom(4, 0, false, true, true, false);
-
-  rooms[0][1] = new TrapRoom(0, 1, true, true, false, false);//border on right wall;
-  rooms[1][1] = new TrapRoom(1, 1, false, true, false, true);//border on top and left wall
+  
+  rooms[0][1] = new TrapRoom(0, 1, true, true, false, false, 1);//border on right wall;
+  rooms[1][1] = new TrapRoom(1, 1, false, true, false, true, 2);//border on top and left wall
   rooms[2][1] = new ItemRoom(2, 1, false, true, true, true);//border on top wall & item toom
-  rooms[3][1] = new TrapRoom(3, 1, false, true, true, false);//border on top and right wall
-  rooms[4][1] = new TrapRoom(4, 1, true, true, false, false);//border on left wall
+  rooms[3][1] = new TrapRoom(3, 1, false, true, true, false, 2);//border on top and right wall
+  rooms[4][1] = new TrapRoom(4, 1, true, true, false, false, 1);//border on left wall
+  
 
   rooms[0][2] = new ItemRoom(0, 2, true, true, false, false);//border on right wall & trap room
-  rooms[1][2] = new TrapRoom(1, 2, true, true, false, false);//border on left and right wall & trap room
+  rooms[1][2] = new TrapRoom(1, 2, true, true, false, false, 2);//border on left and right wall & trap room
   rooms[2][2] = new BossRoom(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
-  rooms[3][2] = new TrapRoom(3, 2, true, true, false, false);//borders on left and right wall & trap room
+  rooms[3][2] = new TrapRoom(3, 2, true, true, false, false, 2);//borders on left and right wall & trap room
   rooms[4][2] = new ItemRoom(4, 2, true, true, false, false);//border on left wall & trap room
-
-  rooms[0][3] = new TrapRoom(0, 3, true, true, false, false);//border on right wall
-  rooms[1][3] = new TrapRoom(1, 3, true, false, false, true);//border on left and bottom wall
+  
+  rooms[0][3] = new TrapRoom(0, 3, true, true, false, false, 1);//border on right wall
+  rooms[1][3] = new TrapRoom(1, 3, true, false, false, true, 2);//border on left and bottom wall
   rooms[2][3] = new HealthRoom(2, 3, false, true, true, true);//border to boss room on top wall
-  rooms[3][3] = new TrapRoom(3, 3, true, false, true, false);//border on right and bottom wall
-  rooms[4][3] = new TrapRoom(4, 3, true, true, false, false);//border on left wall
+  rooms[3][3] = new TrapRoom(3, 3, true, false, true, false, 2);//border on right and bottom wall
+  rooms[4][3] = new TrapRoom(4, 3, true, true, false, false, 1);//border on left wall
+  
 
   rooms[0][4] = new ItemRoom(0, 4, true, false, false, true);
-  rooms[1][4] = new TrapRoom(1, 4, false, false, true, true);//border on top wall
-  rooms[2][4] = new TrapRoom(2, 4, true, false, true, true);// room
-  rooms[3][4] = new TrapRoom(3, 4, false, false, true, true);//border on top wall
+  rooms[1][4] = new TrapRoom(1, 4, false, false, true, true, 1);//border on top wall
+  rooms[2][4] = new TrapRoom(2, 4, true, false, true, true, 1);// room
+  rooms[3][4] = new TrapRoom(3, 4, false, false, true, true, 1);//border on top wall
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
   //showDoors();
@@ -107,7 +112,7 @@ void setup() {
 }
 
 void draw() {
-  println(frameRate);
+  //println(frameRate);
   background(0);
 
   if (noInputCnt == 60 * 60 * 30) {
@@ -165,6 +170,7 @@ void draw() {
 
     break;
   case GAMEPLAY:
+  soundEffects.background = true;
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
     currentRoom = rooms[currentI][currentJ];
@@ -172,6 +178,7 @@ void draw() {
     currentRoom = rooms[currentI][currentJ];
     currentRoom.update();
     currentRoom.display();
+    
     if (p1.x >= width) {
       p1.x = 40;
       currentI++;
@@ -197,7 +204,7 @@ void draw() {
     h1.effects(true);
     h1.update();
     h1.display();
-
+ 
     soundEffects.update();
 
     //Cameron this is embarassing
@@ -214,6 +221,8 @@ void draw() {
     //println("lost");
     break;
   }
+  
+  
 }
 
 void keyPressed() {

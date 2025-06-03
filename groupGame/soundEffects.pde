@@ -3,12 +3,14 @@ import ddf.minim.AudioPlayer;
 
 
 class SoundEffects {
-  boolean start;
+  boolean background; //background music
   boolean hurt;
   boolean heal;
   boolean strike;
-  boolean item;
+  boolean item;  // Pickup item
   boolean attack;
+  //boolean walking; // walking sfx
+  boolean explosion; // enemies explosion sfx
   int num;
   int num2;
   Minim minim;
@@ -20,6 +22,9 @@ class SoundEffects {
   AudioPlayer ehit3;
   AudioPlayer healing;
   AudioPlayer fireball;
+  AudioPlayer backgrn;
+  AudioPlayer itemfound;
+  AudioPlayer boom;
 
 
   SoundEffects(Minim m) {
@@ -27,7 +32,8 @@ class SoundEffects {
     //heal = false;
     strike = false;
     attack = false;
-    //item = false;
+    item = false;
+    explosion = false;
     num = -1;
     num2= -2;
     this.minim = m;
@@ -38,44 +44,97 @@ class SoundEffects {
     ehit2 = minim.loadFile ("Data/SoundEffects/Enemy_hit2.mp3");
     ehit3 = minim.loadFile ("Data/SoundEffects/Enemy_hit3.mp3");
     fireball = minim.loadFile ("Data/SoundEffects/fireballsfx.mp3");
+    backgrn = minim.loadFile ("Data/SoundEffects/backgroundQ.mp3");
+    itemfound = minim.loadFile ("Data/SoundEffects/itemfound.mp3");
+    boom = minim.loadFile ("Data/SoundEffects/explosion.mp3");
   }
 
 
   void update() {
-
+    if (background){
+      if(!backgrn.isPlaying()){
+       backgrn.play(0);
+      }
+    } 
+    if( background == false){
+      backgrn.pause();
+    }
+    
+    if (item){
+     if(!itemfound.isPlaying()){
+     itemfound.play(0);
+     item = false;
+     } else {
+      itemfound.pause(); 
+     }
+    }
+    
+    
     if (hurt) {
-      num = (int)random(1, 4);
+      //println(num);
+      num = (int)random(1, 3);
       if (num == 1) {
-        grunt1.play(0);
-      } else if (num == 2) {
-        grunt2.play(0);
-      } else if (num == 3) {
-        grunt3.play(0);
-      } else {
-        num = -1;
+        if (!grunt1.isPlaying()) {
+          grunt1.play(0);
+          hurt = false;
+        }
+      }
+      if (num == 2) {
+        if (!grunt2.isPlaying()) {
+          grunt2.play(0);
+          hurt = false;
+        }
+      }
+      if (num == 3) {
+        if (!grunt3.isPlaying()) {
+          grunt3.play(0);
+          hurt = false;
+        }
       }
     }
 
     if (strike) {
-      num2 = int(random(1, 3));
+      num2 = (int)random(1, 3);
+      println(num2);
+      
       if (num2 == 1) {
-        ehit1.play(0);
-      } else if (num2 == 2) {
-        ehit2.play(0);
-      } else if (num2 == 3) {
-        ehit3.play(0);
-      } else {
-        num2 = -1;
+        if (!ehit1.isPlaying()) {
+          ehit1.play(0);
+          strike = false;
+        }
+      }
+      
+      if (num2 == 2) {
+        if (!ehit2.isPlaying()) {
+          ehit2.play(0);
+          strike = false;
+        }
+      }
+      
+      if (num2 == 3) {
+        if (!ehit3.isPlaying()) {
+          ehit3.play(0);
+          strike = false;
+        }
       }
     }
 
     if (attack) {
-
       if ( !fireball.isPlaying() ) {
         fireball.play(0);
         attack = false;
       }
-
     }
+    
+    if (explosion){
+     if(!boom.isPlaying() ) {
+      boom.play(0);
+      explosion = false;
+     } else if (explosion == false) {
+      explosion = false;
+      boom.pause();
+     }
+    }
+    
   }
 }
