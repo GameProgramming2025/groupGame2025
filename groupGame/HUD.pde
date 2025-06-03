@@ -7,9 +7,11 @@ class HUD {
   Heart hp[];
   Player p;
   HighNoon h;
+
   int startX = 20;
   int startY = height;
   int lines = 34;
+
 
   PImage heart, brokenHeart, highNoon;
   float currentHp;
@@ -26,17 +28,24 @@ class HUD {
     s=40.0;
     x=50;
     y=50;
+    startX = 20;
+    startY = height;
+    lines = 28 + 6;
 
     hp = new Heart[100];
 
 
 
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
+
     blackRadialGradient.resize((int)(width*2.5) + 50, (int)(height*2.5) + 50);
+
     this.p = p;
 
     //ammo = p.ammo;
     coins=0.0;
+
+
 
     items=0.0;
 
@@ -47,12 +56,14 @@ class HUD {
   }
 
   void update() {
+
     if (currentHp != p.HP) {
       currentHp=p.HP;
       for (int i = 0; i < p.maxHP; i++) {
         hp[i] = new Heart(i<currentHp ? 3 : 1, x+(i+1)*40, y );
       }
     }
+
   }
 
   void display() {
@@ -137,6 +148,7 @@ class HUD {
         image(p.inventory[i].itemImg, 10 + width * 6.5 /10 + (i * 85)-40, 43);
       }
     }
+
     
     fill(0, 255, 0);
     rect(width *9.5/10, 70, 70, 70, 10);

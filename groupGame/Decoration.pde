@@ -7,6 +7,7 @@
   int currentSprite;
   int timer;
   int timerdos;
+  PImage decorSpritesheet;
 
 
   Decoration(int type, float xPos, float yPos) {
@@ -82,4 +83,6 @@
   void display() {
     image(decor, xPos, yPos);
   }
+
 }*/
+
