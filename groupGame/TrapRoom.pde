@@ -1,39 +1,55 @@
 class TrapRoom extends Room {
   Enemy enemies[];
+  Runner runners[];
   int numEnemies;
   float spawn;
+  float ex, ey;
   PImage img;
   protected boolean enemiesDead;
 
-  TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+  TrapRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen, int bullshet) {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
     img = loadImage("Sprites/BGFourDoors.png");
     img.resize(width, height);
     numEnemies = 13;
-    float ex, ey;
+   
     enemies = new Enemy[numEnemies];
-    for (int i = 0; i < numEnemies; i++) {
+    runners = new Runner[numEnemies];
+    /*for (int i = 0; i < numEnemies; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
       enemies[i] = new Enemy(ex, ey);
+    }*/
+    for (int i = 0; i < numEnemies; i++) {
+      ex = random(252, 1466);
+      ey = random(282, 945);
+      runners[i] = new Runner(ex, ey);
     }
   }
-
+//bull
   void display() {
     super.display();
 
     enemiesDead = true;
-    for (Enemy e : enemies) {
+    /*for (Enemy e : enemies) {
       e.update();
       if (e.enemyHealth > 0) {
         enemiesDead = false;
       }
       e.display();
+    }*/
+    for (Runner r : runners) {
+      r.update();
+      r.display();
+      if (r.runnerHealth > 0) {
+        enemiesDead = false;
+      }
     }
   }
   
   void update() {
     super.update();
+    
   }
 
   void showDoors() {

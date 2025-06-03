@@ -1,6 +1,6 @@
-class Player { //<>// //<>// //<>//
- //<>// //<>// //<>//
-  Item inventory[]; //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>//
+  Item inventory[]; //<>// //<>// //<>// //<>//
 
   ItemRoom ipos;
   Item i;
@@ -27,25 +27,25 @@ class Player { //<>// //<>// //<>//
 
 
   Shotgun s;
-  boolean hasShotgun; //<>//
- //<>//
-  //heatseeker variables //<>// //<>// //<>// //<>//
-  //<>// //<>//
-  float farthestDistance;  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  float farthestEnemyX;  //<>// //<>// //<>// //<>//
-  float farthestEnemyY;  //<>// //<>// //<>// //<>//
- //<>// //<>// //<>// //<>//
-  // Player Stats //<>// //<>// //<>// //<>//
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>// //<>// //<>//
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  Magic shots[];  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  int nextShot;  //<>// //<>// //<>// //<>//
-  //<>// //<>// //<>// //<>//
-  //Player Images  //<>// //<>// //<>// //<>//
-  PImage sprites[];  //<>// //<>// //<>//
+  boolean hasShotgun; //<>// //<>//
+ //<>// //<>//
+  //heatseeker variables //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>//
+  float farthestDistance;  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  float farthestEnemyX;  //<>// //<>// //<>// //<>// //<>//
+  float farthestEnemyY;  //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>// //<>//
+  // Player Stats //<>// //<>// //<>// //<>// //<>//
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;  //<>// //<>// //<>// //<>// //<>//
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  Magic shots[];  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  int nextShot;  //<>// //<>// //<>// //<>// //<>//
+  //<>// //<>// //<>// //<>// //<>//
+  //Player Images  //<>// //<>// //<>// //<>// //<>//
+  PImage sprites[];  //<>// //<>// //<>// //<>//
   int currentSprite;  //<>// //<>//
   int firstSprite; //<>//
 
@@ -378,7 +378,7 @@ class Player { //<>// //<>// //<>//
       actItem.activateItem();
     }
     if (key == '2') {
-      
+      HP++;
     }
 
     if (key == 'w') {
