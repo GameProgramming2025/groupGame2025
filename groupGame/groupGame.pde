@@ -165,6 +165,7 @@ void draw() {
 
     break;
   case GAMEPLAY:
+  soundEffects.background = true;
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
     currentRoom = rooms[currentI][currentJ];
@@ -214,6 +215,8 @@ void draw() {
     //println("lost");
     break;
   }
+  
+  
 }
 
 void keyPressed() {
