@@ -72,7 +72,7 @@ void setup() {
 
 
   rooms = new Room[5][5];
-  //order is top, bottom, left , and right
+  //order is top, bottom, left, and right
 
   rooms[0][0] = new ItemRoom(0, 0, false, true, false, true);
   rooms[1][0] = new TrapRoom(1, 0, false, false, true, true, 1);//border on bottom wall
@@ -86,6 +86,7 @@ void setup() {
   rooms[3][1] = new TrapRoom(3, 1, false, true, true, false, 2);//border on top and right wall
   rooms[4][1] = new TrapRoom(4, 1, true, true, false, false, 1);//border on left wall
   
+
   rooms[0][2] = new ItemRoom(0, 2, true, true, false, false);//border on right wall & trap room
   rooms[1][2] = new TrapRoom(1, 2, true, true, false, false, 2);//border on left and right wall & trap room
   rooms[2][2] = new BossRoom(2, 2, true, false, false, false);//boss room & border on bottom left and right wall
@@ -98,15 +99,16 @@ void setup() {
   rooms[3][3] = new TrapRoom(3, 3, true, false, true, false, 2);//border on right and bottom wall
   rooms[4][3] = new TrapRoom(4, 3, true, true, false, false, 1);//border on left wall
   
+
   rooms[0][4] = new ItemRoom(0, 4, true, false, false, true);
   rooms[1][4] = new TrapRoom(1, 4, false, false, true, true, 1);//border on top wall
   rooms[2][4] = new TrapRoom(2, 4, true, false, true, true, 1);// room
   rooms[3][4] = new TrapRoom(3, 4, false, false, true, true, 1);//border on top wall
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
+  //showDoors();
   currentRoom = rooms[currentI][currentJ];
   gameState = GameState.MAIN_SCREEN;
-  
 }
 
 void draw() {

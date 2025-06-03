@@ -37,15 +37,16 @@ class Room {
 
     //decor = new Decoration[2];
     int dumber = int(random(1, 11));
-    int ranheight = int(random(305, 900));
-    int ranwidth = int(random(1275, 1450));
+    int ranheight = int(random(345, 890));
+    int ranwidth = int(random(1275, 1400));
     //int randHeight =
     //decor[0] = new Decoration(dumber, ranwidth, ranheight);
     dumber = int(random(1, 11));
-    ranheight = int(random(305, 936));
+    ranheight = int(random(345, 890));
     ranwidth = int(random(245, 575));
-    //decor[1] = new Decoration(dumber, ranwidth, ranheight);
-    println(dumber);
+
+    decor[1] = new Decoration(dumber, ranwidth, ranheight);
+
 
   
 
