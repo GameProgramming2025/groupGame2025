@@ -7,6 +7,9 @@ class HUD {
   Heart hp[];
   Player p;
   HighNoon h;
+  int startX = 20;
+  int startY = height;
+  int lines = 34;
 
   PImage heart, brokenHeart, highNoon;
   float currentHp;
@@ -29,8 +32,7 @@ class HUD {
 
 
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
-    blackRadialGradient.resize((width*2) + 50, (height*2) + 50);
-    highNoon = loadImage("data/sprites/HN.png");
+    blackRadialGradient.resize((int)(width*2.5) + 50, (int)(height*2.5) + 50);
     this.p = p;
 
     //ammo = p.ammo;
@@ -135,17 +137,28 @@ class HUD {
         image(p.inventory[i].itemImg, 10 + width * 6.5 /10 + (i * 85)-40, 43);
       }
     }
+    
+    fill(0, 255, 0);
+    rect(width *9.5/10, 70, 70, 70, 10);
+    if (p.actItem != null) {
+      image(p.actItem.itemImg, width*8.5/10, 210);
+    }
 
-
-    textSize(40);
+    textSize(28);
     fill(255);
 
-    text("kills:", width/2 -330, height-30);
-    text(p1.killsNum, width/2 -260, height-30);
-    text(p1.atk, width/2 -250, height-70);
-    text("atk:", width/2 -325, height-70);
-    text("spd:", width/2 -455, height-70);
-    text(p1.spd, width/2 -400, height-70);
+    textAlign(LEFT, TOP);
+
+    text("SPD: " + p1.spd, startX, startY - lines * 1);
+    text("ATK: " + p1.atk, startX, startY - lines * 2);
+    text("CD: " + (p1.shotsCD), startX, startY - lines * 3);
+    text("SHOT SPEED: " + p1.shotspd, startX, startY - lines * 4);
+    text("TIME: " + (int)(millis()/60000) + "m " + ((millis()/1000) - (millis()/60000)) + "sec", startX, startY - lines * 5);
+    textSize(50);
+    text("KILLS: " + p1.killsNum, startX+400, startY - lines * 34);
+    textSize(28);
+    currentHp=p.HP;
+
   }
 
   void effects(boolean enabled) {

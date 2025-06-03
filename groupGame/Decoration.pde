@@ -1,5 +1,6 @@
-class Decoration {
+/*class Decoration {
   PImage decor;
+  PImage decorSpritesheet;
   int type;
   float xPos;
   float yPos;
@@ -81,4 +82,4 @@ class Decoration {
   void display() {
     image(decor, xPos, yPos);
   }
-}
+}*/

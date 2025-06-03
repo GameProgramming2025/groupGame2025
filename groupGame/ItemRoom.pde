@@ -14,10 +14,10 @@ class ItemRoom extends Room {
     irimg = loadImage("Sprites/ItemRoom.png");
     spawn = random(0, 110);
 
-    println(spawn);
+    //println(spawn);
     if (spawn < 0.5) {
       item = new SpeedForce(width/2, height/2);
-    } else if ( spawn<9) {
+    } else if (spawn < 9) {
       item = new Sacrifice(width/2, height/2);
     } else if (spawn < 15) {
       item = new PikminItem(width/2, height/2);

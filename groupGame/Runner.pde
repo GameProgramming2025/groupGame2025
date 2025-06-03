@@ -1,9 +1,9 @@
-class Enemy extends ScreenElement {
+class Runner extends ScreenElement {
   float health;
   float gravity;
   float xAcc;
   float yAcc;
-  float enemyHealth;
+  float runnerHealth;
   boolean dead;
   boolean here;
   float HpBarHeight;
@@ -11,7 +11,7 @@ class Enemy extends ScreenElement {
   boolean hitCooldown;
   int recordedTime;
   int rad = 250;
-  PVector enemy, projectile, target;
+  PVector runner, target;
 
   //Enemy Images
   PImage sprites[];
@@ -22,18 +22,17 @@ class Enemy extends ScreenElement {
   int finTimer;
   int tick;
 
-  Enemy(float x, float y,String spriteFilename) {
+  Runner(float x, float y) {
     super();
     this.xPos = x;
     this.yPos = y;
 
     here = true;
-    enemyHealth = 100;
+    runnerHealth = 50;
     HpBarHeight = 10;
     xVelo = random(-2.5, 2.5);
     yVelo = random(-1.5, 1.5);
-    enemy = new PVector(x, y);
-    projectile = new PVector(enemy.x, enemy.y);
+    runner = new PVector(x, y);
     target = new PVector(p1.x, p1.y);
     animation = 15;
     currentSprite = 0;
@@ -42,7 +41,7 @@ class Enemy extends ScreenElement {
     tick = -1;
     finTimer = 270;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage(spriteFilename);
+    PImage spritesheet = loadImage("Sprites/EnemyBasic.png");
     //spritesheet.resize(96, 96);
 
     //Basic Sprites
@@ -76,16 +75,16 @@ class Enemy extends ScreenElement {
   }
 
   void display () {
-    if (enemyHealth <= 0) {
-      enemyHealth=0;
+    println("I'm here Sir, pick me up at coordinates " + runner.x +","+ runner.y);
+    if (runnerHealth <= 0) {
+      runnerHealth=0;
     }
     push();
     stroke(255, 0, 0);
     fill(#4287f5);
-    ellipse(projectile.x, projectile.y, 10, 10);
-    translate(enemy.x, enemy.y);
+    translate(runner.x, runner.y);
     rectMode(CENTER);
-    //print(projectile.x);
+    
 
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
@@ -111,8 +110,8 @@ class Enemy extends ScreenElement {
     strokeWeight(2);
     stroke(255);
     fill(#ffff00);
-    if (enemyHealth > 0) {
-      rect(0, -55, enemyHealth, HpBarHeight);
+    if (runnerHealth > 0) {
+      rect(0, -55, runnerHealth, HpBarHeight);
     }
     fill(#00ffff);
 
@@ -131,8 +130,8 @@ class Enemy extends ScreenElement {
 
 
   void update () {
- 
-    if(enemyHealth == 0 && finTimer == 269 ){
+  
+    if (runnerHealth == 0 && finTimer == 269 ) {
       dead = true;
     }
 
@@ -143,39 +142,42 @@ class Enemy extends ScreenElement {
       }
       dead =false;
     }
-    /*if (p1.killsNum > 0){
-     enemyHealth = 0; 
+    /*if (p1.killsNum > 0) {
+      runnerHealth = 0;
     }*/
 
-    if (random(0, 1) < 0.003 && tick == -1) {
+    if (random(0, 1) < 0.005 && tick == -1) {
       tick = 0;
     }
 
-    if (tick > -1 && tick <= 0) {
-      if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
-
-        projectile.x = enemy.x;
-        projectile.y = enemy.y;
-        target.x = p1.x-enemy.x;
-        target.y = p1.y-enemy.y;
+    if (tick > -1 && tick < 5) {
+      if (dist(runner.x, runner.y, p1.x, p1.y ) < 400 ) {
+        
+        target.x = p1.x-runner.x;
+        target.y = p1.y-runner.y;
         target.normalize();
-        //target.x *= 3;
-        //target.y *= 3;
+        xVelo = target.x * 20;
+        yVelo = target.y * 20;
+        
+        
+        
+        
+        
+        
+        
+
+        
       }
     }
     if (tick == 70) {
-      projectile.x = 10000;
-      projectile.y = 10000;
       frame = 0;
       //target.x *= 3;
       //target.y *= 3;
     }
-    projectile.x += 10*target.x;
-    projectile.y += 10*target.y;
-    xPosPrev = enemy.x;
-    yPosPrev = enemy.y;
-    enemy.x += xVelo;
-    enemy.y += yVelo;
+    xPosPrev = runner.x;
+    yPosPrev = runner.y;
+    runner.x += xVelo;
+    runner.y += yVelo;
     // yVelo += yAcc;
     // xVelo += xAcc;
     // yVelo += gravity;
@@ -184,26 +186,26 @@ class Enemy extends ScreenElement {
     }
 
 
-    //println(xPos);
+    
 
 
 
     //println(xPos);
 
 
-    if ( enemy.x < 252 ) {
+    if ( runner.x < 252 ) {
       xVelo = -xVelo;
     }
 
-    if ( enemy.x > 1466 ) {
+    if ( runner.x > 1466 ) {
       xVelo = -xVelo;
     }
 
-    if ( enemy.y > 945  ) {
+    if ( runner.y > 945  ) {
       yVelo = -yVelo;
     }
 
-    if ( enemy.y < 282  ) {
+    if ( runner.y < 282  ) {
       yVelo = -yVelo;
     }
 
@@ -211,8 +213,7 @@ class Enemy extends ScreenElement {
 
 
 
-    if (enemyHealth <= 0 ) {
-
+    if (runnerHealth <= 0 ) {
       finTimer--;
       xVelo = 0;
       yVelo = 0;
@@ -223,45 +224,35 @@ class Enemy extends ScreenElement {
 
       if (finTimer <= 1) {
         HpBarHeight = 0;
-        enemy.x = 10000;
-        enemy.y = 10000;
+        runner.x = 10000;
+        runner.y = 10000;
         finTimer = 60;
       }
     }
 
-    if (enemyHealth == 0) {
+    if (runnerHealth == 0) {
       here = false;
-      soundEffects.explosion = true;
     }
 
-
-
-    if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
+    if (dist(runner.x, runner.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
       recordedTime = millis();
       soundEffects.strike = true;
+    } else {
+      soundEffects.strike = false;
     }
 
-    if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
-      p1.HP -= 1;
-      projectile.x = 10000;
-      projectile.y = 10000;
-      recordedTime = millis();
-      soundEffects.hurt = true;
-    }
 
     for (Magic m : p1.shots) {
-      if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
-        soundEffects.strike = true;
-        enemyHealth -= 50;
-        enemyHealth -= p1.atk;
+      if (dist(runner.x, runner.y, m.x, m.y) < 75) {
+        runnerHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;
       }
     }
 
-    xPos = enemy.x;
-    yPos = enemy.y;
+    xPos = runner.x;
+    yPos = runner.y;
 
 
 
@@ -274,10 +265,10 @@ class Enemy extends ScreenElement {
       }
     }
   }
-  
-  void keyPressed(){
-   if (key == 'k'){
-     enemyHealth = 0;
-   }
+
+  void keyPressed() {
+    if (key == 'k') {
+      runnerHealth = 0;
+    }
   }
 }
