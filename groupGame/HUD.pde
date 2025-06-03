@@ -153,7 +153,7 @@ class HUD {
     fill(0, 255, 0);
     rect(width *9.5/10, 70, 70, 70, 10);
     if (p.actItem != null) {
-      image(p.actItem.itemImg, width*8.5/10, 210);
+      image(p.actItem.itemImg, width*9.5/10, 70);
     }
 
     textSize(28);
