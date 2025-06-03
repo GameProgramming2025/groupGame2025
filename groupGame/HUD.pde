@@ -34,8 +34,6 @@ class HUD {
 
     hp = new Heart[100];
 
-
-
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
 
     blackRadialGradient.resize((int)(width*2.5) + 50, (int)(height*2.5) + 50);

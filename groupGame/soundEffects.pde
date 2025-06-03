@@ -65,7 +65,7 @@ class SoundEffects {
      itemfound.play(0);
      item = false;
      } else {
-      itemfound.pause(); 
+      itemfound.pause();
      }
     }
     
@@ -99,7 +99,7 @@ class SoundEffects {
       
       if (num2 == 1) {
         if (!ehit1.isPlaying()) {
-          ehit1.play(0);
+          thread("ehit1.play");
           strike = false;
         }
       }

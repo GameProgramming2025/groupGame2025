@@ -24,21 +24,22 @@ class Player {
   public Item actItem;
 
 
-  Shotgun s;   
+  Shotgun s;
 
-  boolean hasShotgun;  
-  //heatseeker variables 
-  float farthestDistance;  
-  float farthestEnemyX;   
-  float farthestEnemyY;   
-  // Player Stats  
-  int maxHP, HP, shotspd, spd, maxspd, atk, range;  
-  float shotCD /* the actual timer*/, shotsCD; /*the baseline */  
-  Magic shots[];  
-  int nextShot;  
-  //Player Images  
-  PImage sprites[];     
-  int currentSprite; 
+  boolean hasShotgun;
+  //heatseeker variables
+  float farthestDistance;
+  float farthestEnemyX;
+  float farthestEnemyY;
+  // Player Stats
+  int maxHP, HP, shotspd, spd, maxspd, atk, range;
+  float shotCD /* the actual timer*/, shotsCD; /*the baseline */
+
+  Magic shots[];
+  int nextShot;
+  //Player Images
+  PImage sprites[];
+  int currentSprite;
   int firstSprite;
   int frame;
 
@@ -153,7 +154,6 @@ class Player {
           }
         }
       }
-
     }
 
     if ((currentRoom instanceof ItemRoom || currentRoom instanceof HealthRoom) && currentRoom.getItem() != null && dist(x, y, currentRoom.getItem().x, currentRoom.getItem().y) < 200) {
@@ -382,18 +382,16 @@ class Player {
   }
 
   void keyPressed() {
-if(key == '7'){
-  HP++;
-  maxHP++;
- 
-}
-    
+    //if (key == '7') {
+    //  HP++;
+    //  maxHP++;
+    //}
+
     if (key == '1') {
       actItem.activateItem();
     }
     if (key == '2') {
-
-
+      
     }
 
     if (key == 'w') {
