@@ -1,6 +1,6 @@
 class Room {
   Item item;
-  Decoration[] decor;
+  //Decoration[] decor;
 
   Enemy[] enemies;
   int roomI;
@@ -35,116 +35,20 @@ class Room {
 
     currentDecor = 0;
 
-    decor = new Decoration[2];
+    //decor = new Decoration[2];
     int dumber = int(random(1, 11));
-    int ranheight = int(random(305, 900));
-    int ranwidth = int(random(1275, 1450));
+    int ranheight = int(random(345, 890));
+    int ranwidth = int(random(1275, 1400));
     //int randHeight =
-    decor[0] = new Decoration(dumber, ranwidth, ranheight);
+    //decor[0] = new Decoration(dumber, ranwidth, ranheight);
     dumber = int(random(1, 11));
-    ranheight = int(random(305, 936));
+    ranheight = int(random(345, 890));
     ranwidth = int(random(245, 575));
+
     decor[1] = new Decoration(dumber, ranwidth, ranheight);
-    println(dumber);
 
-    //num = int(random(0, 13));
-    ////NORMAL ROOMS
-    //num = 0;
 
-    ////ITEM ROOMS
-    //if (x == y) {
-    //  num = 13; //ItemRoom
-    //}
-
-    ////TRAP ROOMS(CONTAINS ENEMIES)
-    //if (x == 6 - y) {
-    //  num = 12; //TrapRoom
-    //}
-
-    ////EDGE ROOMS
-    //if (x == 0) {
-    //  num = 4; //NoWestDoor
-    //} else if (x == 6) {
-    //  num = 1; //NoEastDoor
-    //}
-
-    //if (y == 0) {
-    //  num = 2; //NoNorthDoor
-    //} else if (y == 6) {
-    //  num = 3; //NoSouthDoor
-    //}
-
-    ////BOSS ROOM
-    //if (x == 3 && y == 3) {
-    //  num = 14; //BossRoom
-    //}
-
-    ////CORNER ROOMS
-    //if (x == 0 && y == 0) {
-    //  num = 8; //NoNorthWest
-    //} else if (x == 0 && y == 6) {
-    //  num = 10; //NoSouthWest
-    //} else if (x == 6 && y == 0) {
-    //  num = 7; //NoNorthEast
-    //} else if (x == 6 && y == 6) {
-    //  num = 11; //NoSouthEast
-    //}
-
-    ////ROOMS
-
-    //if (num == 0) {
-    //  img = loadImage("Sprites/BGFourDoors.png");
-    //}
-    //if (num == 1 ) {
-    //  img = loadImage("Sprites/BGNoEastDoor.png");
-    //}
-    //if (num == 2) {
-    //  img = loadImage("Sprites/BGNoNorthDoor.png");
-    //}
-    //if (num == 3) {
-    //  img = loadImage("Sprites/BGNoSouthDoor.png");
-    //}
-    //if (num == 4) {
-    //  img = loadImage("Sprites/BGNoWestDoor.png");
-    //}
-    //if (num == 5) {
-    //  img = loadImage("Sprites/BGNoWestEastSouth.png");
-    //}
-    //if (num == 6) {
-    //  img = loadImage("Sprites/BGNoWestOrEast.png");
-    //}
-    //if (num == 7) {
-    //  img = loadImage("Sprites/DoorNoNorthEast.png");
-    //}
-    //if (num == 8) {
-    //  img = loadImage("Sprites/DoorNoNorthWest.png");
-    //}
-    //if (num == 9) {
-    //  img = loadImage("Sprites/DoorNoNorthEastWest.png");
-    //}
-    //if (num == 10) {
-    //  img = loadImage("Sprites/DoorNoSouthWest.png");
-    //}
-    //if (num == 11) {
-    //  img = loadImage("Sprites/DoorNoSouthEast.png");
-    //}
-    //if (num == 12) {
-    //  img = loadImage("Sprites/TrapRoom.png");
-
-    //  numEnemies = 7;
-    //  enemies = new Enemy[numEnemies];
-    //  for (int i = 0; i < numEnemies; i++) {
-    //    ex = random(252, 1466);
-    //    ey = random(282, 945);
-    //    enemies[i] = new Enemy(ex, ey);
-    //  }
-    //}
-    //if (num == 13) {
-    //  img = loadImage("Sprites/ItemRoom.png");
-    //}
-    //if (num == 14) {
-    //  img = loadImage("Sprites/BossRoom.png");
-    //}
+  
 
 
     img.resize(width, height);
@@ -164,20 +68,22 @@ class Room {
     if (this instanceof ItemRoom == false && this instanceof HealthRoom == false) {
       image(img, 0, 0);
     }
-    joshshouldofdonethisthefirsttimebutkanonhadtofixit();
+
+    showDoors();
     for (Decoration d : decor) {
       d.update();
       d.display();
     }
     pop();
 
-    fill(255, 50);
-    textSize(400);
-    textAlign(CENTER, CENTER);
-    text(roomI + ", " + roomJ, width/2, height/2);
+    //fill(255, 50);
+    //textSize(400);
+    //textAlign(CENTER, CENTER);
+    //text(roomI + ", " + roomJ, width/2, height/2);
   }
 
   void update () {
+    
   }
 
   void constrainPlayer(Player p) {
@@ -225,7 +131,7 @@ class Room {
     }
   }
   // no changing function name
-  void joshshouldofdonethisthefirsttimebutkanonhadtofixit() {
+  void showDoors() {
     if (!topOpen) {
       image(topDoor, 0, 0);
     }
@@ -246,5 +152,9 @@ class Room {
 
   void setItem(Item setItem) {
     this.item = setItem;
+  }
+  
+  void keyPressed(){
+   
   }
 }
