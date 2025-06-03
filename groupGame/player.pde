@@ -387,7 +387,7 @@ class Player {
     //  maxHP++;
     //}
 
-    if (key == '1') {
+    if (key == '1' && actItem != null) {
       actItem.activateItem();
     }
     if (key == '2') {
@@ -422,7 +422,7 @@ class Player {
           hasShotgun = true;
         }
       }
-      if (keyCode == UP) {
+      if (keyCode == 'i') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y-30, 0, -shotspd + (yVel * .5), false);
@@ -432,7 +432,7 @@ class Player {
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == DOWN) {
+      } else if (keyCode == 'k') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x, y+30, 0, shotspd + (yVel *.5), false);
@@ -442,7 +442,7 @@ class Player {
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == LEFT) {
+      } else if (keyCode == 'j') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x-30, y, -shotspd + (xVel *.5), 0, false);
@@ -452,7 +452,7 @@ class Player {
           shots[1] = s.b2;
           shots[2] = s.b3;
         }
-      } else if (keyCode == RIGHT) {
+      } else if (keyCode == 'l') {
         if (hasShotgun == false) {
           shots[nextShot] = new Magic();
           shots[nextShot].createObject(x+30, y, shotspd + (xVel *.5), 0, false);
