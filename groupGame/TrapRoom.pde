@@ -30,7 +30,7 @@ class TrapRoom extends Room {
       runners[i] = new Runner(ex, ey);
     }
   }
-//bull
+  
   void display() {
     super.display();
 

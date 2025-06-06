@@ -408,7 +408,7 @@ class Player {
     }
 
     //shooting
-    if ((key == 'i' || key == 'j' || key == 'k' || key == 'l')!shooting) {
+    if ((key == 'i' || key == 'j' || key == 'k' || key == 'l') && !shooting) {
       // println(tempX, " ", tempY);
       shooting = true;
       shotCD = shotsCD;
