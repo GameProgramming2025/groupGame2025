@@ -1,18 +1,17 @@
-class Runner extends ScreenElement {
+class HeavyEnemy extends ScreenElement {
   float health;
   float gravity;
   float xAcc;
   float yAcc;
-  float runnerHealth;
+  float heavyHealth;
   boolean dead;
   boolean here;
-  boolean facingLeft;
   float HpBarHeight;
   int hitReg = 250;
   boolean hitCooldown;
   int recordedTime;
   int rad = 250;
-  PVector runner, target;
+  PVector enemy, projectile, target;
 
   //Enemy Images
   PImage sprites[];
@@ -23,17 +22,18 @@ class Runner extends ScreenElement {
   int finTimer;
   int tick;
 
-  Runner(float x, float y) {
+  HeavyEnemy(float x, float y,String spriteFilename) {
     super();
     this.xPos = x;
     this.yPos = y;
 
     here = true;
-    runnerHealth = 50;
+    heavyHealth = 200;
     HpBarHeight = 10;
     xVelo = random(-2.5, 2.5);
     yVelo = random(-1.5, 1.5);
-    runner = new PVector(x, y);
+    enemy = new PVector(x, y);
+    projectile = new PVector(enemy.x, enemy.y);
     target = new PVector(p1.x, p1.y);
     animation = 15;
     currentSprite = 0;
@@ -41,9 +41,8 @@ class Runner extends ScreenElement {
     frame = -1;
     tick = -1;
     finTimer = 270;
-    facingLeft = true;
     sprites = new PImage[36];
-    PImage spritesheet = loadImage("Sprites/EnemyArrow.png");
+    PImage spritesheet = loadImage(spriteFilename);
     //spritesheet.resize(96, 96);
 
     //Basic Sprites
@@ -77,21 +76,16 @@ class Runner extends ScreenElement {
   }
 
   void display () {
-    if (runnerHealth <= 0) {
-      runnerHealth=0;
+    if (heavyHealth <= 0) {
+      heavyHealth=0;
     }
     push();
     stroke(255, 0, 0);
-    fill(#4287f5);
-    translate(runner.x, runner.y);
-    //if (xVelo > 0){
-    //  scale(facingLeft ? -1:1, 1);
-    //}
-    //if (xVelo < 0 ) {
-    //  scale(1);
-    //}
+    fill(#D4f1f9);
+    ellipse(projectile.x, projectile.y, 10, 10);
+    translate(enemy.x, enemy.y);
     rectMode(CENTER);
-    
+    //print(projectile.x);
 
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
@@ -112,17 +106,13 @@ class Runner extends ScreenElement {
       }
     }
     imageMode(CENTER);
-    rotate(atan2(-yVelo,-xVelo));
     image(sprites[currentSprite], 0, 0);
-    
-    pop();
-    push();
-    translate(runner.x, runner.y);
+
     strokeWeight(2);
     stroke(255);
     fill(#ffff00);
-    if (runnerHealth > 0) {
-      rect(0, -55, runnerHealth, HpBarHeight);
+    if (heavyHealth > 0) {
+      rect(0, -55, heavyHealth, HpBarHeight);
     }
     fill(#00ffff);
 
@@ -141,44 +131,53 @@ class Runner extends ScreenElement {
 
 
   void update () {
-  
-    if (runnerHealth == 0 && finTimer == 269 ) {
+ 
+    if(heavyHealth == 0 && finTimer == 269 ){
       dead = true;
     }
 
     if (dead) {
       p1.killsNum++;
+      //p1.act.incrementCharge();
+
       if (p1.actItem != null) {
         p1.actItem.incrementCharge();
       }
       dead =false;
     }
-    /*if (p1.killsNum > 0) {
-      runnerHealth = 0;
+    /*if (p1.killsNum > 0){
+     enemyHealth = 0; 
     }*/
 
-    if (random(0, 1) < 0.005 && tick == -1) {
+    if (random(0, 1) < 0.0015 && tick == -1) {
       tick = 0;
     }
 
-    if (tick > -1 && tick < 5) {
-      if (dist(runner.x, runner.y, p1.x, p1.y ) < 400 ) {
-        target.x = p1.x-runner.x;
-        target.y = p1.y-runner.y;
+    if (tick > -1 && tick <= 0) {
+      if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 400 ) {
+
+        projectile.x = enemy.x;
+        projectile.y = enemy.y;
+        target.x = p1.x-enemy.x;
+        target.y = p1.y-enemy.y;
         target.normalize();
-        xVelo = target.x * 20;
-        yVelo = target.y * 20;
+        //target.x *= 3;
+        //target.y *= 3;
       }
     }
     if (tick == 70) {
+      projectile.x = 10000;
+      projectile.y = 10000;
       frame = 0;
       //target.x *= 3;
       //target.y *= 3;
     }
-    xPosPrev = runner.x;
-    yPosPrev = runner.y;
-    runner.x += xVelo;
-    runner.y += yVelo;
+    projectile.x += 10*target.x;
+    projectile.y += 10*target.y;
+    xPosPrev = enemy.x;
+    yPosPrev = enemy.y;
+    enemy.x += xVelo;
+    enemy.y += yVelo;
     // yVelo += yAcc;
     // xVelo += xAcc;
     // yVelo += gravity;
@@ -186,19 +185,27 @@ class Runner extends ScreenElement {
       animation = 15;
     }
 
-    if ( runner.x < 252 ) {
+
+    //println(xPos);
+
+
+
+    //println(xPos);
+
+
+    if ( enemy.x < 252 ) {
       xVelo = -xVelo;
     }
 
-    if ( runner.x > 1466 ) {
+    if ( enemy.x > 1466 ) {
       xVelo = -xVelo;
     }
 
-    if ( runner.y > 945  ) {
+    if ( enemy.y > 945  ) {
       yVelo = -yVelo;
     }
 
-    if ( runner.y < 282  ) {
+    if ( enemy.y < 282  ) {
       yVelo = -yVelo;
     }
 
@@ -206,7 +213,8 @@ class Runner extends ScreenElement {
 
 
 
-    if (runnerHealth <= 0 ) {
+    if (heavyHealth <= 0 ) {
+
       finTimer--;
       xVelo = 0;
       yVelo = 0;
@@ -217,35 +225,45 @@ class Runner extends ScreenElement {
 
       if (finTimer <= 1) {
         HpBarHeight = 0;
-        runner.x = 10000;
-        runner.y = 10000;
+        enemy.x = 10000;
+        enemy.y = 10000;
+        soundEffects.explosion = false;
         finTimer = 60;
       }
     }
 
-    if (runnerHealth == 0) {
+    if (heavyHealth == 0) {
       here = false;
+      soundEffects.explosion = true;
     }
 
-    if (dist(runner.x, runner.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
+
+
+    if (dist(enemy.x, enemy.y, p1.x, p1.y ) < 45 && millis() > recordedTime + hitReg) {
       p1.HP -= 1;
       recordedTime = millis();
       soundEffects.strike = true;
-    } else {
-      soundEffects.strike = false;
     }
 
+    if (dist(p1.x, p1.y, projectile.x, projectile.y ) < 45 && millis() > recordedTime + hitReg) {
+      p1.HP -= 3;
+      projectile.x = 10000;
+      projectile.y = 10000;
+      recordedTime = millis();
+      soundEffects.hurt = true;
+    }
 
     for (Magic m : p1.shots) {
-      if (dist(runner.x, runner.y, m.x, m.y) < 75 && m.isDestroyed == false) {
-        runnerHealth -= p1.atk;
+      if (dist(enemy.x, enemy.y, m.x, m.y) < 75 && m.isDestroyed == false) {
+        soundEffects.strike = true;
+        heavyHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;
       }
     }
 
-    xPos = runner.x;
-    yPos = runner.y;
+    xPos = enemy.x;
+    yPos = enemy.y;
 
 
 
@@ -256,20 +274,6 @@ class Runner extends ScreenElement {
       if (tick > 70) {
         tick = -1;
       }
-    }
-  }
-  
-  void faceRight() {
-    facingLeft = false;
-  }
-
-  void faceLeft() {
-    facingLeft = true;
-  }
-
-  void keyPressed() {
-    if (key == 'k') {
-      runnerHealth = 0;
     }
   }
 }
