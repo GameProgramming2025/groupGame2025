@@ -227,6 +227,7 @@ class Enemy extends ScreenElement {
         HpBarHeight = 0;
         enemy.x = 10000;
         enemy.y = 10000;
+        soundEffects.explosion = false;
         finTimer = 60;
       }
     }
@@ -253,9 +254,8 @@ class Enemy extends ScreenElement {
     }
 
     for (Magic m : p1.shots) {
-      if (dist(enemy.x, enemy.y, m.x, m.y) < 75) {
+      if (dist(enemy.x, enemy.y, m.x, m.y) < 75 && m.isDestroyed == false) {
         soundEffects.strike = true;
-        enemyHealth -= 50;
         enemyHealth -= p1.atk;
         m.x = 10000;
         m.y = 10000;
@@ -275,11 +275,5 @@ class Enemy extends ScreenElement {
         tick = -1;
       }
     }
-  }
-  
-  void keyPressed(){
-   if (key == 'k'){
-     enemyHealth = 0;
-   }
   }
 }
