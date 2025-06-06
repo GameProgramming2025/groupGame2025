@@ -29,7 +29,13 @@ int currentI;
 int currentJ;
 Room currentRoom;
 
+//ENDSCREEN
+float startX = width;
+float startY = height;
+float lines = 34;
 
+int gameStartTime;
+int gameEndTime;
 
 SoundEffects soundEffects;
 
@@ -40,7 +46,7 @@ void setup() {
 
   rectMode(CENTER);
   size(1700, 1200, P3D);
-  fullScreen(P3D);
+  //fullScreen(P3D);
 
   on_start = true;
 
@@ -140,8 +146,6 @@ void draw() {
         rect(width/2 -297, height/2 +150, 562, 160);
       }
 
-
-
       rectMode(CENTER);
       strokeWeight(0);
       stroke(0);
@@ -169,7 +173,10 @@ void draw() {
 
     break;
   case GAMEPLAY:
-    soundEffects.background = true;
+    if (!soundEffects.background) {
+      soundEffects.background = true;
+      gameStartTime = millis();
+    }
     currentI = constrain(currentI, 0, 6);
     currentJ = constrain(currentJ, 0, 6);
     currentRoom = rooms[currentI][currentJ];
@@ -211,6 +218,28 @@ void draw() {
     break;
   case GAME_OVER:
     image(GameOver, 170, 50);
+    textAlign(CENTER, TOP);
+    
+
+    soundEffects.background = false;
+    gameEndTime = millis();
+
+    startX = width/2;
+    startY = 3*height/4;
+    lines = 34;
+    
+    
+
+    fill(255);
+
+    text("SPD: " + p1.spd, startX, startY - lines * 1);
+    text("ATK: " + p1.atk, startX, startY - lines * 2);
+    text("CD: " + (p1.shotsCD), startX, startY - lines * 3);
+    text("SHOT SPEED: " + p1.shotspd, startX, startY - lines * 4);
+    text("TIME: " + (gameEndTime - gameStartTime/60000) + "m " + (gameEndTime - gameStartTime/1000)%60 + "sec", startX, startY - lines * 5);
+    textSize(50);
+    text("KILLS: " + p1.killsNum, startX+400, startY - lines * 34);
+    textSize(28);
     break;
   case GAME_DEFEATED:
     break;

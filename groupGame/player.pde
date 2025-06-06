@@ -137,6 +137,9 @@ class Player {
       currentRoom.setItem(null);
       inventory[nextItemIndex].applyStats();
       nextItemIndex++;
+      if (nextItemIndex >= 5) {
+        nextItemIndex = 0;
+      }
 
       soundEffects.item = true;
       println("atk:" + atk);
@@ -347,7 +350,8 @@ class Player {
     push();
     translate(x, y);
     imageMode(CENTER);
-
+    
+    
     image(sprites[currentSprite], 0, 0);
     // Draw charge cooldown indicator
     pop();

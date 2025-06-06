@@ -163,7 +163,7 @@ class HUD {
     text("ATK: " + p1.atk, startX, startY - lines * 2);
     text("CD: " + (p1.shotsCD), startX, startY - lines * 3);
     text("SHOT SPEED: " + p1.shotspd, startX, startY - lines * 4);
-    text("TIME: " + (int)(millis()/60000) + "m " + ((millis()/1000) - (millis()/60000)) + "sec", startX, startY - lines * 5);
+    text("TIME: " + (millis()-gameStartTime)/60000 + "m " + ((millis()-gameStartTime)/1000)%60 + "sec", startX, startY - lines * 5);
     textSize(50);
     text("KILLS: " + p1.killsNum, startX+400, startY - lines * 34);
     textSize(28);
