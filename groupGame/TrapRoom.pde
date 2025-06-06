@@ -2,6 +2,8 @@ class TrapRoom extends Room {
   Enemy enemies[];
 
   Runner runners[];
+  
+  HeavyEnemy heavies[];
 
   int numEnemies;
   float spawn;
@@ -16,10 +18,11 @@ class TrapRoom extends Room {
     img.resize(width, height);
     numEnemies = level*5;
    
-    enemies = new Enemy[4*numEnemies/5];
+    enemies = new Enemy[3*numEnemies/5];
     runners = new Runner[numEnemies/5];
+    heavies = new HeavyEnemy[numEnemies/5];
     
-    for (int i = 0; i < 4*numEnemies/5; i++) {
+    for (int i = 0; i < 3*numEnemies/5; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
       enemies[i] = new Enemy(ex, ey, "Sprites/EnemyBasic.png");
@@ -29,12 +32,24 @@ class TrapRoom extends Room {
       ey = random(282, 945);
       runners[i] = new Runner(ex, ey);
     }
+    for (int i = 0; i < numEnemies/5; i++) {
+      ex = random(252, 1466);
+      ey = random(282, 945);
+      heavies[i] = new HeavyEnemy(ex, ey, "Sprites/EnemyWater.png");
+    }
   }
   
   void display() {
     super.display();
 
     enemiesDead = true;
+    for (HeavyEnemy h : heavies) {
+      h.update();
+      if (h.heavyHealth > 0) {
+        enemiesDead = false;
+      }
+      h.display();
+    }
     for (Enemy e : enemies) {
       e.update();
       if (e.enemyHealth > 0) {
