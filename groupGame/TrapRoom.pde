@@ -16,23 +16,23 @@ class TrapRoom extends Room {
     super(x, y, topOpen, bottomOpen, leftOpen, rightOpen);
     img = loadImage("Sprites/BGFourDoors.png");
     img.resize(width, height);
-    numEnemies = level*5;
+    numEnemies = level*6;
    
-    enemies = new Enemy[3*numEnemies/5];
-    runners = new Runner[numEnemies/5];
-    heavies = new HeavyEnemy[numEnemies/5];
+    enemies = new Enemy[3*numEnemies/6];
+    runners = new Runner[2*numEnemies/6];
+    heavies = new HeavyEnemy[numEnemies/6];
     
-    for (int i = 0; i < 3*numEnemies/5; i++) {
+    for (int i = 0; i < 3*numEnemies/6; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
       enemies[i] = new Enemy(ex, ey, "Sprites/EnemyBasic.png");
     }
-    for (int i = 0; i < numEnemies/5; i++) {
+    for (int i = 0; i < 2*numEnemies/6; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
       runners[i] = new Runner(ex, ey);
     }
-    for (int i = 0; i < numEnemies/5; i++) {
+    for (int i = 0; i < numEnemies/6; i++) {
       ex = random(252, 1466);
       ey = random(282, 945);
       heavies[i] = new HeavyEnemy(ex, ey, "Sprites/EnemyWater.png");

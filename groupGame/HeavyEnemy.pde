@@ -81,6 +81,7 @@ class HeavyEnemy extends ScreenElement {
     }
     push();
     stroke(255, 0, 0);
+    
     fill(#D4f1f9);
     ellipse(projectile.x, projectile.y, 10, 10);
     translate(enemy.x, enemy.y);
@@ -110,6 +111,9 @@ class HeavyEnemy extends ScreenElement {
 
     strokeWeight(2);
     stroke(255);
+    if (gameState == GameState.GAME_OVER) {
+      noStroke();
+    }
     fill(#ffff00);
     if (heavyHealth > 0) {
       rect(0, -55, heavyHealth, HpBarHeight);

@@ -120,6 +120,9 @@ class Runner extends ScreenElement {
     translate(runner.x, runner.y);
     strokeWeight(2);
     stroke(255);
+    if (gameState == GameState.GAME_OVER) {
+      noStroke();
+    }
     fill(#ffff00);
     if (runnerHealth > 0) {
       rect(0, -55, runnerHealth, HpBarHeight);

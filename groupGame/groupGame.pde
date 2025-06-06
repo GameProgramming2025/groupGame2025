@@ -30,8 +30,8 @@ int currentJ;
 Room currentRoom;
 
 //ENDSCREEN
-float startX = width;
-float startY = height;
+float startX;
+float startY;
 float lines = 34;
 
 int gameStartTime;
@@ -217,18 +217,23 @@ void draw() {
     if (p1.finalAnimation <= 0 && p1.HP <= 0) gameState = GameState.GAME_OVER;
     break;
   case GAME_OVER:
+    currentRoom.update();
+    currentRoom.display();
     image(GameOver, 170, 50);
     textAlign(CENTER, TOP);
     
-
-    soundEffects.background = false;
-    gameEndTime = millis();
+    h1.effects(true);
+    
+    if (soundEffects.background == true) {
+      soundEffects.background = false;
+      gameEndTime = millis();
+    }
 
     startX = width/2;
-    startY = 3*height/4;
+    startY = 4*height/5;
     lines = 34;
-    
-    
+
+
 
     fill(255);
 
@@ -236,9 +241,10 @@ void draw() {
     text("ATK: " + p1.atk, startX, startY - lines * 2);
     text("CD: " + (p1.shotsCD), startX, startY - lines * 3);
     text("SHOT SPEED: " + p1.shotspd, startX, startY - lines * 4);
-    text("TIME: " + (gameEndTime - gameStartTime/60000) + "m " + (gameEndTime - gameStartTime/1000)%60 + "sec", startX, startY - lines * 5);
+    text("TIME: " + (gameEndTime-gameStartTime)/60000 + "m " + ((gameEndTime-gameStartTime)/1000)%60 + "sec", startX, startY - lines * 5);
     textSize(50);
     text("KILLS: " + p1.killsNum, startX+400, startY - lines * 34);
+
     textSize(28);
     break;
   case GAME_DEFEATED:
