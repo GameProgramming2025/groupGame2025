@@ -13,7 +13,7 @@ HUD h1;
 Item spawned;
 Decoration[] decor;
 
-GameState gameState; //iowhbaweruyfbu ujfbdsfhasrhj
+GameState gameState;
 
 
 long noInputCnt;

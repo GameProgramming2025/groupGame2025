@@ -12,6 +12,7 @@ class Enemy extends ScreenElement {
   int recordedTime;
   int rad = 250;
   PVector enemy, projectile, target;
+  PImage bullets, bullet;
 
   //Enemy Images
   PImage sprites[];
@@ -22,7 +23,7 @@ class Enemy extends ScreenElement {
   int finTimer;
   int tick;
 
-  Enemy(float x, float y,String spriteFilename) {
+  Enemy(float x, float y, String spriteFilename) {
     super();
     this.xPos = x;
     this.yPos = y;
@@ -43,6 +44,10 @@ class Enemy extends ScreenElement {
     finTimer = 270;
     sprites = new PImage[36];
     PImage spritesheet = loadImage(spriteFilename);
+    
+    PImage bullets = loadImage("data/Sprites/EnemyBullets.png");
+    bullet = bullets.get(0, 0, 32, 32);
+    
     //spritesheet.resize(96, 96);
 
     //Basic Sprites
@@ -81,9 +86,14 @@ class Enemy extends ScreenElement {
     }
     push();
     stroke(255, 0, 0);
-    
+
     fill(#4287f5);
-    ellipse(projectile.x, projectile.y, 10, 10);
+    translate(projectile.x, projectile.y);
+    rotate(projectile.x/10);
+    imageMode(CENTER);
+    image(bullet, 0, 0, 50, 50);
+    pop();
+    push();
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
     //print(projectile.x);
@@ -135,9 +145,10 @@ class Enemy extends ScreenElement {
 
 
   void update () {
- 
-    if(enemyHealth == 0 && finTimer == 269 ){
+
+    if (enemyHealth == 0 && finTimer == 120 ) {
       dead = true;
+      soundEffects.explosion = true;
     }
 
     if (dead) {
@@ -150,8 +161,8 @@ class Enemy extends ScreenElement {
       dead =false;
     }
     /*if (p1.killsNum > 0){
-     enemyHealth = 0; 
-    }*/
+     enemyHealth = 0;
+     }*/
 
     if (random(0, 1) < 0.003 && tick == -1) {
       tick = 0;
@@ -216,6 +227,11 @@ class Enemy extends ScreenElement {
 
 
 
+    if (enemyHealth == 0) {
+      here = false;
+    }
+    
+    println(finTimer);
 
     if (enemyHealth <= 0 ) {
 
@@ -227,7 +243,7 @@ class Enemy extends ScreenElement {
 
       currentSprite = int((270-finTimer)/15)+2;
 
-      if (finTimer <= 1) {
+      if (finTimer <= 5) {
         HpBarHeight = 0;
         enemy.x = 10000;
         enemy.y = 10000;
@@ -236,10 +252,6 @@ class Enemy extends ScreenElement {
       }
     }
 
-    if (enemyHealth == 0) {
-      here = false;
-      soundEffects.explosion = true;
-    }
 
 
 

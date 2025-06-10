@@ -91,7 +91,7 @@ class Runner extends ScreenElement {
     //  scale(1);
     //}
     rectMode(CENTER);
-    
+
 
     //ellipse(0, 0, 30, 30);
     //fill(#802345);
@@ -112,9 +112,9 @@ class Runner extends ScreenElement {
       }
     }
     imageMode(CENTER);
-    rotate(atan2(-yVelo,-xVelo));
+    rotate(atan2(-yVelo, -xVelo));
     image(sprites[currentSprite], 0, 0);
-    
+
     pop();
     push();
     translate(runner.x, runner.y);
@@ -136,15 +136,15 @@ class Runner extends ScreenElement {
   void respawn() {
     this.xPos = random(30, width - 30);
     this.yPos = random(-height * 2, -100);
-    xVelo = random(-4, 4);
-    yVelo = 0;
-    health = 1;
+    xVelo = random(-2.5, 2.5);
+    yVelo = random(-1.5, 1.5);
+    health = 50;
     recordedTime = millis() + 1500; //Spawn Immunity
   }
 
 
   void update () {
-  
+
     if (runnerHealth == 0 && finTimer == 269 ) {
       dead = true;
     }
@@ -156,9 +156,6 @@ class Runner extends ScreenElement {
       }
       dead =false;
     }
-    /*if (p1.killsNum > 0) {
-      runnerHealth = 0;
-    }*/
 
     if (random(0, 1) < 0.005 && tick == -1) {
       tick = 0;
@@ -173,8 +170,11 @@ class Runner extends ScreenElement {
         yVelo = target.y * 20;
       }
     }
-    if (tick == 70) {
+    if (tick == 3000) {
+      tick = -1;
       frame = 0;
+      xVelo = random(-2.5, 2.5);
+      yVelo = random(-1.5, 1.5);
       //target.x *= 3;
       //target.y *= 3;
     }
@@ -256,12 +256,12 @@ class Runner extends ScreenElement {
     //timer frame
     if (tick > -1) {
       tick++;
-      if (tick > 70) {
+      if (tick > 3000) {
         tick = -1;
       }
     }
   }
-  
+
   void faceRight() {
     facingLeft = false;
   }

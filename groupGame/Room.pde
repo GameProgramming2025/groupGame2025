@@ -79,7 +79,7 @@ class Room {
     fill(bc);
     //strokeWeight(10);
     //stroke(90);
-    if (this instanceof ItemRoom == false && this instanceof HealthRoom == false) {
+    if (this instanceof ItemRoom == false && this instanceof HealthRoom == false && this instanceof BossRoom == false) {
       image(img, 0, 0);
     }
 

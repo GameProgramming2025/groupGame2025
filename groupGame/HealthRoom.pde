@@ -8,14 +8,14 @@ class HealthRoom extends Room {
   PImage irimg;
 
 
-  HealthRoom(int x, int y,boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
+  HealthRoom(int x, int y, boolean topOpen, boolean bottomOpen, boolean leftOpen, boolean rightOpen) {
     super(x, y,topOpen,bottomOpen,leftOpen,rightOpen);
     bc = color(random(100, 200), 100, 20);
     irimg = loadImage("Sprites/HealthRoom.png");
     spawn = random(0, 100);
 
     //println(spawn);
-    if( spawn <= 100){
+    if(spawn <= 100){
      item = new TwoUP(width/2, height/2); 
     }
 

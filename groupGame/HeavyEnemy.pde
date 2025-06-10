@@ -12,6 +12,7 @@ class HeavyEnemy extends ScreenElement {
   int recordedTime;
   int rad = 250;
   PVector enemy, projectile, target;
+  PImage bullets, bullet;
 
   //Enemy Images
   PImage sprites[];
@@ -43,6 +44,10 @@ class HeavyEnemy extends ScreenElement {
     finTimer = 270;
     sprites = new PImage[36];
     PImage spritesheet = loadImage(spriteFilename);
+    
+    PImage bullets = loadImage("data/Sprites/EnemyBullets.png");
+    bullet = bullets.get(0, 32, 32, 64);
+    
     //spritesheet.resize(96, 96);
 
     //Basic Sprites
@@ -83,7 +88,12 @@ class HeavyEnemy extends ScreenElement {
     stroke(255, 0, 0);
     
     fill(#D4f1f9);
-    ellipse(projectile.x, projectile.y, 10, 10);
+    translate(projectile.x, projectile.y);
+    rotate(projectile.x/10);
+    imageMode(CENTER);
+    image(bullet, 0, 25, 50, 100);
+    pop();
+    push();
     translate(enemy.x, enemy.y);
     rectMode(CENTER);
     //print(projectile.x);
@@ -136,8 +146,9 @@ class HeavyEnemy extends ScreenElement {
 
   void update () {
  
-    if(heavyHealth == 0 && finTimer == 269 ){
+    if (heavyHealth == 0 && finTimer == 120 ){
       dead = true;
+      soundEffects.explosion = true;
     }
 
     if (dead) {
@@ -238,7 +249,6 @@ class HeavyEnemy extends ScreenElement {
 
     if (heavyHealth == 0) {
       here = false;
-      soundEffects.explosion = true;
     }
 
 
@@ -260,7 +270,7 @@ class HeavyEnemy extends ScreenElement {
     for (Magic m : p1.shots) {
       if (dist(enemy.x, enemy.y, m.x, m.y) < 75 && m.isDestroyed == false) {
         soundEffects.strike = true;
-        heavyHealth -= p1.atk;
+        heavyHealth -= 5*p1.atk/6;
         m.x = 10000;
         m.y = 10000;
       }

@@ -51,25 +51,25 @@ class SoundEffects {
 
 
   void update() {
-    if (background){
-      if(!backgrn.isPlaying()){
-       backgrn.play(0);
+    if (background) {
+      if (!backgrn.isPlaying()) {
+        backgrn.play(0);
       }
-    } 
-    if( background == false){
+    }
+    if ( background == false) {
       backgrn.pause();
     }
-    
-    if (item){
-     if(!itemfound.isPlaying()){
-     itemfound.play(0);
-     item = false;
-     } else {
-      itemfound.pause();
-     }
+
+    if (item) {
+      if (!itemfound.isPlaying()) {
+        itemfound.play(0);
+        item = false;
+      } else {
+        itemfound.pause();
+      }
     }
-    
-    
+
+
     if (hurt) {
       //println(num);
       num = (int)random(1, 3);
@@ -96,21 +96,21 @@ class SoundEffects {
     if (strike) {
       num2 = (int)random(1, 3);
       println(num2);
-      
+
       if (num2 == 1) {
         if (!ehit1.isPlaying()) {
-          thread("ehit1.play");
+          ehit1.play(0);
           strike = false;
         }
       }
-      
+
       if (num2 == 2) {
         if (!ehit2.isPlaying()) {
           ehit2.play(0);
           strike = false;
         }
       }
-      
+
       if (num2 == 3) {
         if (!ehit3.isPlaying()) {
           ehit3.play(0);
@@ -120,21 +120,18 @@ class SoundEffects {
     }
 
     if (attack) {
-      if ( !fireball.isPlaying() ) {
+      if (!fireball.isPlaying() ) {
         fireball.play(0);
         attack = false;
       }
     }
-    
-    if (explosion){
-     if(!boom.isPlaying() ) {
-      boom.play(0);
-      explosion = false;
-     } else if (explosion == false) {
-      explosion = false;
-      boom.pause();
-     }
+
+    if (explosion) {
+      if (!boom.isPlaying() ) {
+        boom.play(0);
+        println("playing explosion");
+        explosion = false;
+      }
     }
-    
   }
 }
