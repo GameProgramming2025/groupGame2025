@@ -19,6 +19,7 @@ GameState gameState; //iowhbaweruyfbu ujfbdsfhasrhj
 long noInputCnt;
 float a;
 PImage GameOver;
+PImage RestartButtons, RestartButton1, RestartButton2;
 PImage TitleScreen, SelectScreen;
 PImage decorSpritesheet;
 boolean starting;
@@ -62,19 +63,21 @@ void setup() {
   starting=false;
   noInputCnt = 0;
 
-
   soundEffects = new SoundEffects(min);
 
   GameOver = loadImage("Sprites/DeathScreen.png");
   GameOver.resize(1350, 1012);
+  RestartButtons = loadImage("Sprites/restartButton.png");
+  RestartButton1 = RestartButtons.get(0, 0, 738, 465);
+  RestartButton2 = RestartButtons.get(0, 465, 738, 930);
+ 
 
   TitleScreen = loadImage("Sprites/TitleScreen.png");
   TitleScreen.resize(width, height);
   SelectScreen = loadImage("Sprites/StartScreen.png");
   SelectScreen.resize(width, height);
+
   h1 = new HUD(p1);
-
-
 
   rooms = new Room[5][5];
   //order is top, bottom, left, and right
@@ -111,7 +114,6 @@ void setup() {
   rooms[3][4] = new TrapRoom(3, 4, false, false, true, true, 1);//border on top wall
   rooms[4][4] = new ItemRoom(4, 4, true, false, true, false);
 
-  //showDoors();
   currentRoom = rooms[currentI][currentJ];
   gameState = GameState.MAIN_SCREEN;
 }
@@ -213,27 +215,29 @@ void draw() {
 
     thread("soundEffectsUpdate");
 
-    //Cameron this is embarassing
     if (p1.finalAnimation <= 0 && p1.HP <= 0) gameState = GameState.GAME_OVER;
     break;
   case GAME_OVER:
     currentRoom.update();
     currentRoom.display();
-    image(GameOver, 170, 50);
+    image(GameOver, 170, 0);
+    if (keyPressed) {
+      image(RestartButton2, 200, 3*height/5);
+    } else {
+      image(RestartButton1, 200, 3*height/5);
+    }
     textAlign(CENTER, TOP);
-    
+
     h1.effects(true);
-    
+
     if (soundEffects.background == true) {
       soundEffects.background = false;
       gameEndTime = millis();
     }
 
-    startX = width/2;
+    startX = 3*width/4;
     startY = 4*height/5;
     lines = 34;
-
-
 
     fill(255);
 

@@ -6,7 +6,6 @@ class HUD {
   float t;
   Heart hp[];
   Player p;
-  HighNoon h;
 
   int startX = 20;
   int startY = height;
@@ -36,7 +35,7 @@ class HUD {
 
     blackRadialGradient = loadImage("data/VisualEffects/BlackRadialGradient.png");
 
-    blackRadialGradient.resize((int)(width*2.5) + 50, (int)(height*2.5) + 50);
+    blackRadialGradient.resize((int)(width*2) + 50, (int)(height*2) + 50);
 
     this.p = p;
 
@@ -78,68 +77,6 @@ class HUD {
     for (int i = 0; i < p.maxHP; i++) {
       hp[i].display();
     }
-
-
-
-
-    //if (currentHp ==10) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //  image(heart, x+80, y, s, s);
-    //  image(heart, x+120, y, s, s);
-    //  image(heart, x+160, y, s, s);
-    //}
-
-    //if (currentHp==9) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //  image(heart, x+80, y, s, s);
-    //  image(heart, x+120, y, s, s);
-    //  image(brokenHeart, x+160, y, s, s);
-    //}
-
-    //if (currentHp==8) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //  image(heart, x+80, y, s, s);
-    //  image(heart, x+120, y, s, s);
-    //}
-
-    //if (currentHp==7) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //  image(heart, x+80, y, s, s);
-    //  image(brokenHeart, x+120, y, s, s);
-    //}
-
-    //if (currentHp==6) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //  image(heart, x+80, y, s, s);
-    //}
-
-    //if (currentHp==5) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //  image(brokenHeart, x+80, y, s, s);
-    //}
-
-    //if (currentHp==4) {
-    //  image(heart, x, y, s, s);
-    //  image(heart, x+40, y, s, s);
-    //}
-
-    //if (currentHp==3) {
-    //  image(heart, x, y, s, s);
-    //  image(brokenHeart, x+40, y, s, s);
-    //}
-    //if (currentHp==2) {
-    //  image(heart, x, y, s, s);
-    //}
-
-    //if (currentHp== 1) {
-    //  image(brokenHeart, x, y, s, s);
-    //}
 
     for (int i = 0; i < 5; i++) {
       if (p.inventory[i] != null) {
