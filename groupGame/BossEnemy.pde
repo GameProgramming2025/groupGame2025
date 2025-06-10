@@ -15,6 +15,7 @@ class BossEnemy extends ScreenElement {
 
   //Enemy Images
   PImage sprites[];
+  PImage bullet;
   int currentSprite;
   int firstSprite;
   int frame;
@@ -42,6 +43,7 @@ class BossEnemy extends ScreenElement {
     finTimer = 175;
     sprites = new PImage[45];
     PImage spritesheet = loadImage("Sprites/BossSprite.png");
+    bullet = loadImage("Sprites/Heatseeker.png");
     spritesheet.resize(2016, 2016);
 
     //Basic Sprites
@@ -114,7 +116,12 @@ class BossEnemy extends ScreenElement {
     push();
     stroke(255, 0, 0);
     fill(#4287f5);
-    ellipse(projectile.x, projectile.y, 10, 10);
+    translate(projectile.x, projectile.y);
+    bullet.resize(100,100);
+    rotate(atan2(-target.y,-target.x));
+    image(bullet, 0, 0);
+    pop();
+    push();
     translate(BossEnemy.x, BossEnemy.y);
     rectMode(CENTER);
     //print(projectile.x);
@@ -162,6 +169,7 @@ class BossEnemy extends ScreenElement {
     fill(#ffff00);
     rect(0, -55, BossEnemyHealth/4, HpBarHeight);
     fill(#00ffff);
+    
     pop();
   }
 
